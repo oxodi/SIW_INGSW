@@ -52,9 +52,11 @@ public class Cliente {
 	
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		return "Cliente["+ this.getId() + ","
+		return "Cliente["+ this.getId() + ",";
 	}
 
-
+    public static void main(String[] args) {
+		System.out.println("Ciao");
+	}
 }
 
