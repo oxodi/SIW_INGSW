@@ -3,14 +3,15 @@ package entita;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class Cliente {
 	private int id;
 	private String nome;
 	private String cognome;
 	private Date dataDiNascita;
-	
+
 	public Cliente() {}
-	
+
 	public Cliente(int id, String nome, String cognome, Date dataDiNascita) {
 		this.id = id;
 		this.nome = nome;
@@ -49,10 +50,14 @@ public class Cliente {
 	public void setDataDiNascita(Date dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
-	
+
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		return "Cliente["+ this.getId() + ","
+		return "Cliente["+ this.getId() + "," +
+		this.getNome() + ", " + 
+		this.getCognome() + ", " +
+		sdf.format(this.getDataDiNascita()) + "]"; 
+
 	}
 
 
