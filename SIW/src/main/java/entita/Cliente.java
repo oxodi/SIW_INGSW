@@ -53,13 +53,18 @@ public class Cliente {
 
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
 		return "Cliente["+ this.getId() + "," +
 		this.getNome() + ", " + 
 		this.getCognome() + ", " +
 		sdf.format(this.getDataDiNascita()) + "]"; 
 
+
+		
 	}
 
-
+    public static void main(String[] args) {
+		System.out.println("Ciao");
+	}
 }
 
