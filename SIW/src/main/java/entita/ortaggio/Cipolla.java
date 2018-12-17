@@ -1,6 +1,7 @@
 package entita.ortaggio;
 /*
- * Utilizziamo il pattern Builder per la creazione degli ortaggi, questa classe nello schema del pattern ricopre il ruolo di CONCRETEBUILDER.
+ * Utilizziamo il pattern Builder per la creazione degli ortaggi, 
+ * questa classe nello schema del pattern ricopre il ruolo di CONCRETEBUILDER.
 */
 public class Cipolla extends AbstractOrtaggioBuilder {
 
@@ -10,8 +11,8 @@ public class Cipolla extends AbstractOrtaggioBuilder {
 	}
 
 	@Override
-	public void scegliPrezzo() {
-		ortaggio.setPrezzo(0);
+	public void scegliPrezzo(int prezzo) {
+		ortaggio.setPrezzo(prezzo);
 	}
 
 	@Override
@@ -20,7 +21,7 @@ public class Cipolla extends AbstractOrtaggioBuilder {
 	}
 
 	@Override
-	public void scegliPeriodoColtivazione() {
-		ortaggio.setPeriodoColtivazione("");
+	public void scegliPeriodoColtivazione(String periodoColtivazione) {
+		ortaggio.setPeriodoColtivazione(periodoColtivazione);
 	}
 }

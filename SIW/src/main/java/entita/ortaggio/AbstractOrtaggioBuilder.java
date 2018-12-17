@@ -15,7 +15,7 @@ public abstract class AbstractOrtaggioBuilder {
 	}
 	
 	public abstract void scegliNome();
-	public abstract void scegliPrezzo();
+	public abstract void scegliPrezzo(int prezzo);
 	public abstract void scegliTempoColtivazione();
-	public abstract void scegliPeriodoColtivazione();
+	public abstract void scegliPeriodoColtivazione(String periodoColtivazione);
 }

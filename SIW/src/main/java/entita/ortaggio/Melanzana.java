@@ -11,8 +11,8 @@ public class Melanzana extends AbstractOrtaggioBuilder {
 	}
 
 	@Override
-	public void scegliPrezzo() {
-		ortaggio.setPrezzo(0);
+	public void scegliPrezzo(int prezzo) {
+		ortaggio.setPrezzo(prezzo);
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class Melanzana extends AbstractOrtaggioBuilder {
 	}
 
 	@Override
-	public void scegliPeriodoColtivazione() {
-		ortaggio.setPeriodoColtivazione("");
+	public void scegliPeriodoColtivazione(String periodoColtivazione) {
+		ortaggio.setPeriodoColtivazione(periodoColtivazione);
 	}
 }

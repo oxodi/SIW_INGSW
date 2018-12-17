@@ -14,11 +14,11 @@ public class DirectorOrtaggi {
 		return builder.getOrtaggio();
 	}
 	
-	public void creaOrtaggio() {
+	public void creaOrtaggio(int prezzo, String periodoColtivazione) {
 		builder.creaNuovoOrtaggio();
 		builder.scegliNome();
-		builder.scegliPrezzo();
-		builder.scegliPeriodoColtivazione();
+		builder.scegliPrezzo(prezzo);
+		builder.scegliPeriodoColtivazione(periodoColtivazione);
 		builder.scegliTempoColtivazione();
 	}
 }
