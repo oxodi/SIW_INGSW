@@ -7,7 +7,7 @@ public class Peperoncino extends AbstractOrtaggioBuilder {
 	
 	@Override
 	public void scegliNome() {
-		ortaggio.setNome("");
+		ortaggio.setNome("Peperoncino");
 	}
 
 	@Override

@@ -7,7 +7,7 @@ public class Lattuga extends AbstractOrtaggioBuilder {
 
 	@Override
 	public void scegliNome() {
-		ortaggio.setNome("");
+		ortaggio.setNome("Lattuga");
 	}
 
 	@Override

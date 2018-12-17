@@ -7,7 +7,7 @@ public class Zucchina extends AbstractOrtaggioBuilder {
 	
 	@Override
 	public void scegliNome() {
-		ortaggio.setNome("");
+		ortaggio.setNome("Zucchina");
 	}
 
 	@Override

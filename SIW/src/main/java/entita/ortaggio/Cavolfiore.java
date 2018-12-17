@@ -7,7 +7,7 @@ public class Cavolfiore extends AbstractOrtaggioBuilder{
 	
 	@Override
 	public void scegliNome() {
-		ortaggio.setNome("");
+		ortaggio.setNome("Cavolfiore");
 	}
 
 	@Override

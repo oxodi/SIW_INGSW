@@ -7,7 +7,7 @@ public class Cavolo extends AbstractOrtaggioBuilder {
 	
 	@Override
 	public void scegliNome() {
-		ortaggio.setNome("");
+		ortaggio.setNome("Cavolo");
 	}
 
 	@Override
