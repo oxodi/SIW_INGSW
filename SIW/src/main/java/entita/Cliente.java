@@ -8,14 +8,16 @@ public class Cliente {
 	private String nome;
 	private String cognome;
 	private Date dataDiNascita;
+	private String codiceFiscale;
 	
 	public Cliente() {}
 	
-	public Cliente(int id, String nome, String cognome, Date dataDiNascita) {
+	public Cliente(int id, String nome, String cognome, Date dataDiNascita, String codiceFiscale) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataDiNascita = dataDiNascita;
+		this.codiceFiscale = codiceFiscale;
 	}
 
 	public int getId() {
