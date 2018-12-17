@@ -8,15 +8,18 @@ public class Cliente {
 	private int id;
 	private String nome;
 	private String cognome;
+	private String codiceFiscale;
 	private Date dataDiNascita;
 
 	public Cliente() {}
 
-	public Cliente(int id, String nome, String cognome, Date dataDiNascita) {
+	public Cliente(int id, String nome, String cognome,String codiceFiscale, Date dataDiNascita) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
+		this.codiceFiscale = codiceFiscale;
 		this.dataDiNascita = dataDiNascita;
+		
 	}
 
 	public int getId() {
@@ -50,6 +53,13 @@ public class Cliente {
 	public void setDataDiNascita(Date dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
+	public String getCodiceFiscale() {
+		return codiceFiscale;
+	}
+
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
+	}
 
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -60,11 +70,7 @@ public class Cliente {
 		sdf.format(this.getDataDiNascita()) + "]"; 
 
 
-		
-	}
 
-    public static void main(String[] args) {
-		System.out.println("Ciao");
 	}
 }
 
