@@ -3,21 +3,23 @@ package entita;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class Cliente {
 	private int id;
 	private String nome;
 	private String cognome;
-	private Date dataDiNascita;
 	private String codiceFiscale;
-	
+	private Date dataDiNascita;
+
 	public Cliente() {}
-	
-	public Cliente(int id, String nome, String cognome, Date dataDiNascita, String codiceFiscale) {
+
+	public Cliente(int id, String nome, String cognome,String codiceFiscale, Date dataDiNascita) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
-		this.dataDiNascita = dataDiNascita;
 		this.codiceFiscale = codiceFiscale;
+		this.dataDiNascita = dataDiNascita;
+		
 	}
 
 	public int getId() {
@@ -51,14 +53,25 @@ public class Cliente {
 	public void setDataDiNascita(Date dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
-	
-	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		return "Cliente["+ this.getId() + ",";
+	public String getCodiceFiscale() {
+		return codiceFiscale;
 	}
 
-    public static void main(String[] args) {
-		System.out.println("Ciao");
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
+	}
+
+	public String toString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+		return "Cliente["+ this.getId() + "," +
+		this.getNome() + ", " + 
+		this.getCognome() + ", " +
+		this.getCodiceFiscale() + ", "+
+		sdf.format(this.getDataDiNascita()) + "]"; 
+
+
+
 	}
 }
 
