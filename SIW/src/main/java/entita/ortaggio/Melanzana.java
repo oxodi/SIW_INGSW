@@ -1,27 +1,13 @@
 package entita.ortaggio;
-/*
- * Utilizziamo il pattern Builder per la creazione degli ortaggi, 
- * questa classe nello schema del pattern ricopre il ruolo di CONCRETEBUILDER.
-*/
-public class Melanzana extends AbstractOrtaggioBuilder {
+
+public class Melanzana extends Ortaggio {
+
+	public Melanzana(double prezzo, String tempoColtivazione, String periodoColtivazione, int idAzienda) {
+		super(prezzo, tempoColtivazione, periodoColtivazione, idAzienda);
+		this.setId(6);
+		this.setNome("Melanzana");
+		this.setResa(1.0);
+	}
 	
-	@Override
-	public void scegliNome() {
-		ortaggio.setNome("Melanzana");
-	}
 
-	@Override
-	public void scegliPrezzo(int prezzo) {
-		ortaggio.setPrezzo(prezzo);
-	}
-
-	@Override
-	public void scegliTempoColtivazione() {
-		ortaggio.setTempoColtivazione("");
-	}
-
-	@Override
-	public void scegliPeriodoColtivazione(String periodoColtivazione) {
-		ortaggio.setPeriodoColtivazione(periodoColtivazione);
-	}
 }

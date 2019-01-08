@@ -1,44 +1,62 @@
 package entita.ortaggio;
 
-/*
- * Utilizziamo il pattern Builder per la creazione degli ortaggi, questa classe nello schema del pattern ricopre il ruolo di PRODUCT.
- */
-public class Ortaggio {
-	private String nome = "";
-	private int prezzo = 0;
-	private String tempoColtivazione = "";
-	private String  periodoColtivazione = "";
+
+public abstract class Ortaggio {
+	private int  id;
+	private int idAzienda;
+	private String nome;
+	private double prezzo;
+	private String tempoColtivazione;
+	private String  periodoColtivazione;
+	private double resa;
+	
+	public Ortaggio(double prezzo, String tempoColtivazione, String periodoColtivazione, int idAzienda) {
+		this.prezzo = prezzo;
+		this.tempoColtivazione = tempoColtivazione;
+		this.periodoColtivazione = periodoColtivazione;
+		this.setIdAzienda(idAzienda);
+	}
+	
+	public double getResa() {
+		return resa;
+	}
+
+	public void setResa(double d) {
+		this.resa = d;
+	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public int getPrezzo() {
-		return prezzo;
-	}
-	public void setPrezzo(int prezzo) {
-		this.prezzo = prezzo;
-	}
-	public String getTempoColtivazione() {
-		return tempoColtivazione;
-	}
-	public void setTempoColtivazione(String tempoColtivazione) {
-		this.tempoColtivazione = tempoColtivazione;
-	}
-	public String getPeriodoColtivazione() {
-		return periodoColtivazione;
-	}
-	public void setPeriodoColtivazione(String periodoColtivazione) {
-		this.periodoColtivazione = periodoColtivazione;
-	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
-		String output = "Ortaggio["+this.nome+ ", " +
+		String output = "Ortaggio["+this.id+ ", "+
+						 this.nome+ ", " +
 						 this.prezzo+", "+
 						 this.periodoColtivazione+", "+
-						 this.tempoColtivazione+ "]";
+						 this.tempoColtivazione+ ", "+
+						 this.resa+"]";
 		return output;
+	}
+
+	public int getIdAzienda() {
+		return idAzienda;
+	}
+
+	public void setIdAzienda(int idAzienda) {
+		this.idAzienda = idAzienda;
 	}
 }

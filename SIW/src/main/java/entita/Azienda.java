@@ -4,21 +4,78 @@ import java.util.ArrayList;
 
 public class Azienda {
 
+	private int id;
 	private String nome;
 	private String partitaIVA;
-	private String titolare;
+	private String referente;
 	private String sedeLegale;
+	private String ragioneSociale;
+	private String telefono;
+	private String email;
 	private String descrizioneServizi;
 	private ArrayList<Terreno> terreni;
 	
-	public Azienda(String nome, String partitaIVA, String titolare, String sedeLegale, String descrizioneServizi) {
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+
+	
+	public Azienda(int id, String nome, String partitaIVA, String referente, String sedeLegale,String ragioneSociale, String telefono, String descrizioneServizi, String email) {
+		this.id = id;
 		this.nome = nome;
 		this.partitaIVA = partitaIVA;
-		this.titolare = titolare;
+		this.referente = referente;
 		this.sedeLegale = sedeLegale;
+		this.ragioneSociale = ragioneSociale;
+		this.telefono = telefono;
+		this.email = email;
 		this.descrizioneServizi = descrizioneServizi;
-		
 		terreni = new ArrayList<Terreno>();
+	}
+
+	public String getReferente() {
+		return referente;
+	}
+
+	public void setReferente(String referente) {
+		this.referente = referente;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getRagioneSociale() {
+		return ragioneSociale;
+	}
+
+	public void setRagioneSociale(String ragioneSociale) {
+		this.ragioneSociale = ragioneSociale;
+	}
+
+	public ArrayList<Terreno> getTerreni() {
+		return terreni;
+	}
+
+	public void setTerreni(ArrayList<Terreno> terreni) {
+		this.terreni = terreni;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -38,11 +95,11 @@ public class Azienda {
 	}
 
 	public String getTitolare() {
-		return titolare;
+		return referente;
 	}
 
 	public void setTitolare(String titolare) {
-		this.titolare = titolare;
+		this.referente = titolare;
 	}
 
 	public String getSedeLegale() {

@@ -11,5 +11,4 @@ public interface ClienteDao {
 	public void aggiorna(Cliente cliente);
 	public void cancella(Cliente cliente);
 	public void setPassword(Cliente cliente, String password);
-	
 }
