@@ -1,6 +1,6 @@
 .article-dual-column {
 	color: #56585b;
-	background-color: #fff;
+	background-color: transparent;
 	font-family: Lora, serif;
 	font-size: 14px
 }
@@ -108,7 +108,7 @@
 
 .article-list {
 	color: #313437;
-	background-color: #fff
+	background-color: transparent
 }
 
 .article-list p {
@@ -181,7 +181,7 @@
 
 .footer-basic {
 	height: 15px;
-	background-color: #fff;
+	/*background-color: #fff;*/
 	color: #4b4c4d
 }
 
@@ -232,7 +232,7 @@
 }
 
 .footer-basic .copyright {
-	margin-top: 15px;
+	margin-top: 25px;
 	text-align: center;
 	font-size: 13px;
 	color: #aaa;
@@ -240,7 +240,7 @@
 }
 
 .navigation-clean-button {
-	background: #fff;
+	background: transparent;
 	padding-top: .75rem;
 	padding-bottom: .75rem;
 	color: #333;
@@ -264,6 +264,18 @@
 
 .navigation-clean-button .navbar-brand:hover {
 	color: #222
+}
+.bg {
+  /* The image used */
+  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
+  
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .navigation-clean-button .navbar-toggler {
@@ -314,7 +326,7 @@
 .navigation-clean-button .navbar-nav>li>.dropdown-menu {
 	margin-top: -5px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
-	background-color: #fff;
+	/*background-color: #fff;*/
 	border-radius: 2px
 }
 
@@ -357,7 +369,7 @@
 
 .projects-clean {
 	color: #313437;
-	background-color: #fff
+	/*background-color: #fff*/
 }
 
 .projects-clean p {
@@ -381,6 +393,8 @@
 		display: none
 	}
 }
+
+
 
 .projects-clean .intro {
 	font-size: 16px;
@@ -419,17 +433,28 @@
 	height: 500px;
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: center
+	background-position: center;
+	
 }
 
 .simple-slider .swiper-button-next, .simple-slider .swiper-button-prev {
 	width: 50px;
 	margin-left: 20px;
 	margin-right: 20px
+	
 }
 
 @media ( max-width :767px) {
 	.simple-slider .swiper-slide {
 		height: 360px
 	}
+}
+
+body{
+	
+	background-color: black;
+	background: url("https://cdn.hipwallpaper.com/i/3/26/Oc0okv.jpg");
+	background-size: 100%;
+	background-attachment: fixed;
+	
 }
