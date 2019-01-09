@@ -265,18 +265,6 @@
 .navigation-clean-button .navbar-brand:hover {
 	color: #222
 }
-.bg {
-  /* The image used */
-  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
-  
-  /* Full height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
 .navigation-clean-button .navbar-toggler {
 	border-color: #ddd;
@@ -369,7 +357,7 @@
 
 .projects-clean {
 	color: #313437;
-	/*background-color: #fff*/
+	background-color: #fff
 }
 
 .projects-clean p {
@@ -453,7 +441,7 @@
 body{
 	
 	background-color: black;
-	background: url("https://cdn.hipwallpaper.com/i/3/26/Oc0okv.jpg");
+	background: url("../img/bg.jpg");
 	background-size: 100%;
 	background-attachment: fixed;
 	
