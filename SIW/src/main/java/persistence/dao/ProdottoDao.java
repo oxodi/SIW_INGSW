@@ -11,6 +11,6 @@ public interface ProdottoDao {
 	public Prodotto cercaPerNome(String nome);
 	public Prodotto cercaPerCategoria(String categoria);
 	public List<Prodotto> cercaTutti();
-	public void aggiorna(Prodotto cliente);
-	public void cancella(Prodotto cliente);
+	public void aggiorna(Prodotto prodotto);
+	public void cancella(Prodotto prodotto);
 }
