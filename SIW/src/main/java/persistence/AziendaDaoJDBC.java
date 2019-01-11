@@ -23,9 +23,13 @@ public class AziendaDaoJDBC implements AziendaDao{
 		Connection connection = this.dataSource.getConnection();
 
 		try {
+			int id = GestoreID.getId(connection);
+			azienda.setId(id);
+			
 			String insert = "insert into Azienda(Id, RagioneSociale, PartitaIVA, Referente, "
 					+ "SedeLegale, Telefono, Descrizione, e-mail) values(?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
+			
 			statement.setInt(1, azienda.getId());
 			statement.setString(2, azienda.getRagioneSociale());
 			statement.setString(3, azienda.getPartitaIVA());
@@ -57,9 +61,11 @@ public class AziendaDaoJDBC implements AziendaDao{
 		try {
 			PreparedStatement statement;
 			String query = "select * from Azienda where Id = ?";
+			
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, id);
 			ResultSet result = statement.executeQuery();
+			
 			if (result.next()) {
 				
 				azienda = new Azienda();
