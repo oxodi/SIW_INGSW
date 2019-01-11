@@ -33,6 +33,8 @@ public class ClienteDaoJDBC implements ClienteDao {
 			statement.setDate(6, new java.sql.Date(secs));
 			statement.setString(7, cliente.getTelefono());
 			statement.setString(8, cliente.getEmail());
+			
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -118,7 +120,7 @@ public class ClienteDaoJDBC implements ClienteDao {
 	public void aggiorna(Cliente cliente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String update = "update studente SET Nome = ?, Cognome = ?, CodiceFiscale = ?, Indirizzo = ?, DataDiNascita = ?, Telefono = ?, e-mail = ? WHERE matricola = ?";
+			String update = "update Cliente SET Nome = ?, Cognome = ?, CodiceFiscale = ?, Indirizzo = ?, DataDiNascita = ?, Telefono = ?, e-mail = ? WHERE Id = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, cliente.getNome());
 			statement.setString(2, cliente.getCognome());
@@ -144,7 +146,7 @@ public class ClienteDaoJDBC implements ClienteDao {
 	public void cancella(Cliente cliente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String delete = "delete FROM studente WHERE id = ? ";
+			String delete = "delete FROM studente WHERE Id = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setInt(1, cliente.getId());
 			statement.executeUpdate();

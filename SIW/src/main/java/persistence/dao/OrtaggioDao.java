@@ -6,9 +6,9 @@ import entita.ortaggio.Ortaggio;
 
 
 public interface OrtaggioDao {
-	public void salva(Ortaggio cliente);
+	public void salva(Ortaggio ortaggio);
 	public Ortaggio cercaPerChiavePrimaria(int id);
 	public List<Ortaggio> cercaTutti();
-	public void aggiorna(Ortaggio cliente);
-	public void cancella(Ortaggio cliente);
+	public void aggiorna(Ortaggio ortaggio);
+	public void cancella(Ortaggio ortaggio);
 }

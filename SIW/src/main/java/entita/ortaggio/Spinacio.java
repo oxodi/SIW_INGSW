@@ -2,8 +2,14 @@ package entita.ortaggio;
 
 public class Spinacio extends Ortaggio {
 
-	public Spinacio(double prezzo, String tempoColtivazione, String periodoColtivazione, int idAzienda) {
-		super(prezzo, tempoColtivazione, periodoColtivazione, idAzienda);
+	public Spinacio() {
+		this.setId(11);
+		this.setNome("Spinacio");
+		this.setResa(1.0);
+	}
+	
+	public Spinacio(double prezzo, String tempoColtivazione, String periodoColtivazione) {
+		super(prezzo, tempoColtivazione, periodoColtivazione);
 		this.setId(11);
 		this.setNome("Spinacio");
 		this.setResa(1.0);

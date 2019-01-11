@@ -1,20 +1,21 @@
 package entita.ortaggio;
 
+import persistence.PersistenceException;
 
 public abstract class Ortaggio {
 	private int  id;
-	private int idAzienda;
 	private String nome;
 	private double prezzo;
 	private String tempoColtivazione;
 	private String  periodoColtivazione;
 	private double resa;
 	
-	public Ortaggio(double prezzo, String tempoColtivazione, String periodoColtivazione, int idAzienda) {
+	public Ortaggio() {}
+	
+	public Ortaggio(double prezzo, String tempoColtivazione, String periodoColtivazione) {
 		this.prezzo = prezzo;
 		this.tempoColtivazione = tempoColtivazione;
 		this.periodoColtivazione = periodoColtivazione;
-		this.setIdAzienda(idAzienda);
 	}
 	
 	public double getResa() {
@@ -40,7 +41,31 @@ public abstract class Ortaggio {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public double getPrezzo() {
+		return prezzo;
+	}
 
+	public void setPrezzo(double prezzo) {
+		this.prezzo = prezzo;
+	}
+	
+	public String getTempoColtivazione() {
+		return tempoColtivazione;
+	}
+
+	public void setTempoColtivazione(String tempoColtivazione) {
+		this.tempoColtivazione = tempoColtivazione;
+	}
+
+	public String getPeriodoColtivazione() {
+		return periodoColtivazione;
+	}
+
+	public void setPeriodoColtivazione(String periodoColtivazione) {
+		this.periodoColtivazione = periodoColtivazione;
+	}
+	
 	@Override
 	public String toString() {
 		String output = "Ortaggio["+this.id+ ", "+
@@ -50,13 +75,7 @@ public abstract class Ortaggio {
 						 this.tempoColtivazione+ ", "+
 						 this.resa+"]";
 		return output;
+		
 	}
 
-	public int getIdAzienda() {
-		return idAzienda;
-	}
-
-	public void setIdAzienda(int idAzienda) {
-		this.idAzienda = idAzienda;
-	}
 }
