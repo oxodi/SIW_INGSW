@@ -20,10 +20,15 @@ public class ClienteDaoJDBC implements ClienteDao {
 	@Override
 	public void salva(Cliente cliente) {
 		Connection connection = this.dataSource.getConnection();
+		
 		try {
+			int id = GestoreID.getId(connection);
+			cliente.setId(id);
+			
 			String insert = "insert into Cliente(Id, Nome, Cognome, CodiceFiscale,"
 					+" Indirizzo, DataDiNascita, Telefono, e-mail) values (?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
+			
 			statement.setInt(1, cliente.getId());
 			statement.setString(2, cliente.getNome());
 			statement.setString(3, cliente.getCognome());
@@ -52,9 +57,12 @@ public class ClienteDaoJDBC implements ClienteDao {
 		try {
 			String query = "select * FROM Cliente WHERE Id = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
+			
 			statement.setInt(1, id);
 			ResultSet result = statement.executeQuery();
+			
 			if(result.next()) {
+			
 				cliente = new Cliente();
 				cliente.setId(result.getInt("Id"));
 				cliente.setNome(result.getString("Nome"));
@@ -65,6 +73,7 @@ public class ClienteDaoJDBC implements ClienteDao {
 				cliente.setIndirizzo(result.getString("Indirizzo"));
 				cliente.setTelefono(result.getString("Telefono"));
 				cliente.setEmail(result.getString("e-mail"));
+			
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -89,7 +98,9 @@ public class ClienteDaoJDBC implements ClienteDao {
 			String query = "select * from Cliente";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
+			
 			while (result.next()) {
+			
 				cliente = new Cliente();
 				cliente.setId(result.getInt("Id"));				
 				cliente.setNome(result.getString("Nome"));
@@ -100,6 +111,7 @@ public class ClienteDaoJDBC implements ClienteDao {
 				long secs = result.getDate("DataDiNascita").getTime();
 				cliente.setDataDiNascita(new java.util.Date(secs));
 				cliente.setEmail(result.getString("e-mail"));
+				
 				clienti.add(cliente);
 			}
 		} catch (SQLException e) {
@@ -118,8 +130,10 @@ public class ClienteDaoJDBC implements ClienteDao {
 	public void aggiorna(Cliente cliente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			
 			String update = "update studente SET Nome = ?, Cognome = ?, CodiceFiscale = ?, Indirizzo = ?, DataDiNascita = ?, Telefono = ?, e-mail = ? WHERE matricola = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
+			
 			statement.setString(1, cliente.getNome());
 			statement.setString(2, cliente.getCognome());
 			statement.setString(3, cliente.getCodiceFiscale());
@@ -128,7 +142,9 @@ public class ClienteDaoJDBC implements ClienteDao {
 			statement.setDate(5, new java.sql.Date(secs));
 			statement.setString(6, cliente.getTelefono());
 			statement.setString(7, cliente.getEmail());
+			
 			statement.executeUpdate();
+		
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -144,10 +160,12 @@ public class ClienteDaoJDBC implements ClienteDao {
 	public void cancella(Cliente cliente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+		
 			String delete = "delete FROM studente WHERE id = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setInt(1, cliente.getId());
 			statement.executeUpdate();
+		
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -163,11 +181,14 @@ public class ClienteDaoJDBC implements ClienteDao {
 	public void setPassword(Cliente cliente, String password) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+		
 			String update = "update Cliente SET Password = ? WHERE Id=?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, password);
 			statement.setInt(2, cliente.getId());
+		
 			statement.executeUpdate();
+		
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

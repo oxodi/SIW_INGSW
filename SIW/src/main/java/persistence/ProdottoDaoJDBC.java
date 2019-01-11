@@ -21,6 +21,9 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 	public void salva(Prodotto prodotto) {
 		Connection connection = this.dataSource.getConnection();
 		try {
+			int id = GestoreID.getId(connection);
+			prodotto.setId(id);
+			
 			String insert = "insert into Prodotto(Id, Nome, Categoria, Descrizione) values (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			
