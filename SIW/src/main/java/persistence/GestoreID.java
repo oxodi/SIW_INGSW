@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GestoreID {
-	
+	//id automatico
 	private static final String query = "SELECT nextval('sequenza_id') AS id";
 
 	public static int getId(Connection connection) {
