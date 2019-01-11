@@ -1,5 +1,7 @@
 package persistence;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import entita.Terreno;
@@ -8,11 +10,29 @@ import persistence.dao.TerrenoDao;
 public class TerrenoDaoJDBC implements TerrenoDao{
 	private DataSource dataSource;
 	
-	public Terre
+	public TerrenoDaoJDBC(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 	@Override
 	public void salva(Terreno terreno) {
-		// TODO Auto-generated method stub
-		
+		Connection connection = this.dataSource.getConnection();
+		try {
+			
+		} catch (SQLException e) {
+			if(connection != null) {
+				try {
+					connection.rollback();
+				} catch (Exception e2) {
+					throw new PersistenceException(e2.getMessage());
+				}
+			}
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e3) {
+				throw new PersistenceException(e3.getMessage());
+			}
+		}
 	}
 
 	@Override

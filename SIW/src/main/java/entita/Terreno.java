@@ -1,6 +1,6 @@
 package entita;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 import entita.ortaggio.Ortaggio;
 
@@ -17,7 +17,7 @@ public class Terreno {
 	private boolean servizioCompleto;
 	private int dimensione;//in mt2
 	private int dimensioneSerra;//in mt2
-	private ArrayList<Ortaggio> ortaggi ;
+	private HashSet<Ortaggio> ortaggi ;
 	private double costo; //costo al mt2 del terreno
 	private String periodiDisponibilita;
 	
@@ -30,8 +30,10 @@ public class Terreno {
 		this.dimensione = dimensione;
 		this.costo = costo;
 		this.periodiDisponibilita = periodiDisponobilita;
-		ortaggi = new ArrayList<Ortaggio>();
+		ortaggi = new HashSet<Ortaggio>();
 	}
+
+
 
 	public boolean isServizioParziale() {
 		return servizioParziale;
@@ -69,6 +71,14 @@ public class Terreno {
 	
 	public void aggiungiOrtaggio(Ortaggio ortaggio) {
 		ortaggi.add(ortaggio);
+	}
+	
+	public HashSet<Ortaggio> getOrtaggi() {
+		return ortaggi;
+	}
+
+	public void setOrtaggi(HashSet<Ortaggio> ortaggi) {
+		this.ortaggi = ortaggi;
 	}
 		
 	/*
