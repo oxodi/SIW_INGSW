@@ -110,10 +110,12 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 	}
 
 	@Override
-	public Prodotto cercaPerCategoria(String categoria) {
+	public List<Prodotto> cercaPerCategoria(String categoria) {
 		Connection connection = this.dataSource.getConnection();
-		Prodotto prodotto = null;
+		List<Prodotto> prodotti = new LinkedList<Prodotto>();
+		
 		try {
+			Prodotto prodotto;
 			PreparedStatement statement;
 			String query = "select * from Prodotto where Categoria = ?";
 
@@ -121,7 +123,7 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 			statement.setString(3, categoria);
 			ResultSet result = statement.executeQuery();
 
-			if (result.next()) {
+			while (result.next()) {
 
 				prodotto = new Prodotto();
 				prodotto.setId(result.getInt("Id"));				
@@ -129,6 +131,7 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 				prodotto.setCategoria(result.getString("Categoria"));
 				prodotto.setDescrizione(result.getString("Descrizione"));
 				
+				prodotti.add(prodotto);
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -139,7 +142,7 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 				throw new PersistenceException(e.getMessage());
 			}
 		}	
-		return prodotto;
+		return prodotti;
 	}
 
 	@Override

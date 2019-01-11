@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import entita.Prenotazione;
 import persistence.dao.PrenotazioneDao;
@@ -82,11 +84,12 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao{
 	}
 
 	@Override
-	public Prenotazione cercaPerData(Date data) {
+	public List<Prenotazione> cercaPerData(Date data) {
 		Connection connection = this.dataSource.getConnection();
-		Prenotazione prenotazione = null;
+		List<Prenotazione> prenotazioni = new LinkedList<Prenotazione>();
 		
 		try {
+			Prenotazione prenotazione;
 			PreparedStatement statement;
 			String query = "select * from Prenotazione where Data = ?";
 		
@@ -94,15 +97,16 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao{
 			statement.setDate(4, (java.sql.Date) data);
 			ResultSet result = statement.executeQuery();
 			
-			if (result.next()) {
+			while (result.next()) {
 			
 				prenotazione = new Prenotazione();
-				prenotazione.setId(result.getInt("matricola"));				
+				prenotazione.setId(result.getInt("Id"));				
 				prenotazione.setIdCliente(result.getInt("Id_Cliente"));
 				prenotazione.setIdTerreno(result.getInt("Id_Terreno"));
-				long secs = result.getDate("data_nascita").getTime();
+				long secs = result.getDate("Data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 			
+				prenotazioni.add(prenotazione);
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -113,7 +117,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao{
 				throw new PersistenceException(e.getMessage());
 			}
 		}	
-		return prenotazione;
+		return prenotazioni;
 	}
 
 	@Override
@@ -165,6 +169,119 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao{
 				throw new PersistenceException(e.getMessage());
 			}
 		}
+	}
+
+
+	@Override
+	public List<Prenotazione> cercaPerCliente(int idCliente) {
+		Connection connection = this.dataSource.getConnection();
+		List<Prenotazione> prenotazioni = new LinkedList<Prenotazione>();
+		
+		try {
+			Prenotazione prenotazione;
+			PreparedStatement statement;
+			String query = "select * from Prenotazione where Id_Cliente = ?";
+		
+			statement = connection.prepareStatement(query);
+			statement.setInt(2, idCliente);
+			ResultSet result = statement.executeQuery();
+			
+			while (result.next()) {
+			
+				prenotazione = new Prenotazione();
+				prenotazione.setId(result.getInt("Id"));				
+				prenotazione.setIdCliente(result.getInt("Id_Cliente"));
+				prenotazione.setIdTerreno(result.getInt("Id_Terreno"));
+				long secs = result.getDate("Data").getTime();
+				prenotazione.setDataPrenotazione(new java.util.Date(secs));
+			
+				prenotazioni.add(prenotazione);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return prenotazioni;
+	}
+
+
+	@Override
+	public List<Prenotazione> cercaPerTerreno(int idTerreno) {
+		Connection connection = this.dataSource.getConnection();
+		List<Prenotazione> prenotazioni = new LinkedList<Prenotazione>();
+		
+		try {
+			Prenotazione prenotazione;
+			PreparedStatement statement;
+			String query = "select * from Prenotazione where Id_Terreno = ?";
+		
+			statement = connection.prepareStatement(query);
+			statement.setInt(3, idTerreno);
+			ResultSet result = statement.executeQuery();
+			
+			while (result.next()) {
+			
+				prenotazione = new Prenotazione();
+				prenotazione.setId(result.getInt("Id"));				
+				prenotazione.setIdCliente(result.getInt("Id_Cliente"));
+				prenotazione.setIdTerreno(result.getInt("Id_Terreno"));
+				long secs = result.getDate("Data").getTime();
+				prenotazione.setDataPrenotazione(new java.util.Date(secs));
+			
+				prenotazioni.add(prenotazione);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return prenotazioni;
+	}
+
+
+	@Override
+	public List<Prenotazione> cercaTutti() {
+		Connection connection = this.dataSource.getConnection();
+		List<Prenotazione> prenotazioni = new LinkedList<Prenotazione>();
+		
+		try {
+			Prenotazione prenotazione;
+			PreparedStatement statement;
+			String query = "select * from Prenotazione";
+		
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			
+			while (result.next()) {
+			
+				prenotazione = new Prenotazione();
+				prenotazione.setId(result.getInt("Id"));				
+				prenotazione.setIdCliente(result.getInt("Id_Cliente"));
+				prenotazione.setIdTerreno(result.getInt("Id_Terreno"));
+				long secs = result.getDate("Data").getTime();
+				prenotazione.setDataPrenotazione(new java.util.Date(secs));
+			
+				prenotazioni.add(prenotazione);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return prenotazioni;
 	}
 
 }
