@@ -5,25 +5,28 @@ import java.util.HashSet;
 import entita.ortaggio.Ortaggio;
 
 public class Terreno {
-    
+
 	private int id;
 	private int idAzienda;
 	private String locazione;
 	/*
-	 *  Le due booleane servono per indicare che tipologia di servizio è possibile avere sul terreno.
-	 *  Se sono true è possibile avere quel tipo di servizio sul terreno.
+	 * Le due booleane servono per indicare che tipologia di servizio è possibile
+	 * avere sul terreno. Se sono true è possibile avere quel tipo di servizio sul
+	 * terreno.
 	 */
 	private boolean servizioParziale;
 	private boolean servizioCompleto;
-	private int dimensione;//in mt2
-	private int dimensioneSerra;//in mt2
-	private HashSet<Ortaggio> ortaggi ;
-	private double costo; //costo al mt2 del terreno
+	private int dimensione;// in mt2
+	private int dimensioneSerra;// in mt2
+	private HashSet<Ortaggio> ortaggi;
+	private double costo; // costo al mt2 del terreno
 	private String periodiDisponibilita;
-	
-	public Terreno () {}
-	
-	public Terreno(int id, int idAzienda,String locazione,boolean servizioParziale, boolean servizioCompleto, int dimensione,int dimensioneSerra, double costo, String periodiDisponobilita) {
+
+	public Terreno() {
+	}
+
+	public Terreno(int id, int idAzienda, String locazione, boolean servizioParziale, boolean servizioCompleto,
+			int dimensione, int dimensioneSerra, double costo, String periodiDisponobilita) {
 		this.id = id;
 		this.idAzienda = idAzienda;
 		this.locazione = locazione;
@@ -35,8 +38,6 @@ public class Terreno {
 		this.periodiDisponibilita = periodiDisponobilita;
 		ortaggi = new HashSet<Ortaggio>();
 	}
-
-
 
 	public boolean isServizioParziale() {
 		return servizioParziale;
@@ -70,12 +71,10 @@ public class Terreno {
 		this.idAzienda = idAzienda;
 	}
 
-
-	
 	public void aggiungiOrtaggio(Ortaggio ortaggio) {
 		ortaggi.add(ortaggio);
 	}
-	
+
 	public HashSet<Ortaggio> getOrtaggi() {
 		return ortaggi;
 	}
@@ -83,17 +82,19 @@ public class Terreno {
 	public void setOrtaggi(HashSet<Ortaggio> ortaggi) {
 		this.ortaggi = ortaggi;
 	}
-		
+
 	/*
-	 * Setta la dimensione del terreno serra e controlla che quest ultima non sia maggiore di quella del terreno 
+	 * Setta la dimensione del terreno serra e controlla che quest ultima non sia
+	 * maggiore di quella del terreno
 	 */
 	public void setDimensioneSerra(int dimensioneSerra) {
-		if(dimensioneSerra <= dimensione)
+		if (dimensioneSerra <= dimensione)
 			this.dimensioneSerra = dimensioneSerra;
-		else throw new IllegalArgumentException("La dimensione del Terreno Serra non può essere maggiore di quella del terreno");
+		else
+			throw new IllegalArgumentException(
+					"La dimensione del Terreno Serra non può essere maggiore di quella del terreno");
 	}
 
-	
 	public String getLocazione() {
 		return locazione;
 	}
@@ -112,7 +113,7 @@ public class Terreno {
 
 	public int getDimensioneSerra() {
 		return dimensioneSerra;
-	}	
+	}
 
 	public double getCosto() {
 		return costo;
@@ -129,7 +130,5 @@ public class Terreno {
 	public void setPeriodiDisponibilita(String periodiDisponibilita) {
 		this.periodiDisponibilita = periodiDisponibilita;
 	}
-	
-	
-	
+
 }
