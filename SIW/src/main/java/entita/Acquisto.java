@@ -9,9 +9,10 @@ public class Acquisto {
 	private int idProdotto;
 	private Date dataAcquisto;
 	private Date dataRitiro;
-	
-	public Acquisto() {}
-	
+
+	public Acquisto() {
+	}
+
 	public Acquisto(int id, int idCliente, int idProdotto, Date dataAcquisto, Date dataRitiro) {
 		this.id = id;
 		this.idCliente = idCliente;
@@ -59,6 +60,5 @@ public class Acquisto {
 	public void setDataAcquisto(Date dataAcquisto) {
 		this.dataAcquisto = dataAcquisto;
 	}
-	
-	
+
 }

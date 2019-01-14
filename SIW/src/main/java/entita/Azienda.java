@@ -14,10 +14,12 @@ public class Azienda {
 	private String email;
 	private String descrizioneServizi;
 	private ArrayList<Terreno> terreni;
-	
-    public Azienda(){}
-	
-	public Azienda(int id, String nome, String partitaIVA, String referente, String sedeLegale,String ragioneSociale, String telefono, String descrizioneServizi, String email) {
+
+	public Azienda() {
+	}
+
+	public Azienda(int id, String nome, String partitaIVA, String referente, String sedeLegale, String ragioneSociale,
+			String telefono, String descrizioneServizi, String email) {
 		this.id = id;
 		this.nome = nome;
 		this.partitaIVA = partitaIVA;
@@ -27,7 +29,7 @@ public class Azienda {
 		this.telefono = telefono;
 		this.email = email;
 		this.descrizioneServizi = descrizioneServizi;
-		terreni = new ArrayList<Terreno>();  //controllare inserimento terreni
+		terreni = new ArrayList<Terreno>(); // controllare inserimento terreni
 	}
 
 	public String getTelefono() {
@@ -37,7 +39,7 @@ public class Azienda {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	
+
 	public String getReferente() {
 		return referente;
 	}
@@ -117,8 +119,5 @@ public class Azienda {
 	public void setDescrizioneServizi(String descrizioneServizi) {
 		this.descrizioneServizi = descrizioneServizi;
 	}
-
-
-
 
 }
