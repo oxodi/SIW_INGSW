@@ -50,7 +50,7 @@
 					
 						<span class="navbar-text actions"> <a
 							class="btn btn-light action-button" role="button"
-							href="registrazioneAzienda.html" style="background-color: green">Accedi</a>
+							href="Registration" style="background-color: green">Accedi</a>
 						</span>
 					</div>
 					
