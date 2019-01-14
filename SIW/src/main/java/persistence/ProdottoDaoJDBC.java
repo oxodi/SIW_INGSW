@@ -10,30 +10,30 @@ import java.util.List;
 import entita.Prodotto;
 import persistence.dao.ProdottoDao;
 
-public class ProdottoDaoJDBC implements ProdottoDao{
+public class ProdottoDaoJDBC implements ProdottoDao {
 	private DataSource dataSource;
-	
+
 	public ProdottoDaoJDBC(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
-	
+
 	@Override
 	public void salva(Prodotto prodotto) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			int id = GestoreID.getId(connection);
 			prodotto.setId(id);
-			
+
 			String insert = "insert into Prodotto(Id, Nome, Categoria, Descrizione) values (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			
+
 			statement.setInt(1, prodotto.getId());
 			statement.setString(2, prodotto.getNome());
 			statement.setString(3, prodotto.getCategoria());
 			statement.setString(4, prodotto.getDescrizione());
-		
+
 			statement.executeUpdate();
-		
+
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -44,7 +44,6 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 			}
 		}
 	}
-	
 
 	@Override
 	public Prodotto cercaPerChiavePrimaria(int id) {
@@ -61,11 +60,11 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 			if (result.next()) {
 
 				prodotto = new Prodotto();
-				prodotto.setId(result.getInt("Id"));				
+				prodotto.setId(result.getInt("Id"));
 				prodotto.setNome(result.getString("Nome"));
 				prodotto.setCategoria(result.getString("Categoria"));
 				prodotto.setDescrizione(result.getString("Descrizione"));
-				
+
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -75,8 +74,8 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
-		}	
-		return prodotto;	
+		}
+		return prodotto;
 	}
 
 	@Override
@@ -94,11 +93,11 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 			if (result.next()) {
 
 				prodotto = new Prodotto();
-				prodotto.setId(result.getInt("Id"));				
+				prodotto.setId(result.getInt("Id"));
 				prodotto.setNome(result.getString("Nome"));
 				prodotto.setCategoria(result.getString("Categoria"));
 				prodotto.setDescrizione(result.getString("Descrizione"));
-				
+
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -108,7 +107,7 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
-		}	
+		}
 		return prodotto;
 	}
 
@@ -116,7 +115,7 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 	public List<Prodotto> cercaPerCategoria(String categoria) {
 		Connection connection = this.dataSource.getConnection();
 		List<Prodotto> prodotti = new LinkedList<Prodotto>();
-		
+
 		try {
 			Prodotto prodotto;
 			PreparedStatement statement;
@@ -129,11 +128,11 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 			while (result.next()) {
 
 				prodotto = new Prodotto();
-				prodotto.setId(result.getInt("Id"));				
+				prodotto.setId(result.getInt("Id"));
 				prodotto.setNome(result.getString("Nome"));
 				prodotto.setCategoria(result.getString("Categoria"));
 				prodotto.setDescrizione(result.getString("Descrizione"));
-				
+
 				prodotti.add(prodotto);
 			}
 		} catch (SQLException e) {
@@ -144,7 +143,7 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
-		}	
+		}
 		return prodotti;
 	}
 
@@ -152,27 +151,27 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 	public List<Prodotto> cercaTutti() {
 		Connection connection = this.dataSource.getConnection();
 		List<Prodotto> prodotti = new LinkedList<Prodotto>();
-		
+
 		try {
 			Prodotto prodotto;
 			PreparedStatement statement;
 			String query = "select * from Prodotto";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
-			
+
 			while (result.next()) {
-				
+
 				prodotto = new Prodotto();
-				prodotto.setId(result.getInt("Id"));				
+				prodotto.setId(result.getInt("Id"));
 				prodotto.setNome(result.getString("Nome"));
 				prodotto.setCategoria(result.getString("Categoria"));
 				prodotto.setDescrizione(result.getString("Descrizione"));
-				
+
 				prodotti.add(prodotto);
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
-		}	 finally {
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -185,18 +184,18 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 	@Override
 	public void aggiorna(Prodotto prodotto) {
 		Connection connection = this.dataSource.getConnection();
-		
-		try {	
+
+		try {
 			String update = "update Prodotto SET Nome = ?, Categoria = ?, Descrizione = ? WHERE Id=?";
 			PreparedStatement statement = connection.prepareStatement(update);
-			
+
 			statement.setInt(1, prodotto.getId());
 			statement.setString(2, prodotto.getNome());
 			statement.setString(3, prodotto.getCategoria());
 			statement.setString(4, prodotto.getDescrizione());
-			
+
 			statement.executeUpdate();
-		
+
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -211,14 +210,14 @@ public class ProdottoDaoJDBC implements ProdottoDao{
 	@Override
 	public void cancella(Prodotto prodotto) {
 		Connection connection = this.dataSource.getConnection();
-		
+
 		try {
 			String delete = "delete FROM Prodotto WHERE Id = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
-			
+
 			statement.setInt(1, prodotto.getId());
 			statement.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

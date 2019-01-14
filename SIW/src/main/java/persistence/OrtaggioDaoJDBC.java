@@ -64,7 +64,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setInt(1, id);
 			ResultSet result = statement.executeQuery();
-			if(result.next()) {
+			if (result.next()) {
 				ortaggio = this.ortaggioSpecifico(id);
 				ortaggio.setTempoColtivazione(result.getString("TempoColtivazione"));
 				ortaggio.setPeriodoColtivazione(result.getString("PeriodoColtivazione"));
@@ -87,7 +87,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 	public List<Ortaggio> cercaTutti() {
 		Connection connection = this.dataSource.getConnection();
 		List<Ortaggio> ortaggi = new LinkedList<Ortaggio>();
-		
+
 		try {
 			Ortaggio ortaggio;
 			PreparedStatement statement;
@@ -99,7 +99,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 				ortaggio.setTempoColtivazione(result.getString("TempoColtivazione"));
 				ortaggio.setPeriodoColtivazione(result.getString("PeriodoColtivazione"));
 				ortaggio.setPrezzo(result.getDouble("Prezzo"));
-				
+
 				ortaggi.add(ortaggio);
 			}
 		} catch (SQLException e) {
@@ -154,11 +154,11 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 		}
 
 	}
-	
+
 	public Ortaggio ortaggioSpecifico(int id) {
 		Ortaggio ortaggio = null;
 		switch (id) {
-		
+
 		case 1:
 			ortaggio = new Cavolfiore();
 			break;
@@ -183,7 +183,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 		case 8:
 			ortaggio = new Peperoncino();
 			break;
-		case 9: 
+		case 9:
 			ortaggio = new Peperone();
 			break;
 		case 10:
