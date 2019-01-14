@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import entita.Terreno;
@@ -153,32 +154,144 @@ public class TerrenoDaoJDBC implements TerrenoDao{
 
 	@Override
 	public Terreno cercaPerChiavePrimaria(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		Terreno terreno = null;
+		try {
+			PreparedStatement statement;
+			String query = "SELECT * FROM Terreno WHERE Id = ?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, id);
+			ResultSet result = statement.executeQuery();
+			if(result.next()) {
+				terreno = new Terreno();
+				terreno.setId(result.getInt("Id"));
+				terreno.setCosto(result.getDouble("CostoTerreno"));
+				terreno.setDimensione(result.getInt("Dimensione"));
+				terreno.setDimensione(result.getInt("DimensioneSerra"));
+				terreno.setLocazione(result.getString("Locazione"));
+				terreno.setServizioCompleto(result.getBoolean("ServizioCompleto"));
+				terreno.setServizioParziale(result.getBoolean("ServizioParziale"));
+				terreno.setPeriodiDisponibilita(result.getString("PeriodoColtivazione"));
+				terreno.setIdAzienda(result.getInt("Id_Azienda"));
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (Exception e2) {
+				throw new PersistenceException(e2.getMessage());
+			}
+		}
+		return terreno;
 	}
 
 	@Override
 	public List<Terreno> cercaPerServizio(boolean servizioParziale, boolean servizioCompleto) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		List<Terreno> terreni = new ArrayList<Terreno>();
+		try {
+			Terreno terreno;
+			PreparedStatement statement;
+			String query = "select * from Terreno WHERE ServizioParziale = ? AND ServizioCompleto = ?";
+			statement = connection.prepareStatement(query);
+			statement.setBoolean(1, servizioParziale);
+			statement.setBoolean(2, servizioCompleto);
+			ResultSet result = statement.executeQuery();
+			while(result.next()) {
+				terreno = cercaPerChiavePrimaria(result.getInt("Id"));
+				terreni.add(terreno);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+			}
+		}
+		return terreni;
 	}
 
 	@Override
 	public List<Terreno> cercaPerPeriodo(String periodo) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		List<Terreno> terreni = new ArrayList<Terreno>();
+		try {
+			Terreno terreno;
+			PreparedStatement statement;
+			String query = "select * from Terreno WHERE PeriodoColtivazione = ?";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, periodo);
+			ResultSet result = statement.executeQuery();
+			while(result.next()) {
+				terreno = cercaPerChiavePrimaria(result.getInt("Id"));
+				terreni.add(terreno);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+			}
+		}
+		return terreni;
 	}
 
 	@Override
 	public List<Terreno> cercaPerAzienda(int idAzienda) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		List<Terreno> terreni = new ArrayList<Terreno>();
+		try {
+			Terreno terreno;
+			PreparedStatement statement;
+			String query = "select * from Terreno WHERE Id_Azienda = ?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, idAzienda);
+			ResultSet result = statement.executeQuery();
+			while(result.next()) {
+				terreno = cercaPerChiavePrimaria(result.getInt("Id"));
+				terreni.add(terreno);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+			}
+		}
+		return terreni;
 	}
 
 	@Override
 	public List<Terreno> cercaTutti() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		List<Terreno> terreni = new ArrayList<Terreno>();
+		try {
+			Terreno terreno;
+			PreparedStatement statement;
+			String query = "select * from Terreno ";
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while(result.next()) {
+				terreno = cercaPerChiavePrimaria(result.getInt("Id"));
+				terreni.add(terreno);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+			}
+		}
+		return terreni;
 	}
 
 }
