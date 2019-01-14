@@ -1,6 +1,6 @@
 package entita.ortaggio;
 
-public class Cetriolo extends Ortaggio{
+public class Cetriolo extends Ortaggio {
 
 	public Cetriolo() {
 		this.setId(3);
@@ -8,7 +8,7 @@ public class Cetriolo extends Ortaggio{
 		this.setResa(1.0);
 
 	}
-	
+
 	public Cetriolo(double prezzo, String tempoColtivazione, String periodoColtivazione) {
 		super(prezzo, tempoColtivazione, periodoColtivazione);
 		this.setId(3);
