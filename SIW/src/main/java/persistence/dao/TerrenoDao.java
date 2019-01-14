@@ -6,7 +6,7 @@ import entita.Terreno;
 
 public interface TerrenoDao {
 	public void salva(Terreno terreno);
-	public void aggiorna(Terreno cliente);
+	public void aggiornaDimensione(Terreno cliente);
 	public void cancella(Terreno cliente);
 	public Terreno cercaPerChiavePrimaria(int id);
 	public List<Terreno> cercaPerServizio(boolean servizioParziale, boolean servizioCompleto);
