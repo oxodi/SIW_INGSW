@@ -21,13 +21,16 @@ public class Terreno {
 	private double costo; //costo al mt2 del terreno
 	private String periodiDisponibilita;
 	
-	public Terreno(int id, int idAzienda,String locazione,boolean servizioParziale, boolean servizioCompleto, int dimensione, double costo, String periodiDisponobilita) {
+	public Terreno () {}
+	
+	public Terreno(int id, int idAzienda,String locazione,boolean servizioParziale, boolean servizioCompleto, int dimensione,int dimensioneSerra, double costo, String periodiDisponobilita) {
 		this.id = id;
 		this.idAzienda = idAzienda;
 		this.locazione = locazione;
 		this.servizioParziale = servizioParziale;
 		this.servizioCompleto = servizioCompleto;
 		this.dimensione = dimensione;
+		this.dimensioneSerra = dimensioneSerra;
 		this.costo = costo;
 		this.periodiDisponibilita = periodiDisponobilita;
 		ortaggi = new HashSet<Ortaggio>();
