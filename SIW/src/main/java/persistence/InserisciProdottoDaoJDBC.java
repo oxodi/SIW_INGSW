@@ -13,7 +13,7 @@ import persistence.dao.InserisciProdottoDao;
 
 public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 
-	DataSource dataSource;
+	private DataSource dataSource;
 	
 	public InserisciProdottoDaoJDBC(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -49,12 +49,51 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 
 	@Override
 	public void aggiorna(InserisciProdotto inserimento) {
-		//DA CONTROLLARE AGGIORNAMENTO
+		Connection connection = this.dataSource.getConnection();
+		try {
+			
+			String update = "update InserisciProdotto SET Quantita = ?, CostoUnitario = ? WHERE Id_Azienda = ? AND Id_Prodotto = ?";
+			PreparedStatement statement = connection.prepareStatement(update);
+			
+			statement.setInt(1, inserimento.getIdAzienda());
+			statement.setInt(2, inserimento.getIdProdotto());
+			statement.setInt(3, inserimento.getQuantita());
+			statement.setDouble(4, inserimento.getCostoUnitario());
+			
+			statement.executeUpdate();
+		
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+			}
+		}
 	}
 
 	@Override
 	public void cancella(InserisciProdotto inserimento) {
-		//DA CONTROLLARE CANCELLAZIONE
+		Connection connection = this.dataSource.getConnection();
+		try {
+		
+			String delete = "delete FROM InserimentoProdotto WHERE Id_Azienda = ? AND Id_Prodotto = ? ";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			
+			statement.setInt(1, inserimento.getIdAzienda());
+			statement.setInt(2, inserimento.getIdProdotto());
+			statement.executeUpdate();
+		
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+			}
+		}
 	}
 
 	@Override

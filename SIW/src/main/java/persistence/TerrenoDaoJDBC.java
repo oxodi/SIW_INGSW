@@ -19,8 +19,8 @@ public class TerrenoDaoJDBC implements TerrenoDao{
 	public void salva(Terreno terreno) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			int id = GestoreID.getId(connection);
-			terreno.setId(id);
+			//int id = GestoreID.getId(connection);
+			//terreno.setId(id);
 			String insert = "insert into Terreno(Id, Locazione, Dimensione, DimensioneSerra, ServizioParziale, ServizioCompleto, PeriodoColtivazione, Id_Azienda) values (?, ?, ?, ?, ?, ?, ?, ?,";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setInt(1, terreno.getId());
@@ -38,7 +38,7 @@ public class TerrenoDaoJDBC implements TerrenoDao{
 		} catch (SQLException e) {
 			if(connection != null) {
 				try {
-					connection.rollback();
+					//connection.rollback();
 				} catch (Exception e2) {
 					throw new PersistenceException(e2.getMessage());
 				}
