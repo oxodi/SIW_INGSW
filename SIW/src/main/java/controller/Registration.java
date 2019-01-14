@@ -18,7 +18,7 @@ public class Registration extends HttpServlet {
 	protected void doGet(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
 		
-		resp.getWriter().println("<h1>OK</h1>");
+		//resp.getWriter().println("<h1>OK</h1>");
 		
 		RequestDispatcher rd = req.getRequestDispatcher
 				("registrazioneAzienda.html");

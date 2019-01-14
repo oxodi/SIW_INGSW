@@ -20,11 +20,11 @@
 	<div>
 		<nav
 			class="navbar navbar-light navbar-expand-md navigation-clean-button"
-			style="background-color: transparent">
+			style="background-color: transparent; position: relative; z-index: 2000">
 			<div class="container">
-				<a class="navbar-brand" href="index.html" title="LucaBrunoDance">
-					<img style="max-width: 200px; margin-top: -10px;"
-					src="assets/img/logo1.png">
+				<a class="navbar-brand" href="#" title="LucaBrunoDance"> <img
+					style="max-width: 200px; margin-top: -10px;"
+					src="assets/img/logo2.png">
 				</a>
 				<button class="navbar-toggler" data-toggle="collapse"
 					data-target="#navcol-1">
@@ -47,9 +47,11 @@
 									Item</a>
 							</div></li>
 					</ul>
-					<span class="navbar-text actions "> <a
+
+					<span class="navbar-text actions"> <a
 						class="btn btn-light action-button" role="button"
-						href="registration.html">Accedi</a></span>
+						href="Registration" style="background-color: green">Accedi</a>
+					</span>
 				</div>
 			</div>
 		</nav>
@@ -57,7 +59,8 @@
 	<!-- End: Navigation with Button -->
 	<div class="row register-form">
 		<div class="col-md-8 offset-md-2">
-			<form class="custom-form" id="regFormAzienda" method="post" action="Registration")>
+			<form class="custom-form" id="regFormAzienda" method="post"
+				action="Registration")>
 				<h1>Registrazione azienda</h1>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">

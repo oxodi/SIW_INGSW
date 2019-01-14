@@ -50,7 +50,11 @@
 					
 						<span class="navbar-text actions"> <a
 							class="btn btn-light action-button" role="button"
-							href="Registration" style="background-color: green">Accedi</a>
+							href="Login" style="background-color: green">Accedi</a>
+						</span>
+						<span class="navbar-text actions"> <a
+							class="btn btn-light action-button" role="button"
+							href="Registration" style="background-color: green">Registrazione</a>
 						</span>
 					</div>
 					
@@ -151,7 +155,7 @@
 				<!-- Start: Copyright -->
 				<p class="copyright"
 					style="color: rgb(4, 4, 4); background-color: #63c65a; padding: 15px;">Unical
-					Â©Copyright 2019</p>
+					©Copyright 2019</p>
 				<!-- End: Copyright -->
 			</footer>
 		</div>
