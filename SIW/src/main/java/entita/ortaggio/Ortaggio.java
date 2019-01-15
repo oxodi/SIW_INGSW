@@ -1,7 +1,5 @@
 package entita.ortaggio;
 
-import persistence.PersistenceException;
-
 public abstract class Ortaggio {
 	private int id;
 	private String nome;
