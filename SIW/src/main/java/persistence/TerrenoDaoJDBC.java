@@ -16,14 +16,17 @@ public class TerrenoDaoJDBC implements TerrenoDao{
 	
 	public TerrenoDaoJDBC(DataSource dataSource) {
 		this.dataSource = dataSource;
+		System.out.println("sono nel costruttore");
 	}
 	@Override
 	public void salva(Terreno terreno) {
 		Connection connection = this.dataSource.getConnection();
+		
 		try {
 			//int id = GestoreID.getId(connection);
 			//terreno.setId(id);
-			String insert = "insert into Terreno(Id, Locazione, Dimensione, DimensioneSerra, ServizioParziale, ServizioCompleto, PeriodoColtivazione, Id_Azienda) values (?, ?, ?, ?, ?, ?, ?, ?,";
+			System.out.println("A puttana e mammata");
+			String insert = "insert into Terreno(Id, Locazione, Dimensione, DimensioneSerra, ServizioParziale, ServizioCompleto, PeriodoColtivazione, Id_Azienda, CostoTerreno) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setInt(1, terreno.getId());
 			statement.setString(2, terreno.getLocazione());
@@ -33,10 +36,10 @@ public class TerrenoDaoJDBC implements TerrenoDao{
 			statement.setBoolean(6, terreno.isServizioCompleto());
 			statement.setString(7, terreno.getPeriodiDisponibilita());
 			statement.setInt(8, terreno.getIdAzienda());
+			statement.setDouble(9, terreno.getCosto());
+			System.out.println(statement);
+			System.out.println(statement.executeUpdate());
 			
-			statement.executeUpdate();
-			
-			//this.aggiornaOrtaggi(terreno, connection);
 		} catch (SQLException e) {
 			if(connection != null) {
 				try {

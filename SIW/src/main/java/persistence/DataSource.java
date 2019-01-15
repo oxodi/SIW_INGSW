@@ -19,10 +19,16 @@ public class DataSource {
 		Connection connection = null;
 		try {
 		    connection = DriverManager.getConnection(dbURI,userName, password);
-			
+			System.out.println("Server Connesso");
 		
 		} catch(SQLException e) {
 			throw new PersistenceException(e.getMessage());
+		}
+		try {
+			System.out.println(connection.getMetaData());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return connection;
 	}
