@@ -8,9 +8,10 @@ public class Prenotazione {
 	private int idCliente;
 	private int idTerreno;
 	private Date dataPrenotazione;
-	
-	public Prenotazione() {}
-	
+
+	public Prenotazione() {
+	}
+
 	public Prenotazione(int id, int idCliente, int idTerreno, Date dataPrenotazione) {
 		this.id = id;
 		this.idCliente = idCliente;
@@ -49,7 +50,5 @@ public class Prenotazione {
 	public void setDataPrenotazione(Date dataPrenotazione) {
 		this.dataPrenotazione = dataPrenotazione;
 	}
-	
-	
-	
+
 }

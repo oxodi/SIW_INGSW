@@ -7,13 +7,12 @@ public class Lattuga extends Ortaggio {
 		this.setNome("Lattuga");
 		this.setResa(1.0);
 	}
-	
+
 	public Lattuga(double prezzo, String tempoColtivazione, String periodoColtivazione) {
 		super(prezzo, tempoColtivazione, periodoColtivazione);
 		this.setId(5);
 		this.setNome("Lattuga");
 		this.setResa(1.0);
 	}
-
 
 }

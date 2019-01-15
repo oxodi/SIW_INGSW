@@ -6,11 +6,12 @@ public class Prodotto {
 	private String nome;
 	private String categoria;
 	private String descrizione;
-	
-	public Prodotto() {}
+
+	public Prodotto() {
+	}
 
 	public Prodotto(int id, String nome, String categoria, String descrizione) {
-		
+
 		this.id = id;
 		this.nome = nome;
 		this.categoria = categoria;
@@ -48,7 +49,5 @@ public class Prodotto {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	
-	
-	
+
 }

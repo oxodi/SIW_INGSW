@@ -6,8 +6,9 @@ public class InserisciProdotto {
 	private int idProdotto;
 	private int quantita;
 	private double costoUnitario;
-	
-	public InserisciProdotto() {}
+
+	public InserisciProdotto() {
+	}
 
 	public InserisciProdotto(int idAzienda, int idProdotto, int quantita, double costoUnitario) {
 		this.idAzienda = idAzienda;

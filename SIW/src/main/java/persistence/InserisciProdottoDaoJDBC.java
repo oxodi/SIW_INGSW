@@ -7,18 +7,17 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-
 import entita.InserisciProdotto;
 import persistence.dao.InserisciProdottoDao;
 
 public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 
 	private DataSource dataSource;
-	
+
 	public InserisciProdottoDaoJDBC(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
-	
+
 	@Override
 	public void salva(InserisciProdotto inserimento) {
 		Connection connection = this.dataSource.getConnection();
@@ -27,15 +26,15 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 			String insert = "insert into InserisciProdotto(Id_Azienda, Id_Prodotto, Quantita "
 					+ "CostoUnitario) values(?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			
+
 			statement.setInt(1, inserimento.getIdAzienda());
 			statement.setInt(2, inserimento.getIdProdotto());
 			statement.setInt(3, inserimento.getQuantita());
 			statement.setDouble(4, inserimento.getCostoUnitario());
-		
+
 			statement.executeUpdate();
-			
-		}catch (SQLException e) {
+
+		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 
 		} finally {
@@ -49,19 +48,20 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 
 	@Override
 	public void aggiorna(InserisciProdotto inserimento) {
+
 		Connection connection = this.dataSource.getConnection();
 		try {
-			
+
 			String update = "update InserisciProdotto SET Quantita = ?, CostoUnitario = ? WHERE Id_Azienda = ? AND Id_Prodotto = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
-			
+
 			statement.setInt(1, inserimento.getIdAzienda());
 			statement.setInt(2, inserimento.getIdProdotto());
 			statement.setInt(3, inserimento.getQuantita());
 			statement.setDouble(4, inserimento.getCostoUnitario());
-			
+
 			statement.executeUpdate();
-		
+
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -71,20 +71,22 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 				throw new PersistenceException(e2.getMessage());
 			}
 		}
+
 	}
 
 	@Override
 	public void cancella(InserisciProdotto inserimento) {
+
 		Connection connection = this.dataSource.getConnection();
 		try {
-		
+
 			String delete = "delete FROM InserimentoProdotto WHERE Id_Azienda = ? AND Id_Prodotto = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
-			
+
 			statement.setInt(1, inserimento.getIdAzienda());
 			statement.setInt(2, inserimento.getIdProdotto());
 			statement.executeUpdate();
-		
+
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -94,30 +96,31 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 				throw new PersistenceException(e2.getMessage());
 			}
 		}
+
 	}
 
 	@Override
 	public List<InserisciProdotto> cercaPerAzienda(int idAzienda) {
 		Connection connection = this.dataSource.getConnection();
 		List<InserisciProdotto> inserimenti = new LinkedList<InserisciProdotto>();
-		
+
 		try {
 			InserisciProdotto inserimento;
 			PreparedStatement statement;
 			String query = "select * from InserisciProdotto where Id_Azienda = ?";
-		
+
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, idAzienda);
 			ResultSet result = statement.executeQuery();
-			
+
 			while (result.next()) {
-			
+
 				inserimento = new InserisciProdotto();
-				inserimento.setIdAzienda(result.getInt("Id_Azienda"));				
+				inserimento.setIdAzienda(result.getInt("Id_Azienda"));
 				inserimento.setIdProdotto(result.getInt("Id_Prodotto"));
 				inserimento.setQuantita(result.getInt("Quantita"));
 				inserimento.setCostoUnitario(result.getDouble("CostoUnitario"));
-				
+
 				inserimenti.add(inserimento);
 			}
 		} catch (SQLException e) {
@@ -128,7 +131,7 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
-		}	
+		}
 		return inserimenti;
 	}
 
@@ -136,24 +139,24 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 	public List<InserisciProdotto> cercaPerProdotto(int idProdotto) {
 		Connection connection = this.dataSource.getConnection();
 		List<InserisciProdotto> inserimenti = new LinkedList<InserisciProdotto>();
-		
+
 		try {
 			InserisciProdotto inserimento;
 			PreparedStatement statement;
 			String query = "select * from InserisciProdotto where Id_Prodotto = ?";
-		
+
 			statement = connection.prepareStatement(query);
 			statement.setInt(2, idProdotto);
 			ResultSet result = statement.executeQuery();
-			
+
 			while (result.next()) {
-			
+
 				inserimento = new InserisciProdotto();
-				inserimento.setIdAzienda(result.getInt("Id_Azienda"));				
+				inserimento.setIdAzienda(result.getInt("Id_Azienda"));
 				inserimento.setIdProdotto(result.getInt("Id_Prodotto"));
 				inserimento.setQuantita(result.getInt("Quantita"));
 				inserimento.setCostoUnitario(result.getDouble("CostoUnitario"));
-				
+
 				inserimenti.add(inserimento);
 			}
 		} catch (SQLException e) {
@@ -164,7 +167,7 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
-		}	
+		}
 		return inserimenti;
 	}
 
