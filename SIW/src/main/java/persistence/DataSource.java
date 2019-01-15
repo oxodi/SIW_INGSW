@@ -18,10 +18,24 @@ public class DataSource {
 	public Connection getConnection() throws PersistenceException {
 		Connection connection = null;
 		try {
-			connection = DriverManager.getConnection(dbURI, userName, password);
 
+		    connection = DriverManager.getConnection(dbURI,userName, password);
+			System.out.println("Server Connesso");
+		
+		} catch(SQLException e) {
+
+			try {
+				connection = DriverManager.getConnection(dbURI, userName, password);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		try {
+			System.out.println(connection.getMetaData());
 		} catch (SQLException e) {
-			throw new PersistenceException(e.getMessage());
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return connection;
 	}
