@@ -21,7 +21,7 @@ public class Registration extends HttpServlet {
 		//resp.getWriter().println("<h1>OK</h1>");
 		
 		RequestDispatcher rd = req.getRequestDispatcher
-				("registrazioneAzienda.html");
+				("registrazioneAzienda.jsp");
 		rd.include(req, resp);
 		
 	}

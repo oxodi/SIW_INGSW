@@ -61,7 +61,7 @@
 		<div class="col-md-8 offset-md-2">
 			<form class="custom-form" id="regFormAzienda" method="post"
 				action="Registration")>
-				<h1>Registrazione azienda</h1>
+				<h1>Registrazione Azienda</h1>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
 						<label class="col-form-label" for="name-input-field">Ragione
