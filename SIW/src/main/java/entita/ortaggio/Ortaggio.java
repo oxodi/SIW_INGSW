@@ -7,14 +7,24 @@ public abstract class Ortaggio {
 	private String tempoColtivazione;
 	private String periodoColtivazione;
 	private double resa;
+	private int id_terreno;
 
 	public Ortaggio() {
 	}
 
-	public Ortaggio(double prezzo, String tempoColtivazione, String periodoColtivazione) {
+	public Ortaggio(double prezzo, int id_terreno, String tempoColtivazione, String periodoColtivazione) {
 		this.prezzo = prezzo;
+		this.id_terreno = id_terreno;
 		this.tempoColtivazione = tempoColtivazione;
 		this.periodoColtivazione = periodoColtivazione;
+	}
+
+	public int getId_terreno() {
+		return id_terreno;
+	}
+
+	public void setId_terreno(int id_terreno) {
+		this.id_terreno = id_terreno;
 	}
 
 	public double getResa() {
