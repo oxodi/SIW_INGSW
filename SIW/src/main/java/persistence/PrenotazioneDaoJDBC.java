@@ -24,8 +24,8 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 		Connection connection = this.dataSource.getConnection();
 
 		try {
-//			int id = GestoreID.getId(connection);
-//			prenotazione.setId(id);
+			int id = GestoreID.getId(connection, "prenotazione_id_seq");
+			prenotazione.setId(id);
 
 			String insert = "INSERT INTO prenotazione(id, id_cliente, id_terreno, data) VALUES (?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);

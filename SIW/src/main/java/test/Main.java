@@ -60,15 +60,15 @@ public class Main {
 //			ClienteDao clientedao = new ClienteDaoJDBC(dataSource);
 //			clientedao.salva(cliente);
 		
-//			Prenotazione prenotazione = new Prenotazione(1, 1, 1, date);
-//			PrenotazioneDao prenotazionedao = new PrenotazioneDaoJDBC(dataSource);
-//			prenotazionedao.salva(prenotazione);
+			Prenotazione prenotazione = new Prenotazione(0, 1, 1, date);
+			PrenotazioneDao prenotazionedao = new PrenotazioneDaoJDBC(dataSource);
+			prenotazionedao.salva(prenotazione);
+	
 			
 			
-			
-			Prodotto prodotto = new Prodotto(1, "giuseppe", "turco", "duro");
-			ProdottoDao prodottodao = new ProdottoDaoJDBC(dataSource);
-			prodottodao.salva(prodotto);
+//			Prodotto prodotto = new Prodotto(0, "giuseppeeeeee", "turccccco", "duro");
+//			ProdottoDao prodottodao = new ProdottoDaoJDBC(dataSource);
+//			prodottodao.salva(prodotto);
 		}	
 		catch (Exception e) {
 			System.err.println("PostgresDAOFactory.class: failed to load MySQL JDBC driver\n"+e);

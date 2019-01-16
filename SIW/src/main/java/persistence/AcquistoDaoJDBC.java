@@ -24,7 +24,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 		Connection connection = this.dataSource.getConnection();
 
 		try {
-			int id = GestoreID.getId(connection);
+			int id = GestoreID.getId(connection, "acquisto_id_seq");
 			acquisto.setId(id);
 
 			String insert = "INSERT INTO acquisto(id, id_cliente, id_prodotto, data_acquisto,"
