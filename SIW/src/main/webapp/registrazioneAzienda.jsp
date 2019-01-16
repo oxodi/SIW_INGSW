@@ -28,7 +28,7 @@
 	<!-- End: Navigation with Button -->
 	<div class="row register-form">
 		<div class="col-md-8 offset-md-2">
-			<form class="custom-form" id="regFormAzienda" method="get" name="azienda" action="InserisciAzienda">
+			<form class="custom-form" id="regFormAzienda" method="post" name="azienda" action="InserisciAzienda">
 				<h1>Registrazione Azienda</h1>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
@@ -135,7 +135,7 @@
 						class="form-check-label" for="formCheck-1">Ho letto e
 						accettato i termini e condizione di servizio</label>
 				</div>
-				 	<button class="btn btn-light submit-button" type="button">Submit
+				 	<button class="btn btn-light submit-button" type="submit">Submit
 					Form</button>
 			</form>
 		</div>

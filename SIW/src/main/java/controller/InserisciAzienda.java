@@ -23,11 +23,6 @@ public class InserisciAzienda extends HttpServlet {
 	 */
 	PostgresDAOFactory factory = new PostgresDAOFactory();
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
-		System.out.println("ciao");
-	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 			String nome = request.getParameter("name");
