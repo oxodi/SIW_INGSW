@@ -53,6 +53,7 @@ public class Main {
 //			Ortaggio ortaggio = new Melanzana(10.0, 10, "estate");
 //			OrtaggioDao ortaggiodao = new OrtaggioDaoJDBC(dataSource);
 //			ortaggiodao.salva(ortaggio);
+			//
 			
 			Date date = new Date();
 //			Cliente cliente = new Cliente(1, "alessandro", "pedace", "ciaa", date , "ciao", "1234", "email@email");
