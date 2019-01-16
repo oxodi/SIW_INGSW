@@ -64,6 +64,8 @@ public class Main {
 //			PrenotazioneDao prenotazionedao = new PrenotazioneDaoJDBC(dataSource);
 //			prenotazionedao.salva(prenotazione);
 			
+			
+			
 			Prodotto prodotto = new Prodotto(1, "giuseppe", "turco", "duro");
 			ProdottoDao prodottodao = new ProdottoDaoJDBC(dataSource);
 			prodottodao.salva(prodotto);
