@@ -23,6 +23,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 		Connection connection = this.dataSource.getConnection();
 
 		try {
+
 			int id = GestoreID.getId(connection, "azienda_id_seq");
 			azienda.setId(id);
 
