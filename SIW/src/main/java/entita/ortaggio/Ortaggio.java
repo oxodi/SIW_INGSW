@@ -4,7 +4,7 @@ public abstract class Ortaggio {
 	private int id;
 	private String nome;
 	private double prezzo;
-	private String tempoColtivazione;
+	private int tempoColtivazione;
 	private String periodoColtivazione;
 	private double resa;
 	private int id_terreno;
@@ -12,7 +12,7 @@ public abstract class Ortaggio {
 	public Ortaggio() {
 	}
 
-	public Ortaggio(double prezzo, int id_terreno, String tempoColtivazione, String periodoColtivazione) {
+	public Ortaggio(double prezzo, int id_terreno, int tempoColtivazione, String periodoColtivazione) {
 		this.prezzo = prezzo;
 		this.id_terreno = id_terreno;
 		this.tempoColtivazione = tempoColtivazione;
@@ -59,11 +59,11 @@ public abstract class Ortaggio {
 		this.prezzo = prezzo;
 	}
 
-	public String getTempoColtivazione() {
+	public int getTempoColtivazione() {
 		return tempoColtivazione;
 	}
 
-	public void setTempoColtivazione(String tempoColtivazione) {
+	public void setTempoColtivazione(int tempoColtivazione) {
 		this.tempoColtivazione = tempoColtivazione;
 	}
 

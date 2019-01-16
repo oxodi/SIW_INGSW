@@ -33,14 +33,11 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 	public void salva(Ortaggio ortaggio) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "INSERT INTO ortaggio(id, nome, prezzo, tempo_coltivazione, periodo_coltivazione, resa) VALUES (?,?,?,?,?,?)";
+			String insert = "INSERT INTO ortaggio(id, nome, resa) VALUES (?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setInt(1, ortaggio.getId());
 			statement.setString(2, ortaggio.getNome());
-			statement.setDouble(3, ortaggio.getPrezzo());
-			statement.setString(4, ortaggio.getTempoColtivazione());
-			statement.setString(5, ortaggio.getPeriodoColtivazione());
-			statement.setDouble(6, ortaggio.getResa());
+			statement.setDouble(3, ortaggio.getResa());
 
 			statement.executeUpdate();
 
@@ -66,9 +63,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				ortaggio = this.ortaggioSpecifico(id);
-				ortaggio.setTempoColtivazione(result.getString("tempo_coltivazione"));
-				ortaggio.setPeriodoColtivazione(result.getString("periodo_coltivazione"));
-				ortaggio.setPrezzo(result.getDouble("prezzo"));
+				
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -96,9 +91,6 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				ortaggio = this.ortaggioSpecifico(result.getInt("id"));
-				ortaggio.setTempoColtivazione(result.getString("tempo_coltivazione"));
-				ortaggio.setPeriodoColtivazione(result.getString("periodo_coltivazione"));
-				ortaggio.setPrezzo(result.getDouble("prezzo"));
 
 				ortaggi.add(ortaggio);
 			}
@@ -112,27 +104,6 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 			}
 		}
 		return ortaggi;
-	}
-
-	@Override
-	public void aggiorna(Ortaggio ortaggio) {
-		Connection connection = this.dataSource.getConnection();
-		try {
-			String update = "UPDATE ortaggio SET tempo_coltivazione = ?, periodo_coltivazione = ?, prezzo = ? WHERE id = ?";
-			PreparedStatement statement = connection.prepareStatement(update);
-			statement.setString(1, ortaggio.getTempoColtivazione());
-			statement.setString(2, ortaggio.getPeriodoColtivazione());
-			statement.setDouble(3, ortaggio.getPrezzo());
-			statement.executeUpdate();
-		} catch (SQLException e) {
-			throw new PersistenceException(e.getMessage());
-		} finally {
-			try {
-				connection.close();
-			} catch (Exception e2) {
-				throw new PersistenceException(e2.getMessage());
-			}
-		}
 	}
 
 	@Override

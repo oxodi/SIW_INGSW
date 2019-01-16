@@ -12,7 +12,5 @@ public interface OrtaggioDao {
 
 	public List<Ortaggio> cercaTutti();
 
-	public void aggiorna(Ortaggio ortaggio);
-
 	public void cancella(Ortaggio ortaggio);
 }

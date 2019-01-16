@@ -22,8 +22,8 @@ public class ClienteDaoJDBC implements ClienteDao {
 		Connection connection = this.dataSource.getConnection();
 
 		try {
-			int id = GestoreID.getId(connection);
-			cliente.setId(id);
+//			int id = GestoreID.getId(connection);
+//			cliente.setId(id);
 
 			String insert = "INSERT INTO cliente(id, nome, cognome, codice_fiscale,"
 					+ " indirizzo, data_di_nascita, telefono, email) VALUES (?,?,?,?,?,?,?,?)";
