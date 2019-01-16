@@ -13,6 +13,7 @@ import entita.Cliente;
 import entita.Terreno;
 import persistence.ClienteDaoJDBC;
 import persistence.DataSource;
+import persistence.PostgresDAOFactory;
 import persistence.TerrenoDaoJDBC;
 import persistence.dao.ClienteDao;
 import persistence.dao.TerrenoDao;
@@ -24,10 +25,10 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			Class.forName("org.postgresql.Driver");
-			//DriverManager.registerDriver(new org.postgresql.Driver());
 			DataSource dataSource = new DataSource("jdbc:postgresql://149.202.43.174:5432/DataGrower","postgres","life2play");
 		
-			Terreno terreno = new Terreno(0, 1, "ciao", true, true, 100,10, 10.0, "estate");
+			
+			Terreno terreno = new Terreno(0, 1, "MARIA", true, true, 100,10, 10.0, "estate");
 			TerrenoDao terrenodao = new TerrenoDaoJDBC(dataSource);
 			terrenodao.salva(terreno);
 			//System.out.println(terrenodao.cercaTutti().get(0));
