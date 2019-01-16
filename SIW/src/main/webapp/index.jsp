@@ -156,8 +156,7 @@
 	<footer>
 		<!-- Start: Copyright -->
 		<p class="copyright"
-			style="color: rgb(4, 4, 4); background-color: #63c65a; padding: 15px;">Unical
-			©Copyright 2019</p>
+			style="color: rgb(4, 4, 4); background-color: #63c65a; padding: 15px;">Unical ©Copyright 2019</p>
 		<!-- End: Copyright -->
 	</footer>
 </div>
