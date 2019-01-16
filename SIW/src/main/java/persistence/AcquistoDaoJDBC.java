@@ -28,7 +28,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			acquisto.setId(id);
 
 			String insert = "INSERT INTO acquisto(id, id_cliente, id_prodotto, data_acquisto,"
-					+ " data_ritiro) values (?,?,?,?,?)";
+					+ " data_ritiro) VALUES (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setInt(1, acquisto.getId());
