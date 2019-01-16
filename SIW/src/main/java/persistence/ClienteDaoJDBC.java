@@ -25,8 +25,8 @@ public class ClienteDaoJDBC implements ClienteDao {
 			int id = GestoreID.getId(connection);
 			cliente.setId(id);
 
-			String insert = "insert into Cliente(Id, Nome, Cognome, CodiceFiscale,"
-					+ " Indirizzo, DataDiNascita, Telefono, e-mail) values (?,?,?,?,?,?,?,?)";
+			String insert = "INSERT INTO cliente(id, nome, cognome, codice_fiscale,"
+					+ " indirizzo, data_di_nascita, telefono, email) values (?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setInt(1, cliente.getId());
@@ -57,7 +57,7 @@ public class ClienteDaoJDBC implements ClienteDao {
 		Connection connection = this.dataSource.getConnection();
 		Cliente cliente = null;
 		try {
-			String query = "select * FROM Cliente WHERE Id = ?";
+			String query = "SELECT * FROM cliente WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 
 			statement.setInt(1, id);
@@ -66,15 +66,15 @@ public class ClienteDaoJDBC implements ClienteDao {
 			if (result.next()) {
 
 				cliente = new Cliente();
-				cliente.setId(result.getInt("Id"));
-				cliente.setNome(result.getString("Nome"));
-				cliente.setCognome(result.getString("Cognome"));
-				cliente.setCodiceFiscale(result.getString("CodiceFiscale"));
-				long secs = result.getDate("DataDiNascita").getTime();
+				cliente.setId(result.getInt("id"));
+				cliente.setNome(result.getString("nome"));
+				cliente.setCognome(result.getString("cognome"));
+				cliente.setCodiceFiscale(result.getString("codice_fiscale"));
+				long secs = result.getDate("data_di_nascita").getTime();
 				cliente.setDataDiNascita(new java.util.Date(secs));
-				cliente.setIndirizzo(result.getString("Indirizzo"));
-				cliente.setTelefono(result.getString("Telefono"));
-				cliente.setEmail(result.getString("e-mail"));
+				cliente.setIndirizzo(result.getString("indirizzo"));
+				cliente.setTelefono(result.getString("telefono"));
+				cliente.setEmail(result.getString("email"));
 
 			}
 		} catch (SQLException e) {
@@ -97,22 +97,22 @@ public class ClienteDaoJDBC implements ClienteDao {
 		try {
 			Cliente cliente;
 			PreparedStatement statement;
-			String query = "select * from Cliente";
+			String query = "SELECT * FROM cliente";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 
 			while (result.next()) {
 
 				cliente = new Cliente();
-				cliente.setId(result.getInt("Id"));
-				cliente.setNome(result.getString("Nome"));
-				cliente.setCognome(result.getString("Cognome"));
-				cliente.setCodiceFiscale(result.getString("CodiceFiscale"));
-				cliente.setIndirizzo(result.getString("Indirizzo"));
-				cliente.setTelefono(result.getString("Telefono"));
-				long secs = result.getDate("DataDiNascita").getTime();
+				cliente.setId(result.getInt("id"));
+				cliente.setNome(result.getString("nome"));
+				cliente.setCognome(result.getString("cognome"));
+				cliente.setCodiceFiscale(result.getString("codice_fiscale"));
+				cliente.setIndirizzo(result.getString("indirizzo"));
+				cliente.setTelefono(result.getString("telefono"));
+				long secs = result.getDate("data_di_nascita").getTime();
 				cliente.setDataDiNascita(new java.util.Date(secs));
-				cliente.setEmail(result.getString("e-mail"));
+				cliente.setEmail(result.getString("email"));
 
 				clienti.add(cliente);
 			}
@@ -133,7 +133,7 @@ public class ClienteDaoJDBC implements ClienteDao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 
-			String update = "update Cliente SET Nome = ?, Cognome = ?, CodiceFiscale = ?, Indirizzo = ?, DataDiNascita = ?, Telefono = ?, e-mail = ? WHERE Id = ?";
+			String update = "UPDATE cliente SET nome = ?, cognome = ?, codice_fiscale = ?, indirizzo = ?, data_di_nascita = ?, telefono = ?, email = ? WHERE id = ?";
 
 			PreparedStatement statement = connection.prepareStatement(update);
 
@@ -164,7 +164,7 @@ public class ClienteDaoJDBC implements ClienteDao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 
-			String delete = "delete FROM studente WHERE Id = ? ";
+			String delete = "DELETE FROM studente WHERE id = ? ";
 
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setInt(1, cliente.getId());
@@ -186,7 +186,7 @@ public class ClienteDaoJDBC implements ClienteDao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 
-			String update = "update Cliente SET Password = ? WHERE Id=?";
+			String update = "UPDATE cliente SET password = ? WHERE id=?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, password);
 			statement.setInt(2, cliente.getId());

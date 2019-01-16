@@ -27,8 +27,8 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			int id = GestoreID.getId(connection);
 			acquisto.setId(id);
 
-			String insert = "insert into Acquisto(Id, Id_Cliente, Id_Prodotto, DataAcquisto,"
-					+ " DataRitiro) values (?,?,?,?,?)";
+			String insert = "INSERT INTO acquisto(id, id_cliente, id_prodotto, data_acquisto,"
+					+ " data_ritiro) values (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setInt(1, acquisto.getId());
@@ -56,7 +56,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 
-			String update = "update Acquisto SET Id_Cliente = ?, Id_Prodotto = ?, DataAcquisto = ?, DataRitiro = ? WHERE Id = ?";
+			String update = "UPDATE acquisto SET id_cliente = ?, id_prodotto = ?, data_acquisto = ?, data_ritiro = ? WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 
 			statement.setInt(1, acquisto.getId());
@@ -86,7 +86,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 
-			String delete = "delete FROM studente WHERE id = ? ";
+			String delete = "DELETE FROM studente WHERE id = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 
 			statement.setInt(1, acquisto.getId());
@@ -108,7 +108,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 		Connection connection = this.dataSource.getConnection();
 		Acquisto acquisto = null;
 		try {
-			String query = "select * FROM Acquisto WHERE Id = ?";
+			String query = "SELECT * FROM acquisto WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 
 			statement.setInt(1, id);
@@ -117,12 +117,12 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			if (result.next()) {
 
 				acquisto = new Acquisto();
-				acquisto.setId(result.getInt("Id"));
-				acquisto.setIdCliente(result.getInt("Id_Cliente"));
-				acquisto.setIdProdotto(result.getInt("Id_Prodotto"));
+				acquisto.setId(result.getInt("id"));
+				acquisto.setIdCliente(result.getInt("id_cliente"));
+				acquisto.setIdProdotto(result.getInt("id_prodotto"));
 
-				long secsAcquisto = result.getDate("DataAcquisto").getTime();
-				long secsRitiro = result.getDate("DataRitiro").getTime();
+				long secsAcquisto = result.getDate("data_acquisto").getTime();
+				long secsRitiro = result.getDate("data_ritiro").getTime();
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
 				acquisto.setDataRitiro(new java.util.Date(secsRitiro));
 
@@ -148,7 +148,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 		try {
 			Acquisto acquisto;
 			PreparedStatement statement;
-			String query = "select * from Acquisti where Id_Cliente = ?";
+			String query = "SELECT * FROM acquisto where id_cliente = ?";
 
 			statement = connection.prepareStatement(query);
 			statement.setInt(2, idCliente);
@@ -157,12 +157,12 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			while (result.next()) {
 
 				acquisto = new Acquisto();
-				acquisto.setId(result.getInt("Id"));
-				acquisto.setIdCliente(result.getInt("Id_Cliente"));
-				acquisto.setIdProdotto(result.getInt("Id_Prodotto"));
+				acquisto.setId(result.getInt("id"));
+				acquisto.setIdCliente(result.getInt("id_cliente"));
+				acquisto.setIdProdotto(result.getInt("id_prodotto"));
 
-				long secsAcquisto = result.getDate("DataAcquisto").getTime();
-				long secsRitiro = result.getDate("DataRitiro").getTime();
+				long secsAcquisto = result.getDate("data_acquisto").getTime();
+				long secsRitiro = result.getDate("data_ritiro").getTime();
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
 				acquisto.setDataRitiro(new java.util.Date(secsRitiro));
 
@@ -188,7 +188,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 		try {
 			Acquisto acquisto;
 			PreparedStatement statement;
-			String query = "select * from Acquisti where Id_Prodotto = ?";
+			String query = "SELECT FROM acquisto where id_prodotto = ?";
 
 			statement = connection.prepareStatement(query);
 			statement.setInt(3, idProdotto);
@@ -197,12 +197,12 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			while (result.next()) {
 
 				acquisto = new Acquisto();
-				acquisto.setId(result.getInt("Id"));
-				acquisto.setIdCliente(result.getInt("Id_Cliente"));
-				acquisto.setIdProdotto(result.getInt("Id_Prodotto"));
+				acquisto.setId(result.getInt("id"));
+				acquisto.setIdCliente(result.getInt("id_cliente"));
+				acquisto.setIdProdotto(result.getInt("id_prodotto"));
 
-				long secsAcquisto = result.getDate("DataAcquisto").getTime();
-				long secsRitiro = result.getDate("DataRitiro").getTime();
+				long secsAcquisto = result.getDate("data_acquisto").getTime();
+				long secsRitiro = result.getDate("data_ritiro").getTime();
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
 				acquisto.setDataRitiro(new java.util.Date(secsRitiro));
 
@@ -228,7 +228,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 		try {
 			Acquisto acquisto;
 			PreparedStatement statement;
-			String query = "select * from Acquisto where DataAcquisto = ?";
+			String query = "SELECT * FROM acquisto WHERE data_acquisto = ?";
 
 			statement = connection.prepareStatement(query);
 			statement.setDate(4, (java.sql.Date) dataAcquisto);
@@ -237,12 +237,12 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			while (result.next()) {
 
 				acquisto = new Acquisto();
-				acquisto.setId(result.getInt("Id"));
-				acquisto.setIdCliente(result.getInt("Id_Cliente"));
-				acquisto.setIdProdotto(result.getInt("Id_Prodotto"));
+				acquisto.setId(result.getInt("id"));
+				acquisto.setIdCliente(result.getInt("id_cliente"));
+				acquisto.setIdProdotto(result.getInt("id_prodotto"));
 
-				long secsAcquisto = result.getDate("DataAcquisto").getTime();
-				long secsRitiro = result.getDate("DataRitiro").getTime();
+				long secsAcquisto = result.getDate("data_acquisto").getTime();
+				long secsRitiro = result.getDate("data_ritiro").getTime();
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
 				acquisto.setDataRitiro(new java.util.Date(secsRitiro));
 
@@ -268,7 +268,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 		try {
 			Acquisto acquisto;
 			PreparedStatement statement;
-			String query = "select * from Acquisto";
+			String query = "SELECT * FROM acquisto";
 
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
@@ -276,12 +276,12 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			while (result.next()) {
 
 				acquisto = new Acquisto();
-				acquisto.setId(result.getInt("Id"));
-				acquisto.setIdCliente(result.getInt("Id_Cliente"));
-				acquisto.setIdProdotto(result.getInt("Id_Prodotto"));
+				acquisto.setId(result.getInt("id"));
+				acquisto.setIdCliente(result.getInt("id_cliente"));
+				acquisto.setIdProdotto(result.getInt("id_prodotto"));
 
-				long secsAcquisto = result.getDate("DataAcquisto").getTime();
-				long secsRitiro = result.getDate("DataRitiro").getTime();
+				long secsAcquisto = result.getDate("data_acquisto").getTime();
+				long secsRitiro = result.getDate("data_ritiro").getTime();
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
 				acquisto.setDataRitiro(new java.util.Date(secsRitiro));
 
