@@ -17,7 +17,6 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 
 	public TerrenoDaoJDBC(DataSource dataSource) {
 		this.dataSource = dataSource;
-		System.out.println("sono nel costruttore");
 	}
 
 	@Override
@@ -25,11 +24,10 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		Connection connection = this.dataSource.getConnection();
 		
 		try {
-			connection.setAutoCommit(true);
 			//int id = GestoreID.getId(connection);
 			//terreno.setId(id);
 			System.out.println("Sono in salva");
-			String insert = "INSERT INTO terreno(id, locazione, dimensione, dimensione_serra, servizio_parziale, servizio_completo, periodo_coltivazione, id_azienda, costo_terreno\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String insert = "INSERT INTO terreno(id, locazione, dimensione, dimensione_serra, servizio_parziale, servizio_completo, periodo_coltivazione, id_azienda, costo_terreno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			
 			statement.setInt(1, terreno.getId());
@@ -47,15 +45,18 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		} catch (SQLException e) {
 			if (connection != null) {
 				try {
+					throw new PersistenceException(e.getMessage());
 					//connection.rollback();
 				} catch (Exception e2) {
 					throw new PersistenceException(e2.getMessage());
+					
 				}
 			}
 		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e3) {
+				
 				throw new PersistenceException(e3.getMessage());
 			}
 		}
