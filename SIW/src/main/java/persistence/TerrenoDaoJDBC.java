@@ -25,11 +25,13 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		Connection connection = this.dataSource.getConnection();
 		
 		try {
+			connection.setAutoCommit(true);
 			//int id = GestoreID.getId(connection);
 			//terreno.setId(id);
-			System.out.println("A puttana e mammata");
-			String insert = "insert into Terreno(Id, Locazione, Dimensione, DimensioneSerra, ServizioParziale, ServizioCompleto, PeriodoColtivazione, Id_Azienda, CostoTerreno) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			System.out.println("Sono in salva");
+			String insert = "INSERT INTO terreno(id, locazione, dimensione, dimensione_serra, servizio_parziale, servizio_completo, periodo_coltivazione, id_azienda, costo_terreno\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
+			
 			statement.setInt(1, terreno.getId());
 			statement.setString(2, terreno.getLocazione());
 			statement.setInt(3, terreno.getDimensione());
@@ -38,13 +40,10 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 			statement.setBoolean(6, terreno.isServizioCompleto());
 			statement.setString(7, terreno.getPeriodiDisponibilita());
 			statement.setInt(8, terreno.getIdAzienda());
-
 			statement.setDouble(9, terreno.getCosto());
 			System.out.println(statement);
-			System.out.println(statement.executeUpdate());
-			
 			statement.executeUpdate();
-
+			
 		} catch (SQLException e) {
 			if (connection != null) {
 				try {
@@ -68,20 +67,20 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 			if (ortaggioDao.cercaPerChiavePrimaria(ortaggio.getId()) == null) {
 				ortaggioDao.salva(ortaggio);
 			}
-			String ospita = "SELECT Id_Terreno AND Id_Ortaggio FROM Ospita WHERE Id_Terreno = ? AND Id_Ortaggio = ? ";
+			String ospita = "SELECT * FROM ospita WHERE id_terreno = ? AND id_ortaggio = ? ";
 			try {
 				PreparedStatement statementOspita = connection.prepareStatement(ospita);
 				statementOspita.setInt(1, terreno.getId());
 				statementOspita.setInt(2, ortaggio.getId());
 				ResultSet result = statementOspita.executeQuery();
 				if (result.next()) {
-					String aggiorna = "UPDATE Ospita SET Id_Terreno = ? WHERE Id_Ortaggio = ?  ";
+					String aggiorna = "UPDATE ospita SET id_terreno = ? WHERE id_ortaggio = ?  ";
 					PreparedStatement statement = connection.prepareStatement(aggiorna);
 					statement.setInt(1, terreno.getId());
-					statement.setInt(2, result.getInt("Id_Ortaggio"));
+					statement.setInt(2, result.getInt("id_ortaggio"));
 					statement.executeUpdate();
 				} else {
-					String iscrivi = "INSERT into Ospita(Id_Terreno, Id_Ortaggio) values (?,?)";
+					String iscrivi = "INSERT INTO ospita(id_terreno, id_ortaggio) values (?,?)";
 					PreparedStatement statementIscrivi = connection.prepareStatement(iscrivi);
 					statementIscrivi.setInt(1, terreno.getId());
 					statementIscrivi.setInt(2, ortaggio.getId());
@@ -96,13 +95,13 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 
 	private void rimuoviForeignKeyDaOrtaggio(Terreno terreno, Connection connection) {
 		for (Ortaggio ortaggio : terreno.getOrtaggi()) {
-			String update = "update Ospita SET Id_Terreno = NULL WHERE ID_Ortaggio = ?";
+			String update = "update ospita SET id_terreno = NULL WHERE id_ortaggio = ?";
 			try {
 				PreparedStatement statement = connection.prepareStatement(update);
 				statement.setInt(1, ortaggio.getId());
 				statement.executeUpdate();
+		
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -112,12 +111,14 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 	public void aggiornaDimensione(Terreno terreno) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String aggiorna = "update Terreno Set Dimensione = ? WHERE Id = ?";
+			
+			String aggiorna = "UPDATE terreno SET dimensione = ? WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(aggiorna);
 			statement.setInt(1, terreno.getDimensione());
 			statement.setInt(2, terreno.getId());
 			statement.executeUpdate();
 			this.aggiornaOrtaggi(terreno, connection);
+			
 		} catch (SQLException e) {
 			if (connection != null) {
 				try {
@@ -139,7 +140,7 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 	public void cancella(Terreno terreno) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String cancella = "delete FROM Terreno WHERE Id = ? ";
+			String cancella = "DELETE FROM terreno WHERE id = ? ";
 			PreparedStatement statement = connection.prepareStatement(cancella);
 			statement.setInt(1, terreno.getId());
 			connection.setAutoCommit(false);
@@ -164,21 +165,23 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		Terreno terreno = null;
 		try {
 			PreparedStatement statement;
-			String query = "SELECT * FROM Terreno WHERE Id = ?";
+			String query = "SELECT * FROM terreno WHERE id = ?";
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, id);
 			ResultSet result = statement.executeQuery();
+			
 			if (result.next()) {
+				
 				terreno = new Terreno();
-				terreno.setId(result.getInt("Id"));
-				terreno.setCosto(result.getDouble("CostoTerreno"));
-				terreno.setDimensione(result.getInt("Dimensione"));
-				terreno.setDimensione(result.getInt("DimensioneSerra"));
-				terreno.setLocazione(result.getString("Locazione"));
-				terreno.setServizioCompleto(result.getBoolean("ServizioCompleto"));
-				terreno.setServizioParziale(result.getBoolean("ServizioParziale"));
-				terreno.setPeriodiDisponibilita(result.getString("PeriodoColtivazione"));
-				terreno.setIdAzienda(result.getInt("Id_Azienda"));
+				terreno.setId(result.getInt("id"));
+				terreno.setCosto(result.getDouble("costo_terreno"));
+				terreno.setDimensione(result.getInt("dimensione"));
+				terreno.setDimensione(result.getInt("dimensione_serra"));
+				terreno.setLocazione(result.getString("locazione"));
+				terreno.setServizioCompleto(result.getBoolean("servizio_completo"));
+				terreno.setServizioParziale(result.getBoolean("servizio_parziale"));
+				terreno.setPeriodiDisponibilita(result.getString("periodo_coltivazione"));
+				terreno.setIdAzienda(result.getInt("id_azienda"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -199,13 +202,13 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		try {
 			Terreno terreno;
 			PreparedStatement statement;
-			String query = "select * from Terreno WHERE ServizioParziale = ? AND ServizioCompleto = ?";
+			String query = "SELECT * FROM terreno WHERE servizio_parziale = ? AND servizio_completo = ?";
 			statement = connection.prepareStatement(query);
 			statement.setBoolean(1, servizioParziale);
 			statement.setBoolean(2, servizioCompleto);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				terreno = cercaPerChiavePrimaria(result.getInt("Id"));
+				terreno = cercaPerChiavePrimaria(result.getInt("id"));
 				terreni.add(terreno);
 			}
 		} catch (SQLException e) {
@@ -227,12 +230,12 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		try {
 			Terreno terreno;
 			PreparedStatement statement;
-			String query = "select * from Terreno WHERE PeriodoColtivazione = ?";
+			String query = "SELECT * FROM terreno WHERE periodo_coltivazione = ?";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, periodo);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				terreno = cercaPerChiavePrimaria(result.getInt("Id"));
+				terreno = cercaPerChiavePrimaria(result.getInt("id"));
 				terreni.add(terreno);
 			}
 		} catch (SQLException e) {
@@ -254,12 +257,12 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		try {
 			Terreno terreno;
 			PreparedStatement statement;
-			String query = "select * from Terreno WHERE Id_Azienda = ?";
+			String query = "SELECT * FROM terreno WHERE id_azienda = ?";
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, idAzienda);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				terreno = cercaPerChiavePrimaria(result.getInt("Id"));
+				terreno = cercaPerChiavePrimaria(result.getInt("id"));
 				terreni.add(terreno);
 			}
 		} catch (SQLException e) {
@@ -281,11 +284,11 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		try {
 			Terreno terreno;
 			PreparedStatement statement;
-			String query = "select * from Terreno ";
+			String query = "SELECT * FROM terreno ";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				terreno = cercaPerChiavePrimaria(result.getInt("Id"));
+				terreno = cercaPerChiavePrimaria(result.getInt("id"));
 				terreni.add(terreno);
 			}
 		} catch (SQLException e) {

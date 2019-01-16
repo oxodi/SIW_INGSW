@@ -33,7 +33,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 	public void salva(Ortaggio ortaggio) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into Ortaggio(Id, Nome, Prezzo, TempoColtivazione, PeriodoColtivazione, Resa) values (?,?,?,?,?,?)";
+			String insert = "INSERT INTO ortaggio(id, nome, prezzo, tempo_coltivazione, periodo_coltivazione, resa) VALUES (?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setInt(1, ortaggio.getId());
 			statement.setString(2, ortaggio.getNome());
@@ -60,15 +60,15 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 		Connection connection = this.dataSource.getConnection();
 		Ortaggio ortaggio = null;
 		try {
-			String query = "select * from Ortaggio where Id = ?";
+			String query = "SELECT * FROM ortaggio WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setInt(1, id);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				ortaggio = this.ortaggioSpecifico(id);
-				ortaggio.setTempoColtivazione(result.getString("TempoColtivazione"));
-				ortaggio.setPeriodoColtivazione(result.getString("PeriodoColtivazione"));
-				ortaggio.setPrezzo(result.getDouble("Prezzo"));
+				ortaggio.setTempoColtivazione(result.getString("tempo_coltivazione"));
+				ortaggio.setPeriodoColtivazione(result.getString("periodo_coltivazione"));
+				ortaggio.setPrezzo(result.getDouble("prezzo"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -91,14 +91,14 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 		try {
 			Ortaggio ortaggio;
 			PreparedStatement statement;
-			String query = "select * from Cliente";
+			String query = "SELECT * FROM cliente";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				ortaggio = this.ortaggioSpecifico(result.getInt("Id"));
-				ortaggio.setTempoColtivazione(result.getString("TempoColtivazione"));
-				ortaggio.setPeriodoColtivazione(result.getString("PeriodoColtivazione"));
-				ortaggio.setPrezzo(result.getDouble("Prezzo"));
+				ortaggio = this.ortaggioSpecifico(result.getInt("id"));
+				ortaggio.setTempoColtivazione(result.getString("tempo_coltivazione"));
+				ortaggio.setPeriodoColtivazione(result.getString("periodo_coltivazione"));
+				ortaggio.setPrezzo(result.getDouble("prezzo"));
 
 				ortaggi.add(ortaggio);
 			}
@@ -118,7 +118,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 	public void aggiorna(Ortaggio ortaggio) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String update = "update Ortaggio SET TempoColtivazione = ?, PeriodoColtivazione = ?, Prezzo = ? WHERE Id = ?";
+			String update = "UPDATE ortaggio SET tempo_coltivazione = ?, periodo_coltivazione = ?, prezzo = ? WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(1, ortaggio.getTempoColtivazione());
 			statement.setString(2, ortaggio.getPeriodoColtivazione());
@@ -139,7 +139,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 	public void cancella(Ortaggio ortaggio) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String delete = "delete FROM Ortaggio WHERE Id = ? ";
+			String delete = "DELETE FROM ortaggio WHERE id = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setInt(1, ortaggio.getId());
 			statement.executeQuery();

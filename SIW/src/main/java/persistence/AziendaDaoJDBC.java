@@ -26,8 +26,8 @@ public class AziendaDaoJDBC implements AziendaDao {
 			int id = GestoreID.getId(connection);
 			azienda.setId(id);
 
-			String insert = "insert into Azienda(Id, RagioneSociale, PartitaIVA, Referente, "
-					+ "SedeLegale, Telefono, Descrizione, e-mail) values(?,?,?,?,?,?,?,?)";
+			String insert = "INSERT INTO azienda(id, ragione_sociale, partita_iva, referente, "
+					+ "sede_legale, telefono, descrizione, email) VALUES(?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setInt(1, azienda.getId());
@@ -60,7 +60,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 		Azienda azienda = null;
 		try {
 			PreparedStatement statement;
-			String query = "select * from Azienda where Id = ?";
+			String query = "SELECT * FROM azienda WHERE id = ?";
 
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, id);
@@ -69,14 +69,14 @@ public class AziendaDaoJDBC implements AziendaDao {
 			if (result.next()) {
 
 				azienda = new Azienda();
-				azienda.setId(result.getInt("Id"));
-				azienda.setRagioneSociale(result.getString("RagioneSociale"));
-				azienda.setPartitaIVA(result.getString("PartitaIVA"));
-				azienda.setReferente(result.getString("Referente"));
-				azienda.setSedeLegale(result.getString("SedeLegale"));
-				azienda.setTelefono(result.getString("Telefono"));
-				azienda.setDescrizioneServizi(result.getString("Descrizione"));
-				azienda.setEmail(result.getString("e-mail"));
+				azienda.setId(result.getInt("id"));
+				azienda.setRagioneSociale(result.getString("ragione_sociale"));
+				azienda.setPartitaIVA(result.getString("partita_iva"));
+				azienda.setReferente(result.getString("referente"));
+				azienda.setSedeLegale(result.getString("sede_legale"));
+				azienda.setTelefono(result.getString("telefono"));
+				azienda.setDescrizioneServizi(result.getString("descrizione"));
+				azienda.setEmail(result.getString("email"));
 
 			}
 		} catch (SQLException e) {
@@ -99,21 +99,21 @@ public class AziendaDaoJDBC implements AziendaDao {
 		try {
 			Azienda azienda;
 			PreparedStatement statement;
-			String query = "select * from Azienda";
+			String query = "SELECT * FROM azienda";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 
 			while (result.next()) {
 
 				azienda = new Azienda();
-				azienda.setId(result.getInt("Id"));
-				azienda.setRagioneSociale(result.getString("RagioneSociale"));
-				azienda.setPartitaIVA(result.getString("PartitaIVA"));
-				azienda.setReferente(result.getString("Referente"));
-				azienda.setSedeLegale(result.getString("SedeLegale"));
-				azienda.setTelefono(result.getString("Telefono"));
-				azienda.setDescrizioneServizi(result.getString("Descrizione"));
-				azienda.setEmail(result.getString("e-mail"));
+				azienda.setId(result.getInt("id"));
+				azienda.setRagioneSociale(result.getString("ragione_sociale"));
+				azienda.setPartitaIVA(result.getString("partita_iva"));
+				azienda.setReferente(result.getString("referente"));
+				azienda.setSedeLegale(result.getString("sede_legale"));
+				azienda.setTelefono(result.getString("telefono"));
+				azienda.setDescrizioneServizi(result.getString("descrizione"));
+				azienda.setEmail(result.getString("email"));
 
 				aziende.add(azienda);
 			}
@@ -134,8 +134,8 @@ public class AziendaDaoJDBC implements AziendaDao {
 	public void aggiorna(Azienda azienda) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String update = "update Azienda SET Id = ?, RagioneSociale = ?, PartitaIVA = ?, Referente = ?, SedeLegale = ?, Telefono = ?,"
-					+ " Descrizione = ?, e-mail = ? WHERE Id=?";
+			String update = "UPDATE azienda SET id = ?, ragione_sociale = ?, partita_iva = ?, referente = ?, sede_legale = ?, telefono = ?,"
+					+ " descrizione = ?, email = ? WHERE id=?";
 
 			PreparedStatement statement = connection.prepareStatement(update);
 
@@ -165,7 +165,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 	public void cancella(Azienda azienda) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String delete = "delete FROM Azienda WHERE Id = ? ";
+			String delete = "DELETE FROM azienda WHERE id = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 
 			statement.setInt(1, azienda.getId());
@@ -186,7 +186,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 	public void setPassword(Azienda azienda, String password) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String update = "update Azienda SET password = ? WHERE Id=?";
+			String update = "UPDATE azienda SET password = ? WHERE id=?";
 			PreparedStatement statement = connection.prepareStatement(update);
 
 			statement.setString(1, password);

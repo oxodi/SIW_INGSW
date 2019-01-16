@@ -27,7 +27,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			int id = GestoreID.getId(connection);
 			prenotazione.setId(id);
 
-			String insert = "insert into Prenotazione(Id, Id_Cliente, Id_Terreno," + " Data) values (?,?,?,?)";
+			String insert = "INSERT INTO prenotazione(id, id_cliente, id_terreno, data) VALUES (?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setInt(1, prenotazione.getId());
@@ -56,7 +56,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 
 		try {
 			PreparedStatement statement;
-			String query = "select * from Prenotazione where Id = ?";
+			String query = "SELECT * FROM prenotazione WHERE id = ?";
 			statement = connection.prepareStatement(query);
 
 			statement.setInt(1, id);
@@ -65,10 +65,10 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			if (result.next()) {
 
 				prenotazione = new Prenotazione();
-				prenotazione.setId(result.getInt("Id"));
-				prenotazione.setIdCliente(result.getInt("Id_Cliente"));
-				prenotazione.setIdTerreno(result.getInt("Id_Terreno"));
-				long secs = result.getDate("Data").getTime();
+				prenotazione.setId(result.getInt("id"));
+				prenotazione.setIdCliente(result.getInt("id_cliente"));
+				prenotazione.setIdTerreno(result.getInt("id_terreno"));
+				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 
 			}
@@ -92,7 +92,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 		try {
 			Prenotazione prenotazione;
 			PreparedStatement statement;
-			String query = "select * from Prenotazione where Data = ?";
+			String query = "SELECT * FROM prenotazione WHERE data = ?";
 
 			statement = connection.prepareStatement(query);
 			statement.setDate(4, (java.sql.Date) data);
@@ -101,10 +101,10 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			while (result.next()) {
 
 				prenotazione = new Prenotazione();
-				prenotazione.setId(result.getInt("Id"));
-				prenotazione.setIdCliente(result.getInt("Id_Cliente"));
-				prenotazione.setIdTerreno(result.getInt("Id_Terreno"));
-				long secs = result.getDate("Data").getTime();
+				prenotazione.setId(result.getInt("id"));
+				prenotazione.setIdCliente(result.getInt("id_cliente"));
+				prenotazione.setIdTerreno(result.getInt("id_terreno"));
+				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 
 				prenotazioni.add(prenotazione);
@@ -126,7 +126,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 		Connection connection = this.dataSource.getConnection();
 
 		try {
-			String update = "update Prenotazione SET Id_Cliente = ?, Id_Terreno = ?, Data = ? WHERE Id=?";
+			String update = "UPDATE prenotazione SET id_cliente = ?, id_terreno = ?, data = ? WHERE id=?";
 			PreparedStatement statement = connection.prepareStatement(update);
 
 			statement.setInt(1, prenotazione.getId());
@@ -154,7 +154,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 		Connection connection = this.dataSource.getConnection();
 
 		try {
-			String delete = "delete FROM Prenotazione WHERE Id = ? ";
+			String delete = "DELETE FROM prenotazione WHERE id = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 
 			statement.setInt(1, prenotazione.getId());
@@ -180,7 +180,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 		try {
 			Prenotazione prenotazione;
 			PreparedStatement statement;
-			String query = "select * from Prenotazione where Id_Cliente = ?";
+			String query = "SELECT * FROM prenotazione WHERE id_cliente = ?";
 
 			statement = connection.prepareStatement(query);
 			statement.setInt(2, idCliente);
@@ -189,10 +189,10 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			while (result.next()) {
 
 				prenotazione = new Prenotazione();
-				prenotazione.setId(result.getInt("Id"));
-				prenotazione.setIdCliente(result.getInt("Id_Cliente"));
-				prenotazione.setIdTerreno(result.getInt("Id_Terreno"));
-				long secs = result.getDate("Data").getTime();
+				prenotazione.setId(result.getInt("id"));
+				prenotazione.setIdCliente(result.getInt("id_cliente"));
+				prenotazione.setIdTerreno(result.getInt("id_terreno"));
+				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 
 				prenotazioni.add(prenotazione);
@@ -217,7 +217,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 		try {
 			Prenotazione prenotazione;
 			PreparedStatement statement;
-			String query = "select * from Prenotazione where Id_Terreno = ?";
+			String query = "SELECT * FROM prenotazione WHERE id_terreno = ?";
 
 			statement = connection.prepareStatement(query);
 			statement.setInt(3, idTerreno);
@@ -226,10 +226,10 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			while (result.next()) {
 
 				prenotazione = new Prenotazione();
-				prenotazione.setId(result.getInt("Id"));
-				prenotazione.setIdCliente(result.getInt("Id_Cliente"));
-				prenotazione.setIdTerreno(result.getInt("Id_Terreno"));
-				long secs = result.getDate("Data").getTime();
+				prenotazione.setId(result.getInt("id"));
+				prenotazione.setIdCliente(result.getInt("id_cliente"));
+				prenotazione.setIdTerreno(result.getInt("id_terreno"));
+				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 
 				prenotazioni.add(prenotazione);
@@ -254,7 +254,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 		try {
 			Prenotazione prenotazione;
 			PreparedStatement statement;
-			String query = "select * from Prenotazione";
+			String query = "SELECT * FROM prenotazione";
 
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
@@ -262,10 +262,10 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			while (result.next()) {
 
 				prenotazione = new Prenotazione();
-				prenotazione.setId(result.getInt("Id"));
-				prenotazione.setIdCliente(result.getInt("Id_Cliente"));
-				prenotazione.setIdTerreno(result.getInt("Id_Terreno"));
-				long secs = result.getDate("Data").getTime();
+				prenotazione.setId(result.getInt("id"));
+				prenotazione.setIdCliente(result.getInt("id_cliente"));
+				prenotazione.setIdTerreno(result.getInt("id_terreno"));
+				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 
 				prenotazioni.add(prenotazione);

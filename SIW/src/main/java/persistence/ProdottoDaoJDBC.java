@@ -24,7 +24,7 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 			int id = GestoreID.getId(connection);
 			prodotto.setId(id);
 
-			String insert = "insert into Prodotto(Id, Nome, Categoria, Descrizione) values (?,?,?,?,?)";
+			String insert = "INSERT INTO prodotto(id, nome, categoria, descrizione) VALUES (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setInt(1, prodotto.getId());
@@ -51,7 +51,7 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 		Prodotto prodotto = null;
 		try {
 			PreparedStatement statement;
-			String query = "select * from Prodotto where Id = ?";
+			String query = "SELECT * FROM prodotto WHERE id = ?";
 
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, id);
@@ -60,10 +60,10 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 			if (result.next()) {
 
 				prodotto = new Prodotto();
-				prodotto.setId(result.getInt("Id"));
-				prodotto.setNome(result.getString("Nome"));
-				prodotto.setCategoria(result.getString("Categoria"));
-				prodotto.setDescrizione(result.getString("Descrizione"));
+				prodotto.setId(result.getInt("id"));
+				prodotto.setNome(result.getString("nome"));
+				prodotto.setCategoria(result.getString("categoria"));
+				prodotto.setDescrizione(result.getString("descrizione"));
 
 			}
 		} catch (SQLException e) {
@@ -84,7 +84,7 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 		Prodotto prodotto = null;
 		try {
 			PreparedStatement statement;
-			String query = "select * from Prodotto where Nome = ?";
+			String query = "SELECT * FROM prodotto WHERE nome = ?";
 
 			statement = connection.prepareStatement(query);
 			statement.setString(2, nome);
@@ -93,10 +93,10 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 			if (result.next()) {
 
 				prodotto = new Prodotto();
-				prodotto.setId(result.getInt("Id"));
-				prodotto.setNome(result.getString("Nome"));
-				prodotto.setCategoria(result.getString("Categoria"));
-				prodotto.setDescrizione(result.getString("Descrizione"));
+				prodotto.setId(result.getInt("id"));
+				prodotto.setNome(result.getString("nome"));
+				prodotto.setCategoria(result.getString("categoria"));
+				prodotto.setDescrizione(result.getString("descrizione"));
 
 			}
 		} catch (SQLException e) {
@@ -119,7 +119,7 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 		try {
 			Prodotto prodotto;
 			PreparedStatement statement;
-			String query = "select * from Prodotto where Categoria = ?";
+			String query = "SELECT * FROM prodotto WHERE categoria = ?";
 
 			statement = connection.prepareStatement(query);
 			statement.setString(3, categoria);
@@ -128,10 +128,10 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 			while (result.next()) {
 
 				prodotto = new Prodotto();
-				prodotto.setId(result.getInt("Id"));
-				prodotto.setNome(result.getString("Nome"));
-				prodotto.setCategoria(result.getString("Categoria"));
-				prodotto.setDescrizione(result.getString("Descrizione"));
+				prodotto.setId(result.getInt("id"));
+				prodotto.setNome(result.getString("nome"));
+				prodotto.setCategoria(result.getString("categoria"));
+				prodotto.setDescrizione(result.getString("descrizione"));
 
 				prodotti.add(prodotto);
 			}
@@ -155,17 +155,17 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 		try {
 			Prodotto prodotto;
 			PreparedStatement statement;
-			String query = "select * from Prodotto";
+			String query = "SELECT * FROM prodotto";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 
 			while (result.next()) {
 
 				prodotto = new Prodotto();
-				prodotto.setId(result.getInt("Id"));
-				prodotto.setNome(result.getString("Nome"));
-				prodotto.setCategoria(result.getString("Categoria"));
-				prodotto.setDescrizione(result.getString("Descrizione"));
+				prodotto.setId(result.getInt("id"));
+				prodotto.setNome(result.getString("nome"));
+				prodotto.setCategoria(result.getString("categoria"));
+				prodotto.setDescrizione(result.getString("descrizione"));
 
 				prodotti.add(prodotto);
 			}
@@ -186,7 +186,7 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 		Connection connection = this.dataSource.getConnection();
 
 		try {
-			String update = "update Prodotto SET Nome = ?, Categoria = ?, Descrizione = ? WHERE Id=?";
+			String update = "UPDATE prodotto SET nome = ?, categoria = ?, descrizione = ? WHERE id=?";
 			PreparedStatement statement = connection.prepareStatement(update);
 
 			statement.setInt(1, prodotto.getId());
@@ -212,7 +212,7 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 		Connection connection = this.dataSource.getConnection();
 
 		try {
-			String delete = "delete FROM Prodotto WHERE Id = ? ";
+			String delete = "DELETE FROM prodotto WHERE id = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 
 			statement.setInt(1, prodotto.getId());

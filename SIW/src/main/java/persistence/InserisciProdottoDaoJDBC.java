@@ -23,8 +23,8 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 		Connection connection = this.dataSource.getConnection();
 
 		try {
-			String insert = "insert into InserisciProdotto(Id_Azienda, Id_Prodotto, Quantita "
-					+ "CostoUnitario) values(?,?,?,?)";
+			String insert = "INSERT INTO inserisci_prodotto(id_azienda, id_prodotto, quantita "
+					+ "costo_unitario) VALUES(?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setInt(1, inserimento.getIdAzienda());
@@ -52,7 +52,7 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 
-			String update = "update InserisciProdotto SET Quantita = ?, CostoUnitario = ? WHERE Id_Azienda = ? AND Id_Prodotto = ?";
+			String update = "UPDATE inserisci_prodotto SET quantita = ?, costo_unitario = ? WHERE id_azienda = ? AND id_prodotto = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 
 			statement.setInt(1, inserimento.getIdAzienda());
@@ -80,7 +80,7 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 
-			String delete = "delete FROM InserimentoProdotto WHERE Id_Azienda = ? AND Id_Prodotto = ? ";
+			String delete = "DELETE FROM inserimento_prodotto WHERE id_azienda = ? AND id_prodotto = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 
 			statement.setInt(1, inserimento.getIdAzienda());
@@ -107,7 +107,7 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 		try {
 			InserisciProdotto inserimento;
 			PreparedStatement statement;
-			String query = "select * from InserisciProdotto where Id_Azienda = ?";
+			String query = "SELECT * FROM inserisci_prodotto WHERE id_azienda = ?";
 
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, idAzienda);
@@ -116,10 +116,10 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 			while (result.next()) {
 
 				inserimento = new InserisciProdotto();
-				inserimento.setIdAzienda(result.getInt("Id_Azienda"));
-				inserimento.setIdProdotto(result.getInt("Id_Prodotto"));
-				inserimento.setQuantita(result.getInt("Quantita"));
-				inserimento.setCostoUnitario(result.getDouble("CostoUnitario"));
+				inserimento.setIdAzienda(result.getInt("id_azienda"));
+				inserimento.setIdProdotto(result.getInt("id_prodotto"));
+				inserimento.setQuantita(result.getInt("quantita"));
+				inserimento.setCostoUnitario(result.getDouble("costo_unitario"));
 
 				inserimenti.add(inserimento);
 			}
@@ -143,7 +143,7 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 		try {
 			InserisciProdotto inserimento;
 			PreparedStatement statement;
-			String query = "select * from InserisciProdotto where Id_Prodotto = ?";
+			String query = "SELECT * FROM inserisci_prodotto WHERE id_prodotto = ?";
 
 			statement = connection.prepareStatement(query);
 			statement.setInt(2, idProdotto);
@@ -152,10 +152,10 @@ public class InserisciProdottoDaoJDBC implements InserisciProdottoDao {
 			while (result.next()) {
 
 				inserimento = new InserisciProdotto();
-				inserimento.setIdAzienda(result.getInt("Id_Azienda"));
-				inserimento.setIdProdotto(result.getInt("Id_Prodotto"));
-				inserimento.setQuantita(result.getInt("Quantita"));
-				inserimento.setCostoUnitario(result.getDouble("CostoUnitario"));
+				inserimento.setIdAzienda(result.getInt("id_azienda"));
+				inserimento.setIdProdotto(result.getInt("id_prodotto"));
+				inserimento.setQuantita(result.getInt("quantita"));
+				inserimento.setCostoUnitario(result.getDouble("costo_unitario"));
 
 				inserimenti.add(inserimento);
 			}
