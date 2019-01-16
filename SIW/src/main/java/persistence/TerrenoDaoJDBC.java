@@ -46,6 +46,7 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 			if (connection != null) {
 				try {
 					throw new PersistenceException(e.getMessage());
+					//commento
 					//connection.rollback();
 				} catch (Exception e2) {
 					throw new PersistenceException(e2.getMessage());
