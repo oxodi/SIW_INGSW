@@ -378,7 +378,7 @@
 		font-size: 24px
 	}
 	.simple-slider .swiper-button-next, .simple-slider .swiper-button-prev {
-		display: none
+		display: none;
 	}
 }
 
