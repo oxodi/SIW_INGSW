@@ -16,8 +16,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
 <link rel="stylesheet" href="assets/css/home.min.css">
 <script src="assets/js/jquery.min.js"></script>
-
 <!-- Script for load Navigation Bar -->
+
 <script src="jquery.js"></script>
 <script>
 	$(function() {
