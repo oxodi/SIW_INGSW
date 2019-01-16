@@ -3,7 +3,6 @@ package entita;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class Cliente {
 	private int id;
 	private String nome;
@@ -11,15 +10,48 @@ public class Cliente {
 	private String codiceFiscale;
 	private Date dataDiNascita;
 
-	public Cliente() {}
+	private String indirizzo;
+	private String telefono;
+	private String email;
 
-	public Cliente(int id, String nome, String cognome,String codiceFiscale, Date dataDiNascita) {
+	public Cliente() {
+	}
+
+	public Cliente(int id, String nome, String cognome, String codiceFiscale, Date dataDiNascita, String indirizzo,
+			String telefono, String email) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.codiceFiscale = codiceFiscale;
 		this.dataDiNascita = dataDiNascita;
-		
+		this.indirizzo = indirizzo;
+		this.telefono = telefono;
+		this.email = email;
+
+	}
+
+	public String getIndirizzo() {
+		return indirizzo;
+	}
+
+	public void setIndirizzo(String indirizzo) {
+		this.indirizzo = indirizzo;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public int getId() {
@@ -53,6 +85,7 @@ public class Cliente {
 	public void setDataDiNascita(Date dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
+
 	public String getCodiceFiscale() {
 		return codiceFiscale;
 	}
@@ -64,13 +97,9 @@ public class Cliente {
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-		return "Cliente["+ this.getId() + "," +
-		this.getNome() + ", " + 
-		this.getCognome() + ", " +
-		sdf.format(this.getDataDiNascita()) + "]"; 
-
-
+		return "Cliente[" + this.getId() + "," + this.getNome() + ", " + this.getCognome() + ", "
+				+ this.getCodiceFiscale() + ", " + sdf.format(this.getDataDiNascita()) + ", " + this.getIndirizzo()
+				+ ", " + this.getTelefono() + ", " + this.getEmail() + "]";
 
 	}
 }
-
