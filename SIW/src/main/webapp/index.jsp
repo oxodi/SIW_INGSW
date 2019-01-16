@@ -70,34 +70,34 @@
 	<!-- Start: Slideshow -->
 	<div class="swiper-container">
 		<!-- Start: Slide Wrapper -->
-		<div class="swiper-wrapper">
+		<div  class="swiper-wrapper">
 			<!-- Start: Slide -->
-			<div class="swiper-slide"
+			<div id="divs" class="swiper-slide"
 				style="background-image: url(https://cdn.gamephd.com/wp-content/uploads/plixpapers1607/cloudy-vineyard-4k-wallpaper.jpg);"></div>
 			<!-- End: Slide -->
 			<!-- Start: Slide -->
-			<div class="swiper-slide"
+			<div id="divs" class="swiper-slide"
 				style="background-image: url(https://ded8b07dd9e637888fc2-e87978aaae5cf97349d88697fd53e4c9.ssl.cf1.rackcdn.com/10933.jpg);"></div>
 			<!-- End: Slide -->
 			<!-- Start: Slide -->
-			<div class="swiper-slide"
+			<div id="divs" class="swiper-slide"
 				style="background-image: url(http://www.lovepotatoes.co.uk/media/1089/maris-piper.jpg?anchor=center&amp;mode=crop&amp;width=650&amp;height=345&amp;rnd=130881041440000000&amp;Format=Jpeg);"></div>
 			<!-- End: Slide -->
 			<!-- Start: Slide -->
-			<div class="swiper-slide"
+			<div id="divs" class="swiper-slide"
 				style="background-image: url(http://st.gde-fon.com/wallpapers_original/412004_vinograd_belyj_yagody_grozd_yashhik_meshok_1680x1050_www.Gde-Fon.com.jpg);"></div>
 			<!-- End: Slide -->
 			<!-- Start: Slide -->
-			<div class="swiper-slide"
+			<div id="divs" class="swiper-slide"
 				style="background-image: url(https://static.wixstatic.com/media/4886cf_51c132567e1e4ffb835001c5db81c7d5.jpg);"></div>
 			<!-- End: Slide -->
 		</div>
 		<!-- End: Slide Wrapper -->
 		<!-- Start: Previous -->
-		<div class="swiper-button-prev"></div>
+	<!--  	<div class="swiper-button-prev"></div>   -->
 		<!-- End: Previous -->
 		<!-- Start: Next -->
-		<div class="swiper-button-next"></div>
+	<!-- 	<div class="swiper-button-next"></div>   -->
 		<!-- End: Next -->
 	</div>
 	<!-- End: Slideshow -->
