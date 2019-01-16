@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="assets/css/registration.min.css">
 <script src="assets/js/jquery.min.js"></script>
 <!-- Script for load Navigation Bar -->
-<script src="jquery.js"></script>
+<!-- <script src="jquery.js"></script> -->
 <script> 
     $(function(){
       $("#navbar").load("navBar.jsp"); 
@@ -28,16 +28,14 @@
 	<!-- End: Navigation with Button -->
 	<div class="row register-form">
 		<div class="col-md-8 offset-md-2">
-			<form class="custom-form" id="regFormAzienda" method="post"
-				action="Registration">
+			<form class="custom-form" id="regFormAzienda" method="get" name="azienda" action="InserisciAzienda">
 				<h1>Registrazione Azienda</h1>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">Ragione
-							sociale</label>
+						<label class="col-form-label" for="name-input-field">Ragione Sociale</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="ragioneSociale">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -45,7 +43,7 @@
 						<label class="col-form-label" for="name-input-field">Indirizzo</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="indirizzo">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -53,12 +51,28 @@
 						<label class="col-form-label" for="name-input-field">CAP</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="cap">
 					</div>
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">Città</label>
+						<label class="col-form-label" for="name-input-field">Citta'</label>
+					</div>
+					<div class="col-sm-6 input-column">
+						<input class="form-control" type="text" name="citta">
+					</div>
+				</div>
+				<div class="form-row form-group">
+					<div class="col-sm-4 label-column">
+						<label class="col-form-label" for="name-input-field">Referente </label>
+					</div>
+					<div class="col-sm-6 input-column">
+						<input class="form-control" type="text" name="referente">
+					</div>
+				</div>
+				<div class="form-row form-group">
+					<div class="col-sm-4 label-column">
+						<label class="col-form-label" for="name-input-field">Sede Legale </label>
 					</div>
 					<div class="col-sm-6 input-column">
 						<input class="form-control" type="text">
@@ -66,7 +80,7 @@
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">Provincia</label>
+						<label class="col-form-label" for="name-input-field">Provincia </label>
 					</div>
 					<div class="col-sm-6 input-column">
 						<input class="form-control" type="text">
@@ -74,10 +88,10 @@
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">Tel.</label>
+						<label class="col-form-label" for="name-input-field">Telefono</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="telefono">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -86,7 +100,7 @@
 							Iva</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="iva">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -95,7 +109,7 @@
 						</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="email">
+						<input class="form-control" type="email" name="email">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -104,7 +118,7 @@
 						</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="password">
+						<input class="form-control" type="password" name="password">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -121,7 +135,7 @@
 						class="form-check-label" for="formCheck-1">Ho letto e
 						accettato i termini e condizione di servizio</label>
 				</div>
-				<button class="btn btn-light submit-button" type="button">Submit
+				 	<button class="btn btn-light submit-button" type="button">Submit
 					Form</button>
 			</form>
 		</div>

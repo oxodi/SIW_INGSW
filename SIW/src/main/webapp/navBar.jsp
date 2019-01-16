@@ -36,7 +36,7 @@
 			</span> -->
 			<div class="dropdown">
 				<a href="#" class="dropdown-toggle btn" data-toggle="dropdown"
-					style="color: white; background-color: green;"><b>Login</b>
+					style="color: white; background-color: green; border-radius:15px;"><b>Login</b>
 					<span class="caret"></span></a>
 				<ul id="login-dp" class="dropdown-menu">
 					<li>
@@ -45,8 +45,10 @@
 								Accedi con
 								<div class="social-buttons">
 									<a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i>
-										Facebook</a> <a href="#" class="btn btn-tw"><i
+										Facebook</a>
+										<!--  <a href="#" class="btn btn-tw"><i
 										class="fa fa-twitter"></i> Twitter</a>
+								 -->
 								</div>
 								o
 								<form class="form" role="form" method="post" action="login"
@@ -67,7 +69,7 @@
 									</div>
 									<div class="form-group">
 										<button type="submit" class="btn btn-primary btn-block"
-											style="background-color: green;">Accedi</button>
+											style="background-color: green; border-radius:15px;">Accedi</button>
 									</div>
 									<div class="checkbox">
 										<label> <input type="checkbox"> Ricorda i dati
