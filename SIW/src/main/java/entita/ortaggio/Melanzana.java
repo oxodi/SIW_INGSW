@@ -8,7 +8,7 @@ public class Melanzana extends Ortaggio {
 		this.setResa(1.0);
 	}
 
-	public Melanzana(double prezzo, String tempoColtivazione, String periodoColtivazione) {
+	public Melanzana(double prezzo, int tempoColtivazione, String periodoColtivazione) {
 		super(prezzo, tempoColtivazione, periodoColtivazione);
 		this.setId(6);
 		this.setNome("Melanzana");

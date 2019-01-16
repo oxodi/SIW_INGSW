@@ -8,7 +8,7 @@ public class Cavolfiore extends Ortaggio {
 		this.setResa(1.0);
 	}
 
-	public Cavolfiore(double prezzo, String tempoColtivazione, String periodoColtivazione) {
+	public Cavolfiore(double prezzo, int tempoColtivazione, String periodoColtivazione) {
 		super(prezzo, tempoColtivazione, periodoColtivazione);
 		this.setId(1);
 		this.setNome("Cavolfiore");

@@ -8,7 +8,7 @@ public class Peperone extends Ortaggio{
 		this.setResa(1.0);
 	}
 	
-	public Peperone(double prezzo, String tempoColtivazione, String periodoColtivazione) {
+	public Peperone(double prezzo, int tempoColtivazione, String periodoColtivazione) {
 		super(prezzo, tempoColtivazione, periodoColtivazione);
 		this.setId(9);
 		this.setNome("Peperone");

@@ -38,7 +38,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 			statement.setInt(1, ortaggio.getId());
 			statement.setString(2, ortaggio.getNome());
 			statement.setDouble(3, ortaggio.getPrezzo());
-			statement.setString(4, ortaggio.getTempoColtivazione());
+			statement.setInt(4, ortaggio.getTempoColtivazione());
 			statement.setString(5, ortaggio.getPeriodoColtivazione());
 			statement.setDouble(6, ortaggio.getResa());
 
@@ -66,7 +66,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				ortaggio = this.ortaggioSpecifico(id);
-				ortaggio.setTempoColtivazione(result.getString("tempo_coltivazione"));
+				ortaggio.setTempoColtivazione(result.getInt("tempo_coltivazione"));
 				ortaggio.setPeriodoColtivazione(result.getString("periodo_coltivazione"));
 				ortaggio.setPrezzo(result.getDouble("prezzo"));
 			}
@@ -96,7 +96,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				ortaggio = this.ortaggioSpecifico(result.getInt("id"));
-				ortaggio.setTempoColtivazione(result.getString("tempo_coltivazione"));
+				ortaggio.setTempoColtivazione(result.getInt("tempo_coltivazione"));
 				ortaggio.setPeriodoColtivazione(result.getString("periodo_coltivazione"));
 				ortaggio.setPrezzo(result.getDouble("prezzo"));
 
@@ -120,7 +120,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 		try {
 			String update = "UPDATE ortaggio SET tempo_coltivazione = ?, periodo_coltivazione = ?, prezzo = ? WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
-			statement.setString(1, ortaggio.getTempoColtivazione());
+			statement.setInt(1, ortaggio.getTempoColtivazione());
 			statement.setString(2, ortaggio.getPeriodoColtivazione());
 			statement.setDouble(3, ortaggio.getPrezzo());
 			statement.executeUpdate();

@@ -8,7 +8,7 @@ public class Patata extends Ortaggio {
 		this.setResa(1.0);
 	}
 	
-	public Patata(double prezzo, String tempoColtivazione, String periodoColtivazione) {
+	public Patata(double prezzo, int tempoColtivazione, String periodoColtivazione) {
 		super(prezzo, tempoColtivazione, periodoColtivazione);
 		this.setId(7);
 		this.setNome("Patata");

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class GestoreID {
 
 	// id automatico
-	private static final String query = "SELECT nextval('sequenza_id') AS id";
+	private static final String query = "SELECT nextval(id) AS id";
 
 	public static int getId(Connection connection) {
 		int id = 0;

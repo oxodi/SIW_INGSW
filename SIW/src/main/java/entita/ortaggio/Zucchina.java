@@ -8,7 +8,7 @@ public class Zucchina extends Ortaggio{
 		this.setResa(1.0);
 	}
 	
-	public Zucchina(double prezzo, String tempoColtivazione, String periodoColtivazione) {
+	public Zucchina(double prezzo, int tempoColtivazione, String periodoColtivazione) {
 		super(prezzo, tempoColtivazione, periodoColtivazione);
 		this.setId(12);
 		this.setNome("Zucchina");

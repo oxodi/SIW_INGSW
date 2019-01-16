@@ -10,7 +10,7 @@ public class Pomodoro extends Ortaggio {
 		this.setResa(1.0);
 	}
 	
-	public Pomodoro(double prezzo, String tempoColtivazione, String periodoColtivazione) {
+	public Pomodoro(double prezzo, int tempoColtivazione, String periodoColtivazione) {
 		super(prezzo, tempoColtivazione, periodoColtivazione);
 		this.setId(10);
 		this.setNome("Pomodoro");

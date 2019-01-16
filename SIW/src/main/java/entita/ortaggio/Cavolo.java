@@ -8,7 +8,7 @@ public class Cavolo extends Ortaggio {
 		this.setResa(1.0);
 	}
 
-	public Cavolo(double prezzo, String tempoColtivazione, String periodoColtivazione, int idAzienda) {
+	public Cavolo(double prezzo, int tempoColtivazione, String periodoColtivazione) {
 		super(prezzo, tempoColtivazione, periodoColtivazione);
 		this.setId(2);
 		this.setNome("Cavolo");

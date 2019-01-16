@@ -24,8 +24,8 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		Connection connection = this.dataSource.getConnection();
 		
 		try {
-			//int id = GestoreID.getId(connection);
-			//terreno.setId(id);
+//			int id = GestoreID.getId(connection);
+//			terreno.setId(id);
 			System.out.println("Sono in salva");
 			String insert = "INSERT INTO terreno(id, locazione, dimensione, dimensione_serra, servizio_parziale, servizio_completo, periodo_coltivazione, id_azienda, costo_terreno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(insert);

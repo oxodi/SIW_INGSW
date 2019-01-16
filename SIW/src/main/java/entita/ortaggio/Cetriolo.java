@@ -9,7 +9,7 @@ public class Cetriolo extends Ortaggio {
 
 	}
 
-	public Cetriolo(double prezzo, String tempoColtivazione, String periodoColtivazione) {
+	public Cetriolo(double prezzo, int tempoColtivazione, String periodoColtivazione) {
 		super(prezzo, tempoColtivazione, periodoColtivazione);
 		this.setId(3);
 		this.setNome("Cetriolo");

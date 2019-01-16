@@ -8,7 +8,7 @@ public class Spinacio extends Ortaggio {
 		this.setResa(1.0);
 	}
 	
-	public Spinacio(double prezzo, String tempoColtivazione, String periodoColtivazione) {
+	public Spinacio(double prezzo, int tempoColtivazione, String periodoColtivazione) {
 		super(prezzo, tempoColtivazione, periodoColtivazione);
 		this.setId(11);
 		this.setNome("Spinacio");

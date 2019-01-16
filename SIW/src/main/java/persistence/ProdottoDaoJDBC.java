@@ -21,10 +21,10 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 	public void salva(Prodotto prodotto) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			int id = GestoreID.getId(connection);
-			prodotto.setId(id);
+//			int id = GestoreID.getId(connection);
+//			prodotto.setId(id);
 
-			String insert = "INSERT INTO prodotto(id, nome, categoria, descrizione) VALUES (?,?,?,?,?)";
+			String insert = "INSERT INTO prodotto(id, nome, categoria, descrizione) VALUES (?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setInt(1, prodotto.getId());
