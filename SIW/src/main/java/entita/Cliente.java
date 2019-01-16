@@ -3,14 +3,13 @@ package entita;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class Cliente {
 	private int id;
 	private String nome;
 	private String cognome;
 	private String codiceFiscale;
 	private Date dataDiNascita;
-<<<<<<< HEAD
+
 	private String indirizzo;
 	private String telefono;
 	private String email;
@@ -20,12 +19,6 @@ public class Cliente {
 
 	public Cliente(int id, String nome, String cognome, String codiceFiscale, Date dataDiNascita, String indirizzo,
 			String telefono, String email) {
-=======
-
-	public Cliente() {}
-
-	public Cliente(int id, String nome, String cognome, Date dataDiNascita) {
->>>>>>> refs/remotes/origin/BrunoTurco
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -93,7 +86,6 @@ public class Cliente {
 		this.dataDiNascita = dataDiNascita;
 	}
 
-<<<<<<< HEAD
 	public String getCodiceFiscale() {
 		return codiceFiscale;
 	}
@@ -102,22 +94,8 @@ public class Cliente {
 		this.codiceFiscale = codiceFiscale;
 	}
 
-=======
->>>>>>> refs/remotes/origin/BrunoTurco
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-<<<<<<< HEAD
-=======
-
-		return "Cliente["+ this.getId() + "," +
-		this.getNome() + ", " + 
-		this.getCognome() + ", " +
-		sdf.format(this.getDataDiNascita()) + "]"; 
-
-
-		
-	}
->>>>>>> refs/remotes/origin/BrunoTurco
 
 		return "Cliente[" + this.getId() + "," + this.getNome() + ", " + this.getCognome() + ", "
 				+ this.getCodiceFiscale() + ", " + sdf.format(this.getDataDiNascita()) + ", " + this.getIndirizzo()
