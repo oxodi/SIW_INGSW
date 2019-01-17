@@ -63,14 +63,14 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 	}
 
 	@Override
-	public void aggiungiOrtaggio(Terreno terreno, Ortaggio ortaggio, double prezzo, int tempoColtivazione,
+	public void aggiungiOrtaggio(int id_terreno, int id_ortaggio, double prezzo, int tempoColtivazione,
 			String periodoColtivazione) {
 		Connection connection = dataSource.getConnection();
 		try {
-			String inserisciOrtaggio = "INSERT INTO ospita(id_terreno, id_ortaggio, prezzo, tempo_coltivazione, periodo_coltivazione VALUES (?, ?, ?, ?, ?)";
+			String inserisciOrtaggio = "INSERT INTO ospita(id_terreno, id_ortaggio, prezzo, tempo_coltivazione, periodo_coltivazione) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(inserisciOrtaggio);
-			statement.setInt(1, terreno.getId());
-			statement.setInt(2, ortaggio.getId());
+			statement.setInt(1, id_terreno);
+			statement.setInt(2, id_ortaggio);
 			statement.setDouble(3, prezzo);
 			statement.setInt(4, tempoColtivazione);
 			statement.setString(5, periodoColtivazione);
@@ -194,7 +194,6 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, id);
 			ResultSet result = statement.executeQuery();
-
 			if (result.next()) {
 
 				terreno = new Terreno();
@@ -329,23 +328,22 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 	}
 
 	@Override
-	public List<Ortaggio> cercaOrtaggiPerTerreno(Terreno terreno, int id_ortaggio) {
+	public List<Ortaggio> cercaOrtaggiPerTerreno(int id_terreno) {
 		Connection connection = dataSource.getConnection();
 		List<Ortaggio> ortaggi = new ArrayList<Ortaggio>();
 		try {
 			Ortaggio ortaggio;
 			PreparedStatement statement;
-			String query = "SELECT * FROM ortaggio INNER JOIN  ospita ON ortaggio.id = ospita.id_ortaggio WHERE ospita.id_ortaggio = ? AND ospita.id_terreno = ? ";
+			String query = "SELECT * FROM ortaggio INNER JOIN  ospita ON ortaggio.id = ospita.id_ortaggio WHERE ospita.id_terreno = ? ";
 			statement = connection.prepareStatement(query);
-			statement.setInt(1, id_ortaggio);
-			statement.setInt(2, terreno.getId());
+			statement.setInt(1, id_terreno);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				ortaggio = new OrtaggioDaoJDBC(dataSource).ortaggioSpecifico(id_ortaggio);
+				ortaggio = new OrtaggioDaoJDBC(dataSource).ortaggioSpecifico(result.getShort("id"));
 				ortaggio.setPrezzo(result.getDouble("prezzo"));
 				ortaggio.setTempoColtivazione(result.getInt("tempo_coltivazione"));
 				ortaggio.setPeriodoColtivazione(result.getString("periodo_coltivazione"));
-				ortaggio.setId_terreno(terreno.getId());
+				ortaggio.setId_terreno(id_terreno);
 				ortaggi.add(ortaggio);
 			}
 		} catch (SQLException e) {

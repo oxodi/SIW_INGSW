@@ -8,15 +8,15 @@ import entita.ortaggio.Ortaggio;
 public interface TerrenoDao {
 	public void salva(Terreno terreno);
 
-	public void aggiornaDimensione(Terreno cliente);
+	public void aggiornaDimensione(Terreno terreno);
 
-	public void cancella(Terreno cliente);
+	public void cancella(Terreno terreno);
 	
-	public void aggiungiOrtaggio(Terreno terreno, Ortaggio ortaggio, double prezzo, int tempoColtivazione, String periodoColtivazione);
+	public void aggiungiOrtaggio(int id_terreno, int id_ortaggio, double prezzo, int tempoColtivazione, String periodoColtivazione);
 
 	public Terreno cercaPerChiavePrimaria(int id);
 	
-	public List<Ortaggio> cercaOrtaggiPerTerreno(Terreno terreno, int id_ortaggio);
+	public List<Ortaggio> cercaOrtaggiPerTerreno(int id_terreno);
 
 	public List<Terreno> cercaPerServizio(boolean servizioParziale, boolean servizioCompleto);
 

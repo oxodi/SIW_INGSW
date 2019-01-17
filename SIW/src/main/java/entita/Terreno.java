@@ -130,5 +130,12 @@ public class Terreno {
 	public void setPeriodiDisponibilita(String periodiDisponibilita) {
 		this.periodiDisponibilita = periodiDisponibilita;
 	}
+	
+	@Override
+	public String toString() {
+		String output = "Terreno[" + this.id + ", " + this.idAzienda + ", " + this.locazione + ", " + this.servizioParziale
+				+ ", " + this.servizioCompleto + ", " + this.dimensione+ ", " + this.dimensioneSerra+ ", " + this.costo +this.periodiDisponibilita + "]";
+		return output;
+	}
 
 }

@@ -119,5 +119,11 @@ public class Azienda {
 	public void setDescrizioneServizi(String descrizioneServizi) {
 		this.descrizioneServizi = descrizioneServizi;
 	}
+	
+	@Override
+	public String toString() {
+		String output = "Azienda[ "+this.ragioneSociale+", "+this.id+"]";
+		return output;
+	}
 
 }
