@@ -81,7 +81,7 @@
 								</form>
 							</div>
 							<div class="bottom text-center">
-								Sei nuovo? <a href="PageLoader?id=utente" style="color: green;"><b>Registrati</b></a>
+								Sei nuovo? <a href="PageLoader?id=RegAzienda" style="color: green;"><b>Registrati</b></a>
 							</div>
 						</div>
 					</li>
