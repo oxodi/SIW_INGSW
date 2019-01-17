@@ -41,7 +41,7 @@
 						<div style="align-content: centre">
 						<!-- 	<label class="col-form-label" for="name-input-field"><h5>Descrizione
 									Azienda</h5></label>  -->
-									<p><strong>Inserire una descrizione sui servizi proposti dall'azienda </strong></p>
+									<p><strong>Inserire una descrizione sui servizi proposti dall'azienda e sui metodi di produzione</strong></p>
 						</div>
 					</div>
 					<div>
