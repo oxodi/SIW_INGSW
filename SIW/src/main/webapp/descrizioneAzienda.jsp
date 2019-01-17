@@ -34,7 +34,7 @@
 	<!-- End: Navigation with Button -->
 	<div class="row register-form" style="height: 768px">
 		<div class="col-md-8 offset-md-2">
-			<form class="custom-form" id="regFormAzienda" method="post" name="azienda" action="InserisciAzienda">
+			<form class="custom-form" id="descAzienda" method="post" name="azienda" action="InserisciAzienda">
 				<h1>Descrizione Azienda</h1>
 				<div>
 					<div>

@@ -15,19 +15,57 @@
 <script src="assets/js/jquery.min.js"></script>
 <!-- Script for load Navigation Bar -->
 <!-- <script src="jquery.js"></script> -->
-<script> 
-    $(function(){
-      $("#navbar").load("navBar.jsp"); 
-      $("#footer").load("footer.jsp"); 
-    });
-    </script>
+<script>
+	$(function() {
+		$("#navbar").load("navBar.jsp");
+		$("#footer").load("footer.jsp");
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$("#bottone").click(function() {
+			$("#formregistrazione").hide("slow");
+			$("#descrizione").show("slow");
+			
+		});
+	});
+</script>
+
 </head>
 
 <body>
 	<!-- Start: Navigation with Button -->
 	<div id="navbar"></div>
 	<!-- End: Navigation with Button -->
-	<div class="row register-form">
+	
+	<div class="row register-form" style="height: 768px; display:none" id="descrizione">
+		<div class="col-md-8 offset-md-2">
+			<form class="custom-form" id="descAzienda" method="post" name="azienda" action="InserisciAzienda">
+				<h1>Descrizione Azienda</h1>
+				<div>
+					<div>
+						<div style="align-content: centre">
+						<!-- 	<label class="col-form-label" for="name-input-field"><h5>Descrizione
+									Azienda</h5></label>  -->
+									<p><strong>Inserire una descrizione sui servizi proposti dall'azienda e sui metodi di produzione</strong></p>
+						</div>
+					</div>
+					<div>
+				
+						<div style="text-align: center; whidt:100%; margin-top: 25px">
+							<textarea class="form-control" style=" margin-left: auto; margin-right: auto; resize: none; border: 2px green solid; border-radius: 15px; background-color: #cfc7af" 
+								rows="10" cols="80" maxlength="1000"></textarea>
+						</div>
+					</div>
+			
+			</div>
+				 	<button class="btn btn-light submit-button" type="submit">Conferma</button>
+			</form>
+		</div>
+	</div>
+	
+	
+	<div id="formregistrazione" class="row register-form">
 		<div class="col-md-8 offset-md-2">
 			<form class="custom-form" id="regFormAzienda" method="post" name="azienda" action="InserisciAzienda">
 				<h1>Registrazione Azienda</h1>
@@ -136,7 +174,7 @@
 						class="form-check-label" for="formCheck-1">Ho letto e
 						accettato i termini e condizione di servizio</label>
 				</div>
-				 	<button class="btn btn-light submit-button" type="submit">Submit
+				 	<button class="btn btn-light submit-button" id="bottone" type="button">Submit
 					Form</button>
 			</form>
 		</div>
