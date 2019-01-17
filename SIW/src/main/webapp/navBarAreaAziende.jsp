@@ -15,11 +15,13 @@
 		<div class="collapse navbar-collapse" id="navcol-1">
 			<ul class="nav navbar-nav mr-auto">
 				<li class="nav-item" role="presentation"><a class="nav-link"
-					href="#"><strong>Prenota un terreno</strong></a></li>
+					href="#"><strong>Bacheca</strong></a></li>
 				<li class="nav-item" role="presentation"><a class="nav-link"
-					href="#"><strong>Ordina un prodotto</strong></a></li>
+					href="#"><strong>Terreni</strong></a></li>
 				<li class="nav-item" role="presentation"><a class="nav-link"
-					href="PageLoader?id=azienda"><strong>Area Aziende</strong></a></li>
+					href="#"><strong>Prodotti</strong></a></li>
+				<li class="nav-item" role="presentation"><a class="nav-link"
+					href="PageLoader?id=utenti"><strong>Area Utenti</strong></a></li>
 				<!-- 	<li class="dropdown nav-item"><a
 					class="dropdown-toggle nav-link" data-toggle="dropdown"
 					aria-expanded="false" href="#">Dropdown </a>
@@ -45,15 +47,14 @@
 						<div class="row">
 							<div class="col-md-12">
 								Accedi con
-								<div class="social-buttons">
+								<!-- <div class="social-buttons">
 									<a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i>
-										Facebook</a>
-									<!--  <a href="#" class="btn btn-tw"><i
-										class="fa fa-twitter"></i> Twitter</a>
-								 -->
+										Facebook</a> <a href="#" class="btn btn-tw"><i
+										class="fa fa-twitter"></i> Twitter</a> 
+
 								</div>
-								o
-								<form class="form" role="form" method="post" action="Login"
+								 -->
+								<form class="form" role="form" method="post" action="login"
 									accept-charset="UTF-8" id="login-nav">
 									<div class="form-group">
 										<label class="sr-only" for="exampleInputEmail2">Email
