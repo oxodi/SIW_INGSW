@@ -75,7 +75,7 @@
 						<label class="col-form-label" for="name-input-field">Sede Legale </label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="sedeLegale">
 					</div>
 				</div>
 				<div class="form-row form-group">

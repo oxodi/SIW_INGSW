@@ -13,11 +13,10 @@ public class PostgresDAOFactory extends DAOFactory {
 
 	private static  DataSource dataSource;
 
+
 	static {
 		try {
-			Class.forName("org.postgresql.Driver").newInstance();
-			//questi vanno messi in file di configurazione!!!	
-//			dataSource=new DataSource("jdbc:postgresql://52.39.164.176:5432/xx","xx","p@xx");
+			Class.forName("org.postgresql.Driver");
 			dataSource = new DataSource("jdbc:postgresql://149.202.43.174:5432/DataGrower","postgres","life2play");
 		} 
 		catch (Exception e) {

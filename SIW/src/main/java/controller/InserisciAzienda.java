@@ -21,12 +21,13 @@ public class InserisciAzienda extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	PostgresDAOFactory factory = new PostgresDAOFactory();
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-			String nome = request.getParameter("name");
-			String partitaIVA = request.getParameter("partitaIVA");
+			
+		PostgresDAOFactory factory = new PostgresDAOFactory();
+		
+		//	String nome = request.getParameter("name");
+			String partitaIVA = request.getParameter("iva");
 			String referente = request.getParameter("referente");
 			String sedeLegale = request.getParameter("sedeLegale");
 			String ragioneSociale = request.getParameter("ragioneSociale");
@@ -36,8 +37,9 @@ public class InserisciAzienda extends HttpServlet {
 			/**
 		 	* il primo parametro zero è considerato null e viene settato automaticamente nella funzione salva
 		 	*/
-			Azienda azienda = new Azienda(0, nome, partitaIVA, referente, sedeLegale, ragioneSociale, telefono, "sono pippo" , email);
+			Azienda azienda = new Azienda(0, "Stringa", partitaIVA, referente, sedeLegale, ragioneSociale, telefono, "sono pippo" , email);
 		
+			
 			factory.getAziendaDAO().salva(azienda);
 		
 			System.out.println(azienda.getId());
