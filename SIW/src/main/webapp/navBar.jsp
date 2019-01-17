@@ -53,7 +53,7 @@
 								 -->
 								</div>
 								o
-								<form class="form" role="form" method="post" action="login"
+								<form class="form" role="form" method="post" action="Login"
 									accept-charset="UTF-8" id="login-nav">
 									<div class="form-group">
 										<label class="sr-only" for="exampleInputEmail2">Email
