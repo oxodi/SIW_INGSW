@@ -16,10 +16,10 @@
 <link rel="stylesheet" href="assets/css/registration.min.css">
 <script src="assets/js/jquery.min.js"></script>
 <!-- Script for load Navigation Bar -->
-<script src="jquery.js"></script>
 <script>
 	$(function() {
 		$("#navbar").load("navBar.jsp");
+		$("#footer").load("footer.jsp");
 	});
 </script>
 </head>
@@ -67,7 +67,7 @@
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">Citta' </label>
+						<label class="col-form-label" for="name-input-field">Citta'</label>
 					</div>
 					<div class="col-sm-6 input-column">
 						<input class="form-control" type="text">
@@ -135,18 +135,10 @@
 			</form>
 		</div>
 	</div>
-	<!-- Start: Footer Basic -->
-	<div class="footer-basic"
-		style="background-color: rgb(99, 198, 90); height: 50px; color: rgb(75, 75, 77);">
-		<footer>
-			<!-- Start: Copyright -->
-			<p class="copyright"
-				style="color: rgb(4, 4, 4); background-color: #63c65a; padding: 15px;">Unical
-				©Copyright 2019</p>
-			<!-- End: Copyright -->
-		</footer>
-	</div>
-	<!-- End: Footer Basic -->
+	<!-- End: Article List -->
+<!-- Start: footer -->
+	<div id="footer"></div>
+	<!-- End: footer -->
 	<!-- Start: Projects Clean -->
 	<div class="projects-clean"></div>
 	<!-- End: Projects Clean -->

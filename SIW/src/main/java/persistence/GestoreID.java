@@ -7,11 +7,11 @@ import java.sql.SQLException;
 
 public class GestoreID {
 
-	// id automatico
-	private static final String query = "SELECT nextval('sequenza_id') AS id";
-
-	public static int getId(Connection connection) {
+	
+	public static int getId(Connection connection, String sequenceId) {
 		int id = 0;
+		String query = "SELECT nextval('"+ sequenceId +"') AS id";
+
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();

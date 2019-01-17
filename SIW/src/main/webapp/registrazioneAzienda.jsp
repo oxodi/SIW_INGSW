@@ -14,10 +14,11 @@
 <link rel="stylesheet" href="assets/css/registration.min.css">
 <script src="assets/js/jquery.min.js"></script>
 <!-- Script for load Navigation Bar -->
-<script src="jquery.js"></script>
+<!-- <script src="jquery.js"></script> -->
 <script> 
     $(function(){
       $("#navbar").load("navBar.jsp"); 
+      $("#footer").load("footer.jsp"); 
     });
     </script>
 </head>
@@ -28,16 +29,14 @@
 	<!-- End: Navigation with Button -->
 	<div class="row register-form">
 		<div class="col-md-8 offset-md-2">
-			<form class="custom-form" id="regFormAzienda" method="post"
-				action="Registration">
+			<form class="custom-form" id="regFormAzienda" method="post" name="azienda" action="InserisciAzienda">
 				<h1>Registrazione Azienda</h1>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">Ragione
-							sociale</label>
+						<label class="col-form-label" for="name-input-field">Ragione Sociale</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="ragioneSociale">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -45,7 +44,7 @@
 						<label class="col-form-label" for="name-input-field">Indirizzo</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="indirizzo">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -53,12 +52,36 @@
 						<label class="col-form-label" for="name-input-field">CAP</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="cap">
 					</div>
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">Città</label>
+						<label class="col-form-label" for="name-input-field">Citta'</label>
+					</div>
+					<div class="col-sm-6 input-column">
+						<input class="form-control" type="text" name="citta">
+					</div>
+				</div>
+				<div class="form-row form-group">
+					<div class="col-sm-4 label-column">
+						<label class="col-form-label" for="name-input-field">Referente </label>
+					</div>
+					<div class="col-sm-6 input-column">
+						<input class="form-control" type="text" name="referente">
+					</div>
+				</div>
+				<div class="form-row form-group">
+					<div class="col-sm-4 label-column">
+						<label class="col-form-label" for="name-input-field">Sede Legale </label>
+					</div>
+					<div class="col-sm-6 input-column">
+						<input class="form-control" type="text" name="sedeLegale">
+					</div>
+				</div>
+				<div class="form-row form-group">
+					<div class="col-sm-4 label-column">
+						<label class="col-form-label" for="name-input-field">Provincia </label>
 					</div>
 					<div class="col-sm-6 input-column">
 						<input class="form-control" type="text">
@@ -66,18 +89,10 @@
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">Provincia</label>
+						<label class="col-form-label" for="name-input-field">Telefono</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
-					</div>
-				</div>
-				<div class="form-row form-group">
-					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">Tel.</label>
-					</div>
-					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="telefono">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -86,7 +101,7 @@
 							Iva</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="iva">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -95,7 +110,7 @@
 						</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="email">
+						<input class="form-control" type="email" name="email">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -104,7 +119,7 @@
 						</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="password">
+						<input class="form-control" type="password" name="password">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -121,23 +136,15 @@
 						class="form-check-label" for="formCheck-1">Ho letto e
 						accettato i termini e condizione di servizio</label>
 				</div>
-				<button class="btn btn-light submit-button" type="button">Submit
+				 	<button class="btn btn-light submit-button" type="submit">Submit
 					Form</button>
 			</form>
 		</div>
 	</div>
-	<!-- Start: Footer Basic -->
-	<div class="footer-basic"
-		style="background-color: rgb(99, 198, 90); height: 50px; color: rgb(75, 75, 77);">
-		<footer>
-			<!-- Start: Copyright -->
-			<p class="copyright"
-				style="color: rgb(4, 4, 4); background-color: #63c65a; padding: 15px;">Unical
-				©Copyright 2019</p>
-			<!-- End: Copyright -->
-		</footer>
-	</div>
-	<!-- End: Footer Basic -->
+	<!-- End: Article List -->
+<!-- Start: footer -->
+	<div id="footer"></div>
+	<!-- End: footer -->
 	<!-- Start: Projects Clean -->
 	<div class="projects-clean"></div>
 	<!-- End: Projects Clean -->
