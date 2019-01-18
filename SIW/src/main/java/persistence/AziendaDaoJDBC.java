@@ -151,7 +151,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 					+ "partita_iva, telefono=?, descrizione=? WHERE id=?";
 
 			PreparedStatement statement = connection.prepareStatement(update);
- 
+
 			statement.setString(2, azienda.getRagioneSociale());
 			statement.setString(3, azienda.getReferente());
 			statement.setString(4, azienda.getSedeLegale());
