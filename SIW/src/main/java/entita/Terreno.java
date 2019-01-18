@@ -1,10 +1,7 @@
 package entita;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.ArrayList;
+
 
 import entita.ortaggio.Ortaggio;
 
@@ -22,24 +19,24 @@ public class Terreno {
 	private boolean servizioCompleto;
 	private int dimensione;// in mt2
 	private int dimensioneSerra;// in mt2
-	private HashMap<Ortaggio,Integer> ortaggi;
+	private ArrayList<Ortaggio> ortaggi;
 	private double costo; // costo al mt2 del terreno
 	private String periodiDisponibilita;
 
 	public Terreno() {
 	}
 
-	public Terreno(int idAzienda, String locazione, boolean servizioParziale, boolean servizioCompleto,
-			int dimensione, int dimensioneSerra, double costo, String periodiDisponobilita) {
+	public Terreno(int idAzienda, String locazione, boolean servizioParziale, boolean servizioCompleto, int dimensione,
+			int dimensioneSerra, ArrayList<Ortaggio> ortaggi, double costo, String periodiDisponobilita) {
 		this.idAzienda = idAzienda;
 		this.locazione = locazione;
 		this.servizioParziale = servizioParziale;
 		this.servizioCompleto = servizioCompleto;
 		this.dimensione = dimensione;
 		this.dimensioneSerra = dimensioneSerra;
+		this.ortaggi = ortaggi;
 		this.costo = costo;
 		this.periodiDisponibilita = periodiDisponobilita;
-		ortaggi = new HashMap<Ortaggio, Integer>();
 	}
 
 	public boolean isServizioParziale() {
@@ -74,15 +71,15 @@ public class Terreno {
 		this.idAzienda = idAzienda;
 	}
 
-	public void aggiungiOrtaggio(Ortaggio ortaggio, int quantità) {
-		ortaggi.put(ortaggio,quantità);
+	public void aggiungiOrtaggio(Ortaggio ortaggio) {
+		ortaggi.add(ortaggio);
 	}
 
-	public HashMap<Ortaggio,Integer> getOrtaggi() {
+	public ArrayList<Ortaggio> getOrtaggi() {
 		return ortaggi;
 	}
 
-	public void setOrtaggi(HashMap<Ortaggio, Integer> ortaggi) {
+	public void setOrtaggi(ArrayList<Ortaggio> ortaggi) {
 		this.ortaggi = ortaggi;
 	}
 
@@ -133,26 +130,24 @@ public class Terreno {
 	public void setPeriodiDisponibilita(String periodiDisponibilita) {
 		this.periodiDisponibilita = periodiDisponibilita;
 	}
-	
+
 	@Override
 	public String toString() {
-		String output = "Terreno[" + this.id + ", " + this.idAzienda + ", " + this.locazione + ", " + this.servizioParziale
-				+ ", " + this.servizioCompleto + ", " + this.dimensione+ ", " + this.dimensioneSerra+ ", " + this.costo+ ", " +this.periodiDisponibilita + "] ";
-		
-		String output2 = toStringMap(ortaggi);
-		return output + output2 ;
+		String output = "Terreno[" + this.id + ", " + this.idAzienda + ", " + this.locazione + ", "
+				+ this.servizioParziale + ", " + this.servizioCompleto + ", " + this.dimensione + ", "
+				+ this.dimensioneSerra + ", " + this.costo + ", " + this.periodiDisponibilita + "] ";
+
+		String output2 = toStringOrtaggi(ortaggi);
+		return output + output2;
 	}
-	
-	public String toStringMap(HashMap<Ortaggio, Integer> ortaggi) {
+
+	public String toStringOrtaggi(ArrayList<Ortaggio> ortaggi) {
 		String output = "";
-		Iterator<Entry<Ortaggio, Integer>> it = ortaggi.entrySet().iterator();
-		
-		while(it.hasNext()) {
-			Map.Entry<Ortaggio, Integer> entry = (Entry<Ortaggio, Integer>) it.next();
-			output += entry.getKey().toString() +" quantità: "+entry.getValue().toString()+" ";
+
+		for (Ortaggio ortaggio : ortaggi) {
+			output += ortaggio.toString() + " ";
 		}
-		
-		
+
 		return output;
 	}
 

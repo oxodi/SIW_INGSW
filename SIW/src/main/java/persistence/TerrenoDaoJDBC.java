@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import entita.Terreno;
 import entita.ortaggio.Ortaggio;
@@ -316,9 +315,9 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 	}
 
 	@Override
-	public HashMap<Ortaggio, Integer> cercaOrtaggiPerTerreno(int id_terreno) {
+	public ArrayList<Ortaggio> cercaOrtaggiPerTerreno(int id_terreno) {
 		Connection connection = dataSource.getConnection();
-		HashMap<Ortaggio, Integer> ortaggi = new HashMap<Ortaggio, Integer>();
+		ArrayList<Ortaggio> ortaggi = new ArrayList<Ortaggio>();
 		try {
 			Ortaggio ortaggio;
 			PreparedStatement statement;
@@ -332,8 +331,7 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 				ortaggio.setTempoColtivazione(result.getInt("tempo_coltivazione"));
 				ortaggio.setPeriodoColtivazione(result.getString("periodo_coltivazione"));
 				ortaggio.setId_terreno(id_terreno);
-				ortaggi.put(ortaggio, 0); // Va inserita la JDBC di prenotazione per sapere le quantità di ortaggi
-											// presenti nel terreno
+				ortaggi.add(ortaggio); 
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());

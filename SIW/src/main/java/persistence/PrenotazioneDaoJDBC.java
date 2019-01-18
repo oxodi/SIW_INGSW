@@ -5,8 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import entita.Prenotazione;
 import persistence.dao.PrenotazioneDao;
@@ -24,19 +27,23 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 		Connection connection = this.dataSource.getConnection();
 
 		try {
-			int id = GestoreID.getId(connection, "prenotazione_id_seq","prenotazione");
-			prenotazione.setId(id);
+			Iterator<Entry<Integer, Integer>> it = prenotazione.getId_ortaggi().entrySet().iterator();
+			 
+			while(it.hasNext()) {
+				Map.Entry<Integer, Integer> entry = (Entry<Integer, Integer>) it.next();
+				String insert = "INSERT INTO prenotazione(id_cliente, id_terreno, id_ortaggio, quantita, data) VALUES (?,?,?,?,?)";
+				PreparedStatement statement = connection.prepareStatement(insert);
 
-			String insert = "INSERT INTO prenotazione(id, id_cliente, id_terreno, data) VALUES (?,?,?,?)";
-			PreparedStatement statement = connection.prepareStatement(insert);
+				statement.setInt(1, prenotazione.getIdCliente());
+				statement.setInt(2, prenotazione.getIdTerreno());
+				statement.setInt(3, entry.getKey());
+				statement.setInt(4, entry.getValue());
+				long secs = prenotazione.getDataPrenotazione().getTime();
+				statement.setDate(5, new java.sql.Date(secs));
+				statement.executeUpdate();
+			}
+			
 
-			statement.setInt(1, prenotazione.getId());
-			statement.setInt(2, prenotazione.getIdCliente());
-			statement.setInt(3, prenotazione.getIdTerreno());
-			long secs = prenotazione.getDataPrenotazione().getTime();
-			statement.setDate(4, new java.sql.Date(secs));
-
-			statement.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -47,41 +54,6 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-	}
-
-	@Override
-	public Prenotazione cercaPerChiavePrimaria(int id) {
-		Connection connection = this.dataSource.getConnection();
-		Prenotazione prenotazione = null;
-
-		try {
-			PreparedStatement statement;
-			String query = "SELECT * FROM prenotazione WHERE id = ?";
-			statement = connection.prepareStatement(query);
-
-			statement.setInt(1, id);
-			ResultSet result = statement.executeQuery();
-
-			if (result.next()) {
-
-				prenotazione = new Prenotazione();
-				prenotazione.setId(result.getInt("id"));
-				prenotazione.setIdCliente(result.getInt("id_cliente"));
-				prenotazione.setIdTerreno(result.getInt("id_terreno"));
-				long secs = result.getDate("data").getTime();
-				prenotazione.setDataPrenotazione(new java.util.Date(secs));
-
-			}
-		} catch (SQLException e) {
-			throw new PersistenceException(e.getMessage());
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
-		return prenotazione;
 	}
 
 	@Override
@@ -101,7 +73,6 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			while (result.next()) {
 
 				prenotazione = new Prenotazione();
-				prenotazione.setId(result.getInt("id"));
 				prenotazione.setIdCliente(result.getInt("id_cliente"));
 				prenotazione.setIdTerreno(result.getInt("id_terreno"));
 				long secs = result.getDate("data").getTime();
@@ -122,42 +93,15 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 	}
 
 	@Override
-	public void aggiorna(Prenotazione prenotazione) {
-		Connection connection = this.dataSource.getConnection();
-
-		try {
-			String update = "UPDATE prenotazione SET id_cliente = ?, id_terreno = ?, data = ? WHERE id=?";
-			PreparedStatement statement = connection.prepareStatement(update);
-
-			statement.setInt(1, prenotazione.getId());
-			statement.setInt(2, prenotazione.getIdCliente());
-			statement.setInt(3, prenotazione.getIdTerreno());
-
-			long secs = prenotazione.getDataPrenotazione().getTime();
-			statement.setDate(4, new java.sql.Date(secs));
-
-			statement.executeUpdate();
-
-		} catch (SQLException e) {
-			throw new PersistenceException(e.getMessage());
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
-	}
-
-	@Override
 	public void cancella(Prenotazione prenotazione) {
 		Connection connection = this.dataSource.getConnection();
 
 		try {
-			String delete = "DELETE FROM prenotazione WHERE id = ? ";
+			String delete = "DELETE FROM prenotazione WHERE id_cliente = ? AND id_terreno = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 
-			statement.setInt(1, prenotazione.getId());
+			statement.setInt(1, prenotazione.getIdCliente());
+			statement.setInt(2, prenotazione.getIdTerreno());
 
 			statement.executeUpdate();
 
@@ -189,7 +133,6 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			while (result.next()) {
 
 				prenotazione = new Prenotazione();
-				prenotazione.setId(result.getInt("id"));
 				prenotazione.setIdCliente(result.getInt("id_cliente"));
 				prenotazione.setIdTerreno(result.getInt("id_terreno"));
 				long secs = result.getDate("data").getTime();
@@ -226,7 +169,6 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			while (result.next()) {
 
 				prenotazione = new Prenotazione();
-				prenotazione.setId(result.getInt("id"));
 				prenotazione.setIdCliente(result.getInt("id_cliente"));
 				prenotazione.setIdTerreno(result.getInt("id_terreno"));
 				long secs = result.getDate("data").getTime();
@@ -262,7 +204,6 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			while (result.next()) {
 
 				prenotazione = new Prenotazione();
-				prenotazione.setId(result.getInt("id"));
 				prenotazione.setIdCliente(result.getInt("id_cliente"));
 				prenotazione.setIdTerreno(result.getInt("id_terreno"));
 				long secs = result.getDate("data").getTime();

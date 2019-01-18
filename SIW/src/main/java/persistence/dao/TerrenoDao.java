@@ -1,8 +1,7 @@
 package persistence.dao;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-
 import entita.Terreno;
 import entita.ortaggio.Ortaggio;
 
@@ -19,7 +18,7 @@ public interface TerrenoDao {
 
 	public Terreno cercaPerChiavePrimaria(int id);
 	
-	public HashMap<Ortaggio,Integer> cercaOrtaggiPerTerreno(int id_terreno);
+	public ArrayList<Ortaggio> cercaOrtaggiPerTerreno(int id_terreno);
 
 	public List<Terreno> cercaPerServizio(boolean servizioParziale, boolean servizioCompleto);
 
