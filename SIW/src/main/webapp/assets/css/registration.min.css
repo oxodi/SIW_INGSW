@@ -153,7 +153,7 @@
 }
 
 .register-form .custom-form .form-group {
-	margin-bottom: 25pxq
+	margin-bottom: 25px
 }
 
 /* luca modifica colore */
@@ -217,6 +217,19 @@
 	padding: 14px 22px;
 	border: 0;
 	margin: 30px;
+	outline: 0
+}
+
+/* tasto indietro */
+.indietro{
+	border-radius: 15px;
+	background: green/*#6caee0*/;
+	color: #fff;
+	font-weight: 700;
+	box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, .08);
+	padding: 14px 22px;
+	border: 0;
+	margin: 35px;
 	outline: 0
 }
 

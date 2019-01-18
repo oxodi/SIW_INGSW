@@ -12,7 +12,7 @@ import persistence.dao.TerrenoDao;
 public class PostgresDAOFactory extends DAOFactory {
 
 	private static  DataSource dataSource;
-
+	private static PostgresDAOFactory instance = null;
 
 	static {
 		try {
@@ -25,6 +25,13 @@ public class PostgresDAOFactory extends DAOFactory {
 		}
 	}
 
+	public static PostgresDAOFactory getInstance() {
+		if(instance == null) 
+			instance = new PostgresDAOFactory();
+		
+		return instance;
+		
+	}
 	
 	@Override
 	public AcquistoDao getAcquistoDAO() {

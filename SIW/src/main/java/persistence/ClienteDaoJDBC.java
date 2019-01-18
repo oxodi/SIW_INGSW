@@ -25,8 +25,8 @@ public class ClienteDaoJDBC implements ClienteDao {
 			int id = GestoreID.getId(connection, "cliente_id_seq", "cliente");
 			cliente.setId(id);
 
-			String insert = "INSERT INTO cliente(id, nome, cognome, codice_fiscale,"
-					+ " indirizzo, data_di_nascita, telefono, email) VALUES (?,?,?,?,?,?,?,?)";
+			String insert = "INSERT INTO cliente(id, nome, cognome, codice_fiscale, indirizzo,"
+					+ " data_di_nascita, citta, cap, provincia, telefono, email) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setInt(1, cliente.getId());
@@ -36,8 +36,11 @@ public class ClienteDaoJDBC implements ClienteDao {
 			statement.setString(5, cliente.getIndirizzo());
 			long secs = cliente.getDataDiNascita().getTime();
 			statement.setDate(6, new java.sql.Date(secs));
-			statement.setString(7, cliente.getTelefono());
-			statement.setString(8, cliente.getEmail());
+			statement.setString(7, cliente.getCitta());
+			statement.setString(8, cliente.getCap());
+			statement.setString(9, cliente.getProvincia());
+			statement.setString(10, cliente.getTelefono());
+			statement.setString(11, cliente.getEmail());
 
 			statement.executeUpdate();
 
@@ -57,7 +60,7 @@ public class ClienteDaoJDBC implements ClienteDao {
 		Connection connection = this.dataSource.getConnection();
 		Cliente cliente = null;
 		try {
-			String query = "SELECT * FROM cliente WHERE id = ?";
+			String query = "SELECT * FROM cliente WHERE id=?";
 			PreparedStatement statement = connection.prepareStatement(query);
 
 			statement.setInt(1, id);
@@ -73,6 +76,9 @@ public class ClienteDaoJDBC implements ClienteDao {
 				long secs = result.getDate("data_di_nascita").getTime();
 				cliente.setDataDiNascita(new java.util.Date(secs));
 				cliente.setIndirizzo(result.getString("indirizzo"));
+				cliente.setCitta(result.getString("citta"));
+				cliente.setCap(result.getString("cap"));
+				cliente.setProvincia(result.getString("provincia"));
 				cliente.setTelefono(result.getString("telefono"));
 				cliente.setEmail(result.getString("email"));
 
@@ -108,10 +114,13 @@ public class ClienteDaoJDBC implements ClienteDao {
 				cliente.setNome(result.getString("nome"));
 				cliente.setCognome(result.getString("cognome"));
 				cliente.setCodiceFiscale(result.getString("codice_fiscale"));
-				cliente.setIndirizzo(result.getString("indirizzo"));
-				cliente.setTelefono(result.getString("telefono"));
 				long secs = result.getDate("data_di_nascita").getTime();
 				cliente.setDataDiNascita(new java.util.Date(secs));
+				cliente.setIndirizzo(result.getString("indirizzo"));
+				cliente.setCitta(result.getString("citta"));
+				cliente.setCap(result.getString("cap"));
+				cliente.setProvincia(result.getString("provincia"));
+				cliente.setTelefono(result.getString("telefono"));
 				cliente.setEmail(result.getString("email"));
 
 				clienti.add(cliente);
@@ -133,19 +142,16 @@ public class ClienteDaoJDBC implements ClienteDao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 
-			String update = "UPDATE cliente SET nome = ?, cognome = ?, codice_fiscale = ?, indirizzo = ?, data_di_nascita = ?, telefono = ?, email = ? WHERE id = ?";
+			String update = "UPDATE cliente SET indirizzo=?, citta=?, cap=?, provincia=?, telefono=? WHERE id = ?";
 
 			PreparedStatement statement = connection.prepareStatement(update);
 
-			statement.setString(1, cliente.getNome());
-			statement.setString(2, cliente.getCognome());
-			statement.setString(3, cliente.getCodiceFiscale());
-			statement.setString(4, cliente.getIndirizzo());
-			long secs = cliente.getDataDiNascita().getTime();
-			statement.setDate(5, new java.sql.Date(secs));
-			statement.setString(6, cliente.getTelefono());
-			statement.setString(7, cliente.getEmail());
-
+			statement.setString(5, cliente.getIndirizzo());
+			statement.setString(7, cliente.getCitta());
+			statement.setString(8, cliente.getCap());
+			statement.setString(9, cliente.getProvincia());
+			statement.setString(10, cliente.getTelefono());
+			
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -164,7 +170,7 @@ public class ClienteDaoJDBC implements ClienteDao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 
-			String delete = "DELETE FROM studente WHERE id = ? ";
+			String delete = "DELETE FROM studente WHERE id=? ";
 
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setInt(1, cliente.getId());
@@ -188,8 +194,8 @@ public class ClienteDaoJDBC implements ClienteDao {
 
 			String update = "UPDATE cliente SET password = ? WHERE id=?";
 			PreparedStatement statement = connection.prepareStatement(update);
-			statement.setString(1, password);
-			statement.setInt(2, cliente.getId());
+			statement.setString(12, password);
+			statement.setInt(1, cliente.getId());
 
 			statement.executeUpdate();
 

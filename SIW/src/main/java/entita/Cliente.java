@@ -4,12 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Cliente {
+	
 	private int id;
 	private String nome;
 	private String cognome;
 	private String codiceFiscale;
 	private Date dataDiNascita;
-
+	private String citta;
+	private String cap;
+	private String provincia;
 	private String indirizzo;
 	private String telefono;
 	private String email;
@@ -18,7 +21,7 @@ public class Cliente {
 	}
 
 	public Cliente(String nome, String cognome, String codiceFiscale, Date dataDiNascita, String indirizzo,
-			String telefono, String email) {
+			String citta, String cap, String provincia, String telefono, String email) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.codiceFiscale = codiceFiscale;
@@ -91,6 +94,30 @@ public class Cliente {
 
 	public void setCodiceFiscale(String codiceFiscale) {
 		this.codiceFiscale = codiceFiscale;
+	}
+
+	public String getCitta() {
+		return citta;
+	}
+
+	public void setCitta(String citta) {
+		this.citta = citta;
+	}
+
+	public String getCap() {
+		return cap;
+	}
+
+	public void setCap(String cap) {
+		this.cap = cap;
+	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
 	}
 
 	public String toString() {
