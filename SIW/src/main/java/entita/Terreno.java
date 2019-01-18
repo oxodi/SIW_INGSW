@@ -25,9 +25,8 @@ public class Terreno {
 	public Terreno() {
 	}
 
-	public Terreno(int id, int idAzienda, String locazione, boolean servizioParziale, boolean servizioCompleto,
+	public Terreno(int idAzienda, String locazione, boolean servizioParziale, boolean servizioCompleto,
 			int dimensione, int dimensioneSerra, double costo, String periodiDisponobilita) {
-		this.id = id;
 		this.idAzienda = idAzienda;
 		this.locazione = locazione;
 		this.servizioParziale = servizioParziale;
