@@ -5,29 +5,35 @@ import java.util.ArrayList;
 public class Azienda {
 
 	private int id;
-	private String nome;
 	private String partitaIVA;
 	private String referente;
 	private String sedeLegale;
 	private String ragioneSociale;
 	private String telefono;
 	private String email;
+	private String indirizzo;
+	private String citta;	
+	private String cap;
+	private String provincia;
 	private String descrizioneServizi;
 	private ArrayList<Terreno> terreni;
 
 	public Azienda() {
 	}
 
-	public Azienda(String nome, String partitaIVA, String referente, String sedeLegale, String ragioneSociale,
-			String telefono, String descrizioneServizi, String email) {
-		this.nome = nome;
-		this.partitaIVA = partitaIVA;
+	public Azienda(String ragioneSociale,  String referente, String sedeLegale, String indirizzo, String citta, String cap, String provincia,
+			String partitaIVA,  String telefono, String descrizioneServizi, String email) {
+		this.ragioneSociale = ragioneSociale;
 		this.referente = referente;
 		this.sedeLegale = sedeLegale;
-		this.ragioneSociale = ragioneSociale;
+		this.indirizzo = indirizzo;
+		this.citta = citta;
+		this.cap = cap;
+		this.provincia = provincia;
+		this.partitaIVA = partitaIVA;
 		this.telefono = telefono;
-		this.email = email;
 		this.descrizioneServizi = descrizioneServizi;
+		this.email = email;
 		terreni = new ArrayList<Terreno>(); // controllare inserimento terreni
 	}
 
@@ -79,14 +85,6 @@ public class Azienda {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public String getPartitaIVA() {
 		return partitaIVA;
 	}
@@ -118,6 +116,39 @@ public class Azienda {
 	public void setDescrizioneServizi(String descrizioneServizi) {
 		this.descrizioneServizi = descrizioneServizi;
 	}
+	
+	public String getIndirizzo() {
+		return indirizzo;
+	}
+
+	public void setIndirizzo(String indirizzo) {
+		this.indirizzo = indirizzo;
+	}
+
+	public String getCitta() {
+		return citta;
+	}
+
+	public void setCitta(String citta) {
+		this.citta = citta;
+	}
+
+	public String getCap() {
+		return cap;
+	}
+
+	public void setCap(String cap) {
+		this.cap = cap;
+	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
 	
 	@Override
 	public String toString() {
