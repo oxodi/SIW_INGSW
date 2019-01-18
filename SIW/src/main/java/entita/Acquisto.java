@@ -13,8 +13,7 @@ public class Acquisto {
 	public Acquisto() {
 	}
 
-	public Acquisto(int id, int idCliente, int idProdotto, Date dataAcquisto, Date dataRitiro) {
-		this.id = id;
+	public Acquisto(int idCliente, int idProdotto, Date dataAcquisto, Date dataRitiro) {
 		this.idCliente = idCliente;
 		this.idProdotto = idProdotto;
 		this.dataAcquisto = dataAcquisto;

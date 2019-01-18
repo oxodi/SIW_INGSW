@@ -22,7 +22,7 @@ public class ClienteDaoJDBC implements ClienteDao {
 		Connection connection = this.dataSource.getConnection();
 
 		try {
-			int id = GestoreID.getId(connection, "cliente_id_seq");
+			int id = GestoreID.getId(connection, "cliente_id_seq", "cliente");
 			cliente.setId(id);
 
 			String insert = "INSERT INTO cliente(id, nome, cognome, codice_fiscale,"

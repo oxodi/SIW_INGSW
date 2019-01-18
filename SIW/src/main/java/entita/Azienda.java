@@ -18,9 +18,8 @@ public class Azienda {
 	public Azienda() {
 	}
 
-	public Azienda(int id, String nome, String partitaIVA, String referente, String sedeLegale, String ragioneSociale,
+	public Azienda(String nome, String partitaIVA, String referente, String sedeLegale, String ragioneSociale,
 			String telefono, String descrizioneServizi, String email) {
-		this.id = id;
 		this.nome = nome;
 		this.partitaIVA = partitaIVA;
 		this.referente = referente;

@@ -83,12 +83,16 @@ public class Main {
 		// Azienda azienda = new Azienda(9, "Ciaaaaaaaaaaa", "0123459655", "Bruno10",
 		// "Uni", "sociale", "12345678", "descrizione", "email@email");
 		// factory.getAziendaDAO().salva(azienda);
-		Terreno terreno = new Terreno(1, 12, "cusenze", true, true, 12, 10, 10.0, "Marzo");
+		
+//factory.getTerrenoDAO().salva(terreno);
+		Terreno terreno = new Terreno();
+		terreno.setId(21);
 		factory.getTerrenoDAO().cancella(terreno);
+		
 //		Ortaggio ortaggio = new Cetriolo();
 //		factory.getOrtaggioDAO().salva(ortaggio);
 //		factory.getTerrenoDAO().aggiungiOrtaggio(terreno.getId(), ortaggio.getId(), 12.10, 10, "6 mesi");
-	//	factory.getTerrenoDAO().aggiungiOrtaggio(16, 2, 1.2, 9, "2 mesi");
+		//factory.getTerrenoDAO().aggiungiOrtaggio(20, 2, 1.2, 9, "2 mesi");
 
 		//System.out.println(factory.getTerrenoDAO().cercaTutti().toString());
 		//System.out.println(factory.getTerrenoDAO().cercaOrtaggiPerTerreno(16));

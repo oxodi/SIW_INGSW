@@ -12,8 +12,7 @@ public class Prenotazione {
 	public Prenotazione() {
 	}
 
-	public Prenotazione(int id, int idCliente, int idTerreno, Date dataPrenotazione) {
-		this.id = id;
+	public Prenotazione(int idCliente, int idTerreno, Date dataPrenotazione) {
 		this.idCliente = idCliente;
 		this.idTerreno = idTerreno;
 		this.dataPrenotazione = dataPrenotazione;

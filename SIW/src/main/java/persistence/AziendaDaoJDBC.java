@@ -24,7 +24,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 
 		try {
 
-			int id = GestoreID.getId(connection, "azienda_id_seq");
+			int id = GestoreID.getId(connection, "azienda_id_seq", "azienda");
 			azienda.setId(id);
 
 			String insert = "INSERT INTO azienda(id, ragione_sociale, partita_iva, referente, "

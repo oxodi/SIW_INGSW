@@ -37,7 +37,7 @@ public class InserisciAzienda extends HttpServlet {
 			/**
 		 	* il primo parametro zero è considerato null e viene settato automaticamente nella funzione salva
 		 	*/
-			Azienda azienda = new Azienda(0, "Stringa", partitaIVA, referente, sedeLegale, ragioneSociale, telefono, "sono pippo" , email);
+			Azienda azienda = new Azienda("Stringa", partitaIVA, referente, sedeLegale, ragioneSociale, telefono, "sono pippo" , email);
 		
 			
 			factory.getAziendaDAO().salva(azienda);
