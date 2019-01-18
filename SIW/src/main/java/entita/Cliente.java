@@ -17,9 +17,8 @@ public class Cliente {
 	public Cliente() {
 	}
 
-	public Cliente(int id, String nome, String cognome, String codiceFiscale, Date dataDiNascita, String indirizzo,
+	public Cliente(String nome, String cognome, String codiceFiscale, Date dataDiNascita, String indirizzo,
 			String telefono, String email) {
-		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.codiceFiscale = codiceFiscale;
