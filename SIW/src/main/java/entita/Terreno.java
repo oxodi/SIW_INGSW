@@ -1,6 +1,10 @@
 package entita;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import entita.ortaggio.Ortaggio;
 
@@ -18,7 +22,7 @@ public class Terreno {
 	private boolean servizioCompleto;
 	private int dimensione;// in mt2
 	private int dimensioneSerra;// in mt2
-	private HashSet<Ortaggio> ortaggi;
+	private HashMap<Ortaggio,Integer> ortaggi;
 	private double costo; // costo al mt2 del terreno
 	private String periodiDisponibilita;
 
@@ -35,7 +39,7 @@ public class Terreno {
 		this.dimensioneSerra = dimensioneSerra;
 		this.costo = costo;
 		this.periodiDisponibilita = periodiDisponobilita;
-		ortaggi = new HashSet<Ortaggio>();
+		ortaggi = new HashMap<Ortaggio, Integer>();
 	}
 
 	public boolean isServizioParziale() {
@@ -70,15 +74,15 @@ public class Terreno {
 		this.idAzienda = idAzienda;
 	}
 
-	public void aggiungiOrtaggio(Ortaggio ortaggio) {
-		ortaggi.add(ortaggio);
+	public void aggiungiOrtaggio(Ortaggio ortaggio, int quantità) {
+		ortaggi.put(ortaggio,quantità);
 	}
 
-	public HashSet<Ortaggio> getOrtaggi() {
+	public HashMap<Ortaggio,Integer> getOrtaggi() {
 		return ortaggi;
 	}
 
-	public void setOrtaggi(HashSet<Ortaggio> ortaggi) {
+	public void setOrtaggi(HashMap<Ortaggio, Integer> ortaggi) {
 		this.ortaggi = ortaggi;
 	}
 
@@ -133,7 +137,22 @@ public class Terreno {
 	@Override
 	public String toString() {
 		String output = "Terreno[" + this.id + ", " + this.idAzienda + ", " + this.locazione + ", " + this.servizioParziale
-				+ ", " + this.servizioCompleto + ", " + this.dimensione+ ", " + this.dimensioneSerra+ ", " + this.costo +this.periodiDisponibilita + "]";
+				+ ", " + this.servizioCompleto + ", " + this.dimensione+ ", " + this.dimensioneSerra+ ", " + this.costo+ ", " +this.periodiDisponibilita + "] ";
+		
+		String output2 = toStringMap(ortaggi);
+		return output + output2 ;
+	}
+	
+	public String toStringMap(HashMap<Ortaggio, Integer> ortaggi) {
+		String output = "";
+		Iterator<Entry<Ortaggio, Integer>> it = ortaggi.entrySet().iterator();
+		
+		while(it.hasNext()) {
+			Map.Entry<Ortaggio, Integer> entry = (Entry<Ortaggio, Integer>) it.next();
+			output += entry.getKey().toString() +" quantità: "+entry.getValue().toString()+" ";
+		}
+		
+		
 		return output;
 	}
 
