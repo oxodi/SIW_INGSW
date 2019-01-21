@@ -204,8 +204,8 @@ public class AziendaDaoJDBC implements AziendaDao {
 			String update = "UPDATE azienda SET password=? WHERE id=?";
 			PreparedStatement statement = connection.prepareStatement(update);
 
-			statement.setString(13, password);
-			statement.setInt(1, azienda.getId());
+			statement.setString(1, password);
+			statement.setInt(2, azienda.getId());
 			statement.executeUpdate();
 
 		} catch (SQLException e) {

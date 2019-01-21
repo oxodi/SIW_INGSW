@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entita.Cliente;
+import persistence.ClienteDaoJDBC;
 import persistence.PostgresDAOFactory;
+import persistence.dao.ClienteDao;
 
 /**
  * Servlet implementation class RegistrationClient
@@ -28,7 +30,7 @@ public class RegistrationClient extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		PostgresDAOFactory factory = new PostgresDAOFactory();
+		PostgresDAOFactory factory = PostgresDAOFactory.getInstance();
 		
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
@@ -40,6 +42,7 @@ public class RegistrationClient extends HttpServlet {
 		String indirizzo = request.getParameter("indirizzo");
 		String telefono = request.getParameter("telefono");
 		String email = request.getParameter("email");
+		String password = request.getParameter("password");
 		
 		DateFormat format = new SimpleDateFormat("dd-mm-yyyy", Locale.ITALIAN);
 		
@@ -47,8 +50,11 @@ public class RegistrationClient extends HttpServlet {
 			
 			Date data = format.parse(dataDiNascita);
 			Cliente cliente = new Cliente(nome, cognome, codiceFiscale, indirizzo, data, citta, cap, provincia, telefono, email);
-			factory.getClienteDAO().salva(cliente);
-			factory.getClienteDAO().setPassword(cliente, request.getParameter("password"));
+			
+			ClienteDao clienteJDBC = factory.getClienteDAO();
+			
+			clienteJDBC.salva(cliente);
+			clienteJDBC.setPassword(cliente,password);
 			
 			/**
 			 * salvati i dati della registrazione del cliente torno all index
