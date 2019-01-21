@@ -2,6 +2,9 @@ package entita;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class Prenotazione {
 
@@ -48,8 +51,26 @@ public class Prenotazione {
 		return id_ortaggi;
 	}
 
-	public void setId_terreni(HashMap<Integer,Integer> id_ortaggi) {
+	public void setId_ortaggi(HashMap<Integer,Integer> id_ortaggi) {
 		this.id_ortaggi = id_ortaggi;
+	}
+	
+	@Override
+	public String toString() {
+		String output = "Prenotazione[ idCliente: " + this.idCliente + ", idTerreno: " + this.idTerreno + ", " + this.toStringOrtaggi(getId_ortaggi()) + ", dataPrenotazione: " + this.dataPrenotazione + "]";
+		return output;
+		
+		
+	}
+	
+	public String toStringOrtaggi(HashMap<Integer, Integer> ortaggi) {
+		String output = "";
+		Iterator<Entry<Integer, Integer>> it = ortaggi.entrySet().iterator();
+		  while (it.hasNext()) {
+			Map.Entry<Integer, Integer> entry = (Entry<Integer, Integer>) it.next();
+		    output += "Ortaggio: "+entry.getKey()+", Quantità: "+entry.getValue();
+		    }
+		return output;
 	}
 
 }

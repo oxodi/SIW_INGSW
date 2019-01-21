@@ -5,7 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+
+import entita.Cliente;
+import entita.Prenotazione;
 import entita.Terreno;
 import entita.ortaggio.Ortaggio;
 import persistence.dao.TerrenoDao;
@@ -37,7 +42,6 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 			statement.setString(7, terreno.getPeriodiDisponibilita());
 			statement.setInt(8, terreno.getIdAzienda());
 			statement.setDouble(9, terreno.getCosto());
-			System.out.println(statement);
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -331,7 +335,7 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 				ortaggio.setTempoColtivazione(result.getInt("tempo_coltivazione"));
 				ortaggio.setPeriodoColtivazione(result.getString("periodo_coltivazione"));
 				ortaggio.setId_terreno(id_terreno);
-				ortaggi.add(ortaggio); 
+				ortaggi.add(ortaggio);
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -346,4 +350,84 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		return ortaggi;
 	}
 
+	@Override
+	public List<Prenotazione> cercaPrenotazioniPerTerreno(int id_terreno) {
+		Connection connection = this.dataSource.getConnection();
+		List<Prenotazione> prenotazioni = new LinkedList<Prenotazione>();
+
+		try {
+			Prenotazione prenotazione;
+			PreparedStatement statement;
+			String query = "SELECT * FROM prenotazione WHERE  id_terreno = ?";
+
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, id_terreno);
+			ResultSet result = statement.executeQuery();
+
+			while (result.next()) {
+
+				prenotazione = new Prenotazione();
+				HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+				prenotazione.setIdCliente(result.getInt("id_cliente"));
+				prenotazione.setIdTerreno(result.getInt("id_terreno"));
+				hashMap.put(result.getInt("id_ortaggio"), result.getInt("quantita"));
+				prenotazione.setId_ortaggi(hashMap);
+				long secs = result.getDate("data").getTime();
+				prenotazione.setDataPrenotazione(new java.util.Date(secs));
+
+				prenotazioni.add(prenotazione);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return prenotazioni;
+	}
+
+	@Override
+	public List<Cliente> cercaClientiPerTerreno(int id_terreno) {
+		Connection connection = this.dataSource.getConnection();
+		List<Cliente> clienti = new LinkedList<Cliente>();
+		try {
+			Cliente cliente;
+			PreparedStatement statement;
+			String query = "SELECT * FROM cliente INNER JOIN prenotazione ON cliente.id = prenotazione.id_cliente WHERE prenotazione.id_terreno = ?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, id_terreno);
+			ResultSet result = statement.executeQuery();
+
+			while (result.next()) {
+
+				cliente = new Cliente();
+				cliente.setId(result.getInt("id"));
+				cliente.setNome(result.getString("nome"));
+				cliente.setCognome(result.getString("cognome"));
+				cliente.setCodiceFiscale(result.getString("codice_fiscale"));
+				long secs = result.getDate("data_di_nascita").getTime();
+				cliente.setDataDiNascita(new java.util.Date(secs));
+				cliente.setIndirizzo(result.getString("indirizzo"));
+				cliente.setCitta(result.getString("citta"));
+				cliente.setCap(result.getString("cap"));
+				cliente.setProvincia(result.getString("provincia"));
+				cliente.setTelefono(result.getString("telefono"));
+				cliente.setEmail(result.getString("email"));
+
+				clienti.add(cliente);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return clienti;
+	}
 }
