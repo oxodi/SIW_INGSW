@@ -48,6 +48,7 @@ public class RegistrationClient extends HttpServlet {
 			Date data = format.parse(dataDiNascita);
 			Cliente cliente = new Cliente(nome, cognome, codiceFiscale, indirizzo, data, citta, cap, provincia, telefono, email);
 			factory.getClienteDAO().salva(cliente);
+			factory.getClienteDAO().setPassword(cliente, request.getParameter("password"));
 			
 			/**
 			 * salvati i dati della registrazione del cliente torno all index
