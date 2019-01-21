@@ -30,15 +30,14 @@
 	<!-- End: Navigation with Button -->
 	<div class="row register-form">
 		<div class="col-md-8 offset-md-2">
-			<form class="custom-form" id="regFormAzienda" method="post"
-				action="Registration">
+			<form class="custom-form" id="registrazioneCliente" method="post" action="RegistrationClient">
 				<h1>Registrazione Cliente</h1>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
 						<label class="col-form-label" for="name-input-field">Nome</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="nome">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -46,7 +45,23 @@
 						<label class="col-form-label" for="name-input-field">Cognome</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="cognome">
+					</div>
+				</div>
+				<div class="form-row form-group">
+					<div class="col-sm-4 label-column">
+						<label class="col-form-label" for="name-input-field">Codice Fiscale</label>
+					</div>
+					<div class="col-sm-6 input-column">
+						<input class="form-control" type="text" name="codice_fiscale">
+					</div>
+				</div>
+				<div class="form-row form-group">
+					<div class="col-sm-4 label-column">
+						<label class="col-form-label" for="name-input-field">Data di Nascita</label>
+					</div>
+					<div class="col-sm-6 input-column">
+						<input class="form-control" type="text" name="data_di_nascita">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -54,15 +69,7 @@
 						<label class="col-form-label" for="name-input-field">Indirizzo</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
-					</div>
-				</div>
-				<div class="form-row form-group">
-					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">CAP</label>
-					</div>
-					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="indirizzo">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -70,7 +77,15 @@
 						<label class="col-form-label" for="name-input-field">Citta'</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="citta">
+					</div>
+				</div>
+				<div class="form-row form-group">
+					<div class="col-sm-4 label-column">
+						<label class="col-form-label" for="name-input-field">CAP</label>
+					</div>
+					<div class="col-sm-6 input-column">
+						<input class="form-control" type="text" name="cap">
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -78,48 +93,36 @@
 						<label class="col-form-label" for="name-input-field">Provincia</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="provincia">
 					</div>
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">Tel.</label>
+						<label class="col-form-label" for="name-input-field">Telefono</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="text" name="telefono">
 					</div>
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">Cod.
-							Fiscale</label>
+						<label class="col-form-label" for="email-input-field">e-mail</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text">
+						<input class="form-control" type="email" name="email" >
 					</div>
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="email-input-field">Email
-						</label>
+						<label class="col-form-label" for="pawssword-input-field">Password</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="email">
+						<input class="form-control" type="password" name="password">
 					</div>
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="pawssword-input-field">Password
-						</label>
-					</div>
-					<div class="col-sm-6 input-column">
-						<input class="form-control" type="password">
-					</div>
-				</div>
-				<div class="form-row form-group">
-					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="repeat-pawssword-input-field">Ripeti
-							Password </label>
+						<label class="col-form-label" for="repeat-pawssword-input-field">Ripeti Password </label>
 					</div>
 					<div class="col-sm-6 input-column">
 						<input class="form-control" type="password">
@@ -130,8 +133,7 @@
 						class="form-check-label" for="formCheck-1">Ho letto e
 						accettato i termini e condizione di servizio</label>
 				</div>
-				<button class="btn btn-light submit-button" type="button">Submit
-					Form</button>
+				<button class="btn btn-light submit-button" type="submit">Conferma</button>
 			</form>
 		</div>
 	</div>

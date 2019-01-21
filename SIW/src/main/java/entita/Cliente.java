@@ -20,13 +20,16 @@ public class Cliente {
 	public Cliente() {
 	}
 
-	public Cliente(String nome, String cognome, String codiceFiscale, Date dataDiNascita, String indirizzo,
+	public Cliente(String nome, String cognome, String codiceFiscale,  String indirizzo, Date dataDiNascita,
 			String citta, String cap, String provincia, String telefono, String email) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.codiceFiscale = codiceFiscale;
-		this.dataDiNascita = dataDiNascita;
 		this.indirizzo = indirizzo;
+		this.dataDiNascita = dataDiNascita;
+		this.cap = cap;
+		this.provincia = provincia;
+		this.citta = citta;
 		this.telefono = telefono;
 		this.email = email;
 
