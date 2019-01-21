@@ -190,9 +190,9 @@ public class ClienteDaoJDBC implements ClienteDao {
 	@Override
 	public void setPassword(Cliente cliente, String password) {
 		Connection connection = this.dataSource.getConnection();
-		try {
+		try { 
 
-			String update = "UPDATE cliente SET password = ? WHERE id=?";
+			String update = "UPDATE cliente SET password=? WHERE id=?";
 			PreparedStatement statement = connection.prepareStatement(update);
 			statement.setString(12, password);
 			statement.setInt(1, cliente.getId());
@@ -209,5 +209,30 @@ public class ClienteDaoJDBC implements ClienteDao {
 			}
 		}
 	}
+
+	@Override
+	public boolean checkCliente(String email, String password) {
+		Connection connection = this.dataSource.getConnection();
+		boolean status = false;
+		
+		try {
+			String check = "SELECT * FROM cliente WHERE email=? AND password=?";
+			PreparedStatement statement = connection.prepareStatement(check);
+			
+			statement.setString(1, email);
+			statement.setString(2, password);
+			
+			ResultSet result = statement.executeQuery();
+			
+			status = result.next();
+			
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		}
+		
+		
+		return status;
+	}
+
 
 }
