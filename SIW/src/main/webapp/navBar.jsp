@@ -15,7 +15,7 @@
 		<div class="collapse navbar-collapse" id="navcol-1">
 			<ul class="nav navbar-nav mr-auto">
 				<li class="nav-item" role="presentation"><a class="nav-link"
-					href="#"><strong>Prenota un terreno</strong></a></li>
+					href="PageLoader?id=prenotaTerreno"><strong>Prenota un terreno</strong></a></li>
 				<li class="nav-item" role="presentation"><a class="nav-link"
 					href="#"><strong>Ordina un prodotto</strong></a></li>
 				<li class="nav-item" role="presentation"><a class="nav-link"
