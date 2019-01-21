@@ -54,8 +54,8 @@
 
 								</div>
 								 -->
-								<form class="form" role="form" method="post" action="login"
-									accept-charset="UTF-8" id="login-nav">
+								<form class="form" role="form" method="post" action="Login?area=azienda"
+									accept-charset="UTF-8" id="login-nav" name="loginAzienda">
 									<div class="form-group">
 										<label class="sr-only" for="exampleInputEmail2">Email
 										</label> <input type="email" class="form-control"

@@ -29,6 +29,12 @@
   	<description></description>
   	<servlet-class>controller.RegistrationClient</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>Logged</servlet-name>
+  	<display-name>Logged</display-name>
+  	<description></description>
+  	<servlet-class>controller.Logged</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Login</servlet-name>
   	<url-pattern>/Login</url-pattern>
@@ -44,6 +50,10 @@
     <servlet-mapping>
     	<servlet-name>RegistrationClient</servlet-name>
     	<url-pattern>/RegistrationClient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>Logged</servlet-name>
+    	<url-pattern>/Logged</url-pattern>
     </servlet-mapping>
 </web-app>
 

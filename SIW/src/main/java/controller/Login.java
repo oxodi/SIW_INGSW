@@ -9,32 +9,46 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import persistence.LoginJDBC;
+import org.postgresql.jdbc2.optional.SimpleDataSource;
+
+import persistence.PostgresDAOFactory;
 
 /**
  * Servlet implementation class Login
  */
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    @Override
+
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        
-        String email = request.getParameter("email");
-        String pass = request.getParameter("pass");
-        
-        if(LoginJDBC.checkUser(email, pass))
-        {
-            RequestDispatcher rs = request.getRequestDispatcher("Welcome");
-            rs.forward(request, response);
-        }
-        else
-        {
-           out.println("Username o Password errati");
-           RequestDispatcher rs = request.getRequestDispatcher("index.html");
-           rs.include(request, response);
-        }
-    }  
+			throws ServletException, IOException {
+		PostgresDAOFactory factory = PostgresDAOFactory.getInstance();
+		System.out.println("sono all'interno di login");
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		String email = request.getParameter("email");
+		String pass = request.getParameter("pass");
+		System.out.println(request.getParameter("area"));
+
+		if (request.getParameter("area").equals("utente")) {
+			if (factory.getClienteDAO().checkCliente(email, pass)) {
+				RequestDispatcher rs = request.getRequestDispatcher("Logged");
+				rs.forward(request, response);
+			} else {
+				out.println("Username o Password errati");
+				RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
+				rs.include(request, response);
+			}
+		} else if (request.getParameter("area").equals("azienda")) {
+			if (factory.getAziendaDAO().checkAzienda(email, pass)) {
+				RequestDispatcher rs = request.getRequestDispatcher("Logged");
+				rs.forward(request, response);
+			} else {
+				out.println("Username o Password errati");
+				RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
+				rs.include(request, response);
+			}
+		}
+	}
 }
