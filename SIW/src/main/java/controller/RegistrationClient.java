@@ -46,7 +46,7 @@ public class RegistrationClient extends HttpServlet {
 		try {
 			
 			Date data = format.parse(dataDiNascita);
-			Cliente cliente = new Cliente(nome, cognome, codiceFiscale, data, indirizzo, citta, cap, provincia, telefono, email);
+			Cliente cliente = new Cliente(nome, cognome, codiceFiscale, indirizzo, data, citta, cap, provincia, telefono, email);
 			factory.getClienteDAO().salva(cliente);
 			
 			/**
