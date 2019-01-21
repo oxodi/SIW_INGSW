@@ -14,6 +14,8 @@ public interface PrenotazioneDao {
 	public List<Prenotazione> cercaPerCliente(int idCliente);
 
 	public List<Prenotazione> cercaPerTerreno(int idTerreno);
+	
+	public List<Prenotazione> cercaPerClienteTerreno(int idCliente, int idTerreno);
 
 	public List<Prenotazione> cercaTutti();
 

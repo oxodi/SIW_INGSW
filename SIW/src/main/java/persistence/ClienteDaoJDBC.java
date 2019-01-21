@@ -194,9 +194,10 @@ public class ClienteDaoJDBC implements ClienteDao {
 
 			String update = "UPDATE cliente SET password=? WHERE id=?";
 			PreparedStatement statement = connection.prepareStatement(update);
-			statement.setString(12, password);
-			statement.setInt(1, cliente.getId());
-
+			
+			statement.setString(1, password);
+			statement.setInt(2, cliente.getId());
+			
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
