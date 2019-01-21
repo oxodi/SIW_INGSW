@@ -219,4 +219,29 @@ public class AziendaDaoJDBC implements AziendaDao {
 		}
 	}
 
+	@Override
+	public boolean checkAzienda(String email, String password) {
+		Connection connection = this.dataSource.getConnection();
+		boolean status = false;
+		
+		try {
+			String check = "SELECT * FROM cliente WHERE email=? AND password=?";
+			PreparedStatement statement = connection.prepareStatement(check);
+			
+			statement.setString(1, email);
+			statement.setString(2, password);
+			
+			ResultSet result = statement.executeQuery();
+			
+			status = result.next();
+			
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		}
+		
+		
+		return status;
+	}
+
+
 }

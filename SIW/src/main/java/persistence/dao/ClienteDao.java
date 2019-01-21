@@ -16,4 +16,6 @@ public interface ClienteDao {
 	public void cancella(Cliente cliente);
 
 	public void setPassword(Cliente cliente, String password);
+	
+	public boolean checkCliente(String email, String password);
 }

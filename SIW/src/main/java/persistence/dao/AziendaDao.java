@@ -16,4 +16,6 @@ public interface AziendaDao {
 	public void cancella(Azienda azienda);
 
 	public void setPassword(Azienda azienda, String password);
+	
+	public boolean checkAzienda(String email, String password);
 }
