@@ -1,40 +1,33 @@
 body{
+	
+	background-color: black;
 	background: url("../img/weblink21.gif");
 	background-size: 100px;
 	background-attachment: fixed;
+	
 }
 
-#bottonili{
-	border-color: green;
-	border-radius: 15px;
-	border-width: 2px;
-}
-#exTab1 .tab-content {
-  color : white;
-  background-color: #428bca;
-  padding : 5px 15px;
+.border-profile{
+	
+	margin-top: 50px;
+	border-color: #734d26;
+	border-width: 3px;
+	border-radius: 25px; 
+	border-style: inset; 
 }
 
-#exTab2 h3 {
-  color : white;
-  background-color: #428bca;
-  padding : 5px 15px;
+.input-column{
+	color: black/*#5f5f5f*/;
+	background-color: #cfc7af/*#dbdbdb*/;
+	box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, .08);
+	height: 30px;
+	padding: 12px;
+	border: 2px solid green;
+	border-radius: 8px;
+	/* height: 42px */
 }
 
-/* remove border radius for the tab */
-
-#exTab1 .nav-pills > li > a {
-  border-radius: 0;
-}
-
-/* change border radius for the tab , apply corners on top*/
-
-#exTab3 .nav-pills > li > a {
-  border-radius: 4px 4px 0 0 ;
-}
-
-#exTab3 .tab-content {
-  color : white;
-  background-color: #428bca;
-  padding : 5px 15px;
+.label-column{
+	color: black;
+	
 }
