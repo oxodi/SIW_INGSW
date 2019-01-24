@@ -8,7 +8,9 @@ public interface AziendaDao {
 	public void salva(Azienda azienda);
 
 	public Azienda cercaPerChiavePrimaria(int id);
-
+	
+	public Azienda cercaPerEmail(String email);
+	
 	public List<Azienda> cercaTutti();
 
 	public void aggiorna(Azienda azienda);
