@@ -7,6 +7,10 @@ body{
 	
 }
 
+#div-disp{
+	display: block;
+}
+
 .border-profile{
 	
 	margin-top: 50px;
@@ -14,6 +18,22 @@ body{
 	border-width: 3px;
 	border-radius: 25px; 
 	border-style: inset; 
+}
+
+.border-info-style{
+	
+	border-color:  #734d26;
+	margin-bottom: 20px;
+	margin-right: 30px;
+	border-width: 1px;
+	border-radius: 25px; 
+	border-style: inset; 
+}
+
+.color-border{
+	border-color: green;
+	border-style: solid;
+	border-width: 1px; 
 }
 
 .input-column{
@@ -29,5 +49,73 @@ body{
 
 .label-column{
 	color: black;
+}
+
+.label-column{
+	color: black;
+	font: 700 14px sans-serif;
 	
 }
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #331a00;
+  overflow: hidden;
+  border-radius: 10px; 
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  border-bottom: 3px solid transparent;
+}
+
+.topnav a:hover {
+  border-bottom: 3px solid green;
+}
+
+.topnav a.active {
+  border-bottom: 3px solid green;
+}
+
+/* bottone conferma*/
+
+.button-style{
+	height: 50px;
+	width: 100px;
+	color: white;
+	background-color: #331a00;
+	border-color: green;
+	border-width: 2px;
+	border-style: inset;
+	border-radius: 8px;
+	
+}
+
+/* lisa info azienda */
+
+.style-info{
+	background-color: transparent;
+	border-color: transparent;
+	/* border-bottom-color:  #734d26;
+	border-radius: 15px;
+	border-style: inset;  */
+	
+}
+
+@media (min-width: 576px){
+.col-sm-3 {
+    	-ms-flex: 0 0 25%;
+    	flex-grow: 1;
+    	flex-shrink: 1;
+    	flex-basis: 25%;
+    	max-width: 100%;
+	}
+}
+}	

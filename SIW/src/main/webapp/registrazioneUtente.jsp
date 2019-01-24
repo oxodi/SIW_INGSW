@@ -133,7 +133,7 @@
 						class="form-check-label" for="formCheck-1">Ho letto e
 						accettato i termini e condizione di servizio</label>
 				</div>
-				<button class="btn btn-light submit-button" type="submit">Conferma</button>
+				<button class="button" type="submit">Conferma</button>
 			</form>
 		</div>
 	</div>

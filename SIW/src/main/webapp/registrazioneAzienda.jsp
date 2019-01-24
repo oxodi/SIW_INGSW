@@ -161,7 +161,7 @@
 							class="form-check-label" for="formCheck-1">Ho letto e
 							accettato i termini e condizione di servizio</label>
 					</div>
-					<button class="btn btn-light submit-button" id="bottoneAvanti"
+					<button class="button" id="bottoneAvanti"
 						type="button" style="word-spacing: 4px">Avanti ▶</button>
 				</div>
 
@@ -185,20 +185,20 @@
 
 								<div style="text-align: center; whidt: 100%; margin-top: 25px">
 									<textarea class="form-control"
-										style="margin-left: auto; margin-right: auto; resize: none; border: 2px green solid; border-radius: 15px; background-color: #cfc7af"
-										rows="10" cols="80" maxlength="1000" name="formDescrizione"></textarea>
+										style="margin-left: auto; margin-right: auto; resize: none; border: 2px green solid; border-radius: 15px; 
+										background-color: #cfc7af" rows="10" cols="80" maxlength="1000" name="formDescrizione"></textarea>
 								</div>
 							</div>
 
 						</div>
-						<div style="display: inline-flex;">
-							<div style="text-align: left;">
-								<button class="indietro" id="bottoneIndietro" type="button"
+						<div align="center">
+
+								<button class="button" id="bottoneIndietro" type="button"
 									style="word-spacing: 4px;">◀ Indietro</button>
-							</div>
-							<div style="text-align: center;">
-								<button class="btn btn-light submit-button" type="submit">Conferma</button>
-							</div>
+							
+							
+								<button class="button" type="submit">Conferma</button>
+							
 						</div>
 
 						<!-- </form> -->

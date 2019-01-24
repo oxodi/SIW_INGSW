@@ -208,17 +208,29 @@
 }
 
 /*luca modifica colore e radius bottone submit*/
-.register-form .custom-form .submit-button {
+.button{
 	border-radius: 15px;
 	background: green/*#6caee0*/;
 	color: #fff;
 	font-weight: 700;
-	box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, .08);
+	/* box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, .08); */
 	padding: 14px 22px;
 	border: 0;
 	margin: 30px;
-	outline: 0
+	outline: none !important;
+	
+
 }
+
+.button:hover {
+	background-color: green;
+}
+
+.button:active {
+  background-color: freen;
+ box-shadow: 0 3px #773c00;
+   transform: translateY(4px);
+} 
 
 /* tasto indietro */
 .indietro{

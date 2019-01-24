@@ -29,27 +29,20 @@
 <body>
 
 	<div id="navbar"></div>
-	<div class="container bootstrap snippet border-profile" >
+	<div class="container border-profile">
 		<div class="row" style="margin-top: 30px; margin-bottom: 30px">
 			<div class="col-sm-10" align="left">
-				<h1>Nome Azienda</h1>	
+				<h1>Nome Azienda</h1>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-3" style="min-width: 180px">
+			<div class="col-sm-3" style="min-width: 180px;">
 				<!--left col-->
 
-				<!-- 	<div class="text-center">
-					<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-						class="avatar img-circle img-thumbnail" alt="avatar">
-					<h6>Upload a different photo...</h6>
-					<input type="file" class="text-center center-block file-upload">
-				</div>  -->
-				
 				<div class="text-center">
 					<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
 						class="avatar img-circle img-thumbnail" alt="avatar">
-					<h6>Stemma Aziendale</h6>
+					<h6>Upload a different photo...</h6>
 					<input type="file" class="text-center center-block file-upload">
 				</div>
 				
@@ -58,35 +51,31 @@
 				<!-- info laterali -->
 
 				<!--left col-->
-				<div class="container" style="margin-bottom: 20px">
-					<ul class="list-group" style="min-width: 150px">
-						<li class="list-group-item text-muted">Profilo</li>
-						<li class="list-group-item text-left"><span class="pull-left"><strong>Nome</strong></span>
-							Andrea</li>
-						<li class="list-group-item text-left"><span class="pull-left"><strong>Email</strong></span>
-							andrearossi.it</li>
-						<li class="list-group-item text-left"><span class="pull-left"><strong>Telefono</strong></span>
-							+391236669992</li>
-						<li class="list-group-item text-left"><span class="pull-left"><strong>Ultimo
-									accesso</strong></span> 23/07/2016</li>
+				<div class="container border-info-style">
+					<ul class="list-group" >
+						<li class="list-group-item text-center style-info" style="border-bottom: green 1px solid" ><strong>Dati Azienda</strong></li>
+						<li class="list-group-item text-left style-info" style="border-bottom: green 1px solid"><span
+							class="pull-left"><strong>Nome</strong></span> Andrea</li>
+						<li class="list-group-item text-left style-info" style="border-bottom: green 1px solid"><span
+							class="pull-left"><strong>Email</strong></span> andrearossi.it</li>
+						<li class="list-group-item text-left style-info"style="border-bottom: green 1px solid"><span
+							class="pull-left"><strong>Telefono</strong></span> 1236669992</li>
+						<li class="list-group-item text-left style-info"><span
+							class="pull-left"><strong>Ultimo accesso</strong></span>
+							23/07/2016</li>
 					</ul>
 				</div>
 				<!-- end info laterali -->
 			</div>
 
-			<div class="col-sm-9">
+			<div class="col-sm-9" id="div-disp">
 
 				<!-- navbar profilo -->
-				<ul class="nav nav-tabs">
-					<li class="nav-item"><a class="nav-link active" href="#">Home</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Inserisci
-							Terreno</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Inserisci
-							Prodotto</a></li>
-					<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a>
-					</li>
-				</ul>
+				<div class="topnav " style="border-color: green">
+					<a class="nav-link active" style="border-color: green" href="#">Home</a>
+					<a class="nav-link" href="#">I miei terreni</a> <a class="nav-link"
+						href="#">I miei prodotto</a> <a class="nav-link disabled" href="#">Disabled</a>
+				</div>
 				<!-- end navbar profilo -->
 
 				<!-- form azienda -->
@@ -98,18 +87,18 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-4">
-										<label>Ragione Sociale</label>
+										<label class="label-column">Ragione Sociale</label>
 									</div>
 									<div class="col-xs-2">
 										<input class="input-column" type="text">
 									</div>
 								</div>
 							</div>
-							
+							<br>
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-4">
-										<label>Referente</label>
+										<label class="label-column">Referente</label>
 									</div>
 									<div class="col-xs-2">
 										<input class="input-column" type="text">
@@ -120,7 +109,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-4 ">
-										<label>Sede Legale</label>
+										<label class="label-column">Sede Legale</label>
 									</div>
 									<div class="col-xs-2 ">
 										<input class="input-column" type="text">
@@ -131,7 +120,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-4 ">
-										<label>Indirizzo</label>
+										<label class="label-column">Indirizzo</label>
 									</div>
 									<div class="col-xs-2 ">
 										<input class="input-column" type="text">
@@ -142,7 +131,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-4 ">
-										<label>Citta'</label>
+										<label class="label-column">Citta'</label>
 									</div>
 									<div class="col-xs-2 ">
 										<input class="input-column" type="text">
@@ -157,7 +146,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-4 ">
-										<label>CAP</label>
+										<label class="label-column">CAP</label>
 									</div>
 									<div class="col-xs-2">
 										<input class="input-column" type="text">
@@ -168,7 +157,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-4 ">
-										<label>Provincia</label>
+										<label class="label-column">Provincia</label>
 									</div>
 									<div class="col-xs-2">
 										<input class="input-column" type="text">
@@ -179,7 +168,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-4">
-										<label>P.Iva</label>
+										<label class="label-column">P.Iva</label>
 									</div>
 									<div class="col-xs-2">
 										<input class="input-column" type="text">
@@ -190,7 +179,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-4">
-										<label>Telefono</label>
+										<label class="label-column">Telefono</label>
 									</div>
 									<div class="col-xs-2">
 										<input class="input-column" type="text">
@@ -201,14 +190,18 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md-4">
-										<label>Email</label>
+										<label class="label-column">Email</label>
 									</div>
 									<div class="col-xs-2">
 										<input class="input-column" type="text">
 									</div>
 								</div>
 							</div>
+
 						</div>
+					</div>
+					<div style="margin-top: 30px; margin-bottom: 30px;" align="center" >
+						<button class="btn btn button-style" type="submit">Conferma</button>
 					</div>
 				</div>
 			</div>
