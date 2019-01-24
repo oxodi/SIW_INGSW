@@ -27,7 +27,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 			int id = GestoreID.getId(connection, "azienda_id_seq", "azienda");
 			azienda.setId(id);
 
-			String insert = "INSERT INTO azienda(id, ragione_sociale, referente, sede_legale, indirizzo, " 
+			String insert = "INSERT INTO azienda(id, ragione_sociale, referente, sede_legale, indirizzo, "
 					+ "citta, cap, provincia, partita_iva, telefono, descrizione, email) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
@@ -223,27 +223,27 @@ public class AziendaDaoJDBC implements AziendaDao {
 	public boolean checkAzienda(String email, String password) {
 		Connection connection = this.dataSource.getConnection();
 		boolean status = false;
-		
+
 		try {
 			String check = "SELECT * FROM cliente WHERE email=? AND password=?";
 			PreparedStatement statement = connection.prepareStatement(check);
-			
+
 			statement.setString(1, email);
 			statement.setString(2, password);
-			
+
 			ResultSet result = statement.executeQuery();
-			
+
 			status = result.next();
-			
+
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		}
-		
-		
+
 		return status;
 	}
 
 	@Override
+
 	public List<Azienda> cercaAziendaPerTipologiaPeriodo(boolean servizioParziale, boolean servizioCompleto,
 			String periodo) {
 		Connection connection = this.dataSource.getConnection();
@@ -289,5 +289,45 @@ public class AziendaDaoJDBC implements AziendaDao {
 		return aziende;
 	}
 
+	public Azienda cercaPerEmail(String email) {
+		Connection connection = this.dataSource.getConnection();
+		Azienda azienda = null;
+		try {
+			PreparedStatement statement;
+			String query = "SELECT * FROM azienda WHERE email = ?";
+
+			statement = connection.prepareStatement(query);
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+
+			if (result.next()) {
+
+				azienda = new Azienda();
+				azienda.setId(result.getInt("id"));
+				azienda.setRagioneSociale(result.getString("ragione_sociale"));
+				azienda.setReferente(result.getString("referente"));
+				azienda.setSedeLegale(result.getString("sede_legale"));
+				azienda.setIndirizzo(result.getString("indirizzo"));
+				azienda.setCitta(result.getString("citta"));
+				azienda.setCap(result.getString("cap"));
+				azienda.setProvincia(result.getString("provincia"));
+				azienda.setPartitaIVA(result.getString("partita_iva"));
+				azienda.setTelefono(result.getString("telefono"));
+				azienda.setDescrizioneServizi(result.getString("descrizione"));
+				azienda.setEmail(result.getString("email"));
+
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return azienda;
+
+	}
 
 }
