@@ -18,4 +18,6 @@ public interface AziendaDao {
 	public void setPassword(Azienda azienda, String password);
 	
 	public boolean checkAzienda(String email, String password);
+	
+	public List<Azienda> cercaAziendaPerTipologiaPeriodo(boolean servizioParziale, boolean servizioCompleto, String periodo);
 }

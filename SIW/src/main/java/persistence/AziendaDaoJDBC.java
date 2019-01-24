@@ -243,5 +243,51 @@ public class AziendaDaoJDBC implements AziendaDao {
 		return status;
 	}
 
+	@Override
+	public List<Azienda> cercaAziendaPerTipologiaPeriodo(boolean servizioParziale, boolean servizioCompleto,
+			String periodo) {
+		Connection connection = this.dataSource.getConnection();
+		List<Azienda> aziende = new LinkedList<Azienda>();
+
+		try {
+			Azienda azienda;
+			PreparedStatement statement;
+			String query = "SELECT azienda.* FROM azienda INNER JOIN terreno ON azienda.id = terreno.id_azienda WHERE terreno.servizio_parziale = ? AND terreno.servizio_completo = ? AND terreno.periodo_coltivazione = ? GROUP BY azienda.id";
+			statement = connection.prepareStatement(query);
+			statement.setBoolean(1, servizioParziale);
+			statement.setBoolean(2, servizioCompleto);
+			statement.setString(3, periodo);
+			ResultSet result = statement.executeQuery();
+
+			while (result.next()) {
+
+				azienda = new Azienda();
+				azienda.setId(result.getInt("id"));
+				azienda.setRagioneSociale(result.getString("ragione_sociale"));
+				azienda.setReferente(result.getString("referente"));
+				azienda.setSedeLegale(result.getString("sede_legale"));
+				azienda.setIndirizzo(result.getString("indirizzo"));
+				azienda.setCitta(result.getString("citta"));
+				azienda.setCap(result.getString("cap"));
+				azienda.setProvincia(result.getString("provincia"));
+				azienda.setPartitaIVA(result.getString("partita_iva"));
+				azienda.setTelefono(result.getString("telefono"));
+				azienda.setDescrizioneServizi(result.getString("descrizione"));
+				azienda.setEmail(result.getString("email"));
+
+				aziende.add(azienda);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return aziende;
+	}
+
 
 }

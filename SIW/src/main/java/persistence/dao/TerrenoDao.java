@@ -24,6 +24,8 @@ public interface TerrenoDao {
 	public ArrayList<Ortaggio> cercaOrtaggiPerTerreno(int id_terreno);
 
 	public List<Terreno> cercaPerServizio(boolean servizioParziale, boolean servizioCompleto);
+	
+	public List<Terreno> cercaPerServizioPeriodo(boolean servizioParziale, boolean servizioCompleto, String periodo);
 
 	public List<Terreno> cercaPerPeriodo(String periodo);
 
