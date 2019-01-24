@@ -235,5 +235,46 @@ public class ClienteDaoJDBC implements ClienteDao {
 		return status;
 	}
 
+	@Override
+	public Cliente cercaPerEmail(String email) {
+		Connection connection = this.dataSource.getConnection();
+		Cliente cliente = null;
+		try {
+			String query = "SELECT * FROM cliente WHERE email=?";
+			PreparedStatement statement = connection.prepareStatement(query);
+
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+
+			if (result.next()) {
+
+				cliente = new Cliente();
+				cliente.setId(result.getInt("id"));
+				cliente.setNome(result.getString("nome"));
+				cliente.setCognome(result.getString("cognome"));
+				cliente.setCodiceFiscale(result.getString("codice_fiscale"));
+				long secs = result.getDate("data_di_nascita").getTime();
+				cliente.setDataDiNascita(new java.util.Date(secs));
+				cliente.setIndirizzo(result.getString("indirizzo"));
+				cliente.setCitta(result.getString("citta"));
+				cliente.setCap(result.getString("cap"));
+				cliente.setProvincia(result.getString("provincia"));
+				cliente.setTelefono(result.getString("telefono"));
+				cliente.setEmail(result.getString("email"));
+
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+			}
+		}
+
+		return cliente;
+	}
+
 
 }

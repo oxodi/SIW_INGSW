@@ -9,6 +9,8 @@ public interface ClienteDao {
 
 	public Cliente cercaPerChiavePrimaria(int id);
 
+	public Cliente cercaPerEmail(String email);
+	
 	public List<Cliente> cercaTutti();
 
 	public void aggiorna(Cliente cliente);
