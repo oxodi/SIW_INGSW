@@ -6,7 +6,7 @@
 	class="navbar navbar-light navbar-expand-md navigation-clean-button"
 	style="background-color: transparent; position: relative; z-index: 2000">
 	<div class="container">
-		<a class="navbar-brand" href="index.jsp" title="TheGrower"> <img
+		<a class="navbar-brand" href="Home" title="TheGrower"> <img
 			style="max-width: 200px; margin-top: -10px;"
 			src="assets/img/logo2.png">
 		</a>
@@ -39,13 +39,12 @@
 				class="btn btn-light action-button" role="button" href="Login"
 				style="background-color: green">Accedi</a>
 			</span> -->
-			<c:out value="${requestScope.failed}"></c:out>
 			
-			<c:if test="${requestScope.cliente != null}">
-					<p>Sei loggato come ${requestScope.cliente.getNome()}</p>
-					<a href="doLogin?logout=true">Logout</a>
+			<c:if test="${sessionScope.cliente != null}">
+					<p>Sei loggato come ${sessionScope.cliente.getNome()}</p>
+					<a href="Login?logout=true">Logout</a>
 				</c:if>
-				<c:if test="${requestScope.cliente == null}">
+				<c:if test="${sessionScope.cliente == null}">
 					<div class="dropdown">
 				<a href="#" class="dropdown-toggle btn" data-toggle="dropdown"
 					style="color: white; background-color: green; border-radius: 15px;"><b>Login</b>

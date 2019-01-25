@@ -37,7 +37,7 @@
 		<h1>Scegli Azienda</h1>
 		<h5>Tutte le aziende di seguito hanno almeno un terreno che
 			soddisfa le tue esigenze. Scorrile tutte e clicca su quella che più
-			di convince.</h5>
+			ti convince.</h5>
 
 
 		<div class="list-group" >
@@ -56,7 +56,7 @@
 
 						<div class="column" id="column2">${a.descrizioneServizi}</div>
 
-						<div class="column" id="column3">terreni disponibili: 12</div>
+						<div class="column" id="column3">terreni disponibili: ${a.terreni.size() }</div>
 
 					</div>
 

@@ -1,9 +1,10 @@
 <link rel="stylesheet" href="assets/css/navbar.css">
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <nav
 	class="navbar navbar-light navbar-expand-md navigation-clean-button"
 	style="background-color: transparent; position: relative; z-index: 2000">
 	<div class="container">
-		<a class="navbar-brand" href="index.jsp" title="TheGrower"> <img
+		<a class="navbar-brand" href="Home" title="TheGrower"> <img
 			style="max-width: 200px; margin-top: -10px;"
 			src="assets/img/logo2.png">
 		</a>
@@ -21,7 +22,7 @@
 				<li class="nav-item" role="presentation"><a class="nav-link text-dark"
 					href="#"><strong>Prodotti</strong></a></li>
 				<li class="nav-item" role="presentation"><a class="nav-link text-dark"
-					href="PageLoader?id=utenti"><strong>Area Utenti</strong></a></li>
+					href="PageLoader?id=home"><strong>Area Utenti</strong></a></li>
 				<!-- 	<li class="dropdown nav-item"><a
 					class="dropdown-toggle nav-link" data-toggle="dropdown"
 					aria-expanded="false" href="#">Dropdown </a>
@@ -38,6 +39,11 @@
 				class="btn btn-light action-button" role="button" href="Login"
 				style="background-color: green">Accedi</a>
 			</span> -->
+			<c:if test="${sessionScope.azienda != null}">
+					<p>Sei loggato come ${sessionScope.azienda.getRagioneSociale()}</p>
+					<a href="Login?logout=true">Logout</a>
+				</c:if>
+				<c:if test="${sessionScope.azienda == null}">
 			<div class="dropdown">
 				<a href="#" class="dropdown-toggle btn" data-toggle="dropdown"
 					style="color: white; background-color: green; border-radius: 15px;"><b>Login</b>
@@ -59,12 +65,12 @@
 									<div class="form-group">
 										<label class="sr-only" for="exampleInputEmail2">Email
 										</label> <input type="email" class="form-control"
-											id="exampleInputEmail2" placeholder="Email address" required>
+											id="exampleInputEmail2" name="email" placeholder="Email address" required>
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="exampleInputPassword2">Password</label>
 										<input type="password" class="form-control"
-											id="exampleInputPassword2" placeholder="Password" required>
+											id="exampleInputPassword2" name="pass" placeholder="Password" required>
 										<div class="help-block text-right">
 											<a href="" style="color: green;">Hai dimenticato la
 												password ?</a>
@@ -87,6 +93,7 @@
 					</li>
 				</ul>
 			</div>
+			</c:if>
 			<!-- 
 			<span class="navbar-text actions"> <a
 				class="btn btn-light action-button" role="button"
