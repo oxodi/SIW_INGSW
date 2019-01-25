@@ -67,7 +67,7 @@ public class Login extends HttpServlet {
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if(req.getParameter("logout").equals("true"))
 			req.getSession().invalidate();
-			RequestDispatcher rs = req.getRequestDispatcher("homeAziende.jsp");
+			RequestDispatcher rs = req.getRequestDispatcher("Home");
 			rs.forward(req, resp);
 		}
 }
