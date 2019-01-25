@@ -39,13 +39,13 @@
 				class="btn btn-light action-button" role="button" href="Login"
 				style="background-color: green">Accedi</a>
 			</span> -->
-			<c:out value="${requestScope.failed}"></c:out>
 			
-			<c:if test="${requestScope.cliente != null}">
-					<p>Sei loggato come ${requestScope.cliente.getNome()}</p>
+			<c:out value="${sessionScope.utente.getNome() }"></c:out>
+			<c:if test="${requestScope.utente != null}">
+					<p>Sei loggato come ${sessionScope.utente.getNome()}</p>
 					<a href="doLogin?logout=true">Logout</a>
 				</c:if>
-				<c:if test="${requestScope.cliente == null}">
+				<c:if test="${sessionScope.utente == null}">
 					<div class="dropdown">
 				<a href="#" class="dropdown-toggle btn" data-toggle="dropdown"
 					style="color: white; background-color: green; border-radius: 15px;"><b>Login</b>

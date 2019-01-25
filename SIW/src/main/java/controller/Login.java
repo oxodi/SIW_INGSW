@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.postgresql.jdbc2.optional.SimpleDataSource;
 
+import entita.Cliente;
 import persistence.ClienteDaoJDBC;
 import persistence.PostgresDAOFactory;
 import persistence.dao.ClienteDao;
@@ -35,13 +36,12 @@ public class Login extends HttpServlet {
 		System.out.println(request.getSession());
 		System.out.println(request.getParameter("area"));
 		System.out.println(request.getAttribute("cliente"));
-		String username = (String) clientedao.cercaPerEmail(email).getNome();
-		
+		Cliente user = clientedao.cercaPerEmail(email);
+		System.out.println("Si è loggato l'utente " + user.getNome());
 		if (request.getParameter("area").equals("utente")) {
 			if (clientedao.checkCliente(email, pass)) {
-				request.getSession().setAttribute("cliente", username);
+				request.getSession().setAttribute("utente", user);
 				RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
-				
 				rs.forward(request, response);
 			} else {
 				out.println("Username o Password errati");
