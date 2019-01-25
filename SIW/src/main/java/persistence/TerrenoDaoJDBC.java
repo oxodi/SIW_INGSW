@@ -430,4 +430,35 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		}
 		return clienti;
 	}
+
+	@Override
+	public List<Terreno> cercaPerServizioPeriodo(boolean servizioParziale, boolean servizioCompleto, String periodo) {
+		Connection connection = this.dataSource.getConnection();
+		List<Terreno> terreni = new ArrayList<Terreno>();
+
+		try {
+			Terreno terreno;
+			PreparedStatement statement;
+			String query = "SELECT * FROM terreno WHERE servizio_parziale = ? AND servizio_completo = ? AND periodo_coltivazione = ?";
+			statement = connection.prepareStatement(query);
+			statement.setBoolean(1, servizioParziale);
+			statement.setBoolean(2, servizioCompleto);
+			statement.setString(3, periodo);
+			ResultSet result = statement.executeQuery();
+
+			while (result.next()) {
+				terreno = cercaPerChiavePrimaria(result.getInt("id"));
+				terreni.add(terreno);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+			}
+		}
+		return terreni;
+	}
 }
