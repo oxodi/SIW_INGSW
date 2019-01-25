@@ -27,15 +27,6 @@
 
 </head>
 <body>
-<c:out value= "${requestScope.failed}"/>
-
-<c:if test="${cliente != null}">
-					<p>Sei loggato come ${cliente}</p>
-					<a href="doLogin?logout=true">Logout</a>
-				</c:if>
-				<c:if test="${cliente == null}">
-					<a href="doLogin">Login</a>
-				</c:if>	
 	<!-- Start: Navigation with Button -->
 	<div id="navbar"></div>
 	<!-- End: Navigation with Button -->

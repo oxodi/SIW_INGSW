@@ -1,58 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0" 
-xmlns="http://java.sun.com/xml/ns/javaee"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-  <servlet>
-  	<servlet-name>PageLoader</servlet-name>
-  	<servlet-class>controller.PageLoader</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>Login</servlet-name>
-  	<servlet-class>controller.Login</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>InserisciAzienda</servlet-name>
-  	<servlet-class>controller.InserisciAzienda</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>RegistrationClient</servlet-name>
-  	<servlet-class>controller.RegistrationClient</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>Logged</servlet-name>
-  	<servlet-class>controller.Logged</servlet-class>
-  </servlet>
-    <servlet>
-    	<servlet-name>DammiAzienda</servlet-name>
-    	<servlet-class>controller.DammiAzienda</servlet-class>
-    </servlet>
-  <servlet-mapping>
-  	<servlet-name>Login</servlet-name>
-  	<url-pattern>/Login</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>InserisciAzienda</servlet-name>
-  	<url-pattern>/InserisciAzienda</url-pattern>
-  </servlet-mapping>
-    <servlet-mapping>
-  	<servlet-name>PageLoader</servlet-name>
-  	<url-pattern>/PageLoader</url-pattern>
-  </servlet-mapping>
-    <servlet-mapping>
-    	<servlet-name>RegistrationClient</servlet-name>
-    	<url-pattern>/RegistrationClient</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-    	<servlet-name>Logged</servlet-name>
-    	<url-pattern>/Logged</url-pattern>
-    </servlet-mapping>
-        <servlet-mapping>
-        	<servlet-name>DammiAzienda</servlet-name>
-        	<url-pattern>/DammiAzienda</url-pattern>
-        </servlet-mapping>
-    
+	<servlet>
+		<servlet-name>PageLoader</servlet-name>
+		<servlet-class>controller.PageLoader</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>controller.Login</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>InserisciAzienda</servlet-name>
+		<servlet-class>controller.InserisciAzienda</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RegistrationClient</servlet-name>
+		<servlet-class>controller.RegistrationClient</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Logged</servlet-name>
+		<servlet-class>controller.Logged</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+  	</description>
+		<display-name>Home</display-name>
+		<servlet-name>Home</servlet-name>
+		<servlet-class>controller.Home</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>DammiAzienda</servlet-name>
+		<servlet-class>controller.DammiAzienda</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>InserisciAzienda</servlet-name>
+		<url-pattern>/InserisciAzienda</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PageLoader</servlet-name>
+		<url-pattern>/PageLoader</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegistrationClient</servlet-name>
+		<url-pattern>/RegistrationClient</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Logged</servlet-name>
+		<url-pattern>/Logged</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Home</servlet-name>
+		<url-pattern>/Home</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>DammiAzienda</servlet-name>
+		<url-pattern>/DammiAzienda</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+    <welcome-file>Home</welcome-file>
+</welcome-file-list>
 </web-app>
 
 

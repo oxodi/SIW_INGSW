@@ -39,8 +39,7 @@ public class PageLoader extends HttpServlet {
 		
 		else if(id.equals("home"))
 		{
-			req.setAttribute("failed", "porcaputtanamaremmamaiala");
-			RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("Home");
 			rd.forward(req, resp);
 		}
 	}

@@ -35,14 +35,15 @@
 
 	<div class="container"
 		style="border-style: solid; border-radius: 25px; border-color: green">
+		<form action="DammiAzienda" method="get">
 		<h1 class="text-center" style='margin-top: 50px;'>Prenotare un
 			terreno</h1>
-		<h3 style="margin-top: 50px; margin-bottom: 30px; margin-left: 30px" align=left>Seleziona
-			un servizio</h3>
+		<h3 style="margin-top: 50px; margin-bottom: 30px; margin-left: 30px"
+			align=left>Seleziona un servizio</h3>
 		<div class="container">
 
 			<div class="row d-flex justify-content-center">
-			
+
 				<div class="col-lg-4">
 					<div class="our-team-main" id="3">
 
@@ -59,8 +60,10 @@
 								dell'azienda fino alla consegna del prodotto finale. </span>
 							<p>
 								<button class="button" onclick="button = 1; changecolour();">Seleziona</button>
-									<input type="text" id="completo" value="false" style="display: none" />
-									</p>
+								
+								<input type="text" id="completo" value="false" name="bCompleto" /> 
+									
+								</p>
 						</div>
 
 					</div>
@@ -84,12 +87,13 @@
 								cliente. </span>
 							<p>
 								<button class="button" onclick="button = 2; changecolour();">Seleziona</button>
-									<input type="text" id="parziale" value="false" style="display: none" />
+								<input type="text" id="parziale" value="false" name="bParziale"
+									 />
 							</p>
 						</div>
 
 					</div>
-				</div>	
+				</div>
 			</div>
 
 
@@ -97,29 +101,30 @@
 
 		</div>
 		<div>
-			<h3 style="margin-top: 30px; margin-bottom: 30px; margin-left: 30px" align="left">Seleziona
-				un periodo di coltivazione</h3>
+			<h3 style="margin-top: 30px; margin-bottom: 30px; margin-left: 30px"
+				align="left">Seleziona un periodo di coltivazione</h3>
 
 		</div>
 		<div>
 			<div>
 
 				<ul>
-					<li><input type="checkbox" id="cb1" /> <label for="cb1"><img
+					<li><input type="checkbox" id="cb1" name="stagioni"> <label for="cb1"><img
 							src="assets\img\ruotaStagioni\primavera.png" /></label></li>
 
-					<li><input type="checkbox" id="cb4" /> <label for="cb4"><img
+					<li><input type="checkbox" id="cb4" name="stagioni"/> <label for="cb4"><img
 							src="assets\img\ruotaStagioni\estate.png" /></label></li>
-				</ul>
+					<li><a class="button" style=" margin-left: 130px">Cerca tutte</a></li>
+					</ul>
 
 				<div style='margin-top: -15px;'>
 					<ul>
-						<li><input type="checkbox" id="cb2" /> <label for="cb2"><img
+						<li><input type="checkbox" id="cb2" name="stagioni"/> <label for="cb2"><img
 								src="assets\img\ruotaStagioni/inverno.png" /></label></li>
 
-						<li><input type="checkbox" id="cb5" /> <label for="cb5"><img
+						<li><input type="checkbox" id="cb5" name="stagioni"/> <label for="cb5"><img
 								src="assets\img\ruotaStagioni\autunno.png" /></label></li>
-						<li><button class="button" style="margin-left: 100px; width: 200px">Avanti</button></li>
+						<li><a  class="button" style=" margin-left: 130px">Cerca selezione</a></li>
 					</ul>
 				</div>
 
@@ -138,9 +143,9 @@
 		<!--team-6-->
 
 
-
+	</form>
 	</div>
-
+ 
 	<!-- End: Article List -->
 	<!-- Start: footer -->
 	<div id="footer"></div>

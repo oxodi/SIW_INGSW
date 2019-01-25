@@ -1,6 +1,7 @@
 package entita;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Azienda {
 
@@ -16,7 +17,7 @@ public class Azienda {
 	private String cap;
 	private String provincia;
 	private String descrizioneServizi;
-	private ArrayList<Terreno> terreni;
+	private List<Terreno> terreni;
 
 	public Azienda() {
 	}
@@ -69,12 +70,12 @@ public class Azienda {
 		this.ragioneSociale = ragioneSociale;
 	}
 
-	public ArrayList<Terreno> getTerreni() {
+	public List<Terreno> getTerreni() {
 		return terreni;
 	}
 
-	public void setTerreni(ArrayList<Terreno> terreni) {
-		this.terreni = terreni;
+	public void setTerreni(List<Terreno> list) {
+		this.terreni = list;
 	}
 
 	public int getId() {
