@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -31,8 +31,8 @@
 
 
 
-	<div class="container" id="land"
-		style="border-style: solid; border-radius: 25px; border-color: green;">
+	<div class="container" id="land" 
+		style="border-style: solid; border-radius: 25px; border-color: green;" >
 
 		<h1>Scegli Azienda</h1>
 		<h5>Tutte le aziende di seguito hanno almeno un terreno che
@@ -40,74 +40,30 @@
 			di convince.</h5>
 
 
-		<div class="list-group">
+		<div class="list-group" >
 			<nav id="nav1">
-				<button type="button" class="list-group-item list-group-item-action">
-					<h2 class="list-group-item-heading">Azienda Agricola Il
-						Leprotto</h2>
+				<c:forEach items="${aziende}" var="a">
+				<button type="button" class="list-group-item list-group-item-action" >
+					
+					<h2 class="list-group-item-heading">${a.id }</h2>
 
 					<div class="row">
-
+						
 						<div class="column" id="column1">
 							<img src="https://www.w3schools.com/images/w3schools_green.jpg"
 								class="img-reponsive img-rounded" id="imageAzienda" />
 						</div>
 
-						<div class="column" id="column2">ciao ciao ciao ciao ciao
-							ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao
-							ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao
-							cioa ciao ciao ciaociao</div>
+						<div class="column" id="column2">${a.descrizioneServizi}</div>
 
 						<div class="column" id="column3">terreni disponibili: 12</div>
 
 					</div>
 
-
+				
 				</button>
-				<button type="button" class="list-group-item list-group-item-action">
-					<h2 class="list-group-item-heading">Azienda Agricola Il
-						Leprotto</h2>
+					</c:forEach>
 
-					<div class="row">
-
-						<div class="column" id="column1">
-							<img src="https://www.w3schools.com/images/w3schools_green.jpg"
-								class="img-reponsive img-rounded" id="imageAzienda" />
-						</div>
-
-						<div class="column" id="column2">ciao ciao ciao ciao ciao
-							ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao
-							ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao
-							cioa ciao ciao ciaociao</div>
-
-						<div class="column" id="column3">terreni disponibili: 12</div>
-
-					</div>
-
-
-				</button>
-				<button type="button" class="list-group-item list-group-item-action">
-					<h2 class="list-group-item-heading">Azienda Agricola Il
-						Leprotto</h2>
-
-					<div class="row">
-
-						<div class="column" id="column1">
-							<img src="https://www.w3schools.com/images/w3schools_green.jpg"
-								class="img-reponsive img-rounded" id="imageAzienda" />
-						</div>
-
-						<div class="column" id="column2">ciao ciao ciao ciao ciao
-							ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao
-							ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao ciao
-							cioa ciao ciao ciaociao</div>
-
-						<div class="column" id="column3">terreni disponibili: 12</div>
-
-					</div>
-
-
-				</button>
 
 			</nav>
 		</div>

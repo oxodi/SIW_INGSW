@@ -24,6 +24,10 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   	<servlet-name>Logged</servlet-name>
   	<servlet-class>controller.Logged</servlet-class>
   </servlet>
+    <servlet>
+    	<servlet-name>DammiAzienda</servlet-name>
+    	<servlet-class>controller.DammiAzienda</servlet-class>
+    </servlet>
   <servlet-mapping>
   	<servlet-name>Login</servlet-name>
   	<url-pattern>/Login</url-pattern>
@@ -44,6 +48,10 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     	<servlet-name>Logged</servlet-name>
     	<url-pattern>/Logged</url-pattern>
     </servlet-mapping>
+        <servlet-mapping>
+        	<servlet-name>DammiAzienda</servlet-name>
+        	<url-pattern>/DammiAzienda</url-pattern>
+        </servlet-mapping>
     
 </web-app>
 
