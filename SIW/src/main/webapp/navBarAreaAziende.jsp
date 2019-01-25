@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="assets/css/navbar.css">
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <nav
 	class="navbar navbar-light navbar-expand-md navigation-clean-button"
 	style="background-color: transparent; position: relative; z-index: 2000">
@@ -38,6 +39,11 @@
 				class="btn btn-light action-button" role="button" href="Login"
 				style="background-color: green">Accedi</a>
 			</span> -->
+			<c:if test="${requestScope.utente != null}">
+					<p>Sei loggato come ${sessionScope.utente.getNome()}</p>
+					<a href="doLogin?logout=true">Logout</a>
+				</c:if>
+				<c:if test="${sessionScope.utente == null}">
 			<div class="dropdown">
 				<a href="#" class="dropdown-toggle btn" data-toggle="dropdown"
 					style="color: white; background-color: green; border-radius: 15px;"><b>Login</b>
@@ -87,6 +93,7 @@
 					</li>
 				</ul>
 			</div>
+			</c:if>
 			<!-- 
 			<span class="navbar-text actions"> <a
 				class="btn btn-light action-button" role="button"

@@ -225,7 +225,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 		boolean status = false;
 
 		try {
-			String check = "SELECT * FROM cliente WHERE email=? AND password=?";
+			String check = "SELECT * FROM azienda WHERE email=? AND password=?";
 			PreparedStatement statement = connection.prepareStatement(check);
 
 			statement.setString(1, email);

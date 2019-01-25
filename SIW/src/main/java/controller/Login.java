@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.postgresql.jdbc2.optional.SimpleDataSource;
 
+import entita.Azienda;
 import entita.Cliente;
 import persistence.ClienteDaoJDBC;
 import persistence.PostgresDAOFactory;
+import persistence.dao.AziendaDao;
 import persistence.dao.ClienteDao;
 
 /**
@@ -33,13 +35,14 @@ public class Login extends HttpServlet {
 		String email = request.getParameter("email");
 		String pass = request.getParameter("pass");
 		ClienteDao clientedao = factory.getClienteDAO();
+		AziendaDao aziendadao = factory.getAziendaDAO();
 		System.out.println(request.getSession());
 		System.out.println(request.getParameter("area"));
-		System.out.println(request.getAttribute("cliente"));
-		Cliente user = clientedao.cercaPerEmail(email);
-		System.out.println("Si è loggato l'utente " + user.getNome());
+		System.out.println(request.getAttribute("utente"));
+		
 		if (request.getParameter("area").equals("utente")) {
 			if (clientedao.checkCliente(email, pass)) {
+				Cliente user = clientedao.cercaPerEmail(email);
 				request.getSession().setAttribute("utente", user);
 				RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
 				rs.forward(request, response);
@@ -49,8 +52,10 @@ public class Login extends HttpServlet {
 				rs.include(request, response);
 			}
 		} else if (request.getParameter("area").equals("azienda")) {
-			if (factory.getAziendaDAO().checkAzienda(email, pass)) {
-				RequestDispatcher rs = request.getRequestDispatcher("Logged");
+			if (aziendadao.checkAzienda(email, pass)) {
+				Azienda user = aziendadao.cercaPerEmail(email);
+				request.getSession().setAttribute("utente", user);
+				RequestDispatcher rs = request.getRequestDispatcher("homeAziende.jsp");
 				rs.forward(request, response);
 			} else {
 				out.println("Username o Password errati");
