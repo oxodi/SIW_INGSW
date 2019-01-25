@@ -15,6 +15,8 @@ public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(System.getProperty("catalina.home"));
+ 
 		request.setAttribute("utente", null);
 		RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
 		rs.forward(request, response);
