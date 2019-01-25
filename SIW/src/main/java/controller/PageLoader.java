@@ -42,6 +42,10 @@ public class PageLoader extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("Home");
 			rd.forward(req, resp);
 		}
+		else if(id.equals("backendAzienda")) {
+			RequestDispatcher rd = req.getRequestDispatcher("PrelevaDatiTerreno");
+			rd.forward(req, resp);
+		}
 	}
 
 }

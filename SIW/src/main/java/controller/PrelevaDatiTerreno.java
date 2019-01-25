@@ -28,6 +28,7 @@ public class PrelevaDatiTerreno extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Azienda aziendaInSessione = (Azienda) req.getSession().getAttribute("azienda");
 		System.out.println("Sono in Dammi terreni");
+		System.out.println((Azienda) req.getSession().getAttribute("azienda"));
 		TerrenoDao terrenodao = PostgresDAOFactory.getInstance().getTerrenoDAO();
 		List<Terreno> terreni = terrenodao.cercaPerAzienda(aziendaInSessione.getId());
 		req.setAttribute("terreni", terreni);
