@@ -179,6 +179,14 @@ label img {
 	width: 300px;
 	transition-duration: 0.2s;
 	transform-origin: 50% 50%;
+	border-style: solid;
+	border-color: black;
+	border-radius: 10px;
+
+}
+
+label img:hover{
+	background: #f2dca9;
 }
 
 :checked+label {
@@ -190,6 +198,8 @@ label img {
 	background-color: #106b21;
 	transform: scale(1);
 }
+
+
 
 :checked+label img {
 	transform: scale(0.9);
@@ -225,9 +235,4 @@ label img {
 	left: 20px;
 	right: 20px;
 	
-}
-
-#completo{
-	display:none;
-    visibility:hidden;
 }
