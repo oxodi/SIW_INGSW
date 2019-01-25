@@ -24,6 +24,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   	<servlet-name>Logged</servlet-name>
   	<servlet-class>controller.Logged</servlet-class>
   </servlet>
+<<<<<<< HEAD
 
   <servlet>
   	<description>
@@ -32,6 +33,12 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   	<servlet-name>Home</servlet-name>
   	<servlet-class>controller.Home</servlet-class>
   </servlet>
+=======
+    <servlet>
+    	<servlet-name>DammiAzienda</servlet-name>
+    	<servlet-class>controller.DammiAzienda</servlet-class>
+    </servlet>
+>>>>>>> branch 'master' of https://github.com/oxodi/SIW_INGSW.git
   <servlet-mapping>
   	<servlet-name>Login</servlet-name>
   	<url-pattern>/Login</url-pattern>
@@ -52,10 +59,17 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     	<servlet-name>Logged</servlet-name>
     	<url-pattern>/Logged</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
     <servlet-mapping>
     	<servlet-name>Home</servlet-name>
     	<url-pattern>/Home</url-pattern>
     </servlet-mapping>
+=======
+        <servlet-mapping>
+        	<servlet-name>DammiAzienda</servlet-name>
+        	<url-pattern>/DammiAzienda</url-pattern>
+        </servlet-mapping>
+>>>>>>> branch 'master' of https://github.com/oxodi/SIW_INGSW.git
     
 </web-app>
 
