@@ -86,6 +86,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 				azienda.setTelefono(result.getString("telefono"));
 				azienda.setDescrizioneServizi(result.getString("descrizione"));
 				azienda.setEmail(result.getString("email"));
+				azienda.setTerreni(new TerrenoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
 
 			}
 		} catch (SQLException e) {
@@ -127,6 +128,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 				azienda.setTelefono(result.getString("telefono"));
 				azienda.setDescrizioneServizi(result.getString("descrizione"));
 				azienda.setEmail(result.getString("email"));
+				azienda.setTerreni(new TerrenoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
 
 				aziende.add(azienda);
 			}
@@ -274,6 +276,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 				azienda.setTelefono(result.getString("telefono"));
 				azienda.setDescrizioneServizi(result.getString("descrizione"));
 				azienda.setEmail(result.getString("email"));
+				azienda.setTerreni(new TerrenoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
 
 				aziende.add(azienda);
 			}
@@ -315,6 +318,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 				azienda.setTelefono(result.getString("telefono"));
 				azienda.setDescrizioneServizi(result.getString("descrizione"));
 				azienda.setEmail(result.getString("email"));
+				azienda.setTerreni(new TerrenoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
 
 			}
 		} catch (SQLException e) {

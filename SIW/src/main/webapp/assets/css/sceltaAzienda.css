@@ -19,8 +19,8 @@ h1 {
 
 .list-group {
 	outline: none;
-	min-height: 435px;
-	max-height: 435px;
+	min-height: 700px;
+	max-height: 700px;
 	overflow: hidden;
 	overflow-color: trasparent;
 	overflow-y: scroll;
