@@ -40,9 +40,8 @@
 				style="background-color: green">Accedi</a>
 			</span> -->
 			
-			<c:out value="${sessionScope.cliente.getNome() }"></c:out>
-			<c:if test="${requestScope.cliente != null}">
-					<p>Sei loggato come ${sessionScope.utente.getNome()}</p>
+			<c:if test="${sessionScope.cliente != null}">
+					<p>Sei loggato come ${sessionScope.cliente.getNome()}</p>
 					<a href="Login?logout=true">Logout</a>
 				</c:if>
 				<c:if test="${sessionScope.cliente == null}">
