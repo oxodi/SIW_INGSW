@@ -14,6 +14,7 @@ body{
 .border-profile{
 	
 	margin-top: 50px;
+	width: 75%; 
 	border-color: #734d26;
 	border-width: 3px;
 	border-radius: 25px; 
@@ -23,6 +24,7 @@ body{
 .border-info-style{
 	
 	border-color:  #734d26;
+	margin-top: 50px;
 	margin-bottom: 20px;
 	margin-right: 30px;
 	border-width: 1px;
@@ -103,19 +105,35 @@ body{
 .style-info{
 	background-color: transparent;
 	border-color: transparent;
-	/* border-bottom-color:  #734d26;
-	border-radius: 15px;
-	border-style: inset;  */
+
 	
 }
 
-@media (min-width: 576px){
-.col-sm-3 {
-    	-ms-flex: 0 0 25%;
-    	flex-grow: 1;
-    	flex-shrink: 1;
-    	flex-basis: 25%;
-    	max-width: 100%;
-	}
+.image-profile{
+	border-color:  #734d26;
+	border-width: 1.5px;
+	border-style: inset;
 }
-}	
+
+.button{
+	border-radius: 15px;
+	background: green/*#6caee0*/;
+	color: #fff;
+	font-weight: 700;
+	padding: 14px 22px;
+	border: 0;
+	margin: 30px;
+	outline: none !important;
+	
+
+}
+
+.button:hover {
+	background-color: green;
+}
+
+.button:active {
+  background-color: freen;
+ box-shadow: 0 3px #773c00;
+   transform: translateY(4px);
+} 
