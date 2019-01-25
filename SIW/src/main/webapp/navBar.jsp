@@ -1,3 +1,6 @@
+<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%> --%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="assets/css/navbar.css">
 <nav
 	class="navbar navbar-light navbar-expand-md navigation-clean-button"
@@ -13,12 +16,12 @@
 				class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navcol-1">
-			<ul class="nav navbar-nav mr-auto">
-				<li class="nav-item" role="presentation"><a class="nav-link"
+			<ul class="nav navbar-nav mr-auto ">
+				<li class="nav-item " role="presentation"><a class="nav-link text-dark"
 					href="PageLoader?id=prenotaTerreno"><strong>Prenota un terreno</strong></a></li>
-				<li class="nav-item" role="presentation"><a class="nav-link"
+				<li class="nav-item" role="presentation"><a class="nav-link text-dark"
 					href="#"><strong>Ordina un prodotto</strong></a></li>
-				<li class="nav-item" role="presentation"><a class="nav-link"
+				<li class="nav-item" role="presentation"><a class="nav-link text-dark"
 					href="PageLoader?id=azienda"><strong>Area Aziende</strong></a></li>
 				<!-- 	<li class="dropdown nav-item"><a
 					class="dropdown-toggle nav-link" data-toggle="dropdown"
@@ -36,7 +39,14 @@
 				class="btn btn-light action-button" role="button" href="Login"
 				style="background-color: green">Accedi</a>
 			</span> -->
-			<div class="dropdown">
+			<c:out value="${requestScope.failed}"></c:out>
+			
+			<c:if test="${requestScope.cliente != null}">
+					<p>Sei loggato come ${requestScope.cliente.getNome()}</p>
+					<a href="doLogin?logout=true">Logout</a>
+				</c:if>
+				<c:if test="${requestScope.cliente == null}">
+					<div class="dropdown">
 				<a href="#" class="dropdown-toggle btn" data-toggle="dropdown"
 					style="color: white; background-color: green; border-radius: 15px;"><b>Login</b>
 					<span class="caret"></span></a>
@@ -88,6 +98,8 @@
 					</li>
 				</ul>
 			</div>
+				</c:if>				
+			
 			<!-- 
 			<span class="navbar-text actions"> <a
 				class="btn btn-light action-button" role="button"

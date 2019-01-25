@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entita.Cliente;
-import persistence.ClienteDaoJDBC;
 import persistence.PostgresDAOFactory;
 import persistence.dao.ClienteDao;
 

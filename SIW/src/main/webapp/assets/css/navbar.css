@@ -4,6 +4,7 @@
     padding: 14px 14px 0;
     overflow:hidden;
     background-color:rgba(255,255,255,.8);
+    text-color:black;
 }
 #login-dp .help-block{
     font-size:12px    
@@ -23,6 +24,7 @@
 #login-dp .form-group {
     margin-bottom: 10px;
 }
+
 .btn-fb{
     color: #fff;
     border-radius:15px;
@@ -32,6 +34,11 @@
     color: #fff;
     background-color:#496ebc 
 }
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: #ccc !important;
+}
+
 /* .btn-tw{
     color: #fff;
     background-color:#55acee;

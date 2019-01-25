@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>	
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -26,6 +27,15 @@
 
 </head>
 <body>
+<c:out value= "${requestScope.failed}"/>
+
+<c:if test="${cliente != null}">
+					<p>Sei loggato come ${cliente}</p>
+					<a href="doLogin?logout=true">Logout</a>
+				</c:if>
+				<c:if test="${cliente == null}">
+					<a href="doLogin">Login</a>
+				</c:if>	
 	<!-- Start: Navigation with Button -->
 	<div id="navbar"></div>
 	<!-- End: Navigation with Button -->
@@ -75,7 +85,7 @@
 		<div class="container">
 			<!-- Start: Intro -->
 			<div class="intro">
-				<h2 class="text-center">Latest Articles</h2>
+				<h2 class="text-center">Latest Articles   ${requestScope.failed}</h2>
 				<p class="text-center">Nunc luctus in metus eget fringilla.
 					Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut
 					laoreet vitae.</p>
