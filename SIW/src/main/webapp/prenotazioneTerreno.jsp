@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="assets/css/prenotazioneTerreno.css">
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/jquery.imgcheckbox.js"></script>
-<!-- <script src="assets/js/scriptPrenotazioneTerreno.js"></script>  -->
+<script src="assets/js/scriptPrenotazioneTerreno.js"></script>
 <!-- Script for load Navigation Bar -->
 <script>
 	$(function() {
@@ -37,16 +37,14 @@
 		style="border-style: solid; border-radius: 25px; border-color: green">
 		<h1 class="text-center" style='margin-top: 50px;'>Prenotare un
 			terreno</h1>
-
-		<div class="container" style="margin-left: 20px; margin-right: 20px">
-			<h3 style="margin-top: 50px; margin-bottom: 30px" align=left>Seleziona
-				un servizio</h3>
+		<h3 style="margin-top: 50px; margin-bottom: 30px; margin-left: 30px" align=left>Seleziona
+			un servizio</h3>
+		<div class="container">
 
 			<div class="row d-flex justify-content-center">
-
-				<!--team-1-->
+			
 				<div class="col-lg-4">
-					<div class="our-team-main">
+					<div class="our-team-main" id="3">
 
 						<div class="team-front">
 							<img src="assets/img/ruotaStagioni/iconServizioCompleto.png"
@@ -55,11 +53,14 @@
 							<p>Maggiori informazioni</p>
 						</div>
 
-						<div class="team-back">
-							<span> Servizio completo </span>
+						<div class="team-back" id="1">
+							<span> Il servizio completo comprende l'affitto del
+								terreno ed il processo di coltivazione completamente a cura
+								dell'azienda fino alla consegna del prodotto finale. </span>
 							<p>
-								<button class="button">Seleziona</button>
-							</p>
+								<button class="button" onclick="button = 1; changecolour();">Seleziona</button>
+									<input type="text" id="completo" value="false" style="display: none" />
+									</p>
 						</div>
 
 					</div>
@@ -68,7 +69,7 @@
 
 				<!--team-2-->
 				<div class="col-lg-4">
-					<div class="our-team-main">
+					<div class="our-team-main" id="4">
 
 						<div class="team-front">
 							<img src="assets/img/ruotaStagioni/iconServizioParziale.png"
@@ -77,61 +78,49 @@
 							<p>Maggiori informazioni</p>
 						</div>
 
-						<div class="team-back">
-							<span> Servizio parziale </span>
-							<p >
-							<button class="button">Seleziona</button>
+						<div class="team-back" id="2">
+							<span> Il servizio parziale comprende il solo affitto del
+								terreno, i processi di coltivazione e raccolta sono a cura del
+								cliente. </span>
+							<p>
+								<button class="button" onclick="button = 2; changecolour();">Seleziona</button>
+									<input type="text" id="parziale" value="false" style="display: none" />
 							</p>
 						</div>
 
 					</div>
 				</div>
-				<!--team-2-->
-
-				<!--team-3-->
-				<!-- <div class="col-lg-4">
-				<div class="our-team-main">
-
-					<div class="team-front">
-						<img src="http://placehold.it/110x110/607d8b/fff?text=Dilip"
-							class="img-fluid" />
-						<h3>Entrambi</h3>
-						<p>Maggiori informazioni</p>
-					</div>
-
-					<div class="team-back">
-						<span> Entrambi </span>
-					</div>
-
-				</div>
-			</div>  -->
-				<!--team-3-->
 			</div>
-			<div align="left">
-				<h3 style="margin-top: 30px; margin-bottom: 30px" align="left">Seleziona
-					un periodo di coltivazione</h3>
 
-			</div>
-			<div class="conteiner d-flex justify-content-center">
-				<div class="custom-form">
 
+
+
+		</div>
+		<div>
+			<h3 style="margin-top: 30px; margin-bottom: 30px; margin-left: 30px" align="left">Seleziona
+				un periodo di coltivazione</h3>
+
+		</div>
+		<div>
+			<div>
+
+				<ul>
+					<li><input type="checkbox" id="cb1" /> <label for="cb1"><img
+							src="assets\img\ruotaStagioni\primavera.png" /></label></li>
+
+					<li><input type="checkbox" id="cb4" /> <label for="cb4"><img
+							src="assets\img\ruotaStagioni\estate.png" /></label></li>
+				</ul>
+
+				<div style='margin-top: -15px;'>
 					<ul>
-						<li><input type="checkbox" id="cb1" /> <label for="cb1"><img
-								src="assets\img\ruotaStagioni\primavera.png" /></label></li>
+						<li><input type="checkbox" id="cb2" /> <label for="cb2"><img
+								src="assets\img\ruotaStagioni/inverno.png" /></label></li>
 
-						<li><input type="checkbox" id="cb4" /> <label for="cb4"><img
-								src="assets\img\ruotaStagioni\estate.png" /></label></li>
+						<li><input type="checkbox" id="cb5" /> <label for="cb5"><img
+								src="assets\img\ruotaStagioni\autunno.png" /></label></li>
+						<li><button class="button" style="margin-left: 100px; width: 200px">Avanti</button></li>
 					</ul>
-
-					<div style='margin-top: -15px;'>
-						<ul>
-							<li><input type="checkbox" id="cb2" /> <label for="cb2"><img
-									src="assets\img\ruotaStagioni/inverno.png" /></label></li>
-
-							<li><input type="checkbox" id="cb5" /> <label for="cb5"><img
-									src="assets\img\ruotaStagioni\autunno.png" /></label></li>
-						</ul>
-					</div>
 				</div>
 
 			</div>
@@ -161,6 +150,5 @@
 	<!-- End: Projects Clean -->
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-
 </body>
 </html>
