@@ -9,11 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.postgresql.jdbc2.optional.SimpleDataSource;
-
 import entita.Azienda;
 import entita.Cliente;
-import persistence.ClienteDaoJDBC;
 import persistence.PostgresDAOFactory;
 import persistence.dao.AziendaDao;
 import persistence.dao.ClienteDao;
@@ -39,11 +36,10 @@ public class Login extends HttpServlet {
 		System.out.println(request.getSession());
 		System.out.println(request.getParameter("area"));
 		System.out.println(request.getAttribute("utente"));
-		
 		if (request.getParameter("area").equals("utente")) {
 			if (clientedao.checkCliente(email, pass)) {
 				Cliente user = clientedao.cercaPerEmail(email);
-				request.getSession().setAttribute("utente", user);
+				request.getSession().setAttribute("cliente", user);
 				RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
 				rs.forward(request, response);
 			} else {
@@ -52,9 +48,11 @@ public class Login extends HttpServlet {
 				rs.include(request, response);
 			}
 		} else if (request.getParameter("area").equals("azienda")) {
+			System.out.println(email + pass);
 			if (aziendadao.checkAzienda(email, pass)) {
+
 				Azienda user = aziendadao.cercaPerEmail(email);
-				request.getSession().setAttribute("utente", user);
+				request.getSession().setAttribute("azienda", user);
 				RequestDispatcher rs = request.getRequestDispatcher("homeAziende.jsp");
 				rs.forward(request, response);
 			} else {
@@ -64,4 +62,12 @@ public class Login extends HttpServlet {
 			}
 		}
 	}
+	
+	@Override
+		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		if(req.getParameter("logout").equals("true"))
+			req.getSession().invalidate();
+			RequestDispatcher rs = req.getRequestDispatcher("homeAziende.jsp");
+			rs.forward(req, resp);
+		}
 }
