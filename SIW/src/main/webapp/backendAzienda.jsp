@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +34,7 @@
 		<div class="row" style="margin-top: 30px; margin-bottom: 30px">
 			<div class="col-sm-10" align="left">
 				<h1
-					style="font-style: oblique; color: green; text-shadow: 2px 2px 4px black;">Nome
-					Azienda</h1>
+					style="font-style: oblique; color: green; text-shadow: 2px 2px 4px black;">${sessionScope.azienda.getRagioneSociale()}</h1>
 			</div>
 		</div>
 		<div class="row">
@@ -62,17 +61,16 @@
 							style="border-bottom: green 1px solid"><strong>Dati
 								Azienda</strong></li>
 						<li class="list-group-item text-left style-info"
-							style="border-bottom: green 1px solid"><span
-							class="pull-left"><strong>Nome</strong></span> Andrea</li>
+							style="border-bottom: green 1px solid;"><span
+							class="pull-left" ><strong>Nome</strong></span>    ${sessionScope.azienda.getRagioneSociale() }</li>
+						<li class="list-group-item text-left style-info"
+							style="border-bottom: green 1px solid;"><span
+							class="pull-left"><strong>Email</strong></span>    ${sessionScope.azienda.getEmail() }</li>
 						<li class="list-group-item text-left style-info"
 							style="border-bottom: green 1px solid"><span
-							class="pull-left"><strong>Email</strong></span> andrearossi.it</li>
-						<li class="list-group-item text-left style-info"
-							style="border-bottom: green 1px solid"><span
-							class="pull-left"><strong>Telefono</strong></span> 1236669992</li>
+							class="pull-left"><strong>Telefono</strong></span>    ${sessionScope.azienda.getTelefono() }</li>
 						<li class="list-group-item text-left style-info"><span
-							class="pull-left"><strong>Ultimo accesso</strong></span>
-							23/07/2016</li>
+							class="pull-left"><strong>Partita IVA</strong></span>    ${sessionScope.azienda.getPartitaIVA() }</li>
 					</ul>
 				</div>
 				<!-- end info laterali -->
@@ -111,8 +109,9 @@
 											<label class="label-column">Ragione Sociale</label>
 										</div>
 										<div class="col-xs-2">
-											<input class="input-column" type="text"
-												name="ragione_sociale" placeholder="${sessionScope.azienda.getRagioneSociale()}">
+											<input class="input-column" type="text" disabled="disabled"
+												name="ragione_sociale"
+												placeholder="${sessionScope.azienda.getRagioneSociale()}">
 										</div>
 									</div>
 								</div>
@@ -123,8 +122,8 @@
 											<label class="label-column">Referente</label>
 										</div>
 										<div class="col-xs-2">
-											<input class="input-column" type="text" name="referente" 
-											placeholder="${sessionScope.azienda.getReferente()}">
+											<input class="input-column" type="text" name="referente"
+												placeholder="${sessionScope.azienda.getReferente()}">
 										</div>
 									</div>
 								</div>
@@ -136,7 +135,7 @@
 										</div>
 										<div class="col-xs-2 ">
 											<input class="input-column" type="text" name="sede_legale"
-											placeholder="${sessionScope.azienda.getSedeLegale()}">
+												placeholder="${sessionScope.azienda.getSedeLegale()}">
 										</div>
 									</div>
 								</div>
@@ -148,7 +147,7 @@
 										</div>
 										<div class="col-xs-2 ">
 											<input class="input-column" type="text" name="indirizzo"
-											placeholder="${sessionScope.azienda.getIndirizzo()}">
+												placeholder="${sessionScope.azienda.getIndirizzo()}">
 										</div>
 									</div>
 								</div>
@@ -160,7 +159,7 @@
 										</div>
 										<div class="col-xs-2 ">
 											<input class="input-column" type="text" name="citta"
-											placeholder="${sessionScope.azienda.getCitta()}">
+												placeholder="${sessionScope.azienda.getCitta()}">
 										</div>
 									</div>
 								</div>
@@ -176,7 +175,7 @@
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="cap"
-											placeholder="${sessionScope.azienda.getCap()}">
+												placeholder="${sessionScope.azienda.getCap()}">
 										</div>
 									</div>
 								</div>
@@ -188,7 +187,7 @@
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="provincia"
-											placeholder="${sessionScope.azienda.getProvincia()}">
+												placeholder="${sessionScope.azienda.getProvincia()}">
 										</div>
 									</div>
 								</div>
@@ -200,7 +199,7 @@
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="partita_iva"
-											placeholder="${sessionScope.azienda.getPartitaIVA()}">
+												placeholder="${azienda.getPartitaIVA()}">
 										</div>
 									</div>
 								</div>
@@ -212,7 +211,7 @@
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="tel" name="telefono"
-											placeholder="${sessionScope.azienda.getTelefono()}">
+												placeholder="${sessionScope.azienda.getTelefono()}">
 										</div>
 									</div>
 								</div>
@@ -224,7 +223,7 @@
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="email"
-											placeholder="${sessionScope.azienda.getEmail()}">
+												placeholder="${sessionScope.azienda.getEmail()}">
 										</div>
 									</div>
 								</div>
@@ -236,7 +235,7 @@
 						</div>
 					</div>
 					<div class="tab-pane" style="margin-left: 20px; margin-top: 20px"
-						id="imieiterreni" >
+						id="imieiterreni">
 						<div class="table-responsive">
 							<table class="table table-hover">
 								<thead>
@@ -250,19 +249,26 @@
 									</tr>
 								</thead>
 								<tbody id="items">
-								 
-								 <c:forEach items="${terreni}" var="t">
-									<tr data-toggle="collapse" data-target="#demo1"
-										class="accordion-toggle ">
-										<td>${t.locazione}</td>
-										<td>${t.dimensione }</td>
-										<td>${t.dimensioneSerra }</td>
-										<td>${t.servizioCompleto }</td>
-										<td>${t.servizioParziale}</td>
-										<td>${t.periodiDisponibilita}</td>
-									</tr>
-								</c:forEach>	
+
+									<c:forEach items="${terreni}" var="t">
+										<tr data-toggle="collapse" data-target="#demo1"
+											class="accordion-toggle ">
+											<td>${t.locazione}</td>
+											<td>${t.dimensione }</td>
+											<td>${t.dimensioneSerra }</td>
+											<td>${t.servizioCompleto }</td>
+											<td>${t.servizioParziale}</td>
+											<td>${t.periodiDisponibilita}</td>
+										</tr>
+									</c:forEach>
 							</table>
+						</div>
+						<div align="center">
+							<a href="PageLoader?id=inserimentoTerreno">
+								<button class="button" type="submit">Aggiungi Terreno</button>
+							</a>
+
+
 						</div>
 					</div>
 				</div>
