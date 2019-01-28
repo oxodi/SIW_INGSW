@@ -59,7 +59,7 @@
 								terreno ed il processo di coltivazione completamente a cura
 								dell'azienda fino alla consegna del prodotto finale. </span>
 							<p>
-								<button class="button" onclick="button = 1; changecolour();">Seleziona</button>
+								<input type="button" onclick="button = 1; changecolour();" value="Seleziona">
 								
 								<input type="text" id="completo" value="false" name="bCompleto" /> 
 									
@@ -86,7 +86,7 @@
 								terreno, i processi di coltivazione e raccolta sono a cura del
 								cliente. </span>
 							<p>
-								<button class="button" onclick="button = 2; changecolour();">Seleziona</button>
+								<input type="button" onclick="button = 2; changecolour();" value="Seleziona" >
 								<input type="text" id="parziale" value="false" name="bParziale"
 									 />
 							</p>
@@ -124,7 +124,7 @@
 
 						<li><input type="checkbox" id="cb5" name="stagioni"/> <label for="cb5"><img
 								src="assets\img\ruotaStagioni\autunno.png" /></label></li>
-						<li><a  class="button" style=" margin-left: 130px">Cerca selezione</a></li>
+						<li><button class="button" style=" margin-left: 130px">Cerca selezione</button></li>
 					</ul>
 				</div>
 

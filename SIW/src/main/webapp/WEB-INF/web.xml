@@ -49,6 +49,13 @@
 		<servlet-name>PrelevaOrtaggi</servlet-name>
 		<servlet-class>controller.PrelevaOrtaggi</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>TerrenoOspitaOrtaggi</display-name>
+		<servlet-name>TerrenoOspitaOrtaggi</servlet-name>
+		<servlet-class>controller.TerrenoOspitaOrtaggi</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -87,6 +94,10 @@
 	<servlet-mapping>
 		<servlet-name>PrelevaOrtaggi</servlet-name>
 		<url-pattern>/PrelevaOrtaggi</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TerrenoOspitaOrtaggi</servlet-name>
+		<url-pattern>/TerrenoOspitaOrtaggi</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
     <welcome-file>Home</welcome-file>

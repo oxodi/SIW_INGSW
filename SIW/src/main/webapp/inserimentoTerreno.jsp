@@ -52,7 +52,7 @@
 	<!-- End: Navigation with Button -->
 	<div class="row register-form">
 		<div class="col-md-10 offset-md-1">
-			<form class="custom-form"  method="post">
+			<form class="custom-form"  method="post" action="TerrenoOspitaOrtaggi">
 				
 				<div id="inserimento">
 				<h1>Inserimento Terreno</h1>
@@ -134,9 +134,9 @@
 								<table class="table table-hover">
 									<c:forEach items="${ortaggi}" var="o">
 									<tr class="accordion-toggle" data-toggle="collapse">
-										<td><input type="checkbox"></td>
+										<td><input type="checkbox" id="${o.id}"></td>
 										<td> ${o.nome} </td>
-										<td> ${o.tempoColtivazione} </td>
+										<td> ${o.resa} </td>
 										<td><input class="input-column" type="text"
 											style="max-width: 80px" placeholder="prezzo"></td>
 									</tr>

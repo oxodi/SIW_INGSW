@@ -47,7 +47,7 @@ public class PageLoader extends HttpServlet {
 			rd.forward(req, resp);
 		}
 		else if(id.equals("inserimentoTerreno")) {
-			RequestDispatcher rd = req.getRequestDispatcher("inserimentoTerreno.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("PrelevaOrtaggi");
 			rd.forward(req, resp);
 		}
 	}

@@ -62,15 +62,19 @@
 								Azienda</strong></li>
 						<li class="list-group-item text-left style-info"
 							style="border-bottom: green 1px solid;"><span
-							class="pull-left" ><strong>Nome</strong></span>    ${sessionScope.azienda.getRagioneSociale() }</li>
+							class="pull-left"><strong>Nome</strong></span>
+							${sessionScope.azienda.getRagioneSociale() }</li>
 						<li class="list-group-item text-left style-info"
 							style="border-bottom: green 1px solid;"><span
-							class="pull-left"><strong>Email</strong></span>    ${sessionScope.azienda.getEmail() }</li>
+							class="pull-left"><strong>Email</strong></span>
+							${sessionScope.azienda.getEmail() }</li>
 						<li class="list-group-item text-left style-info"
 							style="border-bottom: green 1px solid"><span
-							class="pull-left"><strong>Telefono</strong></span>    ${sessionScope.azienda.getTelefono() }</li>
+							class="pull-left"><strong>Telefono</strong></span>
+							${sessionScope.azienda.getTelefono() }</li>
 						<li class="list-group-item text-left style-info"><span
-							class="pull-left"><strong>Partita IVA</strong></span>    ${sessionScope.azienda.getPartitaIVA() }</li>
+							class="pull-left"><strong>Partita IVA</strong></span>
+							${sessionScope.azienda.getPartitaIVA() }</li>
 					</ul>
 				</div>
 				<!-- end info laterali -->
@@ -267,8 +271,6 @@
 							<a href="PageLoader?id=inserimentoTerreno">
 								<button class="button" type="submit">Aggiungi Terreno</button>
 							</a>
-
-
 						</div>
 					</div>
 				</div>
