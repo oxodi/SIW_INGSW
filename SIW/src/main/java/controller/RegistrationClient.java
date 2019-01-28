@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +29,8 @@ public class RegistrationClient extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		PostgresDAOFactory factory = PostgresDAOFactory.getInstance();
 		
 		String nome = request.getParameter("nome");
@@ -58,11 +60,12 @@ public class RegistrationClient extends HttpServlet {
 			/**
 			 * salvati i dati della registrazione del cliente torno all index
 			 */
+			out.println("Grazie per esserti registrato");
 			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			rd.include(request, response);
 			
 		} catch (ParseException e) {
-			
+			out.println("Inserimento dati errato");
 			e.printStackTrace();
 		}
 		
