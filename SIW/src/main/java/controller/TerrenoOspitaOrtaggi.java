@@ -33,7 +33,7 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 		terreno.setCosto(costo);
 		String[] checkedIds = req.getParameterValues("ortaggiSelezionati");
 		Azienda az = (Azienda) req.getSession().getAttribute("azienda");
-		// terreno.setIdAzienda(az.getId());
+		terreno.setIdAzienda(az.getId());
 		System.out.println(terreno.getIdAzienda() + " " + terreno.getCosto() + "" + terreno.getDimensione() + ""
 				+ terreno.getLocazione());
 		for (int i = 0; i < checkedIds.length; i++) {
