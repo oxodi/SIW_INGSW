@@ -114,11 +114,11 @@
 
 						</div>
 						<div class="form-check" align="left">
-							<input type="checkbox"><label> Servizio Parziale</label>
+							<input type="checkbox" name="parziale"><label> Servizio Parziale</label>
 						</div>
 						<br>
 						<div class="form-check" align="left">
-							<input type="checkbox"><label> Servizio Completo</label>
+							<input type="checkbox" name="completo"><label> Servizio Completo</label>
 						</div>
 
 					</div>

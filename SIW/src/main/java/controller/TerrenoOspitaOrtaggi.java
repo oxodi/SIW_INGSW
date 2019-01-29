@@ -27,20 +27,30 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 		int dimensione = Integer.parseInt(req.getParameter("dimensione_terreno"));
 		int dimensioneSerra = Integer.parseInt(req.getParameter("dimensione_serra"));
 		double costo = Double.parseDouble(req.getParameter("costo_terreno"));
+		boolean parziale = Boolean.parseBoolean(req.getParameter("parziale"));
+		boolean completo = Boolean.parseBoolean(req.getParameter("completo"));
 		terreno.setLocazione(req.getParameter("locazione"));
 		terreno.setDimensione(dimensione);
 		terreno.setDimensioneSerra(dimensioneSerra);
 		terreno.setCosto(costo);
-		String[] checkedIds = req.getParameterValues("ortaggiSelezionati");
+		terreno.setServizioCompleto(completo);
+		terreno.setServizioParziale(parziale);
 		Azienda az = (Azienda) req.getSession().getAttribute("azienda");
 		terreno.setIdAzienda(az.getId());
-		System.out.println(terreno.getIdAzienda() + " " + terreno.getCosto() + "" + terreno.getDimensione() + ""
-				+ terreno.getLocazione());
+		terreno.setPeriodiDisponibilita(req.getParameter("disponibilita"));
+		TerrenoDao terrenoNew = PostgresDAOFactory.getInstance().getTerrenoDAO();
+		terrenoNew.salva(terreno);
+		System.out.println("sono il terreno" + terreno.getId());
+		String[] checkedIds = req.getParameterValues("ortaggiSelezionati");		
+		
 		for (int i = 0; i < checkedIds.length; i++) {
 			System.out.println(checkedIds[i]);
+			//terrenoNew.aggiungiOrtaggio( terreno.getId(), Integer.parseInt(checkedIds[i]), Double.parseDouble(req.getParameter("prezzo"+checkedIds[i])), Integer.parseInt((req.getParameter("tempo"+checkedIds[i])), "estate");
 		}
-		TerrenoDao terrenoNew = PostgresDAOFactory.getInstance().getTerrenoDAO();
-		req.getRequestDispatcher("PageLoader?id=backendAzienda").forward(req, resp);
+		
+		
+		RequestDispatcher rd = req.getRequestDispatcher("PageLoader?id=backendAzienda");
+		rd.forward(req, resp);
 		
 
 	}
