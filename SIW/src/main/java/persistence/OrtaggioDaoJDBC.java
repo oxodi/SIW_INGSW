@@ -86,7 +86,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 		try {
 			Ortaggio ortaggio;
 			PreparedStatement statement;
-			String query = "SELECT * FROM cliente";
+			String query = "SELECT * FROM ortaggio";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {

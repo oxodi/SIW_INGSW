@@ -36,116 +36,128 @@
 	<div class="container"
 		style="border-style: solid; border-radius: 25px; border-color: green">
 		<form action="DammiAzienda" method="get">
-		<h1 class="text-center" style='margin-top: 50px;'>Prenotare un
-			terreno</h1>
-		<h3 style="margin-top: 50px; margin-bottom: 30px; margin-left: 30px"
-			align=left>Seleziona un servizio</h3>
-		<div class="container">
+			<h1 class="text-center" style='margin-top: 50px;'>Prenotare un
+				terreno</h1>
+			<h3 style="margin-top: 50px; margin-bottom: 30px; margin-left: 30px"
+				align=left>Seleziona un servizio</h3>
+			<div class="container">
 
-			<div class="row d-flex justify-content-center">
+				<div class="row d-flex justify-content-center">
 
-				<div class="col-lg-4">
-					<div class="our-team-main" id="3">
+					<div class="col-lg-4">
+						<div class="our-team-main" id="3">
 
-						<div class="team-front">
-							<img src="assets/img/ruotaStagioni/iconServizioCompleto.png"
-								class="img-fluid" />
-							<h3>Servizio Completo</h3>
-							<p>Maggiori informazioni</p>
-						</div>
+							<div class="team-front">
+								<img src="assets/img/ruotaStagioni/iconServizioCompleto.png"
+									class="img-fluid" />
+								<h3>Servizio Completo</h3>
+								<p>Maggiori informazioni</p>
+							</div>
 
-						<div class="team-back" id="1">
-							<span> Il servizio completo comprende l'affitto del
-								terreno ed il processo di coltivazione completamente a cura
-								dell'azienda fino alla consegna del prodotto finale. </span>
-							<p>
-								<input type="button" onclick="button = 1; changecolour();" value="Seleziona">
-								
-								<input type="text" id="completo" value="false" name="bCompleto" /> 
-									
+							<div class="team-back" id="1">
+								<span> Il servizio completo comprende l'affitto del
+									terreno ed il processo di coltivazione completamente a cura
+									dell'azienda fino alla consegna del prodotto finale. </span>
+								<p>
+									<input class="button" onclick="button = 1; changecolour();"
+										value="Seleziona" readonly="readonly"> <input
+										type="text" id="completo" value="false" name="bCompleto"
+										style="display: none" />
+
 								</p>
-						</div>
+							</div>
 
+						</div>
+					</div>
+					<!--team-1-->
+
+					<!--team-2-->
+					<div class="col-lg-4">
+						<div class="our-team-main" id="4">
+
+							<div class="team-front">
+								<img src="assets/img/ruotaStagioni/iconServizioParziale.png"
+									class="img-fluid" />
+								<h3>Servizio Parziale</h3>
+								<p>Maggiori informazioni</p>
+							</div>
+
+							<div class="team-back" id="2">
+								<span> Il servizio parziale comprende il solo affitto del
+									terreno, i processi di coltivazione e raccolta sono a cura del
+									cliente. </span>
+								<p>
+									<input class="button" onclick="button = 2; changecolour();"
+										value="Seleziona" readonly="readonly"> <input
+										type="text" id="parziale" value="false" name="bParziale"
+										style="display: none" />
+								</p>
+							</div>
+
+						</div>
 					</div>
 				</div>
-				<!--team-1-->
 
-				<!--team-2-->
-				<div class="col-lg-4">
-					<div class="our-team-main" id="4">
 
-						<div class="team-front">
-							<img src="assets/img/ruotaStagioni/iconServizioParziale.png"
-								class="img-fluid" />
-							<h3>Servizio Parziale</h3>
-							<p>Maggiori informazioni</p>
-						</div>
 
-						<div class="team-back" id="2">
-							<span> Il servizio parziale comprende il solo affitto del
-								terreno, i processi di coltivazione e raccolta sono a cura del
-								cliente. </span>
-							<p>
-								<input type="button" onclick="button = 2; changecolour();" value="Seleziona" >
-								<input type="text" id="parziale" value="false" name="bParziale"
-									 />
-							</p>
-						</div>
 
-					</div>
-				</div>
 			</div>
-
-
-
-
-		</div>
-		<div>
-			<h3 style="margin-top: 30px; margin-bottom: 30px; margin-left: 30px"
-				align="left">Seleziona un periodo di coltivazione</h3>
-
-		</div>
-		<div>
 			<div>
-
-				<ul>
-					<li><input type="checkbox" id="cb1" name="stagioni"> <label for="cb1"><img
-							src="assets\img\ruotaStagioni\primavera.png" /></label></li>
-
-					<li><input type="checkbox" id="cb4" name="stagioni"/> <label for="cb4"><img
-							src="assets\img\ruotaStagioni\estate.png" /></label></li>
-					<li><a class="button" style=" margin-left: 130px">Cerca tutte</a></li>
-					</ul>
-
-				<div style='margin-top: -15px;'>
-					<ul>
-						<li><input type="checkbox" id="cb2" name="stagioni"/> <label for="cb2"><img
-								src="assets\img\ruotaStagioni/inverno.png" /></label></li>
-
-						<li><input type="checkbox" id="cb5" name="stagioni"/> <label for="cb5"><img
-								src="assets\img\ruotaStagioni\autunno.png" /></label></li>
-						<li><button class="button" style=" margin-left: 130px">Cerca selezione</button></li>
-					</ul>
-				</div>
+				<h3 style="margin-top: 30px; margin-bottom: 30px; margin-left: 30px"
+					align="left">Seleziona un periodo di coltivazione</h3>
 
 			</div>
-		</div>
-		<!--team-4-->
+			<div>
+				<div>
 
-		<!--team-4-->
+					<ul>
+						<li><input type="checkbox" id="cb1" name="primavera"
+							value="off"> <label for="cb1"><img
+								src="assets\img\ruotaStagioni\primavera.png" /></label> <input
+							type="hidden" name="primavera" value="off"></li>
 
-		<!--team-5-->
+						<li><input type="checkbox" id="cb4" name="estate" /> <label
+							for="cb4"><img src="assets\img\ruotaStagioni\estate.png" /></label>
+							<input type="hidden" name="estate" value="off"></li>
+						<li><button class="button" name="btnCerca" value="tutte"
+								style="margin-left: 130px">Cerca tutte</button></li>
+					</ul>
 
-		<!--team-5-->
+					<div style='margin-top: -15px;'>
+						<ul>
+							<li><input type="checkbox" id="cb2" name="inverno" /> <label
+								for="cb2"><img
+									src="assets\img\ruotaStagioni/inverno.png" /></label> <input
+								type="hidden" name="inverno" value="off"></li>
 
-		<!--team-6-->
+							<li><input type="checkbox" id="cb5" name="autunno" /> <label
+								for="cb5"><img
+									src="assets\img\ruotaStagioni\autunno.png" /></label> <input
+								type="hidden" name="autunno" value="off"></li>
+							<li><button class="button" name="btnCerca" value="selezione"
+									onclick="submit" style="margin-left: 130px">Cerca
+									selezione</button></li>
+						</ul>
+					</div>
 
-		<!--team-6-->
+				</div>
+			</div>
+			<!--team-4-->
+
+			<!--team-4-->
+
+			<!--team-5-->
+
+			<!--team-5-->
+
+			<!--team-6-->
+
+			<!--team-6-->
 
 
-	</form>
+		</form>
 	</div>
- 
+
 	<!-- End: Article List -->
 	<!-- Start: footer -->
 	<div id="footer"></div>

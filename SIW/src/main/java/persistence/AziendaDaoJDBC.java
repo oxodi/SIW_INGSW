@@ -254,7 +254,8 @@ public class AziendaDaoJDBC implements AziendaDao {
 		try {
 			Azienda azienda;
 			PreparedStatement statement;
-			String query = "SELECT azienda.* FROM azienda INNER JOIN terreno ON azienda.id = terreno.id_azienda WHERE terreno.servizio_parziale = ? AND terreno.servizio_completo = ? AND terreno.periodo_coltivazione = ? GROUP BY azienda.id";
+			String query = "SELECT azienda.* FROM azienda INNER JOIN terreno ON azienda.id = terreno.id_azienda WHERE terreno.servizio_parziale = ? AND terreno.servizio_completo = ? "
+					+ "AND terreno.periodo_coltivazione = ? GROUP BY azienda.id";
 			statement = connection.prepareStatement(query);
 			statement.setBoolean(1, servizioParziale);
 			statement.setBoolean(2, servizioCompleto);
