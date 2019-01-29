@@ -138,6 +138,8 @@
 												<th><strong>Nome</strong></th>
 												<th><strong>Resa</strong></th>
 												<th><strong>Prezzo</strong></th>
+												<th><strong>Tempo Coltivazione</strong></th>
+												
 											</tr>
 										</thead>
 										<tbody id="items">
@@ -147,7 +149,9 @@
 													<td>${o.nome}</td>
 													<td>${o.resa}</td>
 													<td><input class="input-column" type="text"
-														style="max-width: 80px" placeholder="prezzo"></td>
+														style="max-width: 80px" name="prezzo${o.id}" placeholder="prezzo"></td>
+													<td><input class="input-column" type="text"
+														style="max-width: 80px" name="tempo${o.id}" placeholder="tempo coltivazione"></td>
 												</tr>
 											</c:forEach>
 										</tbody>
