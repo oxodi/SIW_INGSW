@@ -143,7 +143,7 @@
 										<tbody id="items">
 											<c:forEach items="${ortaggi}" var="o">
 												<tr class="accordion-toggle" data-toggle="collapse">
-													<td><input type="checkbox" id="${o.id}"></td>
+													<td><input type="checkbox" value="${o.id}" name="ortaggiSelezionati"></td>
 													<td>${o.nome}</td>
 													<td>${o.resa}</td>
 													<td><input class="input-column" type="text"
@@ -158,7 +158,7 @@
 					<!-- fine colonna 2 -->
 					<div class="container">
 						<div align="center">
-							<button class="button" id="avanti" type="button">Annulla</button>
+							<button class="button" id="annulla" type="button">Annulla</button>
 							<button class="button" id="avanti" type="button">Avanti</button>
 							
 						</div>

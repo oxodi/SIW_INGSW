@@ -14,13 +14,13 @@ import persistence.PostgresDAOFactory;
 import persistence.dao.OrtaggioDao;
 import persistence.dao.TerrenoDao;
 
-
-
 /**
  * Servlet implementation class TerrenoOspitaOrtaggi
  */
 public class TerrenoOspitaOrtaggi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Terreno terreno = new Terreno();
@@ -31,11 +31,18 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 		terreno.setDimensione(dimensione);
 		terreno.setDimensioneSerra(dimensioneSerra);
 		terreno.setCosto(costo);
+		String[] checkedIds = req.getParameterValues("ortaggiSelezionati");
 		Azienda az = (Azienda) req.getSession().getAttribute("azienda");
-		terreno.setIdAzienda(az.getId()); 
-		System.out.println(terreno.getIdAzienda() + " " + terreno.getCosto() + "" + terreno.getDimensione() + "" + terreno.getLocazione());
+		// terreno.setIdAzienda(az.getId());
+		System.out.println(terreno.getIdAzienda() + " " + terreno.getCosto() + "" + terreno.getDimensione() + ""
+				+ terreno.getLocazione());
+		for (int i = 0; i < checkedIds.length; i++) {
+			System.out.println(checkedIds[i]);
+		}
 		TerrenoDao terrenoNew = PostgresDAOFactory.getInstance().getTerrenoDAO();
-		RequestDispatcher rd = req.getRequestDispatcher("backendAzienda.jsp");
-		rd.forward(req, resp);
+		req.getRequestDispatcher("PageLoader?id=backendAzienda").forward(req, resp);
+		
+
 	}
+
 }
