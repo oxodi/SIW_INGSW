@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -32,24 +33,44 @@ public class DammiAzienda extends HttpServlet {
 		String completo = req.getParameter("bCompleto");
 		String parziale = req.getParameter("bParziale");
 		
-		String[] stagioni = req.getParameterValues("stagioni");
+		String primavera = req.getParameter("primavera");
+		String estate = req.getParameter("estate");
+		String inverno = req.getParameter("inverno");
+		String autunno = req.getParameter("autunno");
 		
 		
-		System.out.println("........." +completo);
-		System.out.println("_________" +parziale);
-		for(String stagionis : stagioni) {
-			System.out.println("stagioni: "+stagionis);
-		}
+		System.out.println("periodoPrimavera: "+primavera);
+		System.out.println("periodoEstate: "+estate);
+		System.out.println("periodoInverno: "+inverno);
+		System.out.println("periodoAutunno: "+autunno);
+		 
+		List<String> periodi = new ArrayList<String>();
+		
+		if(primavera.equals("on"))
+			periodi.add(new String("primavera"));
+		if(estate.equals("on"))
+			periodi.add(new String("estate"));	
+		if(inverno.equals("on"))
+			periodi.add(new String("inverno"));
+		if(autunno.equals("on"))
+			periodi.add(new String("autunno"));
 		
 		if(completo.equals("true"))
 			servizioCompleto = true;
 		if(parziale.equals("true"))
 			servizioParziale = true;
-		
-		System.out.println(servizioCompleto);
-		System.out.println(servizioParziale);
+
 		AziendaDao aziendaDao = PostgresDAOFactory.getInstance().getAziendaDAO();
-		List<Azienda> aziende = aziendaDao.cercaAziendaPerTipologiaPeriodo(servizioParziale, servizioCompleto, "ciao");
+		List<Azienda> aziende = new ArrayList<Azienda>();
+		
+		String btnCerca = req.getParameter("btnCerca");
+		
+		if(btnCerca.equals("tutte"))
+			aziende.addAll(aziendaDao.cercaTutti());
+		else { 
+			for(String periodo : periodi)
+			aziende.addAll(aziendaDao.cercaAziendaPerTipologiaPeriodo(servizioParziale, servizioCompleto, periodo));
+		}
 		req.setAttribute("aziende", aziende);
 		
 		RequestDispatcher rd = req.getRequestDispatcher("sceltaAzienda.jsp");
