@@ -137,3 +137,33 @@ body{
  box-shadow: 0 3px #773c00;
    transform: translateY(4px);
 } 
+
+.button_elimina {
+	background-color: transparent;
+	width: 50px;
+	height: 40px;
+	background-repeat: no-repeat; 
+	background-position: center center;
+	background-image: url("../img/garbage.png");
+	border-radius: 8px;
+	border-style: solid;
+	border-color: #cc0000;
+	border-width: 2px;
+	outline: none !important;
+	
+}
+
+.button_modifica {
+	background-color: transparent;
+	width: 50px;
+	height: 40px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url("../img/modifica.png");
+	border-radius: 8px;
+	border-style: solid;
+	border-color: blue;
+	border-width: 2px;
+	outline: none !important;
+	
+}

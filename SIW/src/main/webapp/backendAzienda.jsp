@@ -62,8 +62,8 @@
 								Azienda</strong></li>
 						<li class="list-group-item text-left style-info"
 							style="border-bottom: green 1px solid;"><span
-							class="pull-left"><strong>Nome</strong></span>
-							${sessionScope.azienda.getRagioneSociale() }</li>
+							class="pull-left"><strong>Referente</strong></span>
+							${sessionScope.azienda.getReferente() }</li>
 						<li class="list-group-item text-left style-info"
 							style="border-bottom: green 1px solid;"><span
 							class="pull-left"><strong>Email</strong></span>
@@ -250,6 +250,8 @@
 										<th>Servizio Completo</th>
 										<th>Servizio Parziale</th>
 										<th>Periodo Coltivazione</th>
+										<th>Modifica</th>
+										<th>Elimina</th>
 									</tr>
 								</thead>
 								<tbody id="items">
@@ -263,6 +265,8 @@
 											<td>${t.servizioCompleto }</td>
 											<td>${t.servizioParziale}</td>
 											<td>${t.periodiDisponibilita}</td>
+											<td> <button type="button" class="button_modifica"></button> </td>
+											<td> <button type="submit" class="button_elimina"></button> </td>
 										</tr>
 									</c:forEach>
 							</table>

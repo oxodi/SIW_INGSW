@@ -50,7 +50,7 @@
 	<!-- Start: Navigation with Button -->
 	<div id="navbar"></div>
 	<!-- End: Navigation with Button -->
-	<div class="row register-form">
+	<div class="row register-form" style="width: 100%">
 		<div class="col-md-10 offset-md-1">
 			<form class="custom-form"  method="post" action="TerrenoOspitaOrtaggi">
 				
@@ -130,26 +130,37 @@
 									coltivabili e inserire il relativo costo</strong></label>
 						</div>
 						<div class="form-row form-group">
-							<div class="table-responsive">
+							<div class="table-responsive" id="table-scroll">
 								<table class="table table-hover">
-									<c:forEach items="${ortaggi}" var="o">
-									<tr class="accordion-toggle" data-toggle="collapse">
-										<td><input type="checkbox" id="${o.id}"></td>
-										<td> ${o.nome} </td>
-										<td> ${o.resa} </td>
-										<td><input class="input-column" type="text"
-											style="max-width: 80px" placeholder="prezzo"></td>
-									</tr>
-									</c:forEach>
-								</table>
+										<thead>
+											<tr>
+												<th></th>
+												<th><strong>Nome</strong></th>
+												<th><strong>Resa</strong></th>
+												<th><strong>Prezzo</strong></th>
+											</tr>
+										</thead>
+										<tbody id="items">
+											<c:forEach items="${ortaggi}" var="o">
+												<tr class="accordion-toggle" data-toggle="collapse">
+													<td><input type="checkbox" id="${o.id}"></td>
+													<td>${o.nome}</td>
+													<td>${o.resa}</td>
+													<td><input class="input-column" type="text"
+														style="max-width: 80px" placeholder="prezzo"></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
 							</div>
 						</div>
 					</div>
 					<!-- fine colonna 2 -->
 					<div class="container">
 						<div align="center">
+							<button class="button" id="avanti" type="button">Annulla</button>
 							<button class="button" id="avanti" type="button">Avanti</button>
-							<button class="button" type="submit">Annulla</button>
+							
 						</div>
 					</div>
 				</div>
