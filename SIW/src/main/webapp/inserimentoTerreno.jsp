@@ -105,7 +105,7 @@
 							<div class="col-xs-2 ">
 								<!-- <input class="input-column" type="text" name="disponibilita"
 									placeholder=""> -->
-									<select class="custom-select input-column" style="width: 190px; padding: 5px;" >
+									<select class="custom-select input-column" style="width: 190px; padding: 5px;" name="disponibilita">
 										<option value="primavera"> Primavera </option>
 										<option value="estate"> Estate </option>
 										<option value="autunno"> Autunno </option>

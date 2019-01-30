@@ -23,7 +23,12 @@ public class PrelevaDatiTerreno extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Azienda aziendaInSessione = (Azienda) req.getSession().getAttribute("azienda");
