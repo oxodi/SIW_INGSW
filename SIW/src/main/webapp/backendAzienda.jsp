@@ -122,7 +122,7 @@
 				<div class="tab-content clearfix">
 					<div class="custom-form tab-pane active"
 						style="margin-left: 20px; margin-top: 20px" id="modificadati">
-
+					<form action="">
 						<div class="row">
 							<div class="col-md-6 ">
 								<br>
@@ -253,9 +253,19 @@
 							</div>
 						</div>
 						<br>
+						<div style="text-align: center; whidt: 100%; margin-top: 25px">
+								<div align="center">
+									<label class="label-column">Descrizione Servizi Offerti</label>
+								</div>
+									<textarea class="form-control"
+										style="margin-left: auto; margin-right: auto; resize: none; border: 2px green solid; border-radius: 15px; 
+										background-color: #cfc7af" rows="10" cols="50" maxlength="1000" name="formDescrizione"></textarea>
+						</div>
+						<br>
 						<div align="center">
 							<button class="button" type="submit">Salva</button>
 						</div>
+						</form>
 					</div>
 					<div class="tab-pane" style=" margin-top: 20px"
 						id="imieiterreni">
