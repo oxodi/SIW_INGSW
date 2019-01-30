@@ -20,6 +20,11 @@ import persistence.dao.TerrenoDao;
 public class TerrenoOspitaOrtaggi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	@Override
+		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			RequestDispatcher rd = req.getRequestDispatcher("PageLoader?id=backendAzienda");
+			rd.forward(req, resp);
+		}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,6 +41,7 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 		terreno.setServizioCompleto(completo);
 		terreno.setServizioParziale(parziale);
 		Azienda az = (Azienda) req.getSession().getAttribute("azienda");
+		System.out.println(az.getId());
 		terreno.setIdAzienda(az.getId());
 		terreno.setPeriodiDisponibilita(req.getParameter("disponibilita"));
 		TerrenoDao terrenoNew = PostgresDAOFactory.getInstance().getTerrenoDAO();
@@ -44,13 +50,18 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 		String[] checkedIds = req.getParameterValues("ortaggiSelezionati");		
 		
 		for (int i = 0; i < checkedIds.length; i++) {
-			System.out.println(checkedIds[i]);
-			//terrenoNew.aggiungiOrtaggio( terreno.getId(), Integer.parseInt(checkedIds[i]), Double.parseDouble(req.getParameter("prezzo"+checkedIds[i])), Integer.parseInt((req.getParameter("tempo"+checkedIds[i])), "estate");
+			System.out.println("Ho selezionato gli ortaggi "+ checkedIds[i]);
+			String prezzi =  req.getParameter("prezzo"+checkedIds[i]);
+			double intPrezzi = Double.parseDouble(prezzi);
+			String tempo = req.getParameter("tempo"+checkedIds[i]);
+			int tempoInt = Integer.parseInt(tempo);
+			
+			System.out.println("con questo costo "+intPrezzi);
+			System.out.println("con questo tempo "+tempoInt);
+			terrenoNew.aggiungiOrtaggio(terreno.getId(), Integer.parseInt(checkedIds[i]), intPrezzi, tempoInt);
 		}
 		
-		
-		RequestDispatcher rd = req.getRequestDispatcher("PageLoader?id=backendAzienda");
-		rd.forward(req, resp);
+		doGet(req, resp);
 		
 
 	}

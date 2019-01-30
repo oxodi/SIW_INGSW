@@ -48,12 +48,29 @@ public class PageLoader extends HttpServlet {
 			rd.forward(req, resp);
 		}
 		else if(id.equals("backendAzienda")) {
+			if(req.getSession().getAttribute("azienda") != null)
+			{
 			RequestDispatcher rd = req.getRequestDispatcher("PrelevaDatiTerreno");
 			rd.forward(req, resp);
+			}
+			else
+			{
+				RequestDispatcher rd = req.getRequestDispatcher("Home");
+				rd.forward(req, resp);
+			}
 		}
 		else if(id.equals("inserimentoTerreno")) {
-			RequestDispatcher rd = req.getRequestDispatcher("PrelevaOrtaggi");
-			rd.forward(req, resp);
+			if(req.getSession().getAttribute("azienda") != null)
+			{
+				RequestDispatcher rd = req.getRequestDispatcher("PrelevaOrtaggi");
+				rd.forward(req, resp);
+			}
+			else
+			{
+				RequestDispatcher rd = req.getRequestDispatcher("Home");
+				rd.forward(req, resp);
+			}
+			
 		}
 	}
 
