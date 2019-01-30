@@ -6,13 +6,15 @@ public class Peperone extends Ortaggio {
 		this.setId(9);
 		this.setNome("Peperone");
 		this.setResa(1.0);
+		this.setPeriodoColtivazione("primavera");
 	}
 
-	public Peperone(double prezzo, int id_terreno, int tempoColtivazione, String periodoColtivazione) {
-		super(prezzo, id_terreno, tempoColtivazione, periodoColtivazione);
+	public Peperone(double prezzo, int id_terreno, int tempoColtivazione) {
+		super(prezzo, id_terreno, tempoColtivazione);
 		this.setId(9);
 		this.setNome("Peperone");
 		this.setResa(1.0);
+		this.setPeriodoColtivazione("primavera");
 	}
 
 }

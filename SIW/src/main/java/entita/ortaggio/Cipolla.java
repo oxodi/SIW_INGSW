@@ -6,13 +6,16 @@ public class Cipolla extends Ortaggio {
 		this.setId(4);
 		this.setNome("Cipolla");
 		this.setResa(1.0);
+		this.setPeriodoColtivazione("annuale");
 	}
 
-	public Cipolla(double prezzo, int id_terreno, int tempoColtivazione, String periodoColtivazione) {
-		super(prezzo, id_terreno, tempoColtivazione, periodoColtivazione);
+	public Cipolla(double prezzo, int id_terreno, int tempoColtivazione) {
+		super(prezzo, id_terreno, tempoColtivazione);
 		this.setId(4);
 		this.setNome("Cipolla");
 		this.setResa(1.0);
+		this.setPeriodoColtivazione("annuale");
+
 	}
 
 }

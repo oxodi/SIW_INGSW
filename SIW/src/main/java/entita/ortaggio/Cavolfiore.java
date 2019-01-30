@@ -6,12 +6,14 @@ public class Cavolfiore extends Ortaggio {
 		this.setId(1);
 		this.setNome("Cavolfiore");
 		this.setResa(1.0);
+		this.setPeriodoColtivazione("annuale");
 	}
 
-	public Cavolfiore(double prezzo, int id_terreno, int tempoColtivazione, String periodoColtivazione) {
-		super(prezzo, id_terreno, tempoColtivazione, periodoColtivazione);
+	public Cavolfiore(double prezzo, int id_terreno, int tempoColtivazione) {
+		super(prezzo, id_terreno, tempoColtivazione);
 		this.setId(1);
 		this.setNome("Cavolfiore");
 		this.setResa(1.0);
+		this.setPeriodoColtivazione("annuale");
 	}
 }

@@ -1,4 +1,4 @@
-package entita.ortaggio;
+ package entita.ortaggio;
 
 public class Melanzana extends Ortaggio {
 
@@ -6,13 +6,15 @@ public class Melanzana extends Ortaggio {
 		this.setId(6);
 		this.setNome("Melanzana");
 		this.setResa(1.0);
+		this.setPeriodoColtivazione("primavera");
 	}
 
-	public Melanzana(double prezzo, int id_terreno, int tempoColtivazione, String periodoColtivazione) {
-		super(prezzo, id_terreno, tempoColtivazione, periodoColtivazione);
+	public Melanzana(double prezzo, int id_terreno, int tempoColtivazione) {
+		super(prezzo, id_terreno, tempoColtivazione);
 		this.setId(6);
 		this.setNome("Melanzana");
 		this.setResa(1.0);
+		this.setPeriodoColtivazione("primavera");
 	}
 
 }

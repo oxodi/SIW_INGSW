@@ -444,6 +444,7 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 			statement.setBoolean(1, servizioParziale);
 			statement.setBoolean(2, servizioCompleto);
 			statement.setString(3, periodo);
+	
 			ResultSet result = statement.executeQuery();
 
 			while (result.next()) {

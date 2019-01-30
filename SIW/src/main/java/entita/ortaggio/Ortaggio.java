@@ -12,11 +12,10 @@ public abstract class Ortaggio {
 	public Ortaggio() {
 	}
 
-	public Ortaggio(double prezzo, int id_terreno, int tempoColtivazione, String periodoColtivazione) {
+	public Ortaggio(double prezzo, int id_terreno, int tempoColtivazione) {
 		this.prezzo = prezzo;
 		this.id_terreno = id_terreno;
 		this.tempoColtivazione = tempoColtivazione;
-		this.periodoColtivazione = periodoColtivazione;
 	}
 
 	public int getId_terreno() {
