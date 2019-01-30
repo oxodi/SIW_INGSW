@@ -25,13 +25,12 @@
 </script>
 
 <script>
-	$(document).ready(function() {
-		$("#modifica").click(function() {
-			$("#terreni").hide("slow");
-			$("#info_terreno").show("slow");
-
-		});
-	});
+	function edit() {
+		$("#terreni").hide("slow");
+		$("#info_terreno").show("slow");
+		var terrenoid = ${"setvariable"}.html();
+		
+	}
 </script>
 <script>
 	$(document).ready(function() {
@@ -283,10 +282,12 @@
 									</tr>
 								</thead>
 								<tbody id="items">
-
+										
+									
 									<c:forEach items="${terreni}" var="t">
 										<tr data-toggle="collapse" data-target="#demo1"
 											class="accordion-toggle ">
+											
 											<td>${t.locazione}</td>
 											<td>${t.dimensione }</td>
 											<td>${t.dimensioneSerra }</td>
@@ -294,7 +295,9 @@
 											<td>${t.servizioParziale}</td>
 											<td>${t.periodiDisponibilita}</td>
 											<td>
-												<button type="submit" id="modifica" class="button_modifica"></button>
+												<div id="setvariable"><c:set var="terreno_id" value="${t.id}" scope="session"></c:set></div>
+												<button onclick="edit()" name="${t.id}" type="button" id="modifica"
+													class="button_modifica"></button>
 											</td>
 											<td>
 												<button type="submit" class="button_elimina"></button>
@@ -326,7 +329,7 @@
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" disabled="disabled"
-												name="ragione_sociale" placeholder="locazione">
+												name="ragione_sociale" placeholder="${terreno_id}">
 										</div>
 
 									</div>
