@@ -66,17 +66,15 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 	}
 
 	@Override
-	public void aggiungiOrtaggio(int id_terreno, int id_ortaggio, double prezzo, int tempoColtivazione,
-			String periodoColtivazione) {
+	public void aggiungiOrtaggio(int id_terreno, int id_ortaggio, double prezzo, int tempoColtivazione) {
 		Connection connection = dataSource.getConnection();
 		try {
-			String inserisciOrtaggio = "INSERT INTO ospita(id_terreno, id_ortaggio, prezzo, tempo_coltivazione, periodo_coltivazione) VALUES (?, ?, ?, ?, ?)";
+			String inserisciOrtaggio = "INSERT INTO ospita(id_terreno, id_ortaggio, prezzo, tempo_coltivazione) VALUES (?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(inserisciOrtaggio);
 			statement.setInt(1, id_terreno);
 			statement.setInt(2, id_ortaggio);
 			statement.setDouble(3, prezzo);
 			statement.setInt(4, tempoColtivazione);
-			statement.setString(5, periodoColtivazione);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());

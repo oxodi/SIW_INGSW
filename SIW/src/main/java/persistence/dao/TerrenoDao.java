@@ -14,8 +14,7 @@ public interface TerrenoDao {
 
 	public void cancella(Terreno terreno);
 
-	public void aggiungiOrtaggio(int id_terreno, int id_ortaggio, double prezzo, int tempoColtivazione,
-			String periodoColtivazione);
+	public void aggiungiOrtaggio(int id_terreno, int id_ortaggio, double prezzo, int tempoColtivazione);
 
 	public void cancellaOrtaggio(int id_terreno, int id_ortaggio);
 
