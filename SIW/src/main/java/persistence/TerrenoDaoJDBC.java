@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import entita.Azienda;
 import entita.Cliente;
 import entita.Prenotazione;
 import entita.Terreno;
@@ -128,13 +129,14 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 
 			String aggiorna = "UPDATE terreno SET locazione = ?, dimensione = ?, dimensione_serra = ?, servizio_parziale = ?, servizio_completo = ?, periodo_coltivazione = ?, costo_terreno = ? WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(aggiorna);
-			statement.setInt(1, terreno.getDimensione());
-			statement.setInt(2, terreno.getDimensioneSerra());
-			statement.setBoolean(3, terreno.isServizioParziale());
-			statement.setBoolean(4, terreno.isServizioCompleto());
-			statement.setString(5, terreno.getPeriodiDisponibilita());
-			statement.setDouble(6, terreno.getCosto());
-			statement.setInt(7, terreno.getId());
+			statement.setString(1, terreno.getLocazione());
+			statement.setInt(2, terreno.getDimensione());
+			statement.setInt(3, terreno.getDimensioneSerra());
+			statement.setBoolean(4, terreno.isServizioParziale());
+			statement.setBoolean(5, terreno.isServizioCompleto());
+			statement.setString(6, terreno.getPeriodiDisponibilita());
+			statement.setDouble(7, terreno.getCosto());
+			statement.setInt(8, terreno.getId());
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -444,7 +446,7 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 			statement.setBoolean(1, servizioParziale);
 			statement.setBoolean(2, servizioCompleto);
 			statement.setString(3, periodo);
-	
+
 			ResultSet result = statement.executeQuery();
 
 			while (result.next()) {
@@ -461,5 +463,28 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 			}
 		}
 		return terreni;
+	}
+
+	@Override
+	public void setDocumento(Terreno terreno, String documento) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String update = "UPDATE terreno SET documento = ? WHERE id = ?";
+			PreparedStatement statement = connection.prepareStatement(update);
+
+			statement.setString(1, documento);
+			statement.setInt(2, terreno.getId());
+			statement.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+
 	}
 }

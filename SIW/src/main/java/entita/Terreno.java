@@ -22,6 +22,7 @@ public class Terreno {
 	private ArrayList<Ortaggio> ortaggi;
 	private double costo; // costo al mt2 del terreno
 	private String periodiDisponibilita;
+	private String documento;
 
 	public Terreno() {
 	}
@@ -131,6 +132,14 @@ public class Terreno {
 		this.periodiDisponibilita = periodiDisponibilita;
 	}
 
+	public String getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+	
 	@Override
 	public String toString() {
 		String output = "Terreno[" + this.id + ", " + this.idAzienda + ", " + this.locazione + ", "

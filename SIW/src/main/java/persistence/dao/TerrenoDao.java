@@ -20,7 +20,7 @@ public interface TerrenoDao {
 	public void cancellaOrtaggio(int id_terreno, int id_ortaggio);
 
 	public Terreno cercaPerChiavePrimaria(int id);
-
+	
 	public ArrayList<Ortaggio> cercaOrtaggiPerTerreno(int id_terreno);
 
 	public List<Terreno> cercaPerServizio(boolean servizioParziale, boolean servizioCompleto);
@@ -36,4 +36,6 @@ public interface TerrenoDao {
 	public List<Prenotazione> cercaPrenotazioniPerTerreno(int id_terreno);
 
 	public List<Cliente> cercaClientiPerTerreno(int id_terreno);
+	
+	public void setDocumento(Terreno terreno, String documento);
 }
