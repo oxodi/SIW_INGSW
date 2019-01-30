@@ -125,16 +125,15 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 
-			String aggiorna = "UPDATE terreno SET locazione = ?, dimensione = ?, dimensione_serra = ?, servizio_parziale = ?, servizio_completo = ?, periodo_coltivazione = ?, costo_terreno = ? WHERE id = ?";
+			String aggiorna = "UPDATE terreno SET dimensione = ?, dimensione_serra = ?, servizio_parziale = ?, servizio_completo = ?, periodo_coltivazione = ?, costo_terreno = ? WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(aggiorna);
-			statement.setString(1, terreno.getLocazione());
-			statement.setInt(2, terreno.getDimensione());
-			statement.setInt(3, terreno.getDimensioneSerra());
-			statement.setBoolean(4, terreno.isServizioParziale());
-			statement.setBoolean(5, terreno.isServizioCompleto());
-			statement.setString(6, terreno.getPeriodiDisponibilita());
-			statement.setDouble(7, terreno.getCosto());
-			statement.setInt(8, terreno.getId());
+			statement.setInt(1, terreno.getDimensione());
+			statement.setInt(2, terreno.getDimensioneSerra());
+			statement.setBoolean(3, terreno.isServizioParziale());
+			statement.setBoolean(4, terreno.isServizioCompleto());
+			statement.setString(5, terreno.getPeriodiDisponibilita());
+			statement.setDouble(6, terreno.getCosto());
+			statement.setInt(7, terreno.getId());
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
