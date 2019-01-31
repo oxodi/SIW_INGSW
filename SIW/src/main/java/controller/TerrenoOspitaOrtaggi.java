@@ -24,6 +24,38 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		if(req.getParameter("edit").equals("true"))
+		{
+			System.out.println("Sono nell'edit");
+			System.out.println("sto cambiando l'ID "+ req.getParameter("editFormId"));
+			int id = Integer.parseInt(req.getParameter("editFormId"));
+			int dimensione = Integer.parseInt(req.getParameter("editFormDimensione"));
+			System.out.println("sto settando la dimensione "+ dimensione);
+			int dimensioneSerra = Integer.parseInt(req.getParameter("editFormDimensioneSerra"));
+			System.out.println("sto settando la dimensione "+ dimensioneSerra);
+			double costo = Double.parseDouble(req.getParameter("editFormCosto"));
+			System.out.println("sto settando la dimensione "+ costo);
+
+			//mancano parametri
+			
+			TerrenoDao terrenoNew = PostgresDAOFactory.getInstance().getTerrenoDAO();
+			Terreno terreno = terrenoNew.cercaPerChiavePrimaria(id);
+			terreno.setDimensione(dimensione);
+			terreno.setDimensioneSerra(dimensioneSerra);
+			terreno.setCosto(costo);
+			System.out.println("Sto aggiornando... "+ terreno.getId());
+			System.out.println("Sto aggiornando... "+ terreno.getDimensione());
+			System.out.println("Sto aggiornando... "+ terreno.getDimensioneSerra());
+			System.out.println("Sto aggiornando... "+ terreno.getCosto());
+
+
+			terrenoNew.aggiorna(terreno);
+			RequestDispatcher rd = req.getRequestDispatcher("PrelevaDatiTerreno");
+			rd.forward(req, resp);
+		}
+		else
+		{
+			
 		Terreno terreno = new Terreno();
 		int dimensione = Integer.parseInt(req.getParameter("dimensione_terreno"));
 		int dimensioneSerra = Integer.parseInt(req.getParameter("dimensione_serra"));
@@ -60,7 +92,7 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 		RequestDispatcher rd = req.getRequestDispatcher("PrelevaDatiTerreno");
 		rd.forward(req, resp);
 		
-
+		}
 	}
 
 }

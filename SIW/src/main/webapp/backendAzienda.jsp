@@ -25,9 +25,9 @@
 </script>
 
 <script>
-	function edit(locazione, dim, dimSerra, costo, servizioC, servizioP,
+	function edit(id, locazione, dim, dimSerra, costo, servizioC, servizioP,
 			periodo) {
-
+		$("#editFormId").val(id);
 		$("#editFormLocazione").val(locazione);
 		$("#editFormDimensione").val(dim);
 		$("#editFormDimensioneSerra").val(dimSerra);
@@ -42,6 +42,7 @@
 		} else {
 			$("#editCheckParziale").attr('checked', false);
 		}
+		$('#dropdownDisponibilita').val(periodo);
 		$("#terreni").hide("slow");
 		$("#info_terreno").show("slow");
 
@@ -311,7 +312,7 @@
 											<td>${t.periodiDisponibilita}</td>
 											<td>
 												<button
-													onclick="edit('${t.locazione}', '${t.dimensione}', '${t.dimensioneSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
+													onclick="edit('${t.id}','${t.locazione}', '${t.dimensione}', '${t.dimensioneSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
 													name="${t.id}" type="button" id="modifica"
 													class="button_modifica"></button>
 											</td>
@@ -324,7 +325,8 @@
 							</table>
 							<div align="center">
 								<a href="PageLoader?id=inserimentoTerreno">
-									<button class="button btn" type="submit">Aggiungi Terreno</button>
+									<button class="button btn" type="submit">Aggiungi
+										Terreno</button>
 								</a>
 							</div>
 						</div>
@@ -335,98 +337,105 @@
 							<div align="center">
 								<h4>Modifica dati Terreno</h4>
 							</div>
-
-							<div class="row" style="margin-top: 40px">
-								<div class="col-md-6 ">
-									<div class="form-row form-group">
-
-										<div class="col-md-4">
-											<label class="label-column">Locazione</label>
+							<form class="custom-form" method="post"
+								action="TerrenoOspitaOrtaggi?edit=true">
+								<div class="row" style="margin-top: 40px">
+									<div class="col-md-6 ">
+										<div class="form-row form-group" style="display: none;">
+											<div class="col-xs-2" style="display: none !important">
+												<input class="input-column" type="text"
+													id="editFormId" name="editFormId">
+											</div>
 										</div>
-										<div class="col-xs-2">
-											<input class="input-column" type="text" disabled="disabled"
-												id="editFormLocazione">
+										<div class="form-row form-group">
+											<div class="col-md-4">
+												<label class="label-column">Locazione</label>
+											</div>
+											<div class="col-xs-2">
+												<input class="input-column" type="text" disabled="disabled"
+													id="editFormLocazione">
+											</div>
 										</div>
+										<br>
+										<div class="form-row form-group">
+
+											<div class="col-md-4">
+												<label class="label-column">Dimensione</label>
+											</div>
+											<div class="col-xs-2">
+												<input class="input-column" type="text"
+													id="editFormDimensione" name="editFormDimensione">
+											</div>
+
+										</div>
+										<br>
+										<div class="form-row form-group">
+											<div class="col-md-4">
+												<label class="label-column">Dimensione Serra</label>
+											</div>
+											<div class="col-xs-2">
+												<input class="input-column" type="text"
+													id="editFormDimensioneSerra" name="editFormDimensioneSerra">
+											</div>
+
+										</div>
+										<br>
+									</div>
+
+									<div class="col-md-6 ">
+										<div class="form-row form-group">
+											<div class="col-md-4">
+												<label class="label-column">Costo</label>
+											</div>
+											<div class="col-xs-2">
+												<input class="input-column" type="text"
+													id="editFormCosto" name="editFormCosto">
+											</div>
+										</div>
+										<br>
+										<div class="form-row form-group">
+											<div class="col-md-4" align="left">
+												<label class="label-column">Periodo Disponibilita'</label>
+											</div>
+											<div class="col-xs-2">
+												<select class="custom-select input-column"
+													style="width: 190px; padding: 3px;"
+													id="dropdownDisponibilita" name="dropdownDisponibilita">
+													<option value="primavera">Primavera</option>
+													<option value="estate">Estate</option>
+													<option value="autunno">Autunno</option>
+													<option value="inverno">Inverno</option>
+													<option value="annuale">Annuale</option>
+
+												</select>
+											</div>
+										</div>
+										<br>
+										<div class="form-row form-group">
+											<label class="label-column"><strong>Seleziona
+													i sevizi</strong></label>
+										</div>
+										<div class="form-check" align="left">
+											<input id="editCheckParziale" type="checkbox" name="parziale"><label>
+												Servizio Parziale</label>
+										</div>
+										<br>
+										<div class="form-check" align="left">
+											<input id="editCheckCompleto" type="checkbox" name="completo"><label>
+												Servizio Completo</label>
+										</div>
+
+
+										<br>
 
 									</div>
-									<br>
-									<div class="form-row form-group">
-
-										<div class="col-md-4">
-											<label class="label-column">Dimensione</label>
-										</div>
-										<div class="col-xs-2">
-											<input class="input-column" type="text"
-												id="editFormDimensione">
-										</div>
-
-									</div>
-									<br>
-									<div class="form-row form-group">
-										<div class="col-md-4">
-											<label class="label-column">Dimensione Serra</label>
-										</div>
-										<div class="col-xs-2">
-											<input class="input-column" type="text"
-												id="editFormDimensioneSerra">
-										</div>
-
-									</div>
-									<br>
 								</div>
+								<div align="center">
 
-								<div class="col-md-6 ">
-									<div class="form-row form-group">
-										<div class="col-md-4">
-											<label class="label-column">Costo</label>
-										</div>
-										<div class="col-xs-2">
-											<input class="input-column" type="text" disabled="disabled"
-												id="editFormCosto">
-										</div>
-									</div>
-									<br>
-									<div class="form-row form-group">
-										<div class="col-md-4" align="left">
-											<label class="label-column">Periodo Disponibilita'</label>
-										</div>
-										<div class="col-xs-2">
-											<select class="custom-select input-column"
-												style="width: 190px; padding: 3px;" name="disponibilita">
-												<option value="primavera">Primavera</option>
-												<option value="estate">Estate</option>
-												<option value="autunno">Autunno</option>
-												<option value="inverno">Inverno</option>
-												<option value="annuale">Annuale</option>
-
-											</select>
-										</div>
-									</div>
-									<br>
-									<div class="form-row form-group">
-										<label class="label-column"><strong>Seleziona
-												i sevizi</strong></label>
-									</div>
-									<div class="form-check" align="left">
-										<input id="editCheckParziale" type="checkbox" name="parziale"><label>
-											Servizio Parziale</label>
-									</div>
-									<br>
-									<div class="form-check" align="left">
-										<input id="editCheckCompleto" type="checkbox" name="completo"><label>
-											Servizio Completo</label>
-									</div>
-
-
-									<br>
-
+									<button class="button btn" id="annulla_modifica" type="submit">Annulla</button>
+									<button class="button btn" type="submit">Salva</button>
 								</div>
-							</div>
-							<div align="center">
-
-								<button class="button btn" id="annulla_modifica" type="submit">Annulla</button>
-								<button class="button btn" type="submit">Salva</button>
-							</div>
+							</form>
 						</div>
 						<!-- end modifiche -->
 

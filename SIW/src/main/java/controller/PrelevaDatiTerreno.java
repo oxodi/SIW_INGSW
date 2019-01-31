@@ -37,7 +37,10 @@ public class PrelevaDatiTerreno extends HttpServlet {
 		TerrenoDao terrenodao = PostgresDAOFactory.getInstance().getTerrenoDAO();
 		List<Terreno> terreni = terrenodao.cercaPerAzienda(aziendaInSessione.getId());
 		req.setAttribute("terreni", terreni);
-		
+		for(int i = 0; i < terreni.size();i++)
+		{
+			System.out.println(terreni.get(i));
+		}
 		RequestDispatcher rd = req.getRequestDispatcher("backendAzienda.jsp");
 		rd.forward(req, resp);
 	}

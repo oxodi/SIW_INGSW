@@ -100,7 +100,7 @@
 							</div>
 							<div class="form-row form-group">
 								<div class="col-md-4" align="left">
-									<label class="label-column">Periodo Disponobilita'</label>
+									<label class="label-column">Periodo Disponibilita'</label>
 								</div>
 								<div class="col-xs-2 ">
 									<!-- <input class="input-column" type="text" name="disponibilita"

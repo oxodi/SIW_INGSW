@@ -189,7 +189,7 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 				terreno.setId(result.getInt("id"));
 				terreno.setCosto(result.getDouble("costo_terreno"));
 				terreno.setDimensione(result.getInt("dimensione"));
-				terreno.setDimensione(result.getInt("dimensione_serra"));
+				terreno.setDimensioneSerra(result.getInt("dimensione_serra"));
 				terreno.setLocazione(result.getString("locazione"));
 				terreno.setServizioCompleto(result.getBoolean("servizio_completo"));
 				terreno.setServizioParziale(result.getBoolean("servizio_parziale"));
