@@ -1,46 +1,42 @@
-body{
-	
+body {
 	background-color: black;
 	background: url("../img/weblink21.gif");
 	background-size: 100px;
 	background-attachment: fixed;
-	
 }
 
-#div-disp{
+#div-disp {
 	display: block;
 }
 
-.border-profile{
-	
+.border-profile {
 	margin-top: 50px;
-	width: 75%; 
+	width: 75%;
 	border-color: #734d26;
 	border-width: 3px;
-	border-radius: 25px; 
-	border-style: inset; 
+	border-radius: 25px;
+	border-style: inset;
 }
 
-.border-info-style{
-	
-	border-color:  #734d26;
+.border-info-style {
+	border-color: #734d26;
 	margin-top: 50px;
 	margin-bottom: 20px;
 	margin-right: 30px;
 	border-width: 1px;
-	border-radius: 25px; 
-	border-style: inset; 
+	border-radius: 25px;
+	border-style: inset;
 }
 
-.color-border{
+.color-border {
 	border-color: green;
 	border-style: solid;
-	border-width: 1px; 
+	border-width: 1px;
 }
 
-.input-column{
-	color: black/*#5f5f5f*/;
-	background-color: #cfc7af/*#dbdbdb*/;
+.input-column {
+	color: black /*#5f5f5f*/;
+	background-color: #cfc7af /*#dbdbdb*/;
 	box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, .08);
 	height: 30px;
 	padding: 12px;
@@ -49,46 +45,44 @@ body{
 	/* height: 42px */
 }
 
-.label-column{
+.label-column {
 	color: black;
 }
 
-.label-column{
+.label-column {
 	color: black;
 	font: 700 14px sans-serif;
-	
 }
 
 /* Add a black background color to the top navigation */
 .topnav {
-  background-color: #331a00;
-  overflow: hidden;
-  border-radius: 10px; 
+	background-color: #331a00;
+	overflow: hidden;
+	border-radius: 10px;
 }
 
 /* Style the links inside the navigation bar */
 .topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  border-bottom: 3px solid transparent;
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+	border-bottom: 3px solid transparent;
 }
 
 .topnav a:hover {
-  border-bottom: 3px solid green;
+	border-bottom: 3px solid green;
 }
 
 .topnav a.active {
-  border-bottom: 3px solid green;
+	border-bottom: 3px solid green;
 }
 
 /* bottone conferma*/
-
-.button-style{
+.button-style {
 	height: 50px;
 	width: 100px;
 	color: white;
@@ -97,35 +91,29 @@ body{
 	border-width: 2px;
 	border-style: inset;
 	border-radius: 8px;
-	
 }
 
 /* lisa info azienda */
-
-.style-info{
+.style-info {
 	background-color: transparent;
 	border-color: transparent;
-
-	
 }
 
-.image-profile{
-	border-color:  #734d26;
+.image-profile {
+	border-color: #734d26;
 	border-width: 1.5px;
 	border-style: inset;
 }
 
-.button{
+.button {
 	border-radius: 15px;
-	background: green/*#6caee0*/;
+	background: green /*#6caee0*/;
 	color: #fff;
 	font-weight: 700;
 	padding: 14px 22px;
 	border: 0;
 	margin: 30px;
 	outline: none !important;
-	
-
 }
 
 .button:hover {
@@ -133,16 +121,17 @@ body{
 }
 
 .button:active {
-  background-color: freen;
- box-shadow: 0 3px #773c00;
-   transform: translateY(4px);
-} 
+	background-color: freen;
+	box-shadow: 0 3px #773c00;
+	transform: translateY(4px);
+	outline: none !important;
+}
 
 .button_elimina {
 	background-color: transparent;
 	width: 50px;
 	height: 40px;
-	background-repeat: no-repeat; 
+	background-repeat: no-repeat;
 	background-position: center center;
 	background-image: url("../img/garbage.png");
 	border-radius: 8px;
@@ -150,7 +139,6 @@ body{
 	border-color: #cc0000;
 	border-width: 2px;
 	outline: none !important;
-	
 }
 
 .button_modifica {
@@ -165,5 +153,4 @@ body{
 	border-color: blue;
 	border-width: 2px;
 	outline: none !important;
-	
 }

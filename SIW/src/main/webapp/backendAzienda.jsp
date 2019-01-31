@@ -277,7 +277,7 @@
 							</div>
 							<br>
 							<div align="center">
-								<button class="button" type="submit">Salva</button>
+								<button class="button btn" type="submit">Salva</button>
 							</div>
 						</form>
 					</div>
@@ -324,7 +324,7 @@
 							</table>
 							<div align="center">
 								<a href="PageLoader?id=inserimentoTerreno">
-									<button class="button" type="submit">Aggiungi Terreno</button>
+									<button class="button btn" type="submit">Aggiungi Terreno</button>
 								</a>
 							</div>
 						</div>
@@ -424,8 +424,8 @@
 							</div>
 							<div align="center">
 
-								<button class="button" id="annulla_modifica" type="submit">Annulla</button>
-								<button class="button" type="submit">Salva</button>
+								<button class="button btn" id="annulla_modifica" type="submit">Annulla</button>
+								<button class="button btn" type="submit">Salva</button>
 							</div>
 						</div>
 						<!-- end modifiche -->

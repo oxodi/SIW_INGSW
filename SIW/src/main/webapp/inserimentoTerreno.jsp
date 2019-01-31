@@ -52,95 +52,98 @@
 	<!-- End: Navigation with Button -->
 	<div class="row register-form" style="width: 100%">
 		<div class="col-md-10 offset-md-1">
-			<form class="custom-form"  method="post" action="TerrenoOspitaOrtaggi">
-				
+			<form class="custom-form" method="post" action="TerrenoOspitaOrtaggi">
+
 				<div id="inserimento">
-				<h1>Inserimento Terreno</h1>
-				<div class="row">
-					<!-- colonna 1  -->
-					<div class="col-md-6 " >
-						<div class="form-row form-group">
-							<div class="col-md-4" align="left">
-								<label class="label-column">Locazione</label>
+					<h1>Inserimento Terreno</h1>
+					<div class="row">
+						<!-- colonna 1  -->
+						<div class="col-md-6 ">
+							<div class="form-row form-group">
+								<div class="col-md-4" align="left">
+									<label class="label-column">Locazione</label>
+								</div>
+								<div class="col-xs-2">
+									<input class="input-column" type="text" name="locazione"
+										placeholder="">
+								</div>
 							</div>
-							<div class="col-xs-2">
-								<input class="input-column" type="text" name="locazione"
-									placeholder="">
-							</div>
-						</div>
 
-						<div class="form-row form-group">
-							<div class="col-md-4" align="left">
-								<label class="label-column">Dimensione Terreno</label>
+							<div class="form-row form-group">
+								<div class="col-md-4" align="left">
+									<label class="label-column">Dimensione Terreno</label>
+								</div>
+								<div class="col-xs-2">
+									<input class="input-column" type="text"
+										name="dimensione_terreno" placeholder="">
+								</div>
 							</div>
-							<div class="col-xs-2">
-								<input class="input-column" type="text"
-									name="dimensione_terreno" placeholder="">
-							</div>
-						</div>
 
-						<div class="form-row form-group">
-							<div class="col-md-4" align="left">
-								<label class="label-column">Dimensione Serra</label>
+							<div class="form-row form-group">
+								<div class="col-md-4" align="left">
+									<label class="label-column">Dimensione Serra</label>
+								</div>
+								<div class="col-xs-2">
+									<input class="input-column" type="text" name="dimensione_serra"
+										placeholder="">
+								</div>
 							</div>
-							<div class="col-xs-2">
-								<input class="input-column" type="text" name="dimensione_serra"
-									placeholder="">
-							</div>
-						</div>
 
-						<div class="form-row form-group">
-							<div class="col-md-4" align="left">
-								<label class="label-column">Costo Terreno(mt^2)</label>
+							<div class="form-row form-group">
+								<div class="col-md-4" align="left">
+									<label class="label-column">Costo Terreno(mt^2)</label>
+								</div>
+								<div class="col-xs-2">
+									<input class="input-column" type="text" name="costo_terreno"
+										placeholder="">
+								</div>
 							</div>
-							<div class="col-xs-2">
-								<input class="input-column" type="text" name="costo_terreno"
-									placeholder="">
-							</div>
-						</div>
-						<div class="form-row form-group">
-							<div class="col-md-4" align="left">
-								<label class="label-column">Periodo Disponobilita'</label>
-							</div>
-							<div class="col-xs-2 ">
-								<!-- <input class="input-column" type="text" name="disponibilita"
+							<div class="form-row form-group">
+								<div class="col-md-4" align="left">
+									<label class="label-column">Periodo Disponobilita'</label>
+								</div>
+								<div class="col-xs-2 ">
+									<!-- <input class="input-column" type="text" name="disponibilita"
 									placeholder=""> -->
-									<select class="custom-select input-column" style="width: 190px; padding: 5px;" name="disponibilita">
-										<option value="primavera"> Primavera </option>
-										<option value="estate"> Estate </option>
-										<option value="autunno"> Autunno </option>
-										<option value="inverno"> Inverno </option>
-										<option value="annuale"> Annuale </option>
-										
+									<select class="custom-select input-column"
+										style="width: 190px; padding: 5px;" name="disponibilita">
+										<option value="primavera">Primavera</option>
+										<option value="estate">Estate</option>
+										<option value="autunno">Autunno</option>
+										<option value="inverno">Inverno</option>
+										<option value="annuale">Annuale</option>
+
 									</select>
-									
+
+								</div>
 							</div>
-						</div>
-						<div class="form-row form-group">
+							<div class="form-row form-group">
 
-							<label class="label-column"><strong>Seleziona i
-									sevizi</strong></label>
+								<label class="label-column"><strong>Seleziona i
+										sevizi</strong></label>
+
+							</div>
+							<div class="form-check" align="left">
+								<input type="checkbox" name="parziale"><label>
+									Servizio Parziale</label>
+							</div>
+							<br>
+							<div class="form-check" align="left">
+								<input type="checkbox" name="completo"><label>
+									Servizio Completo</label>
+							</div>
 
 						</div>
-						<div class="form-check" align="left">
-							<input type="checkbox" name="parziale"><label> Servizio Parziale</label>
-						</div>
-						<br>
-						<div class="form-check" align="left">
-							<input type="checkbox" name="completo"><label> Servizio Completo</label>
-						</div>
-
-					</div>
-					<!-- fine colonna 1 -->
-					<!-- colonna 2 -->
-					<div class="col-md-6 ">
-						<div class="form-row form-group" align="center">
-							<label><strong>selezionare gli ortaggi
-									coltivabili e inserisci il relativo costo</strong></label>
-						</div>
-						<div class="form-row form-group">
-							<div class="table-responsive" id="table-scroll">
-								<table class="table table-hover">
+						<!-- fine colonna 1 -->
+						<!-- colonna 2 -->
+						<div class="col-md-6 ">
+							<div class="form-row form-group" align="center">
+								<label><strong>selezionare gli ortaggi
+										coltivabili e inserisci il relativo costo</strong></label>
+							</div>
+							<div class="form-row form-group">
+								<div class="table-responsive" id="table-scroll">
+									<table class="table table-hover">
 										<thead>
 											<tr>
 												<th></th>
@@ -148,50 +151,58 @@
 												<th><strong>Resa</strong></th>
 												<th><strong>Prezzo</strong></th>
 												<th><strong>Tempo Coltivazione</strong></th>
-												
+
 											</tr>
 										</thead>
 										<tbody id="items">
 											<c:forEach items="${ortaggi}" var="o">
 												<tr class="accordion-toggle" data-toggle="collapse">
-													<td><input type="checkbox" value="${o.id}" name="ortaggiSelezionati"></td>
+													<td><input type="checkbox" value="${o.id}"
+														name="ortaggiSelezionati"></td>
 													<td>${o.nome}</td>
 													<td>${o.resa}</td>
 													<td><input class="input-column" type="text"
-														style="max-width: 80px" name="prezzo${o.id}" placeholder="prezzo"></td>
+														style="max-width: 80px" name="prezzo${o.id}"
+														placeholder="prezzo"></td>
 													<td><input class="input-column" type="text"
-														style="max-width: 80px" name="tempo${o.id}" placeholder="tempo coltivazione"></td>
+														style="max-width: 80px" name="tempo${o.id}"
+														placeholder="tempo coltivazione"></td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
+								</div>
+							</div>
+						</div>
+						<!-- fine colonna 2 -->
+						<div class="container">
+							<div align="center">
+								<a href="PageLoader?id=backendAzienda"><button class="button btn"
+									 id="annulla"
+									type="button">Annulla</button></a>
+								
+								<button class="button btn" id="avanti" type="button">Avanti</button>
+
 							</div>
 						</div>
 					</div>
-					<!-- fine colonna 2 -->
-					<div class="container">
-						<div align="center">
-							<button class="button" id="annulla" type="button">Annulla</button>
-							<button class="button" id="avanti" type="button">Avanti</button>
-							
-						</div>
-					</div>
-				</div>
 				</div>
 				<div class="container" id="inserimento_file" style="display: none">
-			
-					<h5><strong>Inserire un documento di proprieta' del terreno</strong></h5>
-					<input  type="file"
+
+					<h5>
+						<strong>Inserire un documento di proprieta' del terreno</strong>
+					</h5>
+					<input type="file"
 						class="text-center center-block file-upload container-fluid button">
-						
+
 					<div align="center">
 
-								<button class="button" id="indietro" type="button">Indietro</button>
-							
-							
-								<button class="button" type="submit">Conferma</button>
-							
-						</div>
+						<button class="button btn" id="indietro" type="button">Indietro</button>
+
+
+						<button class="button btn" type="submit">Conferma</button>
+
+					</div>
 				</div>
 			</form>
 		</div>
