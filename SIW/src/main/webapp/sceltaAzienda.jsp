@@ -43,10 +43,9 @@
 
 
 		<div class="list-group">
-			<form action="DammiTerreno" method="get">
 				<nav id="nav1">
 					<c:forEach items="${aziende}" var="a">
-						<button   onclick="submit" name="btnAzienda" value="${a.id}"
+						<button   onclick="mostraTerreno(${a.id});" name="btnAzienda" value="${a.id}"
 							class=" list-group-item list-group-item-action">
 
 							<h2 class="list-group-item-heading">${a.ragioneSociale }</h2>
@@ -71,7 +70,6 @@
 
 
 				</nav>
-			</form>
 		</div>
 
 	</div>

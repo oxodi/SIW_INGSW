@@ -24,7 +24,7 @@ public class DammiTerreno extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Sono in Dammi Terreno");
-		String btnAzienda = request.getParameter("btnAzienda");
+		String btnAzienda = request.getParameter("idAz");
 		int idAzienda = Integer.parseInt(btnAzienda);
 		AziendaDao aziendaDao = PostgresDAOFactory.getInstance().getAziendaDAO();
 		TerrenoDao terrenoDao = PostgresDAOFactory.getInstance().getTerrenoDAO();
@@ -35,7 +35,7 @@ public class DammiTerreno extends HttpServlet {
 		request.setAttribute("azienda", azienda);
 		request.setAttribute("terreni", terreni);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("sceltaTerreno.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("sceltaAzienda.jsp");
 		rd.forward(request, response);
 	}
 
