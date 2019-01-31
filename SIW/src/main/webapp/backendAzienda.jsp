@@ -25,11 +25,26 @@
 </script>
 
 <script>
-	function edit(id) {
-		alert(id);
+	function edit(locazione, dim, dimSerra, costo, servizioC, servizioP,
+			periodo) {
+
+		$("#editFormLocazione").val(locazione);
+		$("#editFormDimensione").val(dim);
+		$("#editFormDimensioneSerra").val(dimSerra);
+		$("#editFormCosto").val(costo);
+		if (servizioC === 'true') {
+			$("#editCheckCompleto").attr('checked', true);
+		} else {
+			$("#editCheckCompleto").attr('checked', false);
+		}
+		if (servizioP === 'true') {
+			$("#editCheckParziale").attr('checked', true);
+		} else {
+			$("#editCheckParziale").attr('checked', false);
+		}
 		$("#terreni").hide("slow");
 		$("#info_terreno").show("slow");
-		
+
 	}
 </script>
 <script>
@@ -282,12 +297,12 @@
 									</tr>
 								</thead>
 								<tbody id="items">
-										
-									
+
+
 									<c:forEach items="${terreni}" var="t">
 										<tr data-toggle="collapse" data-target="#demo1"
 											class="accordion-toggle ">
-											
+
 											<td>${t.locazione}</td>
 											<td>${t.dimensione }</td>
 											<td>${t.dimensioneSerra }</td>
@@ -295,8 +310,9 @@
 											<td>${t.servizioParziale}</td>
 											<td>${t.periodiDisponibilita}</td>
 											<td>
-												<div id="setvariable"><c:set var="terreno_id" value="${t.id}" scope="session"></c:set></div>
-												<button onclick="edit(${t.id})" name="${t.id}" type="button" id="modifica"
+												<button
+													onclick="edit('${t.locazione}', '${t.dimensione}', '${t.dimensioneSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
+													name="${t.id}" type="button" id="modifica"
 													class="button_modifica"></button>
 											</td>
 											<td>
@@ -329,7 +345,7 @@
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" disabled="disabled"
-												name="ragione_sociale" placeholder="">
+												id="editFormLocazione">
 										</div>
 
 									</div>
@@ -341,7 +357,7 @@
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text"
-												name="ragione_sociale" placeholder="dimensione">
+												id="editFormDimensione">
 										</div>
 
 									</div>
@@ -352,7 +368,7 @@
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text"
-												name="ragione_sociale" placeholder="dimensione serra">
+												id="editFormDimensioneSerra">
 										</div>
 
 									</div>
@@ -366,7 +382,7 @@
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" disabled="disabled"
-												name="ragione_sociale" placeholder="costo">
+												id="editFormCosto">
 										</div>
 									</div>
 									<br>
@@ -392,12 +408,12 @@
 												i sevizi</strong></label>
 									</div>
 									<div class="form-check" align="left">
-										<input type="checkbox" name="parziale"><label>
+										<input id="editCheckParziale" type="checkbox" name="parziale"><label>
 											Servizio Parziale</label>
 									</div>
 									<br>
 									<div class="form-check" align="left">
-										<input type="checkbox" name="completo"><label>
+										<input id="editCheckCompleto" type="checkbox" name="completo"><label>
 											Servizio Completo</label>
 									</div>
 
