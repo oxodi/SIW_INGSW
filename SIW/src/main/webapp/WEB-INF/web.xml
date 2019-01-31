@@ -67,6 +67,13 @@
 		<servlet-name>ModificaEliminaTerreno</servlet-name>
 		<servlet-class>controller.ModificaEliminaTerreno</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>eliminaTerreno</display-name>
+		<servlet-name>eliminaTerreno</servlet-name>
+		<servlet-class>controller.eliminaTerreno</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -117,6 +124,10 @@
 	<servlet-mapping>
 		<servlet-name>ModificaEliminaTerreno</servlet-name>
 		<url-pattern>/ModificaEliminaTerreno</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>eliminaTerreno</servlet-name>
+		<url-pattern>/eliminaTerreno</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>Home</welcome-file>

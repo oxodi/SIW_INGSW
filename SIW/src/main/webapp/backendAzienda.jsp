@@ -307,8 +307,18 @@
 											<td>${t.locazione}</td>
 											<td>${t.dimensione }</td>
 											<td>${t.dimensioneSerra }</td>
-											<td>${t.servizioCompleto }</td>
-											<td>${t.servizioParziale}</td>
+											<td>
+											<c:choose>
+												<c:when test="${t.servizioCompleto}">SI</c:when>
+												<c:otherwise>NO</c:otherwise>
+											</c:choose>
+											</td>
+											<td>
+											<c:choose>
+												<c:when test="${t.servizioParziale}">SI</c:when>
+												<c:otherwise>NO</c:otherwise>
+											</c:choose>
+											</td>
 											<td>${t.periodiDisponibilita}</td>
 											<td>
 												<button
@@ -317,7 +327,9 @@
 													class="button_modifica"></button>
 											</td>
 											<td>
+												<a href="TerrenoOspitaOrtaggi?delete=true&id=${t.id}">
 												<button type="submit" class="button_elimina"></button>
+												</a>
 											</td>
 										</tr>
 									</c:forEach>
@@ -416,12 +428,12 @@
 													i sevizi</strong></label>
 										</div>
 										<div class="form-check" align="left">
-											<input id="editCheckParziale" type="checkbox" name="parziale"><label>
+											<input id="editCheckParziale" type="checkbox" name="editCheckParziale" value="parziale"><label>
 												Servizio Parziale</label>
 										</div>
 										<br>
 										<div class="form-check" align="left">
-											<input id="editCheckCompleto" type="checkbox" name="completo"><label>
+											<input id="editCheckCompleto" type="checkbox" name="editCheckCompleto" value="completo"><label>
 												Servizio Completo</label>
 										</div>
 
