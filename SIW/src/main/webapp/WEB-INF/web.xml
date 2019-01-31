@@ -36,8 +36,8 @@
 		<servlet-class>controller.DammiAzienda</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>DammiTerreno</servlet-name>
-		<servlet-class>controller.DammiTerreno</servlet-class>
+		<servlet-name>DammiTerreniAzienda</servlet-name>
+		<servlet-class>controller.DammiTerreniAzienda</servlet-class>
 	</servlet>
 	<servlet>
 		<description>
@@ -106,8 +106,8 @@
 		<url-pattern>/DammiAzienda</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>DammiTerreno</servlet-name>
-		<url-pattern>/DammiTerreno</url-pattern>
+		<servlet-name>DammiTerreniAzienda</servlet-name>
+		<url-pattern>/DammiTerreniAzienda</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>PrelevaDatiTerreno</servlet-name>

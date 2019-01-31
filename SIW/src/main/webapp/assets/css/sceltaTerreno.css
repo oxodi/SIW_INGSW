@@ -8,15 +8,33 @@ body {
 	outline: none;
 }
 
-#centerColumn{
-	border-style: solid; 
-	border-radius: 25px; 
-	border-color: green;
+.button {
+	padding: 15px 25px;
+	/*font-size: 24px;*/
+	font-weight: 700;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: #fff;
+	background-color: green; /* #4CAF50*/
+	border: none;
+	border-radius: 15px;
+	/*box-shadow: 0 9px #999;   3D EFFECTS */
+	outline: none !important;
+	align: buttom;
+	margin-top: 15px;
 }
 
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 16px;
-  text-align: center;
-  background-color: #f1f1f1;
+
+.button:hover {
+	background-color: #3e8e41
+}
+
+.button:active {
+	background-color: green; /* #3e8e41 */
+	box-shadow: 0 3px #773c00;
+	transform: translateY(4px); # avanti { position : absolute;
+	left: 20px;
+	right: 20px;
+	
 }
