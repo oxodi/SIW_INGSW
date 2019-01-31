@@ -20,11 +20,7 @@ import persistence.dao.TerrenoDao;
 public class TerrenoOspitaOrtaggi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@Override
-		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			RequestDispatcher rd = req.getRequestDispatcher("PageLoader?id=backendAzienda");
-			rd.forward(req, resp);
-		}
+	
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -61,7 +57,8 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 			terrenoNew.aggiungiOrtaggio(terreno.getId(), Integer.parseInt(checkedIds[i]), intPrezzi, tempoInt);
 		}
 		
-		doGet(req, resp);
+		RequestDispatcher rd = req.getRequestDispatcher("PrelevaDatiTerreno");
+		rd.forward(req, resp);
 		
 
 	}

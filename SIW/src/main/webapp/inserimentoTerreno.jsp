@@ -58,7 +58,7 @@
 				<h1>Inserimento Terreno</h1>
 				<div class="row">
 					<!-- colonna 1  -->
-					<div class="col-md-6 ">
+					<div class="col-md-6 " >
 						<div class="form-row form-group">
 							<div class="col-md-4" align="left">
 								<label class="label-column">Locazione</label>
@@ -102,9 +102,18 @@
 							<div class="col-md-4" align="left">
 								<label class="label-column">Periodo Disponobilita'</label>
 							</div>
-							<div class="col-xs-2">
-								<input class="input-column" type="text" name="disponibilita"
-									placeholder="">
+							<div class="col-xs-2 ">
+								<!-- <input class="input-column" type="text" name="disponibilita"
+									placeholder=""> -->
+									<select class="custom-select input-column" style="width: 190px; padding: 5px;" name="disponibilita">
+										<option value="primavera"> Primavera </option>
+										<option value="estate"> Estate </option>
+										<option value="autunno"> Autunno </option>
+										<option value="inverno"> Inverno </option>
+										<option value="annuale"> Annuale </option>
+										
+									</select>
+									
 							</div>
 						</div>
 						<div class="form-row form-group">
@@ -127,7 +136,7 @@
 					<div class="col-md-6 ">
 						<div class="form-row form-group" align="center">
 							<label><strong>selezionare gli ortaggi
-									coltivabili e inserire il relativo costo</strong></label>
+									coltivabili e inserisci il relativo costo</strong></label>
 						</div>
 						<div class="form-row form-group">
 							<div class="table-responsive" id="table-scroll">

@@ -24,6 +24,24 @@
 	});
 </script>
 
+<script>
+	function edit() {
+		$("#terreni").hide("slow");
+		$("#info_terreno").show("slow");
+		var terrenoid = ${"setvariable"}.html();
+		
+	}
+</script>
+<script>
+	$(document).ready(function() {
+		$("#annulla_modifica").click(function() {
+			$("#terreni").show("slow");
+			$("#info_terreno").hide("slow");
+
+		});
+	});
+</script>
+
 <meta charset="ISO-8859-1">
 <title>profilo azienda</title>
 </head>
@@ -103,144 +121,153 @@
 				<div class="tab-content clearfix">
 					<div class="custom-form tab-pane active"
 						style="margin-left: 20px; margin-top: 20px" id="modificadati">
+						<form action="">
+							<div class="row">
+								<div class="col-md-6 ">
+									<br>
+									<div class="form-row form-group">
 
-						<div class="row">
-							<div class="col-md-6 ">
-								<br>
-								<div class="form-group">
-									<div class="row">
 										<div class="col-md-4">
 											<label class="label-column">Ragione Sociale</label>
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" disabled="disabled"
 												name="ragione_sociale"
-												placeholder="${sessionScope.azienda.getRagioneSociale()}">
+												value="${sessionScope.azienda.getRagioneSociale()}">
 										</div>
+
 									</div>
-								</div>
-								<br>
-								<div class="form-group">
-									<div class="row">
+									<br>
+									<div class=" form-row form-group">
+
 										<div class="col-md-4">
 											<label class="label-column">Referente</label>
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="referente"
-												placeholder="${sessionScope.azienda.getReferente()}">
+												value="${sessionScope.azienda.getReferente()}">
 										</div>
+
 									</div>
-								</div>
-								<br>
-								<div class="form-group">
-									<div class="row">
+									<br>
+									<div class="form-row form-group">
+
 										<div class="col-md-4 ">
 											<label class="label-column">Sede Legale</label>
 										</div>
 										<div class="col-xs-2 ">
 											<input class="input-column" type="text" name="sede_legale"
-												placeholder="${sessionScope.azienda.getSedeLegale()}">
+												value="${sessionScope.azienda.getSedeLegale()}">
 										</div>
+
 									</div>
-								</div>
-								<br>
-								<div class="form-group">
-									<div class="row">
+									<br>
+									<div class="form-row form-group">
+
 										<div class="col-md-4 ">
 											<label class="label-column">Indirizzo</label>
 										</div>
 										<div class="col-xs-2 ">
 											<input class="input-column" type="text" name="indirizzo"
-												placeholder="${sessionScope.azienda.getIndirizzo()}">
+												value="${sessionScope.azienda.getIndirizzo()}">
 										</div>
+
 									</div>
-								</div>
-								<br>
-								<div class="form-group">
-									<div class="row">
+									<br>
+									<div class="form-row form-group">
+
 										<div class="col-md-4 ">
 											<label class="label-column">Citta'</label>
 										</div>
 										<div class="col-xs-2 ">
 											<input class="input-column" type="text" name="citta"
-												placeholder="${sessionScope.azienda.getCitta()}">
+												value="${sessionScope.azienda.getCitta()}">
 										</div>
+
 									</div>
 								</div>
-							</div>
 
 
-							<div class="col-md-6">
-								<br>
-								<div class="form-group">
-									<div class="row">
+								<div class="col-md-6">
+									<br>
+									<div class="form-row form-group">
+
 										<div class="col-md-4 ">
 											<label class="label-column">CAP</label>
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="cap"
-												placeholder="${sessionScope.azienda.getCap()}">
+												value="${sessionScope.azienda.getCap()}">
 										</div>
+
 									</div>
-								</div>
-								<br>
-								<div class="form-group">
-									<div class="row">
+									<br>
+									<div class="form-row form-group">
+
 										<div class="col-md-4 ">
 											<label class="label-column">Provincia</label>
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="provincia"
-												placeholder="${sessionScope.azienda.getProvincia()}">
+												value="${sessionScope.azienda.getProvincia()}">
 										</div>
+
 									</div>
-								</div>
-								<br>
-								<div class="form-group">
-									<div class="row">
+									<br>
+									<div class="form-row form-group">
+
 										<div class="col-md-4">
 											<label class="label-column">P.Iva</label>
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="partita_iva"
-												placeholder="${azienda.getPartitaIVA()}">
+												value="${azienda.getPartitaIVA()}">
 										</div>
+
 									</div>
-								</div>
-								<br>
-								<div class="form-group">
-									<div class="row">
+									<br>
+									<div class="form-row form-group">
+
 										<div class="col-md-4">
 											<label class="label-column">Telefono</label>
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="tel" name="telefono"
-												placeholder="${sessionScope.azienda.getTelefono()}">
+												value="${sessionScope.azienda.getTelefono()}">
 										</div>
+
 									</div>
-								</div>
-								<br>
-								<div class="form-group">
-									<div class="row">
+									<br>
+									<div class="form-row form-group">
+
 										<div class="col-md-4">
 											<label class="label-column">Email</label>
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="email"
-												placeholder="${sessionScope.azienda.getEmail()}">
+												value="${sessionScope.azienda.getEmail()}">
 										</div>
+
 									</div>
 								</div>
 							</div>
-						</div>
-						<br>
-						<div align="center">
-							<button class="button" type="submit">Salva</button>
-						</div>
+							<br>
+							<div style="text-align: center; whidt: 100%; margin-top: 25px">
+								<div align="center">
+									<label class="label-column">Descrizione Servizi Offerti</label>
+								</div>
+								<textarea class="form-control"
+									style="margin-left: auto; margin-right: auto; resize: none; border: 2px green solid; border-radius: 15px; min-height: 150px; background-color: #cfc7af; min-width: 100%;"
+									maxlength="1000" name="formDescrizione">${sessionScope.azienda.getDescrizioneServizi()}</textarea>
+							</div>
+							<br>
+							<div align="center">
+								<button class="button" type="submit">Salva</button>
+							</div>
+						</form>
 					</div>
-					<div class="tab-pane" style="margin-left: 20px; margin-top: 20px"
-						id="imieiterreni">
-						<div class="table-responsive">
+					<div class="tab-pane" style="margin-top: 20px" id="imieiterreni">
+						<div class="table-responsive" id="terreni">
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -255,27 +282,138 @@
 									</tr>
 								</thead>
 								<tbody id="items">
-
+										
+									
 									<c:forEach items="${terreni}" var="t">
 										<tr data-toggle="collapse" data-target="#demo1"
 											class="accordion-toggle ">
+											
 											<td>${t.locazione}</td>
 											<td>${t.dimensione }</td>
 											<td>${t.dimensioneSerra }</td>
 											<td>${t.servizioCompleto }</td>
 											<td>${t.servizioParziale}</td>
 											<td>${t.periodiDisponibilita}</td>
-											<td> <button type="button" class="button_modifica"></button> </td>
-											<td> <button type="submit" class="button_elimina"></button> </td>
+											<td>
+												<div id="setvariable"><c:set var="terreno_id" value="${t.id}" scope="session"></c:set></div>
+												<button onclick="edit()" name="${t.id}" type="button" id="modifica"
+													class="button_modifica"></button>
+											</td>
+											<td>
+												<button type="submit" class="button_elimina"></button>
+											</td>
 										</tr>
 									</c:forEach>
+								</tbody>
 							</table>
+							<div align="center">
+								<a href="PageLoader?id=inserimentoTerreno">
+									<button class="button" type="submit">Aggiungi Terreno</button>
+								</a>
+							</div>
 						</div>
-						<div align="center">
-							<a href="PageLoader?id=inserimentoTerreno">
-								<button class="button" type="submit">Aggiungi Terreno</button>
-							</a>
+
+						<!-- modifica -->
+						<div class="container" id="info_terreno"
+							style="display: none; margin-top: 20px">
+							<div align="center">
+								<h4>Modifica dati Terreno</h4>
+							</div>
+
+							<div class="row" style="margin-top: 40px">
+								<div class="col-md-6 ">
+									<div class="form-row form-group">
+
+										<div class="col-md-4">
+											<label class="label-column">Locazione</label>
+										</div>
+										<div class="col-xs-2">
+											<input class="input-column" type="text" disabled="disabled"
+												name="ragione_sociale" placeholder="${terreno_id}">
+										</div>
+
+									</div>
+									<br>
+									<div class="form-row form-group">
+
+										<div class="col-md-4">
+											<label class="label-column">Dimensione</label>
+										</div>
+										<div class="col-xs-2">
+											<input class="input-column" type="text"
+												name="ragione_sociale" placeholder="dimensione">
+										</div>
+
+									</div>
+									<br>
+									<div class="form-row form-group">
+										<div class="col-md-4">
+											<label class="label-column">Dimensione Serra</label>
+										</div>
+										<div class="col-xs-2">
+											<input class="input-column" type="text"
+												name="ragione_sociale" placeholder="dimensione serra">
+										</div>
+
+									</div>
+									<br>
+								</div>
+
+								<div class="col-md-6 ">
+									<div class="form-row form-group">
+										<div class="col-md-4">
+											<label class="label-column">Costo</label>
+										</div>
+										<div class="col-xs-2">
+											<input class="input-column" type="text" disabled="disabled"
+												name="ragione_sociale" placeholder="costo">
+										</div>
+									</div>
+									<br>
+									<div class="form-row form-group">
+										<div class="col-md-4" align="left">
+											<label class="label-column">Periodo Disponibilita'</label>
+										</div>
+										<div class="col-xs-2">
+											<select class="custom-select input-column"
+												style="width: 190px; padding: 3px;" name="disponibilita">
+												<option value="primavera">Primavera</option>
+												<option value="estate">Estate</option>
+												<option value="autunno">Autunno</option>
+												<option value="inverno">Inverno</option>
+												<option value="annuale">Annuale</option>
+
+											</select>
+										</div>
+									</div>
+									<br>
+									<div class="form-row form-group">
+										<label class="label-column"><strong>Seleziona
+												i sevizi</strong></label>
+									</div>
+									<div class="form-check" align="left">
+										<input type="checkbox" name="parziale"><label>
+											Servizio Parziale</label>
+									</div>
+									<br>
+									<div class="form-check" align="left">
+										<input type="checkbox" name="completo"><label>
+											Servizio Completo</label>
+									</div>
+
+
+									<br>
+
+								</div>
+							</div>
+							<div align="center">
+
+								<button class="button" id="annulla_modifica" type="submit">Annulla</button>
+								<button class="button" type="submit">Salva</button>
+							</div>
 						</div>
+						<!-- end modifiche -->
+
 					</div>
 				</div>
 			</div>
