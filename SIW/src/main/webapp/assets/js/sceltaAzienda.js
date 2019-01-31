@@ -1,11 +1,22 @@
+function Azienda(id) {
+	this.id = id;
+}
+
 function mostraTerreno(idAzienda){
+	var a = {
+			id : azienda.id,
+	}
+	
 	$.ajax({
 		type: "GET",
 		url: "DammiTerreno",
-		data: {idAz : idAzienda},
+		datatype: "json",
+		data: JSON.stringify(stud),
 		success: function(data){
-			$("#land").empty();
-			$("#land").load("sceltaTerreno.jsp");
+			var terreni = JSON.parse(data);
+			$("#divSceltaTerreno").text(terreni.id);
+			
 		}
 	});
+	
 }

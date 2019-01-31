@@ -41,11 +41,11 @@
 			soddisfa le tue esigenze. Scorrile tutte e clicca su quella che più
 			ti convince.</h5>
 
-
-		<div class="list-group">
+		<form action="DammiTerreniAzienda" method="get">
+			<div class="list-group">
 				<nav id="nav1">
 					<c:forEach items="${aziende}" var="a">
-						<button   onclick="mostraTerreno(${a.id});" name="btnAzienda" value="${a.id}"
+						<button onclick="submit" name="btnAzienda" value="${a.id}"
 							class=" list-group-item list-group-item-action">
 
 							<h2 class="list-group-item-heading">${a.ragioneSociale }</h2>
@@ -70,9 +70,11 @@
 
 
 				</nav>
-		</div>
-
+			</div>
+		        </form>
 	</div>
+
+
 
 
 
