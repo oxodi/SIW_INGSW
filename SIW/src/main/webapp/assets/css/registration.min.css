@@ -229,6 +229,7 @@
   background-color: freen;
  box-shadow: 0 3px #773c00;
    transform: translateY(4px);
+   outline: none !important;
 } 
 
 /* tasto indietro */

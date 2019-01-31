@@ -25,10 +25,10 @@
 </script>
 
 <script>
-	function edit() {
+	function edit(id) {
+		alert(id);
 		$("#terreni").hide("slow");
 		$("#info_terreno").show("slow");
-		var terrenoid = ${"setvariable"}.html();
 		
 	}
 </script>
@@ -296,7 +296,7 @@
 											<td>${t.periodiDisponibilita}</td>
 											<td>
 												<div id="setvariable"><c:set var="terreno_id" value="${t.id}" scope="session"></c:set></div>
-												<button onclick="edit()" name="${t.id}" type="button" id="modifica"
+												<button onclick="edit(${t.id})" name="${t.id}" type="button" id="modifica"
 													class="button_modifica"></button>
 											</td>
 											<td>
@@ -329,7 +329,7 @@
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" disabled="disabled"
-												name="ragione_sociale" placeholder="${terreno_id}">
+												name="ragione_sociale" placeholder="">
 										</div>
 
 									</div>
