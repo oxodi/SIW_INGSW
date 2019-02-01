@@ -48,6 +48,13 @@
 
 	}
 </script>
+
+<script>
+	function del(id) {
+		$("#tempId").val(id);
+		
+	}
+</script>
 <script>
 	$(document).ready(function() {
 		$("#annulla_modifica").click(function() {
@@ -282,7 +289,8 @@
 							</div>
 						</form>
 					</div>
-					<div class="tab-pane" style="margin-top: 20px" id="imieiterreni">
+					<div class="tab-pane" style="margin-top: 20px; margin-bottom: 50px"
+						id="imieiterreni">
 						<div class="table-responsive" id="terreni">
 							<table class="table table-hover">
 								<thead>
@@ -307,29 +315,30 @@
 											<td>${t.locazione}</td>
 											<td>${t.dimensione }</td>
 											<td>${t.dimensioneSerra }</td>
-											<td>
-											<c:choose>
-												<c:when test="${t.servizioCompleto}">SI</c:when>
-												<c:otherwise>NO</c:otherwise>
-											</c:choose>
-											</td>
-											<td>
-											<c:choose>
-												<c:when test="${t.servizioParziale}">SI</c:when>
-												<c:otherwise>NO</c:otherwise>
-											</c:choose>
-											</td>
+											<td><c:choose>
+													<c:when test="${t.servizioCompleto}">SI</c:when>
+													<c:otherwise>NO</c:otherwise>
+												</c:choose></td>
+											<td><c:choose>
+													<c:when test="${t.servizioParziale}">SI</c:when>
+													<c:otherwise>NO</c:otherwise>
+												</c:choose></td>
 											<td>${t.periodiDisponibilita}</td>
 											<td>
 												<button
 													onclick="edit('${t.id}','${t.locazione}', '${t.dimensione}', '${t.dimensioneSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
 													name="${t.id}" type="button" id="modifica"
-													class="button_modifica"></button>
+													class="button_modifica btn"></button>
 											</td>
 											<td>
-												<a href="TerrenoOspitaOrtaggi?delete=true&id=${t.id}">
-												<button type="submit" class="button_elimina"></button>
-												</a>
+												<%-- <a
+												href="TerrenoOspitaOrtaggi?delete=true&id=${t.id}">
+													<button type="submit" class="button_elimina btn"></button>
+											</a> --%>
+
+												<button type="button" name="${t.id}" data-toggle="modal"
+													data-target="#modalDelete" class="button_elimina btn"
+													onclick="del('${t.id}'); "></button>
 											</td>
 										</tr>
 									</c:forEach>
@@ -341,6 +350,42 @@
 										Terreno</button>
 								</a>
 							</div>
+
+
+
+							<!-- Modal -->
+							<div id="modalDelete" class="modal fade" role="dialog">
+
+								<div class="modal-dialog">
+
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+											<h4 class="modal-title">Elimina Terreno</h4>
+										</div>
+										<div class="modal-body">
+											<p>
+												Sei sicuro di voler eliminare questo terreno? 
+											</p>
+										</div>
+										<div class="modal-footer">
+											<form action="TerrenoOspitaOrtaggi" method="get">
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal">Annulla</button>
+												
+												<input type="text" id="tempId" name="tempId">
+												<input type="text" id="delete" name="delete" value="true">
+												<!-- <a href="">  -->
+													<button type="submit" class="btn btn-default">Conferma</button>
+												<!--  </a> -->
+											</form>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<!-- end modal -->
 						</div>
 
 						<!-- modifica -->
@@ -355,8 +400,8 @@
 									<div class="col-md-6 ">
 										<div class="form-row form-group" style="display: none;">
 											<div class="col-xs-2" style="display: none !important">
-												<input class="input-column" type="text"
-													id="editFormId" name="editFormId">
+												<input class="input-column" type="text" id="editFormId"
+													name="editFormId">
 											</div>
 										</div>
 										<div class="form-row form-group">
@@ -400,8 +445,8 @@
 												<label class="label-column">Costo</label>
 											</div>
 											<div class="col-xs-2">
-												<input class="input-column" type="text"
-													id="editFormCosto" name="editFormCosto">
+												<input class="input-column" type="text" id="editFormCosto"
+													name="editFormCosto">
 											</div>
 										</div>
 										<br>
@@ -428,12 +473,14 @@
 													i sevizi</strong></label>
 										</div>
 										<div class="form-check" align="left">
-											<input id="editCheckParziale" type="checkbox" name="editCheckParziale" value="parziale"><label>
+											<input id="editCheckParziale" type="checkbox"
+												name="editCheckParziale" value="parziale"><label>
 												Servizio Parziale</label>
 										</div>
 										<br>
 										<div class="form-check" align="left">
-											<input id="editCheckCompleto" type="checkbox" name="editCheckCompleto" value="completo"><label>
+											<input id="editCheckCompleto" type="checkbox"
+												name="editCheckCompleto" value="completo"><label>
 												Servizio Completo</label>
 										</div>
 

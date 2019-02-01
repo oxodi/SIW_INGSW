@@ -27,7 +27,8 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 			{
 				TerrenoDao terrenoNew = PostgresDAOFactory.getInstance().getTerrenoDAO();
 				Terreno terreno = new Terreno();
-				int id = Integer.parseInt(req.getParameter("id"));
+				int id = Integer.parseInt(req.getParameter("tempId"));
+				System.out.println("sto eliminando "+id);
 				terreno.setId(id);
 				terrenoNew.cancella(terreno);
 				RequestDispatcher rd = req.getRequestDispatcher("PrelevaDatiTerreno");
