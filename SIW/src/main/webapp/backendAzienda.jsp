@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -132,9 +132,8 @@
 						<li><a data-toggle="tab" href="#imieiterreni">I miei
 								terreni</a></li>
 						<li><a data-toggle="tab" href="imieiprodotti">I miei
-								prodotto</a></li>
-						<li><a class="nav-link disabled" data-toggle="tab" href="#">Disabled</a>
-						</li>
+								prodotti</a></li>
+
 					</ul>
 				</div>
 
@@ -354,31 +353,32 @@
 
 
 							<!-- Modal -->
-							<div id="modalDelete" class="modal fade" role="dialog">
+							<div id="modalDelete" class="modal fade" role="dialog" style="z-index: 2500; border-radius: 25px">
 
-								<div class="modal-dialog">
+								<div class="modal-dialog" style="border: 2px green solid">
 
 									<!-- Modal content-->
 									<div class="modal-content">
 										<div class="modal-header">
-											<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
 											<h4 class="modal-title">Elimina Terreno</h4>
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
 										</div>
 										<div class="modal-body">
 											<p>
 												Sei sicuro di voler eliminare questo terreno? 
+												
 											</p>
 										</div>
 										<div class="modal-footer">
 											<form action="TerrenoOspitaOrtaggi" method="get">
-												<button type="button" class="btn btn-default"
+												<div class="container" align="right">
+													<input type="text" style="display: none" id="tempId" name="tempId">
+													<input type="text" style="display: none" id="delete" name="delete" value="true">	
+													<button type="button" class="btn" style="border-radius: 15px"
 													data-dismiss="modal">Annulla</button>
-												
-												<input type="text" id="tempId" name="tempId">
-												<input type="text" id="delete" name="delete" value="true">
-												<!-- <a href="">  -->
-													<button type="submit" class="btn btn-default">Conferma</button>
-												<!--  </a> -->
+													<button type="submit" class="btn btn-success" 
+													style="border-radius: 15px">Conferma</button>
+												</div>
 											</form>
 										</div>
 									</div>
@@ -417,7 +417,7 @@
 										<div class="form-row form-group">
 
 											<div class="col-md-4">
-												<label class="label-column">Dimensione</label>
+												<label class="label-column">Dimensione (mt²)</label>
 											</div>
 											<div class="col-xs-2">
 												<input class="input-column" type="text"
@@ -428,7 +428,7 @@
 										<br>
 										<div class="form-row form-group">
 											<div class="col-md-4">
-												<label class="label-column">Dimensione Serra</label>
+												<label class="label-column">Dimensione Serra (mt²)</label>
 											</div>
 											<div class="col-xs-2">
 												<input class="input-column" type="text"
@@ -442,7 +442,7 @@
 									<div class="col-md-6 ">
 										<div class="form-row form-group">
 											<div class="col-md-4">
-												<label class="label-column">Costo</label>
+												<label class="label-column">Costo (€/mt²)</label>
 											</div>
 											<div class="col-xs-2">
 												<input class="input-column" type="text" id="editFormCosto"
@@ -456,7 +456,7 @@
 											</div>
 											<div class="col-xs-2">
 												<select class="custom-select input-column"
-													style="width: 190px; padding: 3px;"
+													style="width: 217px; padding: 3px;"
 													id="dropdownDisponibilita" name="dropdownDisponibilita">
 													<option value="primavera">Primavera</option>
 													<option value="estate">Estate</option>
@@ -491,7 +491,7 @@
 								</div>
 								<div align="center">
 
-									<button class="button btn" id="annulla_modifica" type="submit">Annulla</button>
+									<button class="button btn" id="annulla_modifica" type="button">Annulla</button>
 									<button class="button btn" type="submit">Salva</button>
 								</div>
 							</form>

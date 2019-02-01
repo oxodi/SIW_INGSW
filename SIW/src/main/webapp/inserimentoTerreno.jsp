@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -52,7 +52,8 @@
 	<!-- End: Navigation with Button -->
 	<div class="row register-form" style="width: 100%">
 		<div class="col-md-10 offset-md-1">
-			<form class="custom-form" method="post" action="TerrenoOspitaOrtaggi?edit=false">
+			<form class="custom-form" method="post"
+				action="TerrenoOspitaOrtaggi?edit=false">
 
 				<div id="inserimento">
 					<h1>Inserimento Terreno</h1>
@@ -177,11 +178,10 @@
 						<!-- fine colonna 2 -->
 						<div class="container">
 							<div align="center">
-								<a href="PageLoader?id=backendAzienda"><button class="button btn"
-									 id="annulla"
-									type="button">Annulla</button></a>
-								
-								<button class="button btn" id="avanti" type="button">Avanti</button>
+								<button class="button btn" data-toggle="modal"
+									data-target="#modalAnnullamento"  type="button">Annulla</button>
+
+								<button class="button btn" id="avanti" type="button" style="word-spacing: 4px">Avanti ▶</button>
 
 							</div>
 						</div>
@@ -197,7 +197,7 @@
 
 					<div align="center">
 
-						<button class="button btn" id="indietro" type="button">Indietro</button>
+						<button class="button btn" id="indietro" type="button" style="word-spacing: 4px">◀   Indietro</button>
 
 
 						<button class="button btn" type="submit">Conferma</button>
@@ -206,7 +206,37 @@
 				</div>
 			</form>
 		</div>
+		<div id="modalAnnullamento" class="modal fade" role="dialog"
+		style="z-index: 2500; border-radius: 25px">
+
+		<div class="modal-dialog" style="border: 2px green solid">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Conferma Annullamento</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>Sei sicuro di voler annullare l'inserimento?</p>
+				</div>
+				<div class="modal-footer">
+
+					<div class="container" align="right">
+						<button type="button" class="btn " data-dismiss="modal" style="border-radius: 15px">NO</button>
+						
+						<a href="PageLoader?id=backendAzienda"><button type="button"
+								class="btn btn-success" style="border-radius: 15px"
+								>SI</button> </a>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
 	</div>
+	</div>
+	
 	<!-- End: Article List -->
 	<!-- Start: footer -->
 	<div id="footer"></div>
