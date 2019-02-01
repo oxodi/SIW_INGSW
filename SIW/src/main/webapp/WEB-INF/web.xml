@@ -74,6 +74,13 @@
 		<servlet-name>eliminaTerreno</servlet-name>
 		<servlet-class>controller.eliminaTerreno</servlet-class>
 	</servlet>
+			<servlet>
+		<description>
+		</description>
+		<display-name>DammiTerreno</display-name>
+		<servlet-name>DammiTerreno</servlet-name>
+		<servlet-class>controller.DammiTerreno</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -129,6 +136,11 @@
 		<servlet-name>eliminaTerreno</servlet-name>
 		<url-pattern>/eliminaTerreno</url-pattern>
 	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>DammiTerreno</servlet-name>
+		<url-pattern>/DammiTerreno</url-pattern>
+	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>Home</welcome-file>
 	</welcome-file-list>
