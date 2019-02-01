@@ -42,8 +42,9 @@
 					<a href="#">Link</a>
 				</p>
 			</div>
-			<div class="col-sm-8 text-left" id="centerColumn"
-				style="border-style: solid; border-radius: 25px; border-color: green;">
+			<div class="col-sm-8  " id="centerColumn"
+				style="border-style: solid; border-radius: 25px; border-color: green; height: 900px;">
+				<div class="container">
 				<h1>
 
 					<c:out value="${azienda.ragioneSociale}" />
@@ -53,27 +54,36 @@
 				</p>
 				<hr>
 				<h3>Terreni Disponibili</h3>
-				<div class="row">
-					<c:forEach items="${terreni}" var="t">
-						<div class="col-sm-4">
+				 <form action="DammiTerreno" method="get">
+					<div class="grid-container" >
+						<c:forEach items="${terreni}" var="t">
+							<!-- <div class="col-sm-4" > -->
 
-							<div class="card" style="width: 18rem;">
+							<div class="card"
+								style="background: #f2dca9; margin: 5% 5% 5% 5%; border-style: solid; border-radius: 25px; border-color: green">
 								<div class="card-body">
-									<h5 class="card-title">Terreno n.${t.id}</h5>
-									<h6 class="card-subtitle mb-2 text-muted">${t.locazione}</h6>
+									<h3 class="card-title ">Terreno n.${t.id}</h3>
+									<h5 class="card-subtitle mb-2 text-muted">${t.locazione}</h5>
 									<p class="card-text">servizioParziale: ${t.servizioParziale }
 										servizioCompleto: ${t.servizioCompleto } dimensione:
 										${t.dimensione } dimensioneSerra: ${t.dimensioneSerra }
 										periodo: ${t.periodiDisponibilita }</p>
-									<button class="button" name="btnCerca" value="tutte"
-										style="margin-left: 130px">Seleziona</button>
-								</div>
 
+									<div class="container" align="right">
+										<button class="button" onclick="submit" name="btnTerreno" value="${t.id }">Seleziona</button>
+									</div>
+
+
+								</div>
 							</div>
 
-						</div>
-					</c:forEach>
+							<!-- </div> -->
+						</c:forEach>
+					</div>
+			</form>
 				</div>
+				
+			
 			</div>
 			<div class="col-sm-2 sidenav">
 				<div class="well">

@@ -8,8 +8,16 @@ body {
 	outline: none;
 }
 
+.grid-container  {
+	display: grid; 
+	grid-template-columns: auto auto auto; 
+	grid-gap: 20px; 
+	overflow-y: scroll !important; 
+	max-height: 500px;
+}
+
 .button {
-	padding: 15px 25px;
+	padding: 10px 25px;
 	/*font-size: 24px;*/
 	font-weight: 700;
 	text-align: center;
@@ -22,7 +30,7 @@ body {
 	/*box-shadow: 0 9px #999;   3D EFFECTS */
 	outline: none !important;
 	align: buttom;
-	margin-top: 15px;
+
 }
 
 
@@ -38,3 +46,7 @@ body {
 	right: 20px;
 	
 }
+
+
+
+
