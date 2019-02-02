@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entita.Azienda;
+import entita.Terreno;
 import entita.ortaggio.Ortaggio;
 import persistence.PostgresDAOFactory;
+import persistence.dao.AziendaDao;
 import persistence.dao.TerrenoDao;
 
 /**
@@ -31,13 +34,16 @@ public class DammiTerreno extends HttpServlet {
 		int idTerreno = Integer.parseInt(btnTerreno);
 		
 		TerrenoDao terrenodao = factory.getTerrenoDAO();
+		AziendaDao aziendadao = factory.getAziendaDAO();
 		
+		Terreno terreno = terrenodao.cercaPerChiavePrimaria(idTerreno);
+		Azienda azienda = aziendadao.cercaPerChiavePrimaria(terreno.getIdAzienda());
 		List<Ortaggio> ortaggi = terrenodao.cercaOrtaggiPerTerreno(idTerreno);
 		
-		for(Ortaggio ortaggio : ortaggi)
-			System.out.println("Ortaggio: "+ ortaggio.toString());
-		
 		request.setAttribute("ortaggi", ortaggi);
+		request.setAttribute("terreno", terreno);
+		request.setAttribute("azienda", azienda);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("sceltaOrtaggi.jsp");
 		rd.forward(request, response);
 	

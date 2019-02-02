@@ -10,6 +10,13 @@ body {
 	margin: 40px 0 60px 0;
 	font-weight: 300;
 }*/
+
+h1{
+  font-size: 50px;
+  color: #000;
+  text-shadow: 5px 5px #a0a0a0;
+
+}
 .our-team-main {
 	width: 100%;
 	height: auto;
