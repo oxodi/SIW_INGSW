@@ -48,19 +48,23 @@
 						<button onclick="submit" name="btnAzienda" value="${a.id}"
 							class=" list-group-item list-group-item-action">
 
-							<h2 class="list-group-item-heading">${a.ragioneSociale }</h2>
+<%-- 							<h2 class="list-group-item-heading">${a.ragioneSociale }</h2>
+ --%>
+							<div class="row" id="row1" style="max-height: 100px;">
 
-							<div class="row">
-
-								<div class="column" id="column1">
+								<div class="column" id="column1"   >
 									<img src="https://www.w3schools.com/images/w3schools_green.jpg"
-										class="img-reponsive img-rounded" id="imageAzienda" />
+										class="img-reponsive img-rounded" id="imageAzienda" style="max-height: 90%;" />
 								</div>
 
-								<div class="column" id="column2">${a.descrizioneServizi}</div>
+								<div class="column" id="column2" >
+								<h1>${a.ragioneSociale } </h1>
+								<em>${a.indirizzo }</em> <br>
+								<em>${a.cap } ${a.citta } (${a.provincia }) </em>
+								</div>
 
-								<div class="column" id="column3">terreni disponibili:
-									${a.terreni.size() }</div>
+								<div class="column" id="column3" style="margin-top: 3%;"><b>Terreni disponibili: </b>
+								<em>${a.terreni.size() }</em></div>
 
 							</div>
 

@@ -12,11 +12,15 @@ body {
 	display: grid; 
   	margin-top: 5% !important;
   	margin-bottom: 5% !important;
-  	grid-template-columns: auto auto auto;
+  	
+  	grid-template-columns: 31% 31% 31%;
+  	
 	/* grid-template-columns: auto auto auto; */ 
-	grid-gap: 20px; 
+	row-gap: 3%; 
+	column-gap: 3%;
 	overflow-y: scroll !important; 
 	max-height: 600px;
+	min-height: 600px;
 }
 
 
