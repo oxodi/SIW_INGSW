@@ -43,7 +43,7 @@
 				</p>
 			</div>
 			<div class="col-sm-8  " id="centerColumn"
-				style="border-style: solid; border-radius: 25px; border-color: green; height: 900px;">
+				style="border-style: solid; border-radius: 25px; border-color: green;">
 				<div class="container">
 				<h1>
 
@@ -55,7 +55,7 @@
 				<hr>
 				<h3>Terreni Disponibili</h3>
 				 <form action="DammiTerreno" method="get">
-					<div class="grid-container" >
+					<div class="grid-container " >
 						<c:forEach items="${terreni}" var="t">
 							<!-- <div class="col-sm-4" > -->
 

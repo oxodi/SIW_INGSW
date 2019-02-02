@@ -10,11 +10,15 @@ body {
 
 .grid-container  {
 	display: grid; 
-	grid-template-columns: auto auto auto; 
+  	margin-top: 5% !important;
+  	margin-bottom: 5% !important;
+  	grid-template-columns: auto auto auto;
+	/* grid-template-columns: auto auto auto; */ 
 	grid-gap: 20px; 
 	overflow-y: scroll !important; 
-	max-height: 500px;
+	max-height: 600px;
 }
+
 
 .button {
 	padding: 10px 25px;
