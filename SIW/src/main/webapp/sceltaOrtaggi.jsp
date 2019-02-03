@@ -17,6 +17,7 @@
 <script src="assets/js/jquery.min.js"></script>
 
 <link rel="stylesheet" href="assets/css/sceltaOrtaggi.css">
+<script src="assets/js/sceltaOrtaggi.js"></script>
 
 
 <!-- Script for load Navigation Bar -->
@@ -43,7 +44,6 @@
 		});
 	});
 </script>
-
 
 </head>
 
@@ -73,8 +73,8 @@
 					<c:choose>
 						<c:when test="${terreno.servizioCompleto==true}">
 							<label style="margin: 2%"><strong>Servizio
-									Completo: selezionare gli ortaggi da coltivare e la quantità </strong></label>
-							<label style="margin-top: 2%; margin-left: 27%"> <strong>Coltivabili
+									Completo: selezionare gli ortaggi e la quantità da coltivare nel periodo <em>${terreno.periodiDisponibilita }</em> </strong></label>
+							<label style="margin-top: 2%; margin-left: 12%"> <strong>Coltivabili
 									in serra</strong></label>
 							<label class="switch"><input type="checkbox"
 								id="switchDiv"> <span class="slider round"></span> </label>
@@ -120,17 +120,17 @@
 							<tbody id="items">
 								<c:forEach items="${ortaggi}" var="o">
 									<c:if
-										test="${(terreno.periodiDisponibilita == o.periodoColtivazione || o.periodoColtivazione == 'Annuale') &&
+										test="${ (terreno.periodiDisponibilita == o.periodoColtivazione || o.periodoColtivazione == 'Annuale') &&
 										 terreno.servizioCompleto == true}">
 										<tr class="accordion-toggle" data-toggle="collapse">
-											<td><input type="checkbox" value="${o.id}"
-												name="ortaggiSelezionati"></td>
+											<td><input type="checkbox" value="${o}"
+												name="ortaggiSelezionati" id="${o.id}" onclick="cancellaRiga('${o.nome}', '${o.id}')"></td>
 											<td>${o.nome}</td>
 											<td>${o.resa}</td>
 											<td class="text-center">${o.tempoColtivazione}  giorni</td>
-											<td class="text-center">${o.prezzo}€</td>
+											<td class="text-center">${o.prezzo}  €</td>
 											<td><input class="input-column" type="text"
-												style="max-width: 80px"> / ${terreno.dimensione} m<sup>2</sup></td>
+												style="max-width: 80px" id="q" onchange="aggiornaResoconto('${o.nome}', this.value, '${o.resa}', '${o.prezzo}', ${o.id})"> / ${terreno.dimensione} m<sup>2</sup></td>
 										</tr>
 									</c:if>
 								</c:forEach>
@@ -247,86 +247,45 @@
 		<!--  card resoconto -->
 
 		<div class="container col-xl-8" style="margin-right: 0; padding: 0">
-			<div class="resoconto">
+			<div class="resoconto" >
 				<!-- container mb-4 -->
 				<div class="row table-responsive" style="margin: 0">
 					<div class="col-12">
 						<div>
 							<!--  class="table-responsive" -->
-							<table class="table table-striped">
+							<table class="table table-striped" id="tabellaResoconto">
 								<thead>
 									<tr>
 										<!-- <th scope="col"></th> -->
 										<th scope="col">Ortaggi</th>
+										<th scope="col">Quantità</th>
 										<th scope="col">Resa</th>
-										<th scope="col" class="text-center">Quantità</th>
-										<th scope="col" class="text-right">Prezzo</th>
+										<th scope="col">Prezzo</th>
 										<th></th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="body">
+									
 									<tr>
-										<!-- <td><img src="https://dummyimage.com/50x50/55595c/fff" /> -->
-										<!-- </td> -->
-										<td>riga1</td>
-										<td>...</td>
-										<td class="text-center">10</td>
-										<!-- <input class="form-control" type="text" value="1" /> -->
-										<td class="text-right">10.0</td>
-										<td class="text-right"><button
-												class="btn btn-sm btn-danger">
-												<i class="fa fa-trash"></i>
-											</button></td>
-									</tr>
-									<tr>
-										<!-- <td><img src="https://dummyimage.com/50x50/55595c/fff" />
-											 </td> -->
-										<td>riga2</td>
-										<td>...</td>
-										<td class="text-center">20</td>
-										<!-- <input class="form-control" type="text" value="1" /> -->
-										<td class="text-right">10.0</td>
-										<td class="text-right"><button
-												class="btn btn-sm btn-danger">
-												<i class="fa fa-trash"></i>
-											</button></td>
-									</tr>
-									<tr>
-										<!-- <td><img src="https://dummyimage.com/50x50/55595c/fff" />
-											</td> -->
-										<td>riga3</td>
-										<td>...</td>
-										<td class="text-center">30</td>
-										<!-- <input class="form-control" type="text" value="1" /> -->
-										<td class="text-right">10.0</td>
-										<td class="text-right"><button
-												class="btn btn-sm btn-danger">
-												<i class="fa fa-trash"></i>
-											</button></td>
-									</tr>
-									<tr>
-										<!-- <td></td> -->
 										<td></td>
 										<td></td>
 										<td></td>
 										<td>Parziale</td>
-										<td class="text-right">100,0</td>
+										<td class="text-right" id="parziale">0</td>
 									</tr>
 									<tr>
-										<!-- <td></td> -->
 										<td></td>
 										<td></td>
 										<td></td>
 										<td>Imposte</td>
-										<td class="text-right">10,0</td>
+										<td class="text-right" id="imposte"></td>
 									</tr>
 									<tr>
-										<!-- <td></td> -->
 										<td></td>
 										<td></td>
 										<td></td>
 										<td><strong>Totale</strong></td>
-										<td class="text-right"><strong>200,0 </strong></td>
+										<td class="text-right" id="totale"><strong></strong></td>
 									</tr>
 								</tbody>
 							</table>
