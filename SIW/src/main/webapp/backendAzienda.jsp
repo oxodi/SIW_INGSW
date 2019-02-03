@@ -68,8 +68,10 @@
 <script>
 	$(document).ready(function() {
 		$("#modificaOrtaggi").click(function() {
-			$("#formModificaOrtaggi").show("slow");
 			$("#formModificaTerreno").hide("slow");
+			$("#formModificaOrtaggi").show("slow");
+			
+			mostraOrtaggi()
 			
 		});	
 });
@@ -515,14 +517,15 @@
 									<div align="center">
 										<button class="button btn" id="annulla_modifica" type="button">Annulla</button>
 										<button class="button btn" type="submit">Salva</button>
-										<button class="button btn" id="modificaOrtaggi" type="button" onclick="mostraOrtaggi()">Mostra
+										<button class="button btn" id="modificaOrtaggi" type="button">Mostra
 											ortaggi</button>
 									</div>
 								</form>
 							</div>
-							<div class="container" id="formModificaOrtaggi" style="display: none">
-								<div class="table-responsive" id="table-scroll">
-									<table class="table table-hover">
+							<!-- Form Modifica Ortaggi -->
+							<div class="container" style="display:none">
+								<div class="table-responsive" id="table-scroll" >
+									<table class="table table-hover" id="formModificaOrtaggi">
 										<thead>
 											<tr>
 												<th></th>
@@ -534,20 +537,7 @@
 											</tr>
 										</thead>
 										<tbody id="items">
-											<c:forEach items="${ortaggi}" var="o">
-												<tr class="accordion-toggle" data-toggle="collapse">
-													<td><input type="checkbox" value="${o.id}"
-														name="ortaggiSelezionati"></td>
-													<td>${o.nome}</td>
-													<td>${o.resa}</td>
-													<td><input class="input-column" type="text"
-														style="max-width: 80px" name="prezzo${o.id}"
-														placeholder="prezzo"></td>
-													<td><input class="input-column" type="text"
-														style="max-width: 80px" name="tempo${o.id}"
-														placeholder="tempo coltivazione"></td>
-												</tr>
-											</c:forEach>
+											
 										</tbody>
 									</table>
 								</div>

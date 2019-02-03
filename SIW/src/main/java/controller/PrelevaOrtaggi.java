@@ -3,6 +3,7 @@ package controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,20 +24,7 @@ import persistence.dao.TerrenoDao;
 public class PrelevaOrtaggi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
-	@Override
-		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			
-			super.doPost(req, resp);
-			if (req.getParameter("test").equals("test")) {
-				JSONObject jsonprova = new JSONObject();
-				jsonprova.put("nome", "cognome");
-				jsonprova.put("ciccio", "pippo");
-				req.setAttribute("json", jsonprova);
-				
-			}
-		}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -57,6 +45,17 @@ public class PrelevaOrtaggi extends HttpServlet {
 			List<Ortaggio> listOrtaggi = terrenodao.cercaOrtaggiPerTerreno(id_terreno);
 
 		}
+		
+		else if (req.getParameter("test").equals("test")) {
+			JSONObject jsonprova = new JSONObject();
+			jsonprova.put("nome", "cognome");
+			jsonprova.put("ciccio", "pippo");
+			PrintWriter pw = resp.getWriter();
+			pw.print(jsonprova.toString());
+			System.out.println(jsonprova);
+			pw.close();
+		}
+
 
 		else {
 

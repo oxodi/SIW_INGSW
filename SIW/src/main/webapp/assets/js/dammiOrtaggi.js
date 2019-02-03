@@ -1,29 +1,20 @@
-/**
- * 
- */
-
-
 function mostraOrtaggi() {
-	
-	var code ={
-			
-			nome: "ciccio",
-			cognome: "pippo"
-	};
-	
 	$.ajax({
-		type: "POST",
-		url: "PrelevaOrtaggi?edit=false&test=test",
-		datatype: "json",
-		data: JSON.stringify(code),
-		success: function (data){
-			var p = JSON.parse(data);
-			alert(data);
-			
+		url : "PrelevaOrtaggi?edit=false&test=test",
+		dataType : 'json',
+		error : function() {
+			alert("si è verificato un errore");
 		},
-		error: function(e){
-			   alert('Error: ' + e);
-			 }
-	});	
-}
+		success : function(data) {
+			alert(JSON.stringify(data));
+			var $row = $('<tr>'+
+				      '<th>'+JSON.stringify(data.ciccio)+'</th>'+
+				      '</tr>');    
+			$('#formModificaOrtaggi> tbody:last').append($row);
+		}
+	
 		
+	});
+	
+	
+}

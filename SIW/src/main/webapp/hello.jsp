@@ -9,11 +9,5 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 
 <body>
-	<c:if test="${username != null}">
-					<p>Sei loggato come ${username}</p>
-					<a href="doLogin?logout=true">Logout</a>
-				</c:if>
-				<c:if test="${username == null}">
-					<a href="doLogin">Login</a>
-				</c:if>				
+		<c:out value="${json}"></c:out>		
 </body>
