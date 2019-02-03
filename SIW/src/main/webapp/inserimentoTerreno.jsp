@@ -24,12 +24,21 @@
 		$("#footer").load("footer.jsp");
 	});
 </script>
+<script>
+	function validazioneDati() {
+		$("#validazioneLocazione").val($("#locazione").val());
+		$("#validazioneDim").val($("#dimensione_terreno").val());
+		$("#validazioneDimSerra").val($("#dimensione_serra").val());
+		$("#validazioneCosto").val($("#costo_terreno").val());
 
+	};
+</script>
 <script>
 	$(document).ready(function() {
 		$("#avanti").click(function() {
 			$("#inserimento").hide("slow");
 			$("#inserimento_file").show("slow");
+			validazioneDati();
 
 		});
 	});
@@ -66,7 +75,7 @@
 								</div>
 								<div class="col-xs-2">
 									<input class="input-column" type="text" name="locazione"
-										placeholder="">
+										id="locazione" placeholder="">
 								</div>
 							</div>
 
@@ -76,7 +85,8 @@
 								</div>
 								<div class="col-xs-2">
 									<input class="input-column" type="text"
-										name="dimensione_terreno" placeholder="">
+										name="dimensione_terreno" id="dimensione_terreno"
+										placeholder="">
 								</div>
 							</div>
 
@@ -86,7 +96,7 @@
 								</div>
 								<div class="col-xs-2">
 									<input class="input-column" type="text" name="dimensione_serra"
-										placeholder="">
+										id="dimensione_serra" placeholder="">
 								</div>
 							</div>
 
@@ -96,7 +106,7 @@
 								</div>
 								<div class="col-xs-2">
 									<input class="input-column" type="text" name="costo_terreno"
-										placeholder="">
+										id="costo_terreno" placeholder="">
 								</div>
 							</div>
 							<div class="form-row form-group">
@@ -107,12 +117,13 @@
 									<!-- <input class="input-column" type="text" name="disponibilita"
 									placeholder=""> -->
 									<select class="custom-select input-column"
-										style="width: 190px; padding: 5px;" name="disponibilita">
+										style="width: 190px; padding: 5px;" name="disponibilita"
+										id="disponibilita">
 										<option value="primavera">Primavera</option>
 										<option value="estate">Estate</option>
 										<option value="autunno">Autunno</option>
 										<option value="inverno">Inverno</option>
-										<option value="annuale">Annuale</option>
+										<!-- <option value="annuale">Annuale</option>  -->
 
 									</select>
 
@@ -125,12 +136,12 @@
 
 							</div>
 							<div class="form-check" align="left">
-								<input type="checkbox" name="parziale"><label>
+								<input type="checkbox" name="parziale" id="parziale"><label>
 									Servizio Parziale</label>
 							</div>
 							<br>
 							<div class="form-check" align="left">
-								<input type="checkbox" name="completo"><label>
+								<input type="checkbox" name="completo" id="completo"><label>
 									Servizio Completo</label>
 							</div>
 
@@ -179,15 +190,85 @@
 						<div class="container">
 							<div align="center">
 								<button class="button btn" data-toggle="modal"
-									data-target="#modalAnnullamento"  type="button">Annulla</button>
+									data-target="#modalAnnullamento" type="button">Annulla</button>
 
-								<button class="button btn" id="avanti" type="button" style="word-spacing: 4px">Avanti ▶</button>
+								<button class="button btn" id="avanti" type="button"
+									style="word-spacing: 4px">Avanti ▶</button>
 
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="container" id="inserimento_file" style="display: none">
+					<!--<div class="table">
+						 <input type="text" id="validazioneLocazione"> <input
+							type="text" id="validazioneDim"> <input type="text"
+							id="validazioneDimSerra"> <input type="text"
+							id="validazioneCosto"> 
+					</div>
+					-->
+
+					<table class="table" id="valid">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Locazione</th>
+								<th scope="col">Dimensione</th>
+								<th scope="col">Dimensione Serra</th>
+								<th scope="col">Costo</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="input" id="validazioneLocazione" scope="row"></th>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+							</tr>
+							<tr>
+								<th scope="row">2</th>
+								<td>Jacob</td>
+								<td>Thornton</td>
+								<td>@fat</td>
+							</tr>
+							<tr>
+								<th scope="row">3</th>
+								<td>Larry</td>
+								<td>the Bird</td>
+								<td>@twitter</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table class="table">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">First</th>
+								<th scope="col">Last</th>
+								<th scope="col">Handle</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+							</tr>
+							<tr>
+								<th scope="row">2</th>
+								<td>Jacob</td>
+								<td>Thornton</td>
+								<td>@fat</td>
+							</tr>
+							<tr>
+								<th scope="row">3</th>
+								<td>Larry</td>
+								<td>the Bird</td>
+								<td>@twitter</td>
+							</tr>
+						</tbody>
+					</table>
 
 					<h5>
 						<strong>Inserire un documento di proprieta' del terreno</strong>
@@ -197,7 +278,8 @@
 
 					<div align="center">
 
-						<button class="button btn" id="indietro" type="button" style="word-spacing: 4px">◀   Indietro</button>
+						<button class="button btn" id="indietro" type="button"
+							style="word-spacing: 4px">◀ Indietro</button>
 
 
 						<button class="button btn" type="submit">Conferma</button>
@@ -207,36 +289,35 @@
 			</form>
 		</div>
 		<div id="modalAnnullamento" class="modal fade" role="dialog"
-		style="z-index: 2500; border-radius: 25px">
+			style="z-index: 2500; border-radius: 25px">
 
-		<div class="modal-dialog" style="border: 2px green solid">
+			<div class="modal-dialog" style="border: 2px green solid">
 
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Conferma Annullamento</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<div class="modal-body">
-					<p>Sei sicuro di voler annullare l'inserimento?</p>
-				</div>
-				<div class="modal-footer">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Conferma Annullamento</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p>Sei sicuro di voler annullare l'inserimento?</p>
+					</div>
+					<div class="modal-footer">
 
-					<div class="container" align="right">
-						<button type="button" class="btn " data-dismiss="modal" style="border-radius: 15px">NO</button>
-						
-						<a href="PageLoader?id=backendAzienda"><button type="button"
-								class="btn btn-success" style="border-radius: 15px"
-								>SI</button> </a>
-
+						<div class="container" align="right">
+							<button type="button" class="btn " data-dismiss="modal"
+								style="border-radius: 15px">NO</button>
+							<a href="PageLoader?id=backendAzienda"><button type="button"
+									class="btn btn-success" style="border-radius: 15px">SI</button>
+							</a>
+						</div>
 					</div>
 				</div>
-			</div>
 
+			</div>
 		</div>
 	</div>
-	</div>
-	
+
 	<!-- End: Article List -->
 	<!-- Start: footer -->
 	<div id="footer"></div>
