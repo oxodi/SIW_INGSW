@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -43,47 +43,67 @@
 				</p>
 			</div>
 			<div class="col-sm-8  " id="centerColumn"
-				style="border-style: solid; border-radius: 25px; border-color: green; height: 900px;">
+				style="border-style: solid; border-radius: 25px; border-color: green;">
 				<div class="container">
-				<h1>
+					<h1>
 
-					<c:out value="${azienda.ragioneSociale}" />
-				</h1>
-				<p>
-					<c:out value="${azienda.descrizioneServizi }"></c:out>
-				</p>
-				<hr>
-				<h3>Terreni Disponibili</h3>
-				 <form action="DammiTerreno" method="get">
-					<div class="grid-container" >
-						<c:forEach items="${terreni}" var="t">
-							<!-- <div class="col-sm-4" > -->
+						<c:out value="${azienda.ragioneSociale}" />
+					</h1>
+					<p>
+						<c:out value="${azienda.descrizioneServizi }"></c:out>
+					</p>
+					<hr>
+					<h3>Terreni Disponibili</h3>
+					<form action="DammiTerreno" method="get">
+						<div class="grid-container ">
+							<c:forEach items="${terreni}" var="t">
+								<!-- <div class="col-sm-4" > -->
 
-							<div class="card"
-								style="background: #f2dca9; margin: 5% 5% 5% 5%; border-style: solid; border-radius: 25px; border-color: green">
-								<div class="card-body">
-									<h3 class="card-title ">Terreno n.${t.id}</h3>
-									<h5 class="card-subtitle mb-2 text-muted">${t.locazione}</h5>
-									<p class="card-text">servizioParziale: ${t.servizioParziale }
-										servizioCompleto: ${t.servizioCompleto } dimensione:
-										${t.dimensione } dimensioneSerra: ${t.dimensioneSerra }
-										periodo: ${t.periodiDisponibilita }</p>
+								<div class="card"
+									style="background: #f2dca9;  border-style: solid; border-radius: 25px; border-color: green">
+									<div class="card-body">
+										<h3 class="card-title ">Terreno n.${t.id}</h3>
+										<h5 class="card-subtitle mb-2 text-muted">${t.locazione}</h5>
+										<p class="card-text" align="left">
+											<c:if
+												test="${t.servizioParziale == true && t.servizioCompleto == true }">
+												<b>Servizi Disponibili:</b> <em>Parziale, Completo.</em> <br>
+										</c:if>
+											<c:if
+												test="${t.servizioParziale == true && t.servizioCompleto == false }">
+												<b>Servizi Disponibili:</b> <em>Parziale.</em> <br>
+										</c:if>
+											<c:if
+												test="${t.servizioParziale == false && t.servizioCompleto == true }">
+												<b>Servizio Disponibile:</b> <em>Completo.</em> <br>
+										</c:if>
+											<b>Spazio coltivabile:</b> <em>${t.dimensione } m<sup>2</sup></em> <br>
+											<c:if test="${t.dimensioneSerra == 0}">
+												<b>Spazio coltivabile in serra:</b> <em>Serra non presente.</em> <br>
+										</c:if>
+											<c:if test="${t.dimensioneSerra != null}">
+												<b>Spazio coltivabile in serra:</b> ${t.dimensioneSerra } m<sup>2</sup>.  <br>
+										</c:if>
+											
+											<b>Periodo:</b> <em>${t.periodiDisponibilita }.</em>
+										</p>
 
-									<div class="container" align="right">
-										<button class="button" onclick="submit" name="btnTerreno" value="${t.id }">Seleziona</button>
+										<div class="container" align="bottom" >
+											<button class="button" onclick="submit" name="btnTerreno"
+												value="${t.id }">Seleziona</button>
+										</div>
+
+
 									</div>
-
-
 								</div>
-							</div>
 
-							<!-- </div> -->
-						</c:forEach>
-					</div>
-			</form>
+								<!-- </div> -->
+							</c:forEach>
+						</div>
+					</form>
 				</div>
-				
-			
+
+
 			</div>
 			<div class="col-sm-2 sidenav">
 				<div class="well">

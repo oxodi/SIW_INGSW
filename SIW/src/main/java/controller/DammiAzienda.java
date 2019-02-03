@@ -53,7 +53,7 @@ public class DammiAzienda extends HttpServlet {
 			periodi.add(new String("autunno"));
 		
 		//i terreni con periodo annuale vengono sempre inseriti nella query
-		periodi.add(new String("annuale"));
+		//periodi.add(new String("annuale"));
 		
 		if(completo.equals("true"))
 			servizioCompleto = true;

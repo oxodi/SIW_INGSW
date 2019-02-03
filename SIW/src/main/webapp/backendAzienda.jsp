@@ -462,7 +462,7 @@
 													<option value="estate">Estate</option>
 													<option value="autunno">Autunno</option>
 													<option value="inverno">Inverno</option>
-													<option value="annuale">Annuale</option>
+													<!-- <option value="annuale">Annuale</option>  -->
 
 												</select>
 											</div>
@@ -493,6 +493,7 @@
 
 									<button class="button btn" id="annulla_modifica" type="button">Annulla</button>
 									<button class="button btn" type="submit">Salva</button>
+									<button class="button btn" id="modificaOrtaggi" type="button">Modifica ortaggi</button>
 								</div>
 							</form>
 						</div>

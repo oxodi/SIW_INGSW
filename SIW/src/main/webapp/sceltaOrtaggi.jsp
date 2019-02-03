@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -9,19 +9,38 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 <title>SIW</title>
+
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Lora">
+<script src="assets/js/jquery.min.js"></script>
 
 <link rel="stylesheet" href="assets/css/sceltaOrtaggi.css">
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.imgcheckbox.js"></script>
+
+
 <!-- Script for load Navigation Bar -->
 <script>
 	$(function() {
 		$("#navbar").load("navBar.jsp");
 		$("#footer").load("footer.jsp");
+	});
+</script>
+
+<script>
+	$(document).ready(function() {
+		$("#switchDiv").click(function() {
+
+			if ($(this).is(':checked')) {
+				$("#noserra").hide("slow");
+				$("#serra").show("slow");
+			}
+			if (!$(this).is(':checked')) {
+
+				$("#serra").hide("slow");
+				$("#noserra").show("slow");
+			}
+		});
 	});
 </script>
 
@@ -35,23 +54,109 @@
 
 	<div class="container"
 		style="border-style: solid; border-radius: 25px; border-color: green">
-		<div class="row" style="width: 100%; margin: 0" >
-			<div class="scegli"  style="width: 100%">
-				<div class="form-row form-group" align="center">
-					<label style="margin: 2%"><strong>Selezionare gli
-							ortaggi da coltivare e la quantit&#224 </strong></label>
+
+
+
+		<h1 style="margin: 2%; margin-bottom: 0">Terreno n°${terreno.id}
+			di ${azienda.ragioneSociale}</h1>
+		<h3 style="margin: 2%; margin-top: 0; margin-left: 3%">${terreno.locazione}</h3>
+
+
+		<div class="row" style="width: 100%; margin: 0">
+			<div class="scegli" style="width: 100%" id="myscegli">
+
+
+				<div class="form-row form-group" align="center"
+					style="margin-bottom: 0">
+
+
+					<c:choose>
+						<c:when test="${terreno.servizioCompleto==true}">
+							<label style="margin: 2%"><strong>Servizio
+									Completo: selezionare gli ortaggi da coltivare e la quantità </strong></label>
+							<label style="margin-top: 2%; margin-left: 27%"> <strong>Coltivabili
+									in serra</strong></label>
+							<label class="switch"><input type="checkbox"
+								id="switchDiv"> <span class="slider round"></span> </label>
+
+
+						</c:when>
+						<c:otherwise>
+							<script>			
+								$("#myscegli").addClass("disabilita");
+													
+								</script>
+
+							<label style="margin: 2%"><strong>Questo terreno
+									non offre un servizio completo </strong></label>
+							<label style="margin-top: 2%; margin-left: 27%"> <strong>Coltivabili
+									in serra</strong></label>
+							<label class="switch"><input type="checkbox"
+								id="switchDiv"> <span class="slider round"></span> </label>
+						</c:otherwise>
+					</c:choose>
+
+
 				</div>
-				<div class="form-row form-group" style="width: 100%">
-					<div class="table-responsive" id="table-scroll" style="margin-right: 2%; margin-left: 2%">
+
+
+				<div class="form-row form-group" style="width: 100%" id="noserra">
+					<div class="table-responsive" id="table-scroll"
+						style="margin-right: 2%; margin-left: 2%">
 						<table class="table table-hover">
 							<thead>
 								<tr>
 									<th></th>
 									<th><strong>Nome</strong></th>
 									<th><strong>Resa</strong></th>
-									<th class="text-center"><strong>Tempo Coltivazione</strong></th>
-									<th><strong>Prezzo(al mt<SUP>2</SUP>)</strong></th>
-									<th><strong>Quantit&#224</strong></th>
+									<th class="text-center"><strong>Tempo
+											Coltivazione</strong></th>
+									<th><strong>Prezzo(al m<SUP>2</SUP>)
+									</strong></th>
+									<th><strong>Quantità</strong></th>
+
+								</tr>
+							</thead>
+							<tbody id="items">
+								<c:forEach items="${ortaggi}" var="o">
+									<c:if
+										test="${ (terreno.periodiDisponibilita == o.periodoColtivazione || o.periodoColtivazione == 'Annuale') &&
+										 terreno.servizioCompleto == true}">
+										<tr class="accordion-toggle" data-toggle="collapse">
+											<td><input type="checkbox" value="${o.id}"
+												name="ortaggiSelezionati"></td>
+											<td>${o.nome}</td>
+											<td>${o.resa}</td>
+											<td class="text-center">${o.tempoColtivazione}  giorni</td>
+											<td class="text-center">${o.prezzo}€</td>
+											<td><input class="input-column" type="text"
+												style="max-width: 80px"> / ${terreno.dimensione} m<sup>2</sup></td>
+										</tr>
+									</c:if>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+
+
+
+				<div class="form-row form-group"
+					style="width: 100%; display: none !important;" id="serra">
+					<div class="table-responsive" id="table-scroll"
+						style="margin-right: 2%; margin-left: 2%">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th></th>
+									<th><strong>Nome</strong></th>
+									<th><strong>Resa</strong></th>
+									<th class="text-center"><strong>Tempo
+											Coltivazione</strong></th>
+									<th><strong>Prezzo(al m<SUP>2</SUP>)
+									</strong></th>
+									<th><strong>Quantità</strong></th>
 
 								</tr>
 							</thead>
@@ -60,24 +165,88 @@
 									<tr class="accordion-toggle" data-toggle="collapse">
 										<td><input type="checkbox" value="${o.id}"
 											name="ortaggiSelezionati"></td>
-										<td>${o.nome} </td>
+										<td>${o.nome}</td>
 										<td>${o.resa}</td>
 										<td class="text-center">${o.tempoColtivazione}  giorni</td>
-										<td class="text-center">${o.prezzo} &#8364</td>
+										<td class="text-center">${o.prezzo}€</td>
 										<td><input class="input-column" type="text"
-											style="max-width: 80px"></td>
+											style="max-width: 80px"> / ${terreno.dimensione} m<sup>2</sup></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 					</div>
-				</div>
+				</div>   	<!-- fine div NOSERRA -->
+
 			</div>
 		</div>
+		<div class="soloTerreno" id="mysoloTerreno">
 
+
+
+			<div class="form-row form-group" align="center"
+				style="margin-bottom: 0">
+
+
+
+
+				<c:choose>
+					<c:when test="${terreno.servizioParziale==true}">
+						<label style="margin: 2%"><strong>Servizio
+								Parziale: selezionare la quantità di terreno da affittare </strong></label>
+
+					</c:when>
+					<c:otherwise>
+						<script>			
+								$("#mysoloTerreno").addClass("disabilita");
+													
+								</script>
+
+						<label style="margin: 2%"><strong>Questo terreno
+								non offre un servizio parziale </strong> </label>
+					</c:otherwise>
+				</c:choose>
+
+			</div>
+			<div class="form-row form-group" style="width: 100%">
+				<div class="table-responsive"
+					style="margin-right: 2%; margin-left: 2%">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th></th>
+								<th><strong>Sito in</strong></th>
+								<th><strong>Periodo coltivazione</strong></th>
+								<th><strong>Prezzo(al m<SUP>2</SUP>)
+								</strong></th>
+								<th><strong>Quantità</strong></th>
+
+							</tr>
+						</thead>
+						<tbody id="items">
+							<c:if test="${terreno.servizioParziale == true }">
+								<tr class="accordion-toggle" data-toggle="collapse">
+									<td><input type="checkbox" value="soloTerreno"
+										name="ortaggiSelezionati"></td>
+									<td>${terreno.locazione}</td>
+									<td>${terreno.periodiDisponibilita}</td>
+									<td>${terreno.costo}€</td>
+									<td><input class="input-column" type="text"
+										style="max-width: 80px"> / ${terreno.dimensione} m<sup>2</sup></td>
+								</tr>
+							</c:if>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+
+		</div>
+		<!-- FINE DIV SOLOTERRENO -->
 		<!--  card resoconto -->
 
-		<div class="container col-xl-8" style="margin-right: 0; padding: 0 ">
+		<div class="container col-xl-8" style="margin-right: 0; padding: 0">
 			<div class="resoconto">
 				<!-- container mb-4 -->
 				<div class="row table-responsive" style="margin: 0">
@@ -90,7 +259,7 @@
 										<!-- <th scope="col"></th> -->
 										<th scope="col">Ortaggi</th>
 										<th scope="col">Resa</th>
-										<th scope="col" class="text-center">Quantit&#224</th>
+										<th scope="col" class="text-center">Quantità</th>
 										<th scope="col" class="text-right">Prezzo</th>
 										<th></th>
 									</tr>
@@ -179,9 +348,10 @@
 			</div>
 		</div>
 
+
+
 	</div>
-
-
+	<!-- fine container principale -->
 
 
 	<!-- End: Article List -->
