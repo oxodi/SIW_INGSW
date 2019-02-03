@@ -112,7 +112,7 @@
 										<option value="estate">Estate</option>
 										<option value="autunno">Autunno</option>
 										<option value="inverno">Inverno</option>
-										<option value="annuale">Annuale</option>
+										<!-- <option value="annuale">Annuale</option>  -->
 
 									</select>
 
@@ -228,7 +228,6 @@
 						<a href="PageLoader?id=backendAzienda"><button type="button"
 								class="btn btn-success" style="border-radius: 15px"
 								>SI</button> </a>
-
 					</div>
 				</div>
 			</div>

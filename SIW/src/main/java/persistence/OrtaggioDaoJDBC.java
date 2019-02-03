@@ -78,6 +78,37 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 		return ortaggio;
 	}
 
+
+	@Override
+	public List<Ortaggio> cercaPerTerreno(int idTerreno) {
+			Connection connection = this.dataSource.getConnection();
+			List<Ortaggio> ortaggi = new LinkedList<Ortaggio>();
+
+			try {
+				Ortaggio ortaggio;
+				PreparedStatement statement;
+				String query = "SELECT * FROM ortaggio WHERE id_terreno = ?";
+				statement = connection.prepareStatement(query);
+				statement.setInt(1, idTerreno);
+				ResultSet result = statement.executeQuery();
+				while (result.next()) {
+					ortaggio = this.ortaggioSpecifico(result.getInt("id"));
+
+					ortaggi.add(ortaggio);
+				}
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			} finally {
+				try {
+					connection.close();
+				} catch (SQLException e2) {
+					throw new PersistenceException(e2.getMessage());
+				}
+			}
+			return ortaggi;
+		}
+
+	
 	@Override
 	public List<Ortaggio> cercaTutti() {
 		Connection connection = this.dataSource.getConnection();
@@ -105,7 +136,7 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 		}
 		return ortaggi;
 	}
-
+	
 	@Override
 	public void cancella(Ortaggio ortaggio) {
 		Connection connection = this.dataSource.getConnection();
