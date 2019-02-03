@@ -16,6 +16,7 @@
 <title>Area Azienda</title>
 
 <script src="assets/js/profileAzienda.js"></script>
+<script src="assets/js/dammiOrtaggi.js"></script>
 
 <script>
 	$(function() {
@@ -52,7 +53,7 @@
 <script>
 	function del(id) {
 		$("#tempId").val(id);
-		
+
 	}
 </script>
 <script>
@@ -60,6 +61,24 @@
 		$("#annulla_modifica").click(function() {
 			$("#terreni").show("slow");
 			$("#info_terreno").hide("slow");
+
+		});
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$("#modificaOrtaggi").click(function() {
+			$("#formModificaOrtaggi").show("slow");
+			$("#formModificaTerreno").hide("slow");
+			
+		});	
+});
+</script>
+<script>
+	$(document).ready(function() {
+		$("#annulla_ortaggi").click(function() {
+			$("#formModificaOrtaggi").hide("slow");
+			$("#formModificaTerreno").show("slow");
 
 		});
 	});
@@ -324,7 +343,7 @@
 													<c:otherwise>NO</c:otherwise>
 												</c:choose></td>
 											<td>${t.periodiDisponibilita}</td>
-											<td>${t.costo} €</td>
+											<td>${t.costo}€</td>
 											<td>
 												<button
 													onclick="edit('${t.id}','${t.locazione}', '${t.dimensione}', '${t.dimensioneSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
@@ -355,7 +374,8 @@
 
 
 							<!-- Modal -->
-							<div id="modalDelete" class="modal fade" role="dialog" style="z-index: 2500; border-radius: 25px">
+							<div id="modalDelete" class="modal fade" role="dialog"
+								style="z-index: 2500; border-radius: 25px">
 
 								<div class="modal-dialog" style="border: 2px green solid">
 
@@ -366,20 +386,19 @@
 											<button type="button" class="close" data-dismiss="modal">&times;</button>
 										</div>
 										<div class="modal-body">
-											<p>
-												Sei sicuro di voler eliminare questo terreno? 
-												
-											</p>
+											<p>Sei sicuro di voler eliminare questo terreno?</p>
 										</div>
 										<div class="modal-footer">
 											<form action="TerrenoOspitaOrtaggi" method="get">
 												<div class="container" align="right">
-													<input type="text" style="display: none" id="tempId" name="tempId">
-													<input type="text" style="display: none" id="delete" name="delete" value="true">	
-													<button type="button" class="btn" style="border-radius: 15px"
-													data-dismiss="modal">Annulla</button>
-													<button type="submit" class="btn btn-success" 
-													style="border-radius: 15px">Conferma</button>
+													<input type="text" style="display: none" id="tempId"
+														name="tempId"> <input type="text"
+														style="display: none" id="delete" name="delete"
+														value="true">
+													<button type="button" class="btn"
+														style="border-radius: 15px" data-dismiss="modal">Annulla</button>
+													<button type="submit" class="btn btn-success"
+														style="border-radius: 15px">Conferma</button>
 												</div>
 											</form>
 										</div>
@@ -393,110 +412,150 @@
 						<!-- modifica -->
 						<div class="container" id="info_terreno"
 							style="display: none; margin-top: 20px">
-							<div align="center">
-								<h4>Modifica dati Terreno</h4>
+							<div class="container" id="formModificaTerreno">
+								<div align="center">
+									<h4>Modifica dati Terreno</h4>
+								</div>
+								<form class="custom-form" method="post"
+									action="TerrenoOspitaOrtaggi?edit=true">
+									<div class="row" style="margin-top: 40px">
+										<div class="col-md-6 ">
+											<div class="form-row form-group" style="display: none;">
+												<div class="col-xs-2" style="display: none !important">
+													<input class="input-column" type="text" id="editFormId"
+														name="editFormId">
+												</div>
+											</div>
+											<div class="form-row form-group">
+												<div class="col-md-4">
+													<label class="label-column">Locazione</label>
+												</div>
+												<div class="col-xs-2">
+													<input class="input-column" type="text" disabled="disabled"
+														id="editFormLocazione">
+												</div>
+											</div>
+											<br>
+											<div class="form-row form-group">
+
+												<div class="col-md-4">
+													<label class="label-column">Dimensione (mt²)</label>
+												</div>
+												<div class="col-xs-2">
+													<input class="input-column" type="text"
+														id="editFormDimensione" name="editFormDimensione">
+												</div>
+
+											</div>
+											<br>
+											<div class="form-row form-group">
+												<div class="col-md-4">
+													<label class="label-column">Dimensione Serra (mt²)</label>
+												</div>
+												<div class="col-xs-2">
+													<input class="input-column" type="text"
+														id="editFormDimensioneSerra"
+														name="editFormDimensioneSerra">
+												</div>
+
+											</div>
+											<br>
+										</div>
+
+										<div class="col-md-6 ">
+											<div class="form-row form-group">
+												<div class="col-md-4">
+													<label class="label-column">Costo (€/mt²)</label>
+												</div>
+												<div class="col-xs-2">
+													<input class="input-column" type="text" id="editFormCosto"
+														name="editFormCosto">
+												</div>
+											</div>
+											<br>
+											<div class="form-row form-group">
+												<div class="col-md-4" align="left">
+													<label class="label-column">Periodo Disponibilita'</label>
+												</div>
+												<div class="col-xs-2">
+													<select class="custom-select input-column"
+														style="width: 217px; padding: 3px;"
+														id="dropdownDisponibilita" name="dropdownDisponibilita">
+														<option value="primavera">Primavera</option>
+														<option value="estate">Estate</option>
+														<option value="autunno">Autunno</option>
+														<option value="inverno">Inverno</option>
+														<!-- <option value="annuale">Annuale</option>  -->
+
+													</select>
+												</div>
+											</div>
+											<br>
+											<div class="form-row form-group">
+												<label class="label-column"><strong>Seleziona
+														i sevizi</strong></label>
+											</div>
+											<div class="form-check" align="left">
+												<input id="editCheckParziale" type="checkbox"
+													name="editCheckParziale" value="parziale"><label>
+													Servizio Parziale</label>
+											</div>
+											<br>
+											<div class="form-check" align="left">
+												<input id="editCheckCompleto" type="checkbox"
+													name="editCheckCompleto" value="completo"><label>
+													Servizio Completo</label>
+											</div>
+
+
+											<br>
+
+										</div>
+									</div>
+									<div align="center">
+										<button class="button btn" id="annulla_modifica" type="button">Annulla</button>
+										<button class="button btn" type="submit">Salva</button>
+										<button class="button btn" id="modificaOrtaggi" type="button" onclick="mostraOrtaggi()">Mostra
+											ortaggi</button>
+									</div>
+								</form>
 							</div>
-							<form class="custom-form" method="post"
-								action="TerrenoOspitaOrtaggi?edit=true">
-								<div class="row" style="margin-top: 40px">
-									<div class="col-md-6 ">
-										<div class="form-row form-group" style="display: none;">
-											<div class="col-xs-2" style="display: none !important">
-												<input class="input-column" type="text" id="editFormId"
-													name="editFormId">
-											</div>
-										</div>
-										<div class="form-row form-group">
-											<div class="col-md-4">
-												<label class="label-column">Locazione</label>
-											</div>
-											<div class="col-xs-2">
-												<input class="input-column" type="text" disabled="disabled"
-													id="editFormLocazione">
-											</div>
-										</div>
-										<br>
-										<div class="form-row form-group">
+							<div class="container" id="formModificaOrtaggi" style="display: none">
+								<div class="table-responsive" id="table-scroll">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th></th>
+												<th><strong>Nome</strong></th>
+												<th><strong>Resa</strong></th>
+												<th><strong>Prezzo</strong></th>
+												<th><strong>Tempo Coltivazione</strong></th>
 
-											<div class="col-md-4">
-												<label class="label-column">Dimensione (mt²)</label>
-											</div>
-											<div class="col-xs-2">
-												<input class="input-column" type="text"
-													id="editFormDimensione" name="editFormDimensione">
-											</div>
-
-										</div>
-										<br>
-										<div class="form-row form-group">
-											<div class="col-md-4">
-												<label class="label-column">Dimensione Serra (mt²)</label>
-											</div>
-											<div class="col-xs-2">
-												<input class="input-column" type="text"
-													id="editFormDimensioneSerra" name="editFormDimensioneSerra">
-											</div>
-
-										</div>
-										<br>
-									</div>
-
-									<div class="col-md-6 ">
-										<div class="form-row form-group">
-											<div class="col-md-4">
-												<label class="label-column">Costo (€/mt²)</label>
-											</div>
-											<div class="col-xs-2">
-												<input class="input-column" type="text" id="editFormCosto"
-													name="editFormCosto">
-											</div>
-										</div>
-										<br>
-										<div class="form-row form-group">
-											<div class="col-md-4" align="left">
-												<label class="label-column">Periodo Disponibilita'</label>
-											</div>
-											<div class="col-xs-2">
-												<select class="custom-select input-column"
-													style="width: 217px; padding: 3px;"
-													id="dropdownDisponibilita" name="dropdownDisponibilita">
-													<option value="primavera">Primavera</option>
-													<option value="estate">Estate</option>
-													<option value="autunno">Autunno</option>
-													<option value="inverno">Inverno</option>
-													<!-- <option value="annuale">Annuale</option>  -->
-
-												</select>
-											</div>
-										</div>
-										<br>
-										<div class="form-row form-group">
-											<label class="label-column"><strong>Seleziona
-													i sevizi</strong></label>
-										</div>
-										<div class="form-check" align="left">
-											<input id="editCheckParziale" type="checkbox"
-												name="editCheckParziale" value="parziale"><label>
-												Servizio Parziale</label>
-										</div>
-										<br>
-										<div class="form-check" align="left">
-											<input id="editCheckCompleto" type="checkbox"
-												name="editCheckCompleto" value="completo"><label>
-												Servizio Completo</label>
-										</div>
-
-
-										<br>
-
-									</div>
+											</tr>
+										</thead>
+										<tbody id="items">
+											<c:forEach items="${ortaggi}" var="o">
+												<tr class="accordion-toggle" data-toggle="collapse">
+													<td><input type="checkbox" value="${o.id}"
+														name="ortaggiSelezionati"></td>
+													<td>${o.nome}</td>
+													<td>${o.resa}</td>
+													<td><input class="input-column" type="text"
+														style="max-width: 80px" name="prezzo${o.id}"
+														placeholder="prezzo"></td>
+													<td><input class="input-column" type="text"
+														style="max-width: 80px" name="tempo${o.id}"
+														placeholder="tempo coltivazione"></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
 								</div>
 								<div align="center">
-									<button class="button btn" id="annulla_modifica" type="button">Annulla</button>
-									<button class="button btn" type="submit">Salva</button>
-									<button class="button btn" id="modificaOrtaggi" type="button">Mostra ortaggi</button>
+										<button class="button btn" id="annulla_ortaggi" type="button">Annulla</button>
+										<button class="button btn" type="submit">Salva</button>
 								</div>
-							</form>
+							</div>
 						</div>
 						<!-- end modifiche -->
 
