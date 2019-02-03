@@ -300,6 +300,7 @@
 										<th>Servizio Completo</th>
 										<th>Servizio Parziale</th>
 										<th>Periodo Coltivazione</th>
+										<th>Costo</th>
 										<th>Modifica</th>
 										<th>Elimina</th>
 									</tr>
@@ -323,6 +324,7 @@
 													<c:otherwise>NO</c:otherwise>
 												</c:choose></td>
 											<td>${t.periodiDisponibilita}</td>
+											<td>${t.costo} €</td>
 											<td>
 												<button
 													onclick="edit('${t.id}','${t.locazione}', '${t.dimensione}', '${t.dimensioneSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
@@ -490,10 +492,9 @@
 									</div>
 								</div>
 								<div align="center">
-
 									<button class="button btn" id="annulla_modifica" type="button">Annulla</button>
 									<button class="button btn" type="submit">Salva</button>
-									<button class="button btn" id="modificaOrtaggi" type="button">Modifica ortaggi</button>
+									<button class="button btn" id="modificaOrtaggi" type="button">Mostra ortaggi</button>
 								</div>
 							</form>
 						</div>

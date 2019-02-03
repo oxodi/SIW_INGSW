@@ -23,13 +23,10 @@ public class PrelevaOrtaggi extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		if(req.getParameter("edit").equals("true")) {
-			OrtaggioDao ortaggiodao = PostgresDAOFactory.getInstance().getOrtaggioDAO();
+			TerrenoDao terrenodao = PostgresDAOFactory.getInstance().getTerrenoDAO();
 			int id_terreno = Integer.parseInt(req.getParameter("editFormId"));
-			List<Ortaggio> listOrtaggi = ortaggiodao.cercaPerTerreno(id_terreno);
-			for(int i = 0;i<listOrtaggi.size();i++)
-			{
-				
-			}
+			List<Ortaggio> listOrtaggi = terrenodao.cercaOrtaggiPerTerreno(id_terreno);
+			
 		}
 		else {
 			

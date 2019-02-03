@@ -62,7 +62,7 @@ public class PageLoader extends HttpServlet {
 		else if(id.equals("inserimentoTerreno")) {
 			if(req.getSession().getAttribute("azienda") != null)
 			{
-				RequestDispatcher rd = req.getRequestDispatcher("PrelevaOrtaggi");
+				RequestDispatcher rd = req.getRequestDispatcher("PrelevaOrtaggi?edit=false");
 				rd.forward(req, resp);
 			}
 			else

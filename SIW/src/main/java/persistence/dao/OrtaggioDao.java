@@ -14,5 +14,4 @@ public interface OrtaggioDao {
 
 	public void cancella(Ortaggio ortaggio);
 
-	List<Ortaggio> cercaPerTerreno(int idTerreno);
 }

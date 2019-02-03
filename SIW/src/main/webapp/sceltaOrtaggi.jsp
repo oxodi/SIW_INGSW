@@ -120,7 +120,7 @@
 							<tbody id="items">
 								<c:forEach items="${ortaggi}" var="o">
 									<c:if
-										test="${ (terreno.periodiDisponibilita == o.periodoColtivazione || o.periodoColtivazione == 'Annuale') &&
+										test="${(terreno.periodiDisponibilita == o.periodoColtivazione || o.periodoColtivazione == 'Annuale') &&
 										 terreno.servizioCompleto == true}">
 										<tr class="accordion-toggle" data-toggle="collapse">
 											<td><input type="checkbox" value="${o.id}"
