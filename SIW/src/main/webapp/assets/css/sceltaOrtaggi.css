@@ -90,6 +90,7 @@ body {
 	padding: 12px;
 	border: 2px solid green;
 	border-radius: 8px;
+	outline: none!important;
 	/* height: 42px */
 }
 
