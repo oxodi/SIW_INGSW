@@ -52,7 +52,7 @@
 			</span> -->
 
 			<c:if test="${sessionScope.cliente != null}">
-				<p>Sei loggato come ${sessionScope.cliente.getNome()}</p>
+				<p><strong>Ciao <em>${sessionScope.cliente.getNome()}</em></strong><br></p>
 				<a href="Login?logout=true">Logout</a>
 			</c:if>
 			<c:if test="${sessionScope.cliente == null}">
