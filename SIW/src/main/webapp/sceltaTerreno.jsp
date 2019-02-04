@@ -33,27 +33,27 @@
 		<div class="row content">
 			<div class="col-sm-2 sidenav">
 				<p>
-					<a href="#">Link</a>
+					<a href="#"></a>
 				</p>
 				<p>
-					<a href="#">Link</a>
+					<a href="#"></a>
 				</p>
 				<p>
-					<a href="#">Link</a>
+					<a href="#"></a>
 				</p>
 			</div>
 			<div class="col-sm-8  " id="centerColumn"
-				style="border-style: solid; border-radius: 25px; border-color: green;">
-				<div class="container">
+				style="border-style: solid; border-radius: 25px; border-color: green; background: #996633">
+				<div class="container" id="terreni" >
 					<h1>
 
 						<c:out value="${azienda.ragioneSociale}" />
 					</h1>
 					<p>
-						<c:out value="${azienda.descrizioneServizi }"></c:out>
+						<em><c:out value="${azienda.descrizioneServizi }"></c:out></em>
 					</p>
 					<hr>
-					<h3>Terreni Disponibili</h3>
+					<h2>Terreni Disponibili</h2>
 					<form action="DammiTerreno" method="get">
 						<div class="grid-container ">
 							<c:forEach items="${terreni}" var="t">
@@ -107,10 +107,10 @@
 			</div>
 			<div class="col-sm-2 sidenav">
 				<div class="well">
-					<p>ADS</p>
+					<p></p>
 				</div>
 				<div class="well">
-					<p>ADS</p>
+					<p></p>
 				</div>
 			</div>
 		</div>

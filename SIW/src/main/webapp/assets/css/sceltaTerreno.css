@@ -1,5 +1,7 @@
 @charset "ISO-8859-1";
 
+
+
 body {
 	background-color: black;
 	background: url("../img/weblink21.gif");
@@ -8,7 +10,18 @@ body {
 	outline: none;
 }
 
+h1{
+  font-size: 50px;
+  color: black;
+   text-shadow: 5px 5px #a0a0a0;
+}
+
+h2{
+	font-size: 35px;
+}
+
 .grid-container  {
+
 	display: grid; 
   	margin-top: 5% !important;
   	margin-bottom: 5% !important;
@@ -22,6 +35,9 @@ body {
 	max-height: 600px;
 	min-height: 600px;
 }
+
+
+
 
 
 .button {
