@@ -30,20 +30,41 @@
 
 <script>
 	$(document).ready(function() {
-		$("#switchDiv").click(function() {
 
+		var dimTotale = ${terreno.dimensione};
+		
+		var dimSerra = ${terreno.dimensioneSerra};
+		var dimTerreno = dimTotale - dimSerra;
+		$("#terrenoDisp").html("Disponibilità terreno: "+ dimTerreno +" m<sup>2</sup>");
+		
+		$("#switchDiv").click(function() {
+			
 			if ($(this).is(':checked')) {
 				$("#noserra").hide("slow");
 				$("#serra").show("slow");
+				$("#terrenoDisp").html("Disponibilità serra: "+ dimSerra +" m<sup>2</sup>");
 			}
 			if (!$(this).is(':checked')) {
 
 				$("#serra").hide("slow");
 				$("#noserra").show("slow");
+				$("#terrenoDisp").html("Disponibilità terreno: "+ dimTerreno +" m<sup>2</sup>");
+				
 			}
 		});
 	});
 </script>
+
+<!-- <script>
+$(document).ready(function() {
+	  $('.accordion-toggle').click(function(event) {
+	    if (event.target.type !== 'checkbox') {
+	      $(':checkbox', this).trigger('click');
+	    }
+	  });
+	});
+</script> -->
+
 
 </head>
 
@@ -60,7 +81,7 @@
 		<h1 style="margin: 2%; margin-bottom: 0">Terreno n°${terreno.id}
 			di ${azienda.ragioneSociale}</h1>
 		<h3 style="margin: 2%; margin-top: 0; margin-left: 3%">${terreno.locazione}</h3>
-
+		<h4 id="terrenoDisp" style="margin-left: 65%; margin-bottom: -1%;"></h4>
 
 		<div class="row" style="width: 100%; margin: 0">
 			<div class="scegli" style="width: 100%" id="myscegli">
@@ -73,7 +94,9 @@
 					<c:choose>
 						<c:when test="${terreno.servizioCompleto==true}">
 							<label style="margin: 2%"><strong>Servizio
-									Completo: selezionare gli ortaggi e la quantità da coltivare nel periodo <em>${terreno.periodiDisponibilita }</em> </strong></label>
+									Completo: selezionare gli ortaggi e la quantità da coltivare
+									nel periodo <em>${terreno.periodiDisponibilita }</em>
+							</strong></label>
 							<label style="margin-top: 2%; margin-left: 12%"> <strong>Coltivabili
 									in serra</strong></label>
 							<label class="switch"><input type="checkbox"
@@ -123,14 +146,18 @@
 										test="${ (terreno.periodiDisponibilita == o.periodoColtivazione || o.periodoColtivazione == 'Annuale') &&
 										 terreno.servizioCompleto == true}">
 										<tr class="accordion-toggle" data-toggle="collapse">
-											<td><input type="checkbox" value="${o}"
-												name="ortaggiSelezionati" id="${o.id}" onclick="cancellaRiga('${o.nome}', '${o.id}')"></td>
+											<td><label style="display: block; text-align: center"><input type="checkbox" value="${o}"
+												name="ortaggiSelezionati" id="${o.id}"
+												onclick="cancellaRiga('${o.nome}', '${o.id}')"></label></td>
 											<td>${o.nome}</td>
 											<td>${o.resa}</td>
 											<td class="text-center">${o.tempoColtivazione}  giorni</td>
 											<td class="text-center">${o.prezzo}  €</td>
 											<td><input class="input-column" type="text"
-												style="max-width: 80px" id="q" onchange="aggiornaResoconto('${o.nome}', this.value, '${o.resa}', '${o.prezzo}', ${o.id})"> / ${terreno.dimensione} m<sup>2</sup></td>
+												style="max-width: 80px" id="${o.id}input"
+												onchange="aggiornaResocontoTerreno('${o.nome}', this.value, '${o.resa}', '${o.prezzo}', '${o.id}', 
+												'${terreno.dimensione}', '${terreno.dimensioneSerra}', this.id)"><!-- 'dimensioneTerreno(${terreno.dimensione}, ${terreno.dimensioneSerra}) -->
+												m<sup>2</sup></td>
 										</tr>
 									</c:if>
 								</c:forEach>
@@ -162,21 +189,29 @@
 							</thead>
 							<tbody id="items">
 								<c:forEach items="${ortaggi}" var="o">
-									<tr class="accordion-toggle" data-toggle="collapse">
-										<td><input type="checkbox" value="${o.id}"
-											name="ortaggiSelezionati"></td>
-										<td>${o.nome}</td>
-										<td>${o.resa}</td>
-										<td class="text-center">${o.tempoColtivazione}  giorni</td>
-										<td class="text-center">${o.prezzo}€</td>
-										<td><input class="input-column" type="text"
-											style="max-width: 80px"> / ${terreno.dimensione} m<sup>2</sup></td>
-									</tr>
+									<c:if
+										test="${terreno.servizioCompleto == true}">
+										<tr class="accordion-toggle" data-toggle="collapse">
+											<td><input type="checkbox" value="${o}"
+												name="ortaggiSelezionati" id="${o.id}S"
+												onclick="cancellaRiga('${o.nome}', '${o.id}')"></td>
+											<td>${o.nome}</td>
+											<td>${o.resa}</td>
+											<td class="text-center">${o.tempoColtivazione}  giorni</td>
+											<td class="text-center">${o.prezzo}  €</td>
+											<td><input class="input-column" type="text"
+												style="max-width: 80px" id="${o.id}inputS"
+												onchange="aggiornaResocontoSerra('${o.nome}', this.value, '${o.resa}', '${o.prezzo}', '${o.id}S',
+												'${terreno.dimensioneSerra}', this.id)">
+												m<sup>2</sup></td>
+										</tr>
+									</c:if>
 								</c:forEach>
 							</tbody>
 						</table>
 					</div>
-				</div>   	<!-- fine div NOSERRA -->
+				</div>
+				<!-- fine div NOSERRA -->
 
 			</div>
 		</div>
@@ -226,13 +261,16 @@
 						<tbody id="items">
 							<c:if test="${terreno.servizioParziale == true }">
 								<tr class="accordion-toggle" data-toggle="collapse">
-									<td><input type="checkbox" value="soloTerreno"
-										name="ortaggiSelezionati"></td>
+									<td><input type="checkbox"
+												name="nameTerrenoSolo" id="soloTerreno"
+												onclick="cancellaRiga('${o.nome}', '${o.id}')"></td>
 									<td>${terreno.locazione}</td>
 									<td>${terreno.periodiDisponibilita}</td>
 									<td>${terreno.costo}€</td>
 									<td><input class="input-column" type="text"
-										style="max-width: 80px"> / ${terreno.dimensione} m<sup>2</sup></td>
+												style="max-width: 80px" id="terrenoSolo"
+												onchange="aggiornaResocontoTerreno('Terreno', this.value, '-', '${terreno.costo}', 'soloTerreno', 
+												'${terreno.dimensione}', '${terreno.dimensioneSerra}', this.id)">  m<sup>2</sup></td>
 								</tr>
 							</c:if>
 						</tbody>
@@ -247,7 +285,7 @@
 		<!--  card resoconto -->
 
 		<div class="container col-xl-8" style="margin-right: 0; padding: 0">
-			<div class="resoconto" >
+			<div class="resoconto">
 				<!-- container mb-4 -->
 				<div class="row table-responsive" style="margin: 0">
 					<div class="col-12">
@@ -261,31 +299,35 @@
 										<th scope="col">Quantità</th>
 										<th scope="col">Resa</th>
 										<th scope="col">Prezzo</th>
+										<th scope="col">Serra</th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody id="body">
-									
+
 									<tr>
 										<td></td>
 										<td></td>
 										<td></td>
-										<td>Parziale</td>
-										<td class="text-right" id="parziale">0</td>
+										<td></td>
+										<td>Parziale €</td>
+										<td class="text-right" id="parziale"></td>
 									</tr>
 									<tr>
 										<td></td>
 										<td></td>
 										<td></td>
-										<td>Imposte</td>
+										<td></td>
+										<td>Imposte €</td>
 										<td class="text-right" id="imposte"></td>
 									</tr>
 									<tr>
 										<td></td>
 										<td></td>
 										<td></td>
-										<td><strong>Totale</strong></td>
-										<td class="text-right" id="totale"><strong></strong></td>
+										<td></td>
+										<td><strong>Totale €</strong></td>
+										<td class="text-right" id="totale"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -312,6 +354,69 @@
 	</div>
 	<!-- fine container principale -->
 
+
+	<!-- Modal -->
+	<div id="modalError" class="modal fade" role="dialog"
+		style="z-index: 2500; border-radius: 25px">
+
+		<div class="modal-dialog" style="border: 2px green solid">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Dimensione massima superata!</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>La quantità degli ortaggi selezionati è maggiore della dimensione massima di terreno disponibile. </p>
+				</div>
+				<div class="modal-footer">
+					<div class="container" align="right">
+						<input type="text" style="display: none" id="tempId" name="tempId">
+						<input type="text" style="display: none" id="delete" name="delete"
+							value="true">
+						<button type="submit" class="btn btn-success"
+							style="border-radius: 15px" data-dismiss="modal">OK</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- end modal -->
+
+
+
+	<!-- Modal -->
+	<div id="modalErrorOrt" class="modal fade" role="dialog"
+		style="z-index: 2500; border-radius: 25px">
+
+		<div class="modal-dialog" style="border: 2px green solid">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Ortaggio già inserito!</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>Un ortaggio non può essere selezionato sia per il terreno che per la serra.</p>
+					<p>Cancella l'ortaggio interessato dalla selezione e fai la tua scelta.</p>
+				</div>
+				<div class="modal-footer">
+					<div class="container" align="right">
+						<input type="text" style="display: none" id="tempId" name="tempId">
+						<input type="text" style="display: none" id="delete" name="delete"
+							value="true">
+						<button type="submit" class="btn btn-success"
+							style="border-radius: 15px" data-dismiss="modal">OK</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- end modal -->
 
 	<!-- End: Article List -->
 	<!-- Start: footer -->
