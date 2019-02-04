@@ -1,25 +1,29 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import entita.Azienda;
 import entita.Terreno;
 import persistence.PostgresDAOFactory;
-import persistence.TerrenoDaoJDBC;
-import persistence.dao.OrtaggioDao;
 import persistence.dao.TerrenoDao;
 
 /**
  * Servlet implementation class TerrenoOspitaOrtaggi
  */
+//@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
+//maxFileSize=1024*1024*10,      // 10MB
+//maxRequestSize=1024*1024*50)   // 50MB
 public class TerrenoOspitaOrtaggi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	//private static final String SAVE_DIR = "uploadFiles/";
 
 	@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -137,11 +141,42 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 				System.out.println("con questo tempo " + tempoInt);
 				terrenoNew.aggiungiOrtaggio(terreno.getId(), Integer.parseInt(checkedIds[i]), intPrezzi, tempoInt);
 			}
-
+			/*
+			
+			// gets absolute path of the web application
+			String appPath = req.getServletContext().getRealPath("");
+			// constructs path of the directory to save uploaded file
+			String savePath = appPath + File.separator + SAVE_DIR;
+			// creates the save directory if it does not exists
+			File fileSaveDir = new File(savePath);
+			if (!fileSaveDir.exists()) {
+			fileSaveDir.mkdir();
+			}
+			
+			Part part = req.getPart(req.getParameter("file"));
+				String fileName = extractFileName(part);
+				// refines the fileName in case it is an absolute path
+				fileName = new File(fileName).getName();
+				System.out.println(fileName);
+				part.write(savePath + File.separator + fileName);
+				
+			*/
 			RequestDispatcher rd = req.getRequestDispatcher("PrelevaDatiTerreno");
 			rd.forward(req, resp);
 
 		}
 	}
-
+	
+	/*
+	private String extractFileName(Part part) {
+		String contentDisp = part.getHeader("content-disposition");
+		String[] items = contentDisp.split(";");
+		for (String s : items) {
+		if (s.trim().startsWith("filename")) {
+		return s.substring(s.indexOf("=") + 2, s.length()-1);
+			}
+		}
+		return "";
+	}
+	*/
 }

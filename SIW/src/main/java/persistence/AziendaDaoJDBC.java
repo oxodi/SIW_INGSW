@@ -149,21 +149,20 @@ public class AziendaDaoJDBC implements AziendaDao {
 	public void aggiorna(Azienda azienda) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String update = "UPDATE azienda SET ragione_sociale=?, referente=?, sede_legale=?, indirizzo=?, citta=?, cap=?, provincia=?,"
-					+ "partita_iva, telefono=?, descrizione=? WHERE id=?";
+			String update = "UPDATE azienda SET referente=?, sede_legale=?, indirizzo=?, citta=?, cap=?, provincia=?,"
+					+ "telefono=?, descrizione=? WHERE id=?";
 
 			PreparedStatement statement = connection.prepareStatement(update);
 
-			statement.setString(2, azienda.getRagioneSociale());
-			statement.setString(3, azienda.getReferente());
-			statement.setString(4, azienda.getSedeLegale());
-			statement.setString(5, azienda.getIndirizzo());
-			statement.setString(6, azienda.getCitta());
-			statement.setString(7, azienda.getCap());
-			statement.setString(8, azienda.getProvincia());
-			statement.setString(9, azienda.getPartitaIVA());
-			statement.setString(10, azienda.getTelefono());
-			statement.setString(11, azienda.getDescrizioneServizi());
+			statement.setString(1, azienda.getReferente());
+			statement.setString(2, azienda.getSedeLegale());
+			statement.setString(3, azienda.getIndirizzo());
+			statement.setString(4, azienda.getCitta());
+			statement.setString(5, azienda.getCap());
+			statement.setString(6, azienda.getProvincia());
+			statement.setString(7, azienda.getTelefono());
+			statement.setString(8, azienda.getDescrizioneServizi());
+			statement.setInt(9, azienda.getId());
 
 			statement.executeUpdate();
 

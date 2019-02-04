@@ -31,6 +31,8 @@ public class PrelevaDatiTerreno extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
 		Azienda aziendaInSessione = (Azienda) req.getSession().getAttribute("azienda");
 		System.out.println("Sono in Dammi terreni");
 		System.out.println((Azienda) req.getSession().getAttribute("azienda"));

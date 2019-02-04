@@ -69,17 +69,17 @@
 	$(document).ready(function() {
 		$("#modificaOrtaggi").click(function() {
 			$("#formModificaTerreno").hide("slow");
-			$("#formModificaOrtaggi").show("slow");
-			
-			mostraOrtaggi()
-			
-		});	
-});
+			$("#containerModificaOrtaggi").show("slow");
+			var terreno_id = $("#editFormId").val();
+			mostraOrtaggi(terreno_id)
+
+		});
+	});
 </script>
 <script>
 	$(document).ready(function() {
 		$("#annulla_ortaggi").click(function() {
-			$("#formModificaOrtaggi").hide("slow");
+			$("#containerModificaOrtaggi").hide("slow");
 			$("#formModificaTerreno").show("slow");
 
 		});
@@ -164,10 +164,18 @@
 				<div class="tab-content clearfix">
 					<div class="custom-form tab-pane active"
 						style="margin-left: 20px; margin-top: 20px" id="modificadati">
-						<form action="">
+						<form action="InserisciAzienda?edit=true" method="post">
 							<div class="row">
 								<div class="col-md-6 ">
 									<br>
+									<div class="form-row form-group" style="display:none">
+										<div class="col-xs-2">
+											<input class="input-column" type="text"
+												name="id_azienda"
+												value="${sessionScope.azienda.getId()}">
+										</div>
+
+									</div>
 									<div class="form-row form-group">
 
 										<div class="col-md-4">
@@ -184,7 +192,7 @@
 									<div class=" form-row form-group">
 
 										<div class="col-md-4">
-											<label class="label-column">Referente</label>
+											<label class="label-column">Referente *</label>
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="referente"
@@ -196,7 +204,7 @@
 									<div class="form-row form-group">
 
 										<div class="col-md-4 ">
-											<label class="label-column">Sede Legale</label>
+											<label class="label-column">Sede Legale *</label>
 										</div>
 										<div class="col-xs-2 ">
 											<input class="input-column" type="text" name="sede_legale"
@@ -208,7 +216,7 @@
 									<div class="form-row form-group">
 
 										<div class="col-md-4 ">
-											<label class="label-column">Indirizzo</label>
+											<label class="label-column">Indirizzo *</label>
 										</div>
 										<div class="col-xs-2 ">
 											<input class="input-column" type="text" name="indirizzo"
@@ -220,7 +228,7 @@
 									<div class="form-row form-group">
 
 										<div class="col-md-4 ">
-											<label class="label-column">Citta'</label>
+											<label class="label-column">Citta' *</label>
 										</div>
 										<div class="col-xs-2 ">
 											<input class="input-column" type="text" name="citta"
@@ -236,7 +244,7 @@
 									<div class="form-row form-group">
 
 										<div class="col-md-4 ">
-											<label class="label-column">CAP</label>
+											<label class="label-column">CAP *</label>
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="cap"
@@ -248,7 +256,7 @@
 									<div class="form-row form-group">
 
 										<div class="col-md-4 ">
-											<label class="label-column">Provincia</label>
+											<label class="label-column">Provincia *</label>
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="provincia"
@@ -264,7 +272,7 @@
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="partita_iva"
-												value="${azienda.getPartitaIVA()}">
+												disabled="disabled" value="${azienda.getPartitaIVA()}">
 										</div>
 
 									</div>
@@ -272,7 +280,7 @@
 									<div class="form-row form-group">
 
 										<div class="col-md-4">
-											<label class="label-column">Telefono</label>
+											<label class="label-column">Telefono *</label>
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="tel" name="telefono"
@@ -288,6 +296,7 @@
 										</div>
 										<div class="col-xs-2">
 											<input class="input-column" type="text" name="email"
+												disabled="disabled"
 												value="${sessionScope.azienda.getEmail()}">
 										</div>
 
@@ -295,13 +304,21 @@
 								</div>
 							</div>
 							<br>
+
 							<div style="text-align: center; whidt: 100%; margin-top: 25px">
 								<div align="center">
-									<label class="label-column">Descrizione Servizi Offerti</label>
+									<label class="label-column">Descrizione Servizi Offerti
+										*</label>
 								</div>
 								<textarea class="form-control"
 									style="margin-left: auto; margin-right: auto; resize: none; border: 2px green solid; border-radius: 15px; min-height: 150px; background-color: #cfc7af; min-width: 100%;"
 									maxlength="1000" name="formDescrizione">${sessionScope.azienda.getDescrizioneServizi()}</textarea>
+							</div>
+							<br>
+							<div align="right">
+								<p>
+									<strong>(*) questi campi possono essere modificati</strong>
+								</p>
 							</div>
 							<br>
 							<div align="center">
@@ -523,12 +540,12 @@
 								</form>
 							</div>
 							<!-- Form Modifica Ortaggi -->
-							<div class="container" style="display:none">
-								<div class="table-responsive" id="table-scroll" >
+							<div class="container" id="containerModificaOrtaggi"
+								style="display: none">
+								<div class="table-responsive" id="table-scroll">
 									<table class="table table-hover" id="formModificaOrtaggi">
 										<thead>
 											<tr>
-												<th></th>
 												<th><strong>Nome</strong></th>
 												<th><strong>Resa</strong></th>
 												<th><strong>Prezzo</strong></th>
@@ -537,13 +554,13 @@
 											</tr>
 										</thead>
 										<tbody id="items">
-											
+
 										</tbody>
 									</table>
 								</div>
 								<div align="center">
-										<button class="button btn" id="annulla_ortaggi" type="button">Annulla</button>
-										<button class="button btn" type="submit">Salva</button>
+									<button class="button btn" id="annulla_ortaggi" type="button">Annulla</button>
+									<button class="button btn" type="submit">Salva</button>
 								</div>
 							</div>
 						</div>

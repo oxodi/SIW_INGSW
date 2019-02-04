@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import entita.ortaggio.Ortaggio;
@@ -27,32 +28,25 @@ public class PrelevaOrtaggi extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		if (req.getParameter("edit").equals("true")) {
-
-			String jsonReceived = "";
-			BufferedReader reader = new BufferedReader(new InputStreamReader(req.getInputStream()));
-			String line = reader.readLine();
-			while (line != null) {
-				jsonReceived = jsonReceived + line + "\n";
-				line = reader.readLine();
-			}
-
-			System.out.println(jsonReceived);
-
+			JSONArray ortaggiJson = new JSONArray();
 			TerrenoDao terrenodao = PostgresDAOFactory.getInstance().getTerrenoDAO();
 			int id_terreno = Integer.parseInt(req.getParameter("editFormId"));
 			List<Ortaggio> listOrtaggi = terrenodao.cercaOrtaggiPerTerreno(id_terreno);
-
-		}
-		
-		else if (req.getParameter("test").equals("test")) {
-			JSONObject jsonprova = new JSONObject();
-			jsonprova.put("nome", "cognome");
-			jsonprova.put("ciccio", "pippo");
+			for(int i = 0;i<listOrtaggi.size();i++)
+			{
+				JSONObject temp = new JSONObject();
+				temp.put("nome",listOrtaggi.get(i).getNome());
+				temp.put("resa",listOrtaggi.get(i).getResa());
+				temp.put("costo",listOrtaggi.get(i).getPrezzo());
+				temp.put("tempo", listOrtaggi.get(i).getTempoColtivazione());
+				ortaggiJson.put(temp);
+			}
+			
 			PrintWriter pw = resp.getWriter();
-			pw.print(jsonprova.toString());
-			System.out.println(jsonprova);
+			pw.print(ortaggiJson.toString());
+			System.out.println(ortaggiJson);
 			pw.close();
 		}
 

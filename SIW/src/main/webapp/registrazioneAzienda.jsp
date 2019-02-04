@@ -51,7 +51,7 @@
 	<div id="formregistrazione" class="row register-form">
 		<div class="col-md-8 offset-md-2">
 			<form class="custom-form" id="regFormAzienda" method="post"
-				action="InserisciAzienda">
+				action="InserisciAzienda?edit=false">
 				<div id="azienda">
 					<h1>Registrazione Azienda</h1>
 					<div class="form-row form-group">

@@ -46,8 +46,18 @@
 		else{
 			$("#validazioneServizioParziale").text("NO");
 		}
-);
-
+		$('#tabellaValidazioneOrtaggi> tbody').empty();
+		$('#tabella').find('input[type="checkbox"]:checked').each(function () {
+	        var riga = $(this).val();
+	        var $row = $('<tr>'+
+				      '<th>'+$('#nome'+riga).text()+'</th>'+
+				      '<th>'+$('#prezzo'+riga).val()+'</th>'+
+				      '<th>'+$('#resa'+riga).text()+'</th>'+
+				      '<th>'+$('#tempo'+riga).val()+'</th>'+
+				      '</tr>'
+				);
+				$('#tabellaValidazioneOrtaggi> tbody:last').append($row);
+		});
 		
 	};
 </script>
@@ -79,7 +89,7 @@
 	<!-- End: Navigation with Button -->
 	<div class="row register-form" style="width: 100%">
 		<div class="col-md-10 offset-md-1">
-			<form class="custom-form" method="post"
+			<form class="custom-form" method="post" enctype="multipart/form-data"
 				action="TerrenoOspitaOrtaggi?edit=false">
 
 				<div id="inserimento">
@@ -99,7 +109,7 @@
 
 							<div class="form-row form-group">
 								<div class="col-md-4" align="left">
-									<label class="label-column">Dimensione Terreno</label>
+									<label class="label-column">Dimensione Terreno (mt²)</label>
 								</div>
 								<div class="col-xs-2">
 									<input class="input-column" type="text"
@@ -110,7 +120,7 @@
 
 							<div class="form-row form-group">
 								<div class="col-md-4" align="left">
-									<label class="label-column">Dimensione Serra</label>
+									<label class="label-column">Dimensione Serra (mt²)</label>
 								</div>
 								<div class="col-xs-2">
 									<input class="input-column" type="text" name="dimensione_serra"
@@ -120,7 +130,7 @@
 
 							<div class="form-row form-group">
 								<div class="col-md-4" align="left">
-									<label class="label-column">Costo Terreno(mt^2)</label>
+									<label class="label-column">Costo Terreno (€/mt²)</label>
 								</div>
 								<div class="col-xs-2">
 									<input class="input-column" type="text" name="costo_terreno"
@@ -179,8 +189,8 @@
 												<th></th>
 												<th><strong>Nome</strong></th>
 												<th><strong>Resa</strong></th>
-												<th><strong>Prezzo</strong></th>
-												<th><strong>Tempo Coltivazione</strong></th>
+												<th><strong>Prezzo (€/mt²)</strong></th>
+												<th><strong>Tempo Coltivazione (giorni)</strong></th>
 
 											</tr>
 										</thead>
@@ -189,14 +199,14 @@
 												<tr class="accordion-toggle" data-toggle="collapse">
 													<td><input type="checkbox" value="${o.id}"
 														name="ortaggiSelezionati"></td>
-													<td>${o.nome}</td>
-													<td>${o.resa}</td>
+													<td id="nome${o.id}">${o.nome}</td>
+													<td id="resa${o.id }">${o.resa}</td>
 													<td><input class="input-column" type="text"
-														style="max-width: 80px" name="prezzo${o.id}"
+														style="max-width: 80px" name="prezzo${o.id}" id="prezzo${o.id}"
 														placeholder="prezzo"></td>
 													<td><input class="input-column" type="text"
-														style="max-width: 80px" name="tempo${o.id}"
-														placeholder="tempo coltivazione"></td>
+														style="max-width: 80px" name="tempo${o.id}" id="tempo${o.id}"
+														placeholder="giorni"></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -228,13 +238,15 @@
 					<h5>
 						<strong>Controllare i dati inseriti, se si è sicuri, confermare l'inserimento</strong>
 					</h5>
+					<br>
+					<div class="table-responsive">
 					<table class="table" id="valid">
-						<thead class="thead-dark">
+						<thead class="thead-dark" style="boreder-radius: 15px">
 							<tr>
 								<th scope="col">Locazione</th>
-								<th scope="col">Dimensione Mt²</th>
-								<th scope="col">Dimensione Serra Mt²</th>
-								<th scope="col">Costo €/Mt²</th>
+								<th scope="col">Dimensione (mt²)</th>
+								<th scope="col">Dimensione Serra (mt²)</th>
+								<th scope="col">Costo (€/mt²)</th>
 								<th scope="col">Periodo Disponibilità</th>
 								<th scope="col">Servizio Completo </th>
 								<th scope="col">Servizio Parziale </th> 
@@ -242,53 +254,41 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td class="input" id="validazioneLocazione" scope="row">
-								<td class="input" id="validazioneDim" scope="row">
-								<td class="input" id="validazioneDimSerra" scope="row">
-								<td class="input" id="validazioneCosto" scope="row">
-								<td class="input" id="validazioneDisponibilita" scope="row">
-								<td class="input" id="validazioneServizioCompleto" scope="row">
-								<td class="input" id="validazioneServizioParziale" scope="row">
+								<td class="input" id="validazioneLocazione" scope="row"> </td>
+								<td class="input" id="validazioneDim" scope="row"> </td>
+								<td class="input" id="validazioneDimSerra" scope="row"> </td>
+								<td class="input" id="validazioneCosto" scope="row"></td>
+								<td class="input" id="validazioneDisponibilita" scope="row"> </td>
+								<td class="input" id="validazioneServizioCompleto" scope="row"> </td>
+								<td class="input" id="validazioneServizioParziale" scope="row"> </td>
 							</tr>
 						</tbody>
 					</table>
-
-					<table class="table">
-						<thead class="thead-light">
+					</div>
+					<br>
+					<div class="table-responsive">
+					<table class="table" id="tabellaValidazioneOrtaggi">
+						<thead class="thead-dark" style="boreder-radius: 15px">
 							<tr>
 								<th scope="col">Ortaggi selezionati</th>
-								<th scope="col">Costo unitario</th>
+								<th scope="col">Costo unitario (€/mt²)</th>
 								<th scope="col">Resa</th>
+								<th scope="col">Tempo Coltivazione (giorni)</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td id="ortaggio1" scope="row"></th>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>@twitter</td>
-							</tr>
+							
 						</tbody>
 					</table>
-
+					</div>
+					<br>
+					<div class="container-fluid" align="center">
 					<h5>
 						<strong>Inserire un documento di proprieta' del terreno</strong>
 					</h5>
-					<input type="file"
+					<input type="file" style="margin-left: -3px" name="file"
 						class="text-center center-block file-upload container-fluid button">
-
+					</div>
 					<div align="center">
 
 						<button class="button btn" id="indietro" type="button"

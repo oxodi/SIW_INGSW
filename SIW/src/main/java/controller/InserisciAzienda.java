@@ -25,7 +25,57 @@ public class InserisciAzienda extends HttpServlet {
 	 */
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+			if(request.getParameter("edit").equals("true")) {
+				PostgresDAOFactory factory = PostgresDAOFactory.getInstance();
+				AziendaDao aziendaDAO = factory.getAziendaDAO();
+				System.out.println(request.getParameter("id_azienda"));
+				int id = Integer.parseInt(request.getParameter("id_azienda"));
+				
+				//int id = (Integer) request.getAttribute("azienda");
+				String referente = request.getParameter("referente");
+				String sedeLegale = request.getParameter("sede_legale");
+				String indirizzo = request.getParameter("indirizzo");
+				String citta = request.getParameter("citta");
+				String cap = request.getParameter("cap");
+				String provincia = request.getParameter("provincia");
+				String telefono = request.getParameter("telefono");
+				String descrizione = request.getParameter("formDescrizione");
+				
+				Azienda azienda = new Azienda() ;
+				azienda.setReferente(referente);
+				System.out.println("Referente "+azienda.getReferente());
+				azienda.setSedeLegale(sedeLegale);
+				System.out.println("sede legale "+azienda.getSedeLegale());
+				azienda.setIndirizzo(indirizzo);
+				System.out.println("indirizzo ");
+				azienda.setCitta(citta);
+				System.out.println("citta "+citta);
+				azienda.setCap(cap);
+				System.out.println("cap "+cap);
+				azienda.setProvincia(provincia);
+				System.out.println("provincia "+provincia);
+				azienda.setTelefono(telefono);
+				System.out.println("telefono "+telefono);
+				azienda.setDescrizioneServizi(descrizione);
+				System.out.println("descrizione "+descrizione);
+				azienda.setId(id);
+				System.out.println(id);
+				
+				aziendaDAO.aggiorna(azienda);
+				Azienda newSessione = aziendaDAO.cercaPerChiavePrimaria(id);
+				request.getSession().invalidate();
+				request.getSession().setAttribute("azienda", newSessione);
+				RequestDispatcher rs = request.getRequestDispatcher("PageLoader?id=backendAzienda");
+				rs.forward(request, response);
+				
+				
+				//out.println("Grazie per esserti registrato");
+			}
+				
+		
 
+		else {
 		PostgresDAOFactory factory = PostgresDAOFactory.getInstance();
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -70,6 +120,7 @@ public class InserisciAzienda extends HttpServlet {
 			out.println("Inserimento dati errato");
 			e.printStackTrace();
 		}
+	}
+	}
 
-}
 }
