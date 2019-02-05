@@ -292,11 +292,11 @@ $(document).ready(function() {
 
 				<div class="col-sm-3" style="margin: 2%; margin-top: 5%">
 					<ul>
-						<li><input style="width: 23px; height: 20px;" type="checkbox" name="paypolCheckbox" id="paypalL"
+						<li><input style="width: 23px; height: 20px;" type="checkbox" name="paypolCheckbox" id="paypall"
 							value="Ford"> <label class="paypal" for="paypalL"><img
 								src="assets\img\ruotaStagioni\ImgPaypal.jpg" /></label></li>
 						<li><input style="width: 23px; height: 20px;" type="checkbox" name="postapayCheckbox"
-							id="postapay" value="Ford"> <label class="mastercard"
+							id="mastercard" value="Ford"> <label class="mastercard"
 							for="postapay"><img
 								src="assets\img\ruotaStagioni\ImgMastercard.jpg" /></label></li>
 					</ul>
@@ -314,9 +314,9 @@ $(document).ready(function() {
 										<tr>
 											<!-- <th scope="col"></th> -->
 											<th scope="col">Ortaggi</th>
-											<th scope="col">Quantità</th>
-											<th scope="col">Resa</th>
-											<th scope="col">Prezzo</th>
+											<th scope="col">Quantità[m<sup>2</sup>]</th>
+											<th scope="col">Resa[kg]</th>
+											<th scope="col">Prezzo[€]</th>
 											<th scope="col">Serra</th>
 											<th></th>
 										</tr>
@@ -356,7 +356,7 @@ $(document).ready(function() {
 									</div> -->
 									
 									<div class="col-sm-12 col-md-6 text-right">
-										<button class="button" onclick="prova()">Conferma</button>
+										<button class="button" onclick="prova('paypall','mastercard')">Conferma</button>
 										<!-- class="btn btn-lg btn-block btn-success text-uppercase" -->
 									
 									</div>
@@ -427,6 +427,37 @@ $(document).ready(function() {
 						che per la serra.</p>
 					<p>Cancella l'ortaggio interessato dalla selezione e fai la tua
 						scelta.</p>
+				</div>
+				<div class="modal-footer">
+					<div class="container" align="right">
+						<input type="text" style="display: none" id="tempId" name="tempId">
+						<input type="text" style="display: none" id="delete" name="delete"
+							value="true">
+						<button type="submit" class="btn btn-success"
+							style="border-radius: 15px" data-dismiss="modal">OK</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- end modal -->
+	
+	
+	<!-- Modal -->
+	<div id="modalPagamento" class="modal fade" role="dialog"
+		style="z-index: 2500; border-radius: 25px">
+
+		<div class="modal-dialog" style="border: 2px green solid">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Nessun metodo di pagamento selezionato</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>Scegli un metodo di pagamento.</p>
 				</div>
 				<div class="modal-footer">
 					<div class="container" align="right">
