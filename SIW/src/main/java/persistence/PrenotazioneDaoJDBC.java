@@ -1,5 +1,6 @@
 package persistence;
 
+import java.security.PrivilegedExceptionAction;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,7 +33,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 
 			while (it.hasNext()) {
 				Map.Entry<Integer, Integer> entry = (Entry<Integer, Integer>) it.next();
-				String insert = "INSERT INTO prenotazione(id_cliente, id_terreno, id_ortaggio, quantita, data) VALUES (?,?,?,?,?)";
+				String insert = "INSERT INTO prenotazione(id_cliente, id_terreno, id_ortaggio, quantita, data, serra) VALUES (?,?,?,?,?,?)";
 				PreparedStatement statement = connection.prepareStatement(insert);
 
 				statement.setInt(1, prenotazione.getIdCliente());
@@ -41,6 +42,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				statement.setInt(4, entry.getValue());
 				long secs = prenotazione.getDataPrenotazione().getTime();
 				statement.setDate(5, new java.sql.Date(secs));
+				statement.setBoolean(6, prenotazione.isSerra());
 				statement.executeUpdate();
 			}
 
@@ -79,7 +81,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				prenotazione.setId_ortaggi(hashMap);
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
-
+				prenotazione.setSerra(result.getBoolean("serra"));
 				prenotazioni.add(prenotazione);
 			}
 		} catch (SQLException e) {
@@ -142,6 +144,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				prenotazione.setId_ortaggi(hashMap);
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
+				prenotazione.setSerra(result.getBoolean("serra"));
 
 				prenotazioni.add(prenotazione);
 			}
@@ -181,6 +184,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				prenotazione.setId_ortaggi(hashMap);
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
+				prenotazione.setSerra(result.getBoolean("serra"));
 
 				prenotazioni.add(prenotazione);
 			}
@@ -219,6 +223,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				prenotazione.setId_ortaggi(hashMap);
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
+				prenotazione.setSerra(result.getBoolean("serra"));
 
 				prenotazioni.add(prenotazione);
 			}
@@ -259,6 +264,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				prenotazione.setId_ortaggi(hashMap);
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
+				prenotazione.setSerra(result.getBoolean("serra"));
 
 				prenotazioni.add(prenotazione);
 			}

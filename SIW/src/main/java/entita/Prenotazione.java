@@ -12,15 +12,25 @@ public class Prenotazione {
 	private int idTerreno;
 	private Date dataPrenotazione;
 	private HashMap<Integer,Integer> id_ortaggi;
+	private boolean serra;
 
 	public Prenotazione() {
 	}
 
-	public Prenotazione(int idCliente, int idTerreno, Date dataPrenotazione, HashMap<Integer,Integer> id_ortaggi) {
+	public Prenotazione(int idCliente, int idTerreno, Date dataPrenotazione, HashMap<Integer,Integer> id_ortaggi, boolean serra) {
 		this.idCliente = idCliente;
 		this.idTerreno = idTerreno;
 		this.dataPrenotazione = dataPrenotazione;
 		this.id_ortaggi = id_ortaggi;
+		this.serra = serra;
+	}
+
+	public boolean isSerra() {
+		return serra;
+	}
+
+	public void setSerra(boolean serra) {
+		this.serra = serra;
 	}
 
 	public int getIdCliente() {

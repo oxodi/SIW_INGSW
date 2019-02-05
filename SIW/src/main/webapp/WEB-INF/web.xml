@@ -81,6 +81,13 @@
 		<servlet-name>DammiTerreno</servlet-name>
 		<servlet-class>controller.DammiTerreno</servlet-class>
 	</servlet>
+			<servlet>
+				<description>
+				</description>
+				<display-name>SalvaPrenotazione</display-name>
+				<servlet-name>SalvaPrenotazione</servlet-name>
+				<servlet-class>controller.SalvaPrenotazione</servlet-class>
+			</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -140,6 +147,10 @@
 		<servlet-name>DammiTerreno</servlet-name>
 		<url-pattern>/DammiTerreno</url-pattern>
 	</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SalvaPrenotazione</servlet-name>
+			<url-pattern>/SalvaPrenotazione</url-pattern>
+		</servlet-mapping>
 	
 	<welcome-file-list>
 		<welcome-file>Home</welcome-file>
