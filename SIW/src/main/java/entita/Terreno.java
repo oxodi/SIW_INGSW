@@ -146,8 +146,8 @@ public class Terreno {
 				+ this.servizioParziale + ", " + this.servizioCompleto + ", " + this.dimensione + ", "
 				+ this.dimensioneSerra + ", " + this.costo + ", " + this.periodiDisponibilita + "] ";
 
-		//String output2 = toStringOrtaggi(ortaggi);
-		return output ;//+ output2;
+		String output2 = toStringOrtaggi(this.ortaggi);
+		return output + output2;
 	}
 
 	public String toStringOrtaggi(ArrayList<Ortaggio> ortaggi) {

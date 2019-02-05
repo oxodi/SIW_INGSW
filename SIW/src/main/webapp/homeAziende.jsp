@@ -36,38 +36,34 @@
 		<div class="container">
 			<!-- Start: Intro -->
 			<div class="intro"> 
-				<h2 class="text-center">Latest Articles</h2>
-				<p class="text-center">Nunc luctus in metus eget fringilla.
-					Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut
-					laoreet vitae.</p>
+				<h2 class="text-center">Sei proprietario di un'azienda agricola?</h2>
+				<p class="text-center" style="color: black;"><strong>Entra nel network TheGrower!</strong></p>
 			</div>
 			<!-- End: Intro -->
 			<!-- Start: Articles -->
 			<div class="row articles">
 				<div class="col-sm-6 col-md-4 item">
-					<a href="#"><img class="img-fluid" src="assets/img/desk.jpg"></a>
-					<h3 class="name">Article Title</h3>
-					<p class="description">Aenean tortor est, vulputate quis leo
-						in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.
-						Aliquam varius finibus est, interdum justo suscipit id.</p>
-					<a href="#" class="action"><i class="fa fa-arrow-circle-right"></i></a>
+					<a href="#"><img class="img-fluid" src="assets/img/aziendaP.jpg"></a>
+					<h3 class="name">Gestione Prodotti</h3>
+					<a class="description"><strong>Dalla tua area riservata avrai accesso agli strumenti
+				necessari per gestire al meglio la vendita dei tuoi prodotti.</strong></a>
+					
 				</div>
 				<div class="col-sm-6 col-md-4 item">
 					<a href="#"><img class="img-fluid"
-						src="assets/img/building.jpg"></a>
-					<h3 class="name">Article Title</h3>
-					<p class="description">Aenean tortor est, vulputate quis leo
-						in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.
-						Aliquam varius finibus est, interdum justo suscipit id.</p>
-					<a href="#" class="action"><i class="fa fa-arrow-circle-right"></i></a>
+						src="assets/img/AziendaT.jpg"></a>
+					<h3 class="name">Gestione terreni</h3>
+					<a class="description"><strong>All'interno dell' area riservata puoi mettere a disposizione
+					dei terreni di tua proprieta', che gli utenti potranno fittare per coltivare
+					gli ortaggi che preferiscono.</strong></a>
+					
 				</div>
 				<div class="col-sm-6 col-md-4 item">
-					<a href="#"><img class="img-fluid" src="assets/img/loft.jpg"></a>
-					<h3 class="name">Article Title</h3>
-					<p class="description">Aenean tortor est, vulputate quis leo
-						in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.
-						Aliquam varius finibus est, interdum justo suscipit id.</p>
-					<a href="#" class="action"><i class="fa fa-arrow-circle-right"></i></a>
+					<a href="#"><img class="img-fluid" src="assets/img/aziendaS.jpg"></a>
+					<h3 class="name">Statistiche</h3>
+					<a class="description"><strong>Controlla l'andamento delle tue vendite e la resa dei
+					tuoi terreni, in tempo reale.</strong></a>
+					
 				</div>
 			</div>
 			<!-- End: Articles -->

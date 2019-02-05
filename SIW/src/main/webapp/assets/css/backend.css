@@ -149,6 +149,34 @@
 	outline: none !important;
 }
 
+input[type=checkbox] {
+    padding-left:5px;
+    padding-right:5px;
+    border-radius:5px;
+
+    -webkit-appearance:button;
+
+    border: double 2px #a1a1a1;
+
+    background-color:#c0c0c0;
+    color:#FFF;
+    white-space: nowrap;
+    overflow:hidden;
+	outline: none!important;
+    width:16px;
+    height:16px;
+}
+
+input[type=checkbox]:checked {
+    background-color: #75553c; 
+    border-left-color:#a1a1a1;
+    border-right-color:#a1a1a1;
+}
+
+input[type=checkbox]:hover {
+    box-shadow:0px 0px 20px #ffffff;
+}
+
 body {
 	background-color: black;
 	background: url("../img/weblink21.gif");
