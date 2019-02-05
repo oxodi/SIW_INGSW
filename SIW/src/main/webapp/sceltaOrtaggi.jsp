@@ -31,28 +31,28 @@
 <script>
 	$(document).ready(function() {
 
-		var dimTotale = ${terreno.dimensione};
-		
-		var dimSerra = ${terreno.dimensioneSerra};
-		var dimTerreno = dimTotale - dimSerra;
-		$("#terrenoDisp").html("Disponibilità terreno: "+ dimTerreno +" m<sup>2</sup>");
-		
-		$("#switchDiv").click(function() {
-			
-			if ($(this).is(':checked')) {
-				$("#noserra").hide("slow");
-				$("#serra").show("slow");
-				$("#terrenoDisp").html("Disponibilità serra: "+ dimSerra +" m<sup>2</sup>");
-			}
-			if (!$(this).is(':checked')) {
-
-				$("#serra").hide("slow");
-				$("#noserra").show("slow");
-				$("#terrenoDisp").html("Disponibilità terreno: "+ dimTerreno +" m<sup>2</sup>");
+				var dimTotale = ${terreno.dimensione};
+				var dimSerra = ${terreno.dimensioneSerra};
+				var dimTerreno = dimTotale - dimSerra;
 				
-			}
-		});
-	});
+				$("#terrenoDisp").html("Disponibilità terreno: " + dimTerreno+ " m<sup>2</sup>");
+
+				$("#switchDiv").click(function() {
+
+							if ($(this).is(':checked')) {
+								$("#noserra").hide("slow");
+								$("#serra").show("slow");
+								$("#terrenoDisp").html("Disponibilità serra: " + dimSerra+ " m<sup>2</sup>");
+							}
+							if (!$(this).is(':checked')) {
+
+								$("#serra").hide("slow");
+								$("#noserra").show("slow");
+								$("#terrenoDisp").html("Disponibilità terreno: " + dimTerreno+ " m<sup>2</sup>");
+
+							}
+						});
+			});
 </script>
 
 <!-- <script>
@@ -105,10 +105,9 @@ $(document).ready(function() {
 
 						</c:when>
 						<c:otherwise>
-							<script>			
+							<script>
 								$("#myscegli").addClass("disabilita");
-													
-								</script>
+							</script>
 
 							<label style="margin: 2%"><strong>Questo terreno
 									non offre un servizio completo </strong></label>
@@ -146,9 +145,9 @@ $(document).ready(function() {
 										test="${ (terreno.periodiDisponibilita == o.periodoColtivazione || o.periodoColtivazione == 'Annuale') &&
 										 terreno.servizioCompleto == true}">
 										<tr class="accordion-toggle" data-toggle="collapse">
-											<td><label style="display: block; text-align: center"><input type="checkbox" value="${o}"
-												name="ortaggiSelezionati" id="${o.id}"
-												onclick="cancellaRiga('${o.nome}', '${o.id}')"></label></td>
+											<td><label style="display: block; text-align: center"><input
+													type="checkbox" value="${o}" name="ortaggiSelezionati"
+													id="${o.id}" onclick="cancellaRiga('${o.nome}', '${o.id}')"></label></td>
 											<td>${o.nome}</td>
 											<td>${o.resa}</td>
 											<td class="text-center">${o.tempoColtivazione}  giorni</td>
@@ -156,7 +155,8 @@ $(document).ready(function() {
 											<td><input class="input-column" type="text"
 												style="max-width: 80px" id="${o.id}input"
 												onchange="aggiornaResocontoTerreno('${o.nome}', this.value, '${o.resa}', '${o.prezzo}', '${o.id}', 
-												'${terreno.dimensione}', '${terreno.dimensioneSerra}', this.id)"><!-- 'dimensioneTerreno(${terreno.dimensione}, ${terreno.dimensioneSerra}) -->
+												'${terreno.dimensione}', '${terreno.dimensioneSerra}', this.id)">
+												<!-- 'dimensioneTerreno(${terreno.dimensione}, ${terreno.dimensioneSerra}) -->
 												m<sup>2</sup></td>
 										</tr>
 									</c:if>
@@ -189,8 +189,7 @@ $(document).ready(function() {
 							</thead>
 							<tbody id="items">
 								<c:forEach items="${ortaggi}" var="o">
-									<c:if
-										test="${terreno.servizioCompleto == true}">
+									<c:if test="${terreno.servizioCompleto == true}">
 										<tr class="accordion-toggle" data-toggle="collapse">
 											<td><input type="checkbox" value="${o}"
 												name="ortaggiSelezionati" id="${o.id}S"
@@ -232,10 +231,9 @@ $(document).ready(function() {
 
 					</c:when>
 					<c:otherwise>
-						<script>			
-								$("#mysoloTerreno").addClass("disabilita");
-													
-								</script>
+						<script>
+							$("#mysoloTerreno").addClass("disabilita");
+						</script>
 
 						<label style="margin: 2%"><strong>Questo terreno
 								non offre un servizio parziale </strong> </label>
@@ -261,16 +259,17 @@ $(document).ready(function() {
 						<tbody id="items">
 							<c:if test="${terreno.servizioParziale == true }">
 								<tr class="accordion-toggle" data-toggle="collapse">
-									<td><input type="checkbox"
-												name="nameTerrenoSolo" id="soloTerreno"
-												onclick="cancellaRiga('${o.nome}', '${o.id}')"></td>
+									<td><input type="checkbox" name="nameTerrenoSolo"
+										id="soloTerreno"
+										onclick="cancellaRiga('${o.nome}', '${o.id}')"></td>
 									<td>${terreno.locazione}</td>
 									<td>${terreno.periodiDisponibilita}</td>
 									<td>${terreno.costo}€</td>
 									<td><input class="input-column" type="text"
-												style="max-width: 80px" id="terrenoSolo"
-												onchange="aggiornaResocontoTerreno('Terreno', this.value, '-', '${terreno.costo}', 'soloTerreno', 
-												'${terreno.dimensione}', '${terreno.dimensioneSerra}', this.id)">  m<sup>2</sup></td>
+										style="max-width: 80px" id="terrenoSolo"
+										onchange="aggiornaResocontoTerreno('Terreno', this.value, '-', '${terreno.costo}', 'soloTerreno', 
+												'${terreno.dimensione}', '${terreno.dimensioneSerra}', this.id)">
+										m<sup>2</sup></td>
 								</tr>
 							</c:if>
 						</tbody>
@@ -284,67 +283,90 @@ $(document).ready(function() {
 		<!-- FINE DIV SOLOTERRENO -->
 		<!--  card resoconto -->
 
-		<div class="container col-xl-8" style="margin-right: 0; padding: 0">
-			<div class="resoconto">
-				<!-- container mb-4 -->
-				<div class="row table-responsive" style="margin: 0">
-					<div class="col-12">
-						<div>
-							<!--  class="table-responsive" -->
-							<table class="table table-striped" id="tabellaResoconto">
-								<thead>
-									<tr>
-										<!-- <th scope="col"></th> -->
-										<th scope="col">Ortaggi</th>
-										<th scope="col">Quantità</th>
-										<th scope="col">Resa</th>
-										<th scope="col">Prezzo</th>
-										<th scope="col">Serra</th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody id="body">
 
-									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td>Parziale €</td>
-										<td class="text-right" id="parziale"></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td>Imposte €</td>
-										<td class="text-right" id="imposte"></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td><strong>Totale €</strong></td>
-										<td class="text-right" id="totale"></td>
-									</tr>
-								</tbody>
-							</table>
+		<div class="container-fluid"
+			style="margin-right: 0; padding: 0; margin: 2%">
+			<!--  col-xl-8 -->
+			<div class="row">
 
-							<div class="row">
-								<div class="col-sm-12  col-md-6">
-									<button class="btn btn-block btn-light">Continua</button>
+
+				<div class="col-sm-3" style="margin: 2%; margin-top: 5%">
+					<ul>
+						<li><input style="width: 23px; height: 20px;" type="checkbox" name="paypolCheckbox" id="paypalL"
+							value="Ford"> <label class="paypal" for="paypalL"><img
+								src="assets\img\ruotaStagioni\ImgPaypal.jpg" /></label></li>
+						<li><input style="width: 23px; height: 20px;" type="checkbox" name="postapayCheckbox"
+							id="postapay" value="Ford"> <label class="mastercard"
+							for="postapay"><img
+								src="assets\img\ruotaStagioni\ImgMastercard.jpg" /></label></li>
+					</ul>
+				</div>
+				<div class="col-sm-8" style="margin: 2%">
+					<!-- container mb-4 -->
+					<div class="row table-responsive" style="margin: 0">
+						<!-- <form action="SalvaPrenotazione" method="get"> -->
+								
+						<div class="col-12">
+							<div>
+								<!--  class="table-responsive" -->
+								<table class="table table-striped" id="tabellaResoconto">
+									<thead>
+										<tr>
+											<!-- <th scope="col"></th> -->
+											<th scope="col">Ortaggi</th>
+											<th scope="col">Quantità</th>
+											<th scope="col">Resa</th>
+											<th scope="col">Prezzo</th>
+											<th scope="col">Serra</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody id="body">
+
+										<tr>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td>Parziale €</td>
+											<td class="text-right" id="parziale"></td>
+										</tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td>Imposte €</td>
+											<td class="text-right" id="imposte"></td>
+										</tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td><strong>Totale €</strong></td>
+											<td class="text-right" id="totale"></td>
+										</tr>
+									</tbody>
+								</table>
+
+								<div class="row">
+									<!-- <div class="col-sm-12  col-md-6">
+										<button class="btn btn-block btn-light">Continua</button>
+									</div> -->
+									
+									<div class="col-sm-12 col-md-6 text-right">
+										<button class="button" onclick="prova()">Conferma</button>
+										<!-- class="btn btn-lg btn-block btn-success text-uppercase" -->
+									
+									</div>
+								
 								</div>
-								<div class="col-sm-12 col-md-6 text-right">
-									<button class="button">Conferma</button>
-									<!-- class="btn btn-lg btn-block btn-success text-uppercase" -->
-								</div>
+
 							</div>
-
 						</div>
+					<!-- </form> -->
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -368,7 +390,8 @@ $(document).ready(function() {
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body">
-					<p>La quantità degli ortaggi selezionati è maggiore della dimensione massima di terreno disponibile. </p>
+					<p>La quantità degli ortaggi selezionati è maggiore della
+						dimensione massima di terreno disponibile.</p>
 				</div>
 				<div class="modal-footer">
 					<div class="container" align="right">
@@ -400,8 +423,10 @@ $(document).ready(function() {
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body">
-					<p>Un ortaggio non può essere selezionato sia per il terreno che per la serra.</p>
-					<p>Cancella l'ortaggio interessato dalla selezione e fai la tua scelta.</p>
+					<p>Un ortaggio non può essere selezionato sia per il terreno
+						che per la serra.</p>
+					<p>Cancella l'ortaggio interessato dalla selezione e fai la tua
+						scelta.</p>
 				</div>
 				<div class="modal-footer">
 					<div class="container" align="right">

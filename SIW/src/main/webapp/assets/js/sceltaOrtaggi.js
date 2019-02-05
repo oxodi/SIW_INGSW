@@ -272,3 +272,18 @@ function dimensioneTerreno(totale, serra){
 
 	return dimTerreno;
 }
+
+
+function prova(){
+	var str = body.rows[0].cells.item(3).innerHTML;
+	$.get('SalvaPrenotazione', function(data){
+		
+		alert("prova: "+ data);
+	});
+}
+
+
+
+
+
+
