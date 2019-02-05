@@ -126,7 +126,7 @@
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 					<div class="modal-body">
-						<p>Per poter accedere alla bacheca personala devi essere
+						<p>Per poter accedere alla bacheca personale devi essere
 							registrato ed aver effettuato il login</p>
 					</div>
 					<div class="modal-footer">
