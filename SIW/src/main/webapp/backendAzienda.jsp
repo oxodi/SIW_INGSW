@@ -52,8 +52,8 @@
 
 <script>
 	function del(id) {
-		$("#tempId").val(id);
-
+		//alert(id);
+		$('#idDaEliminare').val(id);
 	}
 </script>
 <script>
@@ -410,8 +410,9 @@
 										<div class="modal-footer">
 											<form action="TerrenoOspitaOrtaggi" method="get">
 												<div class="container" align="right">
-													<input type="text" style="display: none" id="tempId"
-														name="tempId"> <input type="text"
+													<input type="text" style="display: show" id="idDaEliminare"
+														name="tempId"> 
+													<input type="text"
 														style="display: none" id="delete" name="delete"
 														value="true">
 													<button type="button" class="btn"
