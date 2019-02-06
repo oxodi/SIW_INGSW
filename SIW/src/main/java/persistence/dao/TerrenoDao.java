@@ -32,7 +32,7 @@ public interface TerrenoDao {
 
 	public List<Terreno> cercaTutti();
 
-	public List<Prenotazione> cercaPrenotazioniPerTerreno(int id_terreno);
+	//public List<Prenotazione> cercaPrenotazioniPerTerreno(int id_terreno);
 
 	public List<Cliente> cercaClientiPerTerreno(int id_terreno);
 	

@@ -1,27 +1,25 @@
 package entita;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 
 public class Prenotazione {
 
 	private int idCliente;
 	private int idTerreno;
 	private Date dataPrenotazione;
-	private HashMap<Integer,Integer> id_ortaggi;
+	private int id_ortaggio;
+	private int quantita;
 	private boolean serra;
 
 	public Prenotazione() {
 	}
 
-	public Prenotazione(int idCliente, int idTerreno, Date dataPrenotazione, HashMap<Integer,Integer> id_ortaggi, boolean serra) {
+	public Prenotazione(int idCliente, int idTerreno, Date dataPrenotazione, int  id_ortaggio,int quantita, boolean serra) {
 		this.idCliente = idCliente;
 		this.idTerreno = idTerreno;
 		this.dataPrenotazione = dataPrenotazione;
-		this.id_ortaggi = id_ortaggi;
+		this.id_ortaggio = id_ortaggio;
+		this.quantita = quantita;
 		this.serra = serra;
 	}
 
@@ -56,31 +54,25 @@ public class Prenotazione {
 	public void setDataPrenotazione(Date dataPrenotazione) {
 		this.dataPrenotazione = dataPrenotazione;
 	}
-
-	public HashMap<Integer,Integer> getId_ortaggi() {
-		return id_ortaggi;
-	}
-
-	public void setId_ortaggi(HashMap<Integer,Integer> id_ortaggi) {
-		this.id_ortaggi = id_ortaggi;
-	}
 	
-	@Override
-	public String toString() {
-		String output = "Prenotazione[ idCliente: " + this.idCliente + ", idTerreno: " + this.idTerreno + ", " + this.toStringOrtaggi(getId_ortaggi()) + ", dataPrenotazione: " + this.dataPrenotazione + "]";
-		return output;
-		
-		
-	}
 	
-	public String toStringOrtaggi(HashMap<Integer, Integer> ortaggi) {
-		String output = "";
-		Iterator<Entry<Integer, Integer>> it = ortaggi.entrySet().iterator();
-		  while (it.hasNext()) {
-			Map.Entry<Integer, Integer> entry = (Entry<Integer, Integer>) it.next();
-		    output += "Ortaggio: "+entry.getKey()+", Quantità: "+entry.getValue();
-		    }
-		return output;
+	
+	public int getId_ortaggio() {
+		return id_ortaggio;
 	}
+
+	public void setId_ortaggio(int id_ortaggio) {
+		this.id_ortaggio = id_ortaggio;
+	}
+
+	public int getQuantita() {
+		return quantita;
+	}
+
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
+	}
+
+
 
 }

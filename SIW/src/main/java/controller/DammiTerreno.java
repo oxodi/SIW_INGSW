@@ -39,7 +39,7 @@ public class DammiTerreno extends HttpServlet {
 		Terreno terreno = terrenodao.cercaPerChiavePrimaria(idTerreno);
 		Azienda azienda = aziendadao.cercaPerChiavePrimaria(terreno.getIdAzienda());
 		List<Ortaggio> ortaggi = terrenodao.cercaOrtaggiPerTerreno(idTerreno);
-		
+		request.getSession().setAttribute("idTerreno", idTerreno);
 		request.setAttribute("ortaggi", ortaggi);
 		request.setAttribute("terreno", terreno);
 		request.setAttribute("azienda", azienda);

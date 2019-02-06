@@ -29,22 +29,19 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 		Connection connection = this.dataSource.getConnection();
 
 		try {
-			Iterator<Entry<Integer, Integer>> it = prenotazione.getId_ortaggi().entrySet().iterator();
 
-			while (it.hasNext()) {
-				Map.Entry<Integer, Integer> entry = (Entry<Integer, Integer>) it.next();
 				String insert = "INSERT INTO prenotazione(id_cliente, id_terreno, id_ortaggio, quantita, data, serra) VALUES (?,?,?,?,?,?)";
 				PreparedStatement statement = connection.prepareStatement(insert);
 
 				statement.setInt(1, prenotazione.getIdCliente());
 				statement.setInt(2, prenotazione.getIdTerreno());
-				statement.setInt(3, entry.getKey());
-				statement.setInt(4, entry.getValue());
+				statement.setInt(3, prenotazione.getId_ortaggio());
+				statement.setInt(4, prenotazione.getQuantita());
 				long secs = prenotazione.getDataPrenotazione().getTime();
 				statement.setDate(5, new java.sql.Date(secs));
 				statement.setBoolean(6, prenotazione.isSerra());
 				statement.executeUpdate();
-			}
+			
 
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -74,11 +71,10 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			while (result.next()) {
 
 				prenotazione = new Prenotazione();
-				HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
 				prenotazione.setIdCliente(result.getInt("id_cliente"));
 				prenotazione.setIdTerreno(result.getInt("id_terreno"));
-				hashMap.put(result.getInt("id_ortaggio"), result.getInt("quantita"));
-				prenotazione.setId_ortaggi(hashMap);
+				prenotazione.setId_ortaggio(result.getInt("id_ortaggio"));
+				prenotazione.setQuantita(result.getInt("quantita"));
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 				prenotazione.setSerra(result.getBoolean("serra"));
@@ -137,14 +133,14 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			while (result.next()) {
 
 				prenotazione = new Prenotazione();
-				HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
 				prenotazione.setIdCliente(result.getInt("id_cliente"));
 				prenotazione.setIdTerreno(result.getInt("id_terreno"));
-				hashMap.put(result.getInt("id_ortaggio"), result.getInt("quantita"));
-				prenotazione.setId_ortaggi(hashMap);
+				prenotazione.setId_ortaggio(result.getInt("id_ortaggio"));
+				prenotazione.setQuantita(result.getInt("quantita"));
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 				prenotazione.setSerra(result.getBoolean("serra"));
+				prenotazioni.add(prenotazione);
 
 				prenotazioni.add(prenotazione);
 			}
@@ -177,14 +173,14 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			while (result.next()) {
 
 				prenotazione = new Prenotazione();
-				HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
 				prenotazione.setIdCliente(result.getInt("id_cliente"));
 				prenotazione.setIdTerreno(result.getInt("id_terreno"));
-				hashMap.put(result.getInt("id_ortaggio"), result.getInt("quantita"));
-				prenotazione.setId_ortaggi(hashMap);
+				prenotazione.setId_ortaggio(result.getInt("id_ortaggio"));
+				prenotazione.setQuantita(result.getInt("quantita"));
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 				prenotazione.setSerra(result.getBoolean("serra"));
+				prenotazioni.add(prenotazione);
 
 				prenotazioni.add(prenotazione);
 			}
@@ -216,14 +212,14 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			while (result.next()) {
 
 				prenotazione = new Prenotazione();
-				HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
 				prenotazione.setIdCliente(result.getInt("id_cliente"));
 				prenotazione.setIdTerreno(result.getInt("id_terreno"));
-				hashMap.put(result.getInt("id_ortaggio"), result.getInt("quantita"));
-				prenotazione.setId_ortaggi(hashMap);
+				prenotazione.setId_ortaggio(result.getInt("id_ortaggio"));
+				prenotazione.setQuantita(result.getInt("quantita"));
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 				prenotazione.setSerra(result.getBoolean("serra"));
+				prenotazioni.add(prenotazione);
 
 				prenotazioni.add(prenotazione);
 			}
@@ -257,14 +253,14 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			while (result.next()) {
 
 				prenotazione = new Prenotazione();
-				HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
 				prenotazione.setIdCliente(result.getInt("id_cliente"));
 				prenotazione.setIdTerreno(result.getInt("id_terreno"));
-				hashMap.put(result.getInt("id_ortaggio"), result.getInt("quantita"));
-				prenotazione.setId_ortaggi(hashMap);
+				prenotazione.setId_ortaggio(result.getInt("id_ortaggio"));
+				prenotazione.setQuantita(result.getInt("quantita"));
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 				prenotazione.setSerra(result.getBoolean("serra"));
+				prenotazioni.add(prenotazione);
 
 				prenotazioni.add(prenotazione);
 			}

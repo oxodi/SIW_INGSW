@@ -29,8 +29,8 @@ function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTotale, d
 				var cellaElimina = riga.insertCell(5);
 
 				cellaNome.innerHTML = nome;
-				cellaQuantita.innerHTML = quantita + "  m<sup>2</sup>";
-				cellaPrezzo.innerHTML = (prezzo * quantita).toFixed(2) + "  €";
+				cellaQuantita.innerHTML = quantita;
+				cellaPrezzo.innerHTML = (prezzo * quantita).toFixed(2);
 				
 				
 				if(id == "soloTerreno"){
@@ -40,7 +40,7 @@ function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTotale, d
 				}
 				else{
 					cellaSerra.innerHTML = "no"; 
-					cellaResa.innerHTML = (resa * quantita).toFixed(2) +"  kg";
+					cellaResa.innerHTML = (resa * quantita).toFixed(2);
 					
 				}
 				cellaElimina.innerHTML = "<button class='btn btn-sm btn-danger' onclick='btnCancella(this, id)'><i class='fa fa-trash'></i> </button>";
@@ -74,7 +74,7 @@ function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTotale, d
 					var cellaElimina = riga.insertCell(5);
 
 					cellaNome.innerHTML = nome;
-					cellaQuantita.innerHTML = quantita + "  m<sup>2</sup>";	
+					cellaQuantita.innerHTML = quantita;	
 					cellaPrezzo.innerHTML = (prezzo * quantita).toFixed(2);
 					
 					if(id == "soloTerreno"){
@@ -84,7 +84,7 @@ function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTotale, d
 					}
 					else{
 						cellaSerra.innerHTML = "no"; 
-						cellaResa.innerHTML = (resa * quantita).toFixed(2) +"  kg";
+						cellaResa.innerHTML = (resa * quantita).toFixed(2);
 						
 					}
 					
@@ -134,9 +134,9 @@ function aggiornaResocontoSerra(nome, quantita, resa, prezzo, id, dimSerra, idIn
 				var cellaElimina = riga.insertCell(5);
 
 				cellaNome.innerHTML = nome;
-				cellaQuantita.innerHTML = quantita + "  m<sup>2</sup>";
-				cellaResa.innerHTML = (resa * quantita).toFixed(2) +"  kg";
-				cellaPrezzo.innerHTML = (prezzo * quantita).toFixed(2) + "  €";
+				cellaQuantita.innerHTML = quantita;
+				cellaResa.innerHTML = (resa * quantita).toFixed(2);
+				cellaPrezzo.innerHTML = (prezzo * quantita).toFixed(2);
 				cellaSerra.innerHTML = "si";
 				cellaElimina.innerHTML = "<button class='btn btn-sm btn-danger' onclick='btnCancella(this, id)'><i class='fa fa-trash'></i> </button>";
 
@@ -168,8 +168,8 @@ function aggiornaResocontoSerra(nome, quantita, resa, prezzo, id, dimSerra, idIn
 					var cellaElimina = riga.insertCell(5);
 
 					cellaNome.innerHTML = nome;
-					cellaQuantita.innerHTML = quantita + "  m<sup>2</sup>";
-					cellaResa.innerHTML = (resa * quantita).toFixed(2) +"  kg";
+					cellaQuantita.innerHTML = quantita;
+					cellaResa.innerHTML = (resa * quantita).toFixed(2);
 					cellaPrezzo.innerHTML = (prezzo * quantita).toFixed(2);
 					cellaSerra.innerHTML = "si";
 					cellaElimina.innerHTML = "<button class='btn btn-sm btn-danger' onclick='btnCancella(this, id)'><i class='fa fa-trash'></i> </button>";
@@ -274,14 +274,35 @@ function dimensioneTerreno(totale, serra){
 }
 
 
-function prova(){
-	var str = body.rows[0].cells.item(3).innerHTML;
-	$.get('SalvaPrenotazione', function(data){
-		
-		alert("prova: "+ data);
-	});
+function prova(paypal,mastercard){
+	
+	var checkboxPaypal = document.getElementById(paypal);
+	var checkboxMastercard = document.getElementById(mastercard);
+	
+	if( (!checkboxPaypal.checked) && (!checkboxMastercard.checked)){
+		$('#modalPagamento').modal('show');
+	}
+	else{
+
+		var str = [];
+		for(var i = 0; i<((body.rows.length)-3); i++){
+
+			for(var j = 0; j<4; j++){
+				str.push(body.rows[i].cells.item(j).innerHTML);
+			}	
+			str.push(body.rows[i].cells.item(4).innerHTML+"@");
+
+		}
+		$.get("SalvaPrenotazione", {'str[]':[ str.slice(length)]});
+		caricaPag();
+	}
+	
 }
 
+
+function caricaPag (){
+	window.location.href = "ricevutaPagamento.jsp";
+}
 
 
 

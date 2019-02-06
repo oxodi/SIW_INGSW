@@ -349,44 +349,44 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		return ortaggi;
 	}
 
-	@Override
-	public List<Prenotazione> cercaPrenotazioniPerTerreno(int id_terreno) {
-		Connection connection = this.dataSource.getConnection();
-		List<Prenotazione> prenotazioni = new LinkedList<Prenotazione>();
-
-		try {
-			Prenotazione prenotazione;
-			PreparedStatement statement;
-			String query = "SELECT * FROM prenotazione WHERE  id_terreno = ?";
-
-			statement = connection.prepareStatement(query);
-			statement.setInt(1, id_terreno);
-			ResultSet result = statement.executeQuery();
-
-			while (result.next()) {
-
-				prenotazione = new Prenotazione();
-				HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
-				prenotazione.setIdCliente(result.getInt("id_cliente"));
-				prenotazione.setIdTerreno(result.getInt("id_terreno"));
-				hashMap.put(result.getInt("id_ortaggio"), result.getInt("quantita"));
-				prenotazione.setId_ortaggi(hashMap);
-				long secs = result.getDate("data").getTime();
-				prenotazione.setDataPrenotazione(new java.util.Date(secs));
-
-				prenotazioni.add(prenotazione);
-			}
-		} catch (SQLException e) {
-			throw new PersistenceException(e.getMessage());
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
-		return prenotazioni;
-	}
+//	@Override
+//	public List<Prenotazione> cercaPrenotazioniPerTerreno(int id_terreno) {
+//		Connection connection = this.dataSource.getConnection();
+//		List<Prenotazione> prenotazioni = new LinkedList<Prenotazione>();
+//
+//		try {
+//			Prenotazione prenotazione;
+//			PreparedStatement statement;
+//			String query = "SELECT * FROM prenotazione WHERE  id_terreno = ?";
+//
+//			statement = connection.prepareStatement(query);
+//			statement.setInt(1, id_terreno);
+//			ResultSet result = statement.executeQuery();
+//
+//			while (result.next()) {
+//
+//				prenotazione = new Prenotazione();
+//				HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+//				prenotazione.setIdCliente(result.getInt("id_cliente"));
+//				prenotazione.setIdTerreno(result.getInt("id_terreno"));
+//				hashMap.put(result.getInt("id_ortaggio"), result.getInt("quantita"));
+//				prenotazione.setId_ortaggi(hashMap);
+//				long secs = result.getDate("data").getTime();
+//				prenotazione.setDataPrenotazione(new java.util.Date(secs));
+//
+//				prenotazioni.add(prenotazione);
+//			}
+//		} catch (SQLException e) {
+//			throw new PersistenceException(e.getMessage());
+//		} finally {
+//			try {
+//				connection.close();
+//			} catch (SQLException e) {
+//				throw new PersistenceException(e.getMessage());
+//			}
+//		}
+//		return prenotazioni;
+//	}
 
 	@Override
 	public List<Cliente> cercaClientiPerTerreno(int id_terreno) {

@@ -13,5 +13,7 @@ public interface OrtaggioDao {
 	public List<Ortaggio> cercaTutti();
 
 	public void cancella(Ortaggio ortaggio);
+	
+	public int restituisciId(String nome);
 
 }

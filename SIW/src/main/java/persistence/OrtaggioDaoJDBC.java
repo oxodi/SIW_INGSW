@@ -174,4 +174,31 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 		return ortaggio;
 	}
 
+	@Override
+	public int restituisciId(String nome) {
+		Connection connection = this.dataSource.getConnection();
+		int id = 0;
+		try {
+			String query = "SELECT * FROM ortaggio WHERE nome = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, nome);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				id = result.getInt("id");
+				
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+
+			}
+		}
+		return id;
+	}
 }
+	
+	
