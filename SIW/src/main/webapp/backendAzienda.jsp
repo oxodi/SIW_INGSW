@@ -10,8 +10,8 @@
 	id="bootstrap-css">
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="assets/css/backend.css">
+<link rel="stylesheet" href="assets/css/home.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="assets/css/backend.css">
 <meta charset="ISO-8859-1">
 <title>Area Azienda</title>
 
@@ -44,7 +44,7 @@
 			$("#editCheckParziale").attr('checked', false);
 		}
 		$('#dropdownDisponibilita').val(periodo);
-		$("#terreni").hide("slow");
+		$("#terreni").hide("fast");
 		$("#info_terreno").show("slow");
 
 	}
@@ -60,7 +60,7 @@
 	$(document).ready(function() {
 		$("#annulla_modifica").click(function() {
 			$("#terreni").show("slow");
-			$("#info_terreno").hide("slow");
+			$("#info_terreno").hide("fast");
 
 		});
 	});
@@ -68,7 +68,7 @@
 <script>
 	$(document).ready(function() {
 		$("#modificaOrtaggi").click(function() {
-			$("#formModificaTerreno").hide("slow");
+			$("#formModificaTerreno").hide("fast");
 			$("#containerModificaOrtaggi").show("slow");
 			var terreno_id = $("#editFormId").val();
 			mostraOrtaggi(terreno_id)
@@ -79,7 +79,7 @@
 <script>
 	$(document).ready(function() {
 		$("#annulla_ortaggi").click(function() {
-			$("#containerModificaOrtaggi").hide("slow");
+			$("#containerModificaOrtaggi").hide("fast");
 			$("#formModificaTerreno").show("slow");
 
 		});
@@ -92,11 +92,11 @@
 <body>
 
 	<div id="navbar"></div>
-	<div class="container-fluid border-profile">
+	<div class="container-fluid border-profile jumbotron">
 		<div class="row" style="margin-top: 30px; margin-bottom: 30px">
 			<div class="col-sm-10" align="left">
 				<h1
-					style="font-style: oblique; color: green; text-shadow: 2px 2px 4px black;">${sessionScope.azienda.getRagioneSociale()}</h1>
+					style="font-style: oblique; color: green; text-shadow: 2px 2px 4px black;max-width: 100%;">${sessionScope.azienda.getRagioneSociale()}</h1>
 			</div>
 		</div>
 		<div class="row">
@@ -117,7 +117,8 @@
 				<!-- info laterali -->
 
 				<!--left col-->
-				<div class="container border-info-style">
+				<div class="container-fluid border-info-style">
+				<div class="table-responsive" style="margin-bottom: 15px">
 					<ul class="list-group">
 						<li class="list-group-item text-center style-info"
 							style="border-bottom: green 1px solid"><strong>Dati
@@ -138,6 +139,7 @@
 							class="pull-left"><strong>Partita IVA</strong></span>
 							${sessionScope.azienda.getPartitaIVA() }</li>
 					</ul>
+				</div>	
 				</div>
 				<!-- end info laterali -->
 			</div>
@@ -163,7 +165,7 @@
 				<!-- form azienda -->
 				<div class="tab-content clearfix">
 					<div class="custom-form tab-pane active"
-						style="margin-left: 20px; margin-top: 20px" id="modificadati">
+						style="margin-top: 20px" id="modificadati">
 						<form action="InserisciAzienda?edit=true" method="post">
 							<div class="row">
 								<div class="col-md-6 ">
@@ -315,13 +317,13 @@
 									maxlength="1000" name="formDescrizione">${sessionScope.azienda.getDescrizioneServizi()}</textarea>
 							</div>
 							<br>
-							<div align="right">
+							<div class="container-fluid" align="right">
 								<p>
 									<strong>(*) questi campi possono essere modificati</strong>
 								</p>
 							</div>
 							<br>
-							<div align="center">
+							<div class="organize" align="center">
 								<button class="button btn" type="submit">Salva</button>
 							</div>
 						</form>
@@ -410,7 +412,7 @@
 										<div class="modal-footer">
 											<form action="TerrenoOspitaOrtaggi" method="get">
 												<div class="container" align="right">
-													<input type="text" style="display: show" id="idDaEliminare"
+													<input type="text" style="display: none" id="idDaEliminare"
 														name="tempId"> 
 													<input type="text"
 														style="display: none" id="delete" name="delete"
@@ -498,8 +500,8 @@
 													<label class="label-column">Periodo Disponibilita'</label>
 												</div>
 												<div class="col-xs-2">
-													<select class="custom-select input-column"
-														style="width: 217px; padding: 3px;"
+													<select class="input-column"
+														style="margin:3%; padding: 3px;"
 														id="dropdownDisponibilita" name="dropdownDisponibilita">
 														<option value="primavera">Primavera</option>
 														<option value="estate">Estate</option>

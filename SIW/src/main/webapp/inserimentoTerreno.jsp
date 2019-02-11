@@ -10,6 +10,7 @@
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 <title>SIW</title>
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/home.min.css">
 <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Lora">
@@ -109,7 +110,7 @@
 
 							<div class="form-row form-group">
 								<div class="col-md-4" align="left">
-									<label class="label-column">Dimensione Terreno (mt²)</label>
+									<label class="label-column">Dim. terreno (mt²)</label>
 								</div>
 								<div class="col-xs-2">
 									<input class="input-column" type="text"
@@ -235,13 +236,16 @@
 							id="validazioneCosto"> 
 					</div>
 					-->
+					<div class="container style-div-table">
+					<div class="container" align="center" style="margin-top: 30px;">
 					<h5>
 						<strong>Controllare i dati inseriti, se si è sicuri, confermare l'inserimento</strong>
 					</h5>
+					</div>
 					<br>
-					<div class="table-responsive">
+					<div class="table-responsive" style="border-radius: 15px;">
 					<table class="table" id="valid">
-						<thead class="thead-dark" style="boreder-radius: 15px">
+						<thead class="thead style-table">
 							<tr>
 								<th scope="col">Locazione</th>
 								<th scope="col">Dimensione (mt²)</th>
@@ -266,9 +270,9 @@
 					</table>
 					</div>
 					<br>
-					<div class="table-responsive">
+					<div class="table-responsive" style="border-radius: 15px;">
 					<table class="table" id="tabellaValidazioneOrtaggi">
-						<thead class="thead-dark" style="boreder-radius: 15px">
+						<thead class="thead style-table" >
 							<tr>
 								<th scope="col">Ortaggi selezionati</th>
 								<th scope="col">Costo unitario (€/mt²)</th>
@@ -281,6 +285,7 @@
 						</tbody>
 					</table>
 					</div>
+				</div>
 					<br>
 					<div class="container-fluid" align="center">
 					<h5>

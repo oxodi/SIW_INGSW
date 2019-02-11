@@ -47,8 +47,15 @@
 				style="background-color: green">Accedi</a>
 			</span> -->
 			<c:if test="${sessionScope.azienda != null}">
-				<p>Sei loggato come ${sessionScope.azienda.getRagioneSociale()}</p>
-				<a href="Login?logout=true">Logout</a>
+				
+				<ul class="nav navbar-nav" style="margin-right: 15px;">
+					<li class="nav-item" style="margin-top: 15px;">
+						<p><strong>Benvenuto, ${sessionScope.azienda.getRagioneSociale()}</strong></p>
+					</li>
+				</ul>
+				<div class="logout">
+				<a href="Login?logout=true"> <img src="assets/img/logout2.png"> <strong>Logout</strong> </a>
+				</div>
 			</c:if>
 			<c:if test="${sessionScope.azienda == null}">
 				<div class="dropdown">
