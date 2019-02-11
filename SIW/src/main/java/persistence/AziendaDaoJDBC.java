@@ -335,4 +335,48 @@ public class AziendaDaoJDBC implements AziendaDao {
 
 	}
 
+	@Override
+	public Azienda cercaPerNome(String nome) {
+		Connection connection = this.dataSource.getConnection();
+		Azienda azienda = null;
+		try {
+			PreparedStatement statement;
+			String query = "SELECT * FROM azienda WHERE ragione_sociale = ?";
+
+			statement = connection.prepareStatement(query);
+			statement.setString(1, nome);
+			ResultSet result = statement.executeQuery();
+
+			if (result.next()) {
+
+				azienda = new Azienda();
+				azienda.setId(result.getInt("id"));
+				azienda.setRagioneSociale(result.getString("ragione_sociale"));
+				azienda.setReferente(result.getString("referente"));
+				azienda.setSedeLegale(result.getString("sede_legale"));
+				azienda.setIndirizzo(result.getString("indirizzo"));
+				azienda.setCitta(result.getString("citta"));
+				azienda.setCap(result.getString("cap"));
+				azienda.setProvincia(result.getString("provincia"));
+				azienda.setPartitaIVA(result.getString("partita_iva"));
+				azienda.setTelefono(result.getString("telefono"));
+				azienda.setDescrizioneServizi(result.getString("descrizione"));
+				azienda.setEmail(result.getString("email"));
+				azienda.setTerreni(new TerrenoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
+
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return azienda;
+
+
+	}
+
 }
