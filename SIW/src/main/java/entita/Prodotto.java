@@ -6,14 +6,46 @@ public class Prodotto {
 	private String nome;
 	private String categoria;
 	private String descrizione;
-
+	private int quantita;
+	private double costoUnitario;
+	private int idAzienda;
+	
+	
+	
 	public Prodotto() {
 	}
 
-	public Prodotto(int id, String nome, String categoria, String descrizione) {
+	public Prodotto(int id, String nome, String categoria, String descrizione, int quantita, double costoUnitario, int idAzienda) {
 		this.nome = nome;
 		this.categoria = categoria;
 		this.descrizione = descrizione;
+		this.quantita = quantita;
+		this.costoUnitario = costoUnitario;
+		this.idAzienda = idAzienda;
+	}
+
+	public int getQuantita() {
+		return quantita;
+	}
+
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
+	}
+
+	public double getCostoUnitario() {
+		return costoUnitario;
+	}
+
+	public void setCostoUnitario(double costoUnitario) {
+		this.costoUnitario = costoUnitario;
+	}
+
+	public int getIdAzienda() {
+		return idAzienda;
+	}
+
+	public void setIdAzienda(int idAzienda) {
+		this.idAzienda = idAzienda;
 	}
 
 	public int getId() {
