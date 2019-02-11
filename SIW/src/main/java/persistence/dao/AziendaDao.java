@@ -11,6 +11,8 @@ public interface AziendaDao {
 	
 	public Azienda cercaPerEmail(String email);
 	
+	public Azienda cercaPerNome(String nome);
+	
 	public List<Azienda> cercaTutti();
 
 	public void aggiorna(Azienda azienda);
