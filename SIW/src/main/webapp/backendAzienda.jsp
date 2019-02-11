@@ -92,11 +92,11 @@
 <body>
 
 	<div id="navbar"></div>
-	<div class="container-fluid border-profile jumbotron">
+	<div class="container-fluid border-profile">
 		<div class="row" style="margin-top: 30px; margin-bottom: 30px">
-			<div class="col-sm-10" align="left">
+			<div class="col-sm-8" align="left">
 				<h1
-					style="font-style: oblique; color: green; text-shadow: 2px 2px 4px black;max-width: 100%;">${sessionScope.azienda.getRagioneSociale()}</h1>
+					style="font-style: oblique; color: green; text-shadow: 2px 2px 4px black;">${sessionScope.azienda.getRagioneSociale()}</h1>
 			</div>
 		</div>
 		<div class="row">
@@ -118,28 +118,28 @@
 
 				<!--left col-->
 				<div class="container-fluid border-info-style">
-				<div class="table-responsive" style="margin-bottom: 15px">
-					<ul class="list-group">
-						<li class="list-group-item text-center style-info"
-							style="border-bottom: green 1px solid"><strong>Dati
-								Azienda</strong></li>
-						<li class="list-group-item text-left style-info"
-							style="border-bottom: green 1px solid;"><span
-							class="pull-left"><strong>Referente</strong></span>
-							${sessionScope.azienda.getReferente() }</li>
-						<li class="list-group-item text-left style-info"
-							style="border-bottom: green 1px solid;"><span
-							class="pull-left"><strong>Email</strong></span>
-							${sessionScope.azienda.getEmail() }</li>
-						<li class="list-group-item text-left style-info"
-							style="border-bottom: green 1px solid"><span
-							class="pull-left"><strong>Telefono</strong></span>
-							${sessionScope.azienda.getTelefono() }</li>
-						<li class="list-group-item text-left style-info"><span
-							class="pull-left"><strong>Partita IVA</strong></span>
-							${sessionScope.azienda.getPartitaIVA() }</li>
-					</ul>
-				</div>	
+					<div class="table-responsive" style="margin-bottom: 15px">
+						<ul class="list-group">
+							<li class="list-group-item text-center style-info"
+								style="border-bottom: green 1px solid"><strong>Dati
+									Azienda</strong></li>
+							<li class="list-group-item text-left style-info"
+								style="border-bottom: green 1px solid;"><span
+								class="pull-left"><strong>Referente</strong></span>
+								${sessionScope.azienda.getReferente() }</li>
+							<li class="list-group-item text-left style-info"
+								style="border-bottom: green 1px solid;"><span
+								class="pull-left"><strong>Email</strong></span>
+								${sessionScope.azienda.getEmail() }</li>
+							<li class="list-group-item text-left style-info"
+								style="border-bottom: green 1px solid"><span
+								class="pull-left"><strong>Telefono</strong></span>
+								${sessionScope.azienda.getTelefono() }</li>
+							<li class="list-group-item text-left style-info"><span
+								class="pull-left"><strong>Partita IVA</strong></span>
+								${sessionScope.azienda.getPartitaIVA() }</li>
+						</ul>
+					</div>
 				</div>
 				<!-- end info laterali -->
 			</div>
@@ -154,7 +154,7 @@
 								Dati</a></li>
 						<li><a data-toggle="tab" href="#imieiterreni">I miei
 								terreni</a></li>
-						<li><a data-toggle="tab" href="imieiprodotti">I miei
+						<li><a data-toggle="tab" href="#imieiprodotti">I miei
 								prodotti</a></li>
 
 					</ul>
@@ -164,16 +164,15 @@
 
 				<!-- form azienda -->
 				<div class="tab-content clearfix">
-					<div class="custom-form tab-pane active"
-						style="margin-top: 20px" id="modificadati">
+					<div class="custom-form tab-pane active" style="margin-top: 20px"
+						id="modificadati">
 						<form action="InserisciAzienda?edit=true" method="post">
 							<div class="row">
 								<div class="col-md-6 ">
 									<br>
-									<div class="form-row form-group" style="display:none">
+									<div class="form-row form-group" style="display: none">
 										<div class="col-xs-2">
-											<input class="input-column" type="text"
-												name="id_azienda"
+											<input class="input-column" type="text" name="id_azienda"
 												value="${sessionScope.azienda.getId()}">
 										</div>
 
@@ -328,109 +327,73 @@
 							</div>
 						</form>
 					</div>
-					<div class="tab-pane" style="margin-top: 20px; margin-bottom: 50px"
+					<!-- terreni -->
+					<div class="tab-pane" style="margin-top: 20px;"
 						id="imieiterreni">
-						<div class="table-responsive" id="terreni">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>Locazione</th>
-										<th>Dimensione</th>
-										<th>Dimensione Serra</th>
-										<th>Servizio Completo</th>
-										<th>Servizio Parziale</th>
-										<th>Periodo Coltivazione</th>
-										<th>Costo</th>
-										<th>Modifica</th>
-										<th>Elimina</th>
-									</tr>
-								</thead>
-								<tbody id="items">
+						<div class="container-fluid">
+							<div class="table-responsive" id="terreni">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Locazione</th>
+											<th>Dimensione</th>
+											<th>Dimensione Serra</th>
+											<th>Servizio Completo</th>
+											<th>Servizio Parziale</th>
+											<th>Periodo Coltivazione</th>
+											<th>Costo</th>
+											<th>Modifica</th>
+											<th>Elimina</th>
+										</tr>
+									</thead>
+									<tbody id="items">
 
 
-									<c:forEach items="${terreni}" var="t">
-										<tr data-toggle="collapse" data-target="#demo1"
-											class="accordion-toggle ">
+										<c:forEach items="${terreni}" var="t">
+											<tr data-toggle="collapse" data-target="#demo1"
+												class="accordion-toggle ">
 
-											<td>${t.locazione}</td>
-											<td>${t.dimensione }</td>
-											<td>${t.dimensioneSerra }</td>
-											<td><c:choose>
-													<c:when test="${t.servizioCompleto}">SI</c:when>
-													<c:otherwise>NO</c:otherwise>
-												</c:choose></td>
-											<td><c:choose>
-													<c:when test="${t.servizioParziale}">SI</c:when>
-													<c:otherwise>NO</c:otherwise>
-												</c:choose></td>
-											<td>${t.periodiDisponibilita}</td>
-											<td>${t.costo}€</td>
-											<td>
-												<button
-													onclick="edit('${t.id}','${t.locazione}', '${t.dimensione}', '${t.dimensioneSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
-													name="${t.id}" type="button" id="modifica"
-													class="button_modifica btn"></button>
-											</td>
-											<td>
-												<%-- <a
+												<td>${t.locazione}</td>
+												<td>${t.dimensione }</td>
+												<td>${t.dimensioneSerra }</td>
+												<td><c:choose>
+														<c:when test="${t.servizioCompleto}">SI</c:when>
+														<c:otherwise>NO</c:otherwise>
+													</c:choose></td>
+												<td><c:choose>
+														<c:when test="${t.servizioParziale}">SI</c:when>
+														<c:otherwise>NO</c:otherwise>
+													</c:choose></td>
+												<td>${t.periodiDisponibilita}</td>
+												<td>${t.costo}€</td>
+												<td>
+													<button
+														onclick="edit('${t.id}','${t.locazione}', '${t.dimensione}', '${t.dimensioneSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
+														name="${t.id}" type="button" id="modifica"
+														class="button_modifica btn"></button>
+												</td>
+												<td>
+													<%-- <a
 												href="TerrenoOspitaOrtaggi?delete=true&id=${t.id}">
 													<button type="submit" class="button_elimina btn"></button>
 											</a> --%>
 
-												<button type="button" name="${t.id}" data-toggle="modal"
-													data-target="#modalDelete" class="button_elimina btn"
-													onclick="del('${t.id}'); "></button>
-											</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-							<div align="center">
+													<button type="button" name="${t.id}" data-toggle="modal"
+														data-target="#modalDelete" class="button_elimina btn"
+														onclick="del('${t.id}'); "></button>
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+							<div align="center" style="margin-top: 30px">
 								<a href="PageLoader?id=inserimentoTerreno">
-									<button class="button btn" type="submit">Aggiungi
-										Terreno</button>
+									<button class="button btn" id="buttonoverflow" type="submit">
+									Aggiungi Terreno</button>
 								</a>
 							</div>
-
-
-
-							<!-- Modal -->
-							<div id="modalDelete" class="modal fade" role="dialog"
-								style="z-index: 2500; border-radius: 25px">
-
-								<div class="modal-dialog" style="border: 2px green solid">
-
-									<!-- Modal content-->
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 class="modal-title">Elimina Terreno</h4>
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
-										</div>
-										<div class="modal-body">
-											<p>Sei sicuro di voler eliminare questo terreno?</p>
-										</div>
-										<div class="modal-footer">
-											<form action="TerrenoOspitaOrtaggi" method="get">
-												<div class="container" align="right">
-													<input type="text" style="display: none" id="idDaEliminare"
-														name="tempId"> 
-													<input type="text"
-														style="display: none" id="delete" name="delete"
-														value="true">
-													<button type="button" class="btn"
-														style="border-radius: 15px" data-dismiss="modal">Annulla</button>
-													<button type="submit" class="btn btn-success"
-														style="border-radius: 15px">Conferma</button>
-												</div>
-											</form>
-										</div>
-									</div>
-
-								</div>
-							</div>
-							<!-- end modal -->
 						</div>
-
 						<!-- modifica -->
 						<div class="container" id="info_terreno"
 							style="display: none; margin-top: 20px">
@@ -501,7 +464,7 @@
 												</div>
 												<div class="col-xs-2">
 													<select class="input-column"
-														style="margin:3%; padding: 3px;"
+														style="margin: 3%; padding: 3px;"
 														id="dropdownDisponibilita" name="dropdownDisponibilita">
 														<option value="primavera">Primavera</option>
 														<option value="estate">Estate</option>
@@ -568,13 +531,75 @@
 							</div>
 						</div>
 						<!-- end modifiche -->
-
 					</div>
+					<!-- end terreni -->
+					<!--prodotti -->
+					<div class="tab-pane" style="margin-top: 20px; margin-bottom: 50px"
+						id="imieiprodotti">
+						<div class="table-responsive" id="prodotti">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>Nome</th>
+										<th>Categoria</th>
+										<th>Prezzo</th>
+										<th>Quantita'</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${prodotti}" var="p">
+										<tr>
+											<td>${p.nome}</td>
+											<td>${p.categoria}</td>
+											<td>${p.prezzo}</td>
+											<td>${p.quantita}</td>
+											<td><button class="button_modifica btn" type="button"></button></td>
+											<td><button class="button_elimina btn" type="button"></button></td>
+										</tr>
+
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- end prodotti -->
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- Modal -->
+	<div id="modalDelete" class="modal fade" role="dialog"
+		style="z-index: 2500; border-radius: 25px">
 
+		<div class="modal-dialog" style="border: 2px green solid">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Elimina Terreno</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>Sei sicuro di voler eliminare questo terreno?</p>
+				</div>
+				<div class="modal-footer">
+					<form action="TerrenoOspitaOrtaggi" method="get">
+						<div class="container" align="right">
+							<input type="text" style="display: none" id="idDaEliminare"
+								name="tempId"> <input type="text" style="display: none"
+								id="delete" name="delete" value="true">
+							<button type="button" class="btn" style="border-radius: 15px"
+								data-dismiss="modal">Annulla</button>
+							<button type="submit" class="btn btn-success"
+								style="border-radius: 15px">Conferma</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- end modal -->
 	<div id="footer"></div>
 </body>
 </html>

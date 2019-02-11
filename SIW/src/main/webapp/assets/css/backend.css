@@ -2,6 +2,10 @@
 	display: block;
 }
 
+h1 {
+  font-size: 5.5vw;
+}
+
 .border-profile {
 	margin-top: 50px;
 	width: 75%;
@@ -119,6 +123,12 @@
 	box-shadow: 0 3px #773c00;
 	transform: translateY(4px);
 	outline: none !important;
+}
+
+#buttonoverflow{
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .button_elimina {

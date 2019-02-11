@@ -48,12 +48,12 @@
 			</span> -->
 			<c:if test="${sessionScope.azienda != null}">
 				
-				<ul class="nav navbar-nav" style="margin-right: 15px;">
+				<ul class="nav navbar-nav" style="margin-left: 15px;">
 					<li class="nav-item" style="margin-top: 15px;">
 						<p><strong>Benvenuto, ${sessionScope.azienda.getRagioneSociale()}</strong></p>
 					</li>
 				</ul>
-				<div class="logout">
+				<div class="logout" style="margin-left: 15px;">
 				<a href="Login?logout=true"> <img src="assets/img/logout2.png"> <strong>Logout</strong> </a>
 				</div>
 			</c:if>
