@@ -41,7 +41,11 @@ public class PageLoader extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("prenotazioneTerreno.jsp");
 			rd.include(req, resp);
 		}
+		else if(id.equals("bachecaClienti")) {
+			RequestDispatcher rd = req.getRequestDispatcher("profiloCliente.jsp");
+			rd.include(req, resp);
 		
+		}
 		else if(id.equals("home"))
 		{
 			RequestDispatcher rd = req.getRequestDispatcher("Home");

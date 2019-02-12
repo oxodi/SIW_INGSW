@@ -88,6 +88,13 @@
 				<servlet-name>SalvaPrenotazione</servlet-name>
 				<servlet-class>controller.SalvaPrenotazione</servlet-class>
 			</servlet>
+			<servlet>
+				<description>
+				</description>
+				<display-name>CambiaPassword</display-name>
+				<servlet-name>CambiaPassword</servlet-name>
+				<servlet-class>controller.CambiaPassword</servlet-class>
+			</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -150,6 +157,10 @@
 		<servlet-mapping>
 			<servlet-name>SalvaPrenotazione</servlet-name>
 			<url-pattern>/SalvaPrenotazione</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>CambiaPassword</servlet-name>
+			<url-pattern>/CambiaPassword</url-pattern>
 		</servlet-mapping>
 	
 	<welcome-file-list>

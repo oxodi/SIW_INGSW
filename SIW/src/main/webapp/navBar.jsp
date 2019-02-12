@@ -31,9 +31,17 @@
 				<li class="nav-item" role="presentation"><a
 					class="nav-link text-dark" href="#"><strong>Ordina un
 							prodotto</strong></a></li>
+				<c:if test="${sessionScope.cliente == null}">			
 				<li class="nav-item" role="presentation"><a
 					class="nav-link text-dark" href="PageLoader?id=azienda"><strong>Area
 							Aziende</strong></a></li>
+				</c:if>
+				<c:if test="${sessionScope.cliente != null}">
+					<li class="nav-item" role="presentation"><a
+					class="nav-link text-dark" href="PageLoader?id=bachecaClienti"><strong>Bacheca</strong></a></li>
+				</c:if>
+				
+				
 				<!-- 	<li class="dropdown nav-item"><a
 					class="dropdown-toggle nav-link" data-toggle="dropdown"
 					aria-expanded="false" href="#">Dropdown </a>

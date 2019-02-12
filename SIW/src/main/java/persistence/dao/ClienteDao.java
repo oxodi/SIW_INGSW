@@ -20,4 +20,5 @@ public interface ClienteDao {
 	public void setPassword(Cliente cliente, String password);
 	
 	public boolean checkCliente(String email, String password);
+	
 }
