@@ -10,11 +10,29 @@ import javax.servlet.http.HttpServletResponse;
 
 import entita.Azienda;
 import entita.Prodotto;
+import entita.Terreno;
 import persistence.PostgresDAOFactory;
 import persistence.dao.ProdottoDao;
+import persistence.dao.TerrenoDao;
 
 public class InserisciProdotto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		if(req.getParameter("delete").equals("true"))
+		{
+			ProdottoDao prodottoNew = PostgresDAOFactory.getInstance().getProdottoDAO();
+			Prodotto prodotto = new Prodotto();
+			int id = Integer.parseInt(req.getParameter("tempId"));
+			System.out.println("sto eliminando "+id);
+			prodotto.setId(id);
+			prodottoNew.cancella(prodotto);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("PrelevaDatiTerreno");
+			rd.forward(req, resp);
+		}
+	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
