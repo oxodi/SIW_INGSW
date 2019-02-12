@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entita.Azienda;
+import entita.Prodotto;
 import entita.Terreno;
 import persistence.PostgresDAOFactory;
 import persistence.dao.AziendaDao;
+import persistence.dao.ProdottoDao;
 import persistence.dao.TerrenoDao;
 
 /**
@@ -43,6 +45,10 @@ public class PrelevaDatiTerreno extends HttpServlet {
 		{
 			System.out.println(terreni.get(i));
 		}
+		
+		ProdottoDao prodottodao = PostgresDAOFactory.getInstance().getProdottoDAO();
+		List<Prodotto> prodotti = prodottodao.cercaPerAzienda(aziendaInSessione.getId());
+		req.setAttribute("prodotti", prodotti);
 		RequestDispatcher rd = req.getRequestDispatcher("backendAzienda.jsp");
 		rd.forward(req, resp);
 	}
