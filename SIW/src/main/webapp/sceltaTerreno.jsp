@@ -42,78 +42,94 @@
 					<a href="#"></a>
 				</p>
 			</div>
-			<div class="col-sm-8  " id="centerColumn"
-				style="border-style: solid; border-radius: 25px; border-color: green; background: #996633">
-				<div class="container" id="terreni" >
+			<div class="col-sm-8" id="divGenerale">
+					<div id="divAzienda">
 					<h1>
 
 						<c:out value="${azienda.ragioneSociale}" />
 					</h1>
-					<p>
+					<p style="margin-bottom: 0px;">
 						<em><c:out value="${azienda.descrizioneServizi }"></c:out></em>
 					</p>
-					<hr>
-					<h2>Terreni Disponibili</h2>
-					<form action="DammiTerreno" method="get">
-						<div class="grid-container ">
-							<c:forEach items="${terreni}" var="t">
-								<!-- <div class="col-sm-4" > -->
+					</div>
+					<div id="centerColumn">
+						<h2>Terreni Disponibili</h2>
 
-								<div class="card"
-									style="background: #f2dca9;  border-style: solid; border-radius: 25px; border-color: green">
-									<div class="card-body">
-										<h3 class="card-title ">Terreno n.${t.id}</h3>
-										<h5 class="card-subtitle mb-2 text-muted">${t.locazione}</h5>
-										<p class="card-text" align="left">
-											<c:if
-												test="${t.servizioParziale == true && t.servizioCompleto == true }">
-												<b>Servizi Disponibili:</b> <em>Parziale, Completo.</em> <br>
-										</c:if>
-											<c:if
-												test="${t.servizioParziale == true && t.servizioCompleto == false }">
-												<b>Servizi Disponibili:</b> <em>Parziale.</em> <br>
-										</c:if>
-											<c:if
-												test="${t.servizioParziale == false && t.servizioCompleto == true }">
-												<b>Servizio Disponibile:</b> <em>Completo.</em> <br>
-										</c:if>
-											<b>Spazio coltivabile:</b> <em>${t.dimensione } m<sup>2</sup></em> <br>
-											<c:if test="${t.dimensioneSerra == 0}">
-												<b>Spazio coltivabile in serra:</b> <em>Serra non presente.</em> <br>
-										</c:if>
-											<c:if test="${t.dimensioneSerra != null}">
-												<b>Spazio coltivabile in serra:</b> ${t.dimensioneSerra } m<sup>2</sup>.  <br>
-										</c:if>
-											
-											<b>Periodo:</b> <em>${t.periodiDisponibilita }.</em>
-										</p>
+						<!-- Start: Articles -->
+						<form action="DammiTerreno" method="get">
+							<div id="cardTerreni">
+								<c:forEach items="${terreni}" var="t">
+									<div class="col-sm-6 col-md-4 item">
 
-										<div class="container" align="bottom" >
-											<button class="button" onclick="submit" name="btnTerreno"
-												value="${t.id }">Seleziona</button>
+										<div class="card" id="cardTerreno">
+											<div class="card-body">
+												<h3 class="card-title ">Terreno n.${t.id}</h3>
+												<h5 class="card-subtitle mb-2 text-muted">${t.locazione}</h5>
+												<p class="card-text" align="left">
+													<c:if
+														test="${t.servizioParziale == true && t.servizioCompleto == true }">
+														<b>Servizi Disponibili:</b>
+														<em>Parziale, Completo.</em>
+														<br>
+													</c:if>
+													<c:if
+														test="${t.servizioParziale == true && t.servizioCompleto == false }">
+														<b>Servizi Disponibili:</b>
+														<em>Parziale.</em>
+														<br>
+													</c:if>
+													<c:if
+														test="${t.servizioParziale == false && t.servizioCompleto == true }">
+														<b>Servizio Disponibile:</b>
+														<em>Completo.</em>
+														<br>
+													</c:if>
+													<b>Spazio coltivabile:</b> <em>${t.dimensione } m<sup>2</sup></em>
+													<br>
+													<c:if test="${t.dimensioneSerra == 0}">
+														<b>Spazio in serra:</b>
+														<em>Serra non presente.</em>
+														<br>
+													</c:if>
+													<c:if test="${t.dimensioneSerra > 0}">
+														<b>Spazio in serra:</b> ${t.dimensioneSerra } m<sup>2</sup>.  <br>
+													</c:if>
+
+													<b>Periodo:</b> <em>${t.periodiDisponibilita }.</em>
+												</p>
+
+												<div class="container" align="bottom">
+													<button class="button" onclick="submit" name="btnTerreno"
+														value="${t.id }">Seleziona</button>
+												</div>
+
+
+											</div>
 										</div>
-
-
 									</div>
-								</div>
+								</c:forEach>
 
-								<!-- </div> -->
-							</c:forEach>
-						</div>
-					</form>
-				</div>
-
-
+							</div>
+						</form>
+					</div>
 			</div>
-			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p></p>
-				</div>
-				<div class="well">
-					<p></p>
-				</div>
-			</div>
+
+			<!-- End: Article List -->
+
+
 		</div>
+
+
+	</div>
+	<div class="col-sm-2 sidenav">
+		<div class="well">
+			<p></p>
+		</div>
+		<div class="well">
+			<p></p>
+		</div>
+	</div>
+	</div>
 	</div>
 
 

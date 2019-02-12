@@ -58,7 +58,7 @@
 								</div>
 
 								<div class="column" id="column2" >
-								<h1>${a.ragioneSociale } </h1>
+								<h2>${a.ragioneSociale } </h2>
 								<em>${a.indirizzo }</em> <br>
 								<em>${a.cap } ${a.citta } (${a.provincia }) </em>
 								</div>
