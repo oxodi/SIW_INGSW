@@ -37,13 +37,13 @@ public class InserisciProdotto extends HttpServlet {
 		if (req.getParameter("edit").equals("true")) {
 
 			System.out.println("Sono nell'edit del prodotto");
-			System.out.println("sto cambiando l'ID " + req.getParameter("editFormId"));
-			int id = Integer.parseInt(req.getParameter("editFormId"));
-			int quantita = Integer.parseInt(req.getParameter("editFormQuantita"));
+			System.out.println("sto cambiando l'ID " + req.getParameter("editProdottoId"));
+			int id = Integer.parseInt(req.getParameter("editProdottoId"));
+			int quantita = Integer.parseInt(req.getParameter("editProdottoQuantita"));
 			System.out.println("sto settando la Quantita " + quantita);
-			double costo = Double.parseDouble(req.getParameter("editFormCosto"));
+			double costo = Double.parseDouble(req.getParameter("editProdottoCosto"));
 			System.out.println("sto settando il costo " + costo);
-			String descrizione = req.getParameter("editFormDescrizione");
+			String descrizione = req.getParameter("editProdottoDescrizione");
 			System.out.println("sto settando la descrizione " + descrizione);
 
 			ProdottoDao prodottoNew = PostgresDAOFactory.getInstance().getProdottoDAO();
