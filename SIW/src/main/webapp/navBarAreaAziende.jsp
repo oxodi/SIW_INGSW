@@ -60,7 +60,7 @@
 			<c:if test="${sessionScope.azienda == null}">
 				<div class="dropdown">
 					<a href="#" class="dropdown-toggle btn" data-toggle="dropdown"
-						style="color: white; background-color: green; border-radius: 15px;"><b>Login</b>
+						style="color: white; background-color: green; border-radius: 15px;margin-left: 12px"><b>Login</b>
 						<span class="caret"></span></a>
 					<ul id="login-dp" class="dropdown-menu">
 						<li>

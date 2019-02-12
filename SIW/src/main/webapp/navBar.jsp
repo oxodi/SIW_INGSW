@@ -60,15 +60,23 @@
 			</span> -->
 
 			<c:if test="${sessionScope.cliente != null}">
-				<p>
+				<%-- <p>
 					<strong>Ciao <em>${sessionScope.cliente.getNome()}</em></strong><br>
 				</p>
-				<a href="Login?logout=true">Logout</a>
+				<a href="Login?logout=true">Logout</a> --%>
+				<ul class="nav navbar-nav" style="margin-left: 15px;">
+					<li class="nav-item" style="margin-top: 15px;">
+						<p><strong>Benvenuto, ${sessionScope.cliente.getNome()}</strong></p>
+					</li>
+				</ul>
+				<div class="logout" style="margin-left: 15px;">
+				<a href="Login?logout=true"> <img src="assets/img/logout2.png"> <strong>Logout</strong> </a>
+				</div>
 			</c:if>
 			<c:if test="${sessionScope.cliente == null}">
 				<div class="dropdown">
 					<a href="#" class="dropdown-toggle btn" data-toggle="dropdown"
-						style="color: white; background-color: green; border-radius: 15px;"><b>Login</b>
+						style="color: white; background-color: green; border-radius: 15px; margin-left: 12px"><b>Login</b>
 						<span class="caret"></span></a>
 					<ul id="login-dp" class="dropdown-menu">
 						<li>

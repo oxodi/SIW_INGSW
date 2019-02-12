@@ -54,8 +54,17 @@
 	function del(id) {
 		//alert(id);
 		$('#idDaEliminare').val(id);
+
 	}
 </script>
+<script>
+	function delProdotto(id) {
+		//alert(id);
+		$('#prodottoDaEliminare').val(id);
+
+	}
+</script>
+
 <script>
 	$(document).ready(function() {
 		$("#annulla_modifica").click(function() {
@@ -81,6 +90,28 @@
 		$("#annulla_ortaggi").click(function() {
 			$("#containerModificaOrtaggi").hide("fast");
 			$("#formModificaTerreno").show("slow");
+
+		});
+	});
+</script>
+<script>
+	function Prodotto(id,nome,categoria,costo,quantita,descrizione) {
+		$("#editProdottoId").val(id);
+		$("#editProdottoNome").val(nome);
+		$("#editProdottoCategoria").val(categoria);
+		$("#editProdottoCosto").val(costo);
+		$("#editProdottoDescrizione").val(descrizione);
+		$("#editProdottoQuantita").val(quantita);
+		
+		$("#prodotti").hide("fast");
+		$("#info_prodotto").show("slow");
+	}
+</script>
+<script>
+	$(document).ready(function() {
+		$("#annulla_prodotto").click(function() {
+			$("#info_prodotto").hide("fast");
+			$("#prodotti").show("slow");
 
 		});
 	});
@@ -328,72 +359,70 @@
 						</form>
 					</div>
 					<!-- terreni -->
-					<div class="tab-pane" style="margin-top: 20px;"
-						id="imieiterreni">
-						<div class="container-fluid">
-							<div class="table-responsive" id="terreni">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>Locazione</th>
-											<th>Dimensione</th>
-											<th>Dimensione Serra</th>
-											<th>Servizio Completo</th>
-											<th>Servizio Parziale</th>
-											<th>Periodo Coltivazione</th>
-											<th>Costo</th>
-											<th>Modifica</th>
-											<th>Elimina</th>
-										</tr>
-									</thead>
-									<tbody id="items">
+					<div class="tab-pane" style="margin-top: 20px;" id="imieiterreni">
+						<div class="table-responsive" id="terreni">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>Locazione</th>
+										<th>Dimensione</th>
+										<th>Dimensione Serra</th>
+										<th>Servizio Completo</th>
+										<th>Servizio Parziale</th>
+										<th>Periodo Coltivazione</th>
+										<th>Costo</th>
+										<th>Modifica</th>
+										<th>Elimina</th>
+									</tr>
+								</thead>
+								<tbody id="items">
 
 
-										<c:forEach items="${terreni}" var="t">
-											<tr data-toggle="collapse" data-target="#demo1"
-												class="accordion-toggle ">
+									<c:forEach items="${terreni}" var="t">
+										<tr data-toggle="collapse" data-target="#demo1"
+											class="accordion-toggle ">
 
-												<td>${t.locazione}</td>
-												<td>${t.dimensione }</td>
-												<td>${t.dimensioneSerra }</td>
-												<td><c:choose>
-														<c:when test="${t.servizioCompleto}">SI</c:when>
-														<c:otherwise>NO</c:otherwise>
-													</c:choose></td>
-												<td><c:choose>
-														<c:when test="${t.servizioParziale}">SI</c:when>
-														<c:otherwise>NO</c:otherwise>
-													</c:choose></td>
-												<td>${t.periodiDisponibilita}</td>
-												<td>${t.costo}€</td>
-												<td>
-													<button
-														onclick="edit('${t.id}','${t.locazione}', '${t.dimensione}', '${t.dimensioneSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
-														name="${t.id}" type="button" id="modifica"
-														class="button_modifica btn"></button>
-												</td>
-												<td>
-													<%-- <a
+											<td>${t.locazione}</td>
+											<td>${t.dimensione }</td>
+											<td>${t.dimensioneSerra }</td>
+											<td><c:choose>
+													<c:when test="${t.servizioCompleto}">SI</c:when>
+													<c:otherwise>NO</c:otherwise>
+												</c:choose></td>
+											<td><c:choose>
+													<c:when test="${t.servizioParziale}">SI</c:when>
+													<c:otherwise>NO</c:otherwise>
+												</c:choose></td>
+											<td>${t.periodiDisponibilita}</td>
+											<td>${t.costo}€</td>
+											<td>
+												<button
+													onclick="edit('${t.id}','${t.locazione}', '${t.dimensione}', '${t.dimensioneSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
+													name="${t.id}" type="button" id="modifica"
+													class="button_modifica btn"></button>
+											</td>
+											<td>
+												<%-- <a
 												href="TerrenoOspitaOrtaggi?delete=true&id=${t.id}">
 													<button type="submit" class="button_elimina btn"></button>
 											</a> --%>
 
-													<button type="button" name="${t.id}" data-toggle="modal"
-														data-target="#modalDelete" class="button_elimina btn"
-														onclick="del('${t.id}'); "></button>
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
+												<button type="button" name="${t.id}" data-toggle="modal"
+													data-target="#modalDelete" class="button_elimina btn"
+													onclick="del('${t.id}'); "></button>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
 							<div align="center" style="margin-top: 30px">
 								<a href="PageLoader?id=inserimentoTerreno">
-									<button class="button btn" id="buttonoverflow" type="submit">
-									Aggiungi Terreno</button>
+									<button class="button btn" type="submit">Aggiungi
+										Terreno</button>
 								</a>
 							</div>
 						</div>
+
 						<!-- modifica -->
 						<div class="container" id="info_terreno"
 							style="display: none; margin-top: 20px">
@@ -505,7 +534,7 @@
 									</div>
 								</form>
 							</div>
-							<!-- Form Modifica Ortaggi -->
+							<!-- Ortaggi terreno -->
 							<div class="container" id="containerModificaOrtaggi"
 								style="display: none">
 								<div class="table-responsive" id="table-scroll">
@@ -533,6 +562,7 @@
 						<!-- end modifiche -->
 					</div>
 					<!-- end terreni -->
+
 					<!--prodotti -->
 					<div class="tab-pane" style="margin-top: 20px; margin-bottom: 50px"
 						id="imieiprodotti">
@@ -544,6 +574,8 @@
 										<th>Categoria</th>
 										<th>Prezzo</th>
 										<th>Quantita'</th>
+										<th>Modifica</th>
+										<th>Elimina</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -551,24 +583,140 @@
 										<tr>
 											<td>${p.nome}</td>
 											<td>${p.categoria}</td>
-											<td>${p.prezzo}</td>
+											<td>${p.costoUnitario}</td>
 											<td>${p.quantita}</td>
-											<td><button class="button_modifica btn" type="button"></button></td>
-											<td><button class="button_elimina btn" type="button"></button></td>
+											<td><button class="button_modifica btn" type="button"
+													onclick="Prodotto('${p.id}','${p.nome}','${p.categoria}','${p.costoUnitario}','${p.quantita}','${p.descrizione}');"></button></td>
+
+											<td><button class="button_elimina btn"
+													data-toggle="modal" data-target="#deleteProdotto"
+													type="button" name="${p.id}"
+													onclick="delProdotto('${p.id}');"></button></td>
 										</tr>
 
 									</c:forEach>
 								</tbody>
 							</table>
+							<div align="center" style="margin-top: 30px">
+								<a href="inserimentoProdotto.jsp">
+									<button class="button btn" type="submit">Aggiungi
+										Prodotto</button>
+								</a>
+							</div>
 						</div>
+						<div class="container-fluid" id="info_prodotto"
+							style="margin-top: 20px; display: none">
+							<div class="container" id="formModificaTerreno">
+								<div align="center">
+									<h4>Modifica dati Prodotto</h4>
+								</div>
+								<form action="InserisciProdotto?edit=true" method="post" id="modificaProdotto">
+									<div class="row" style="margin-top: 40px">
+										<div class="col-md-6 ">
+											<div class="form-row form-group" style="display: none;">
+												<div class="col-xs-2" style="display: none !important">
+													<input class="input-column" type="text" id="editProdottoId"
+														name="editProdottoId">
+												</div>
+											</div>
+											<div class="form-row form-group">
+												<div class="col-md-4">
+													<label class="label-column">Nome</label>
+												</div>
+												<div class="col-xs-2">
+													<input class="input-column" type="text" disabled="disabled" id="editProdottoNome" name="editProdottoNome">
+												</div>
+											</div>
+											<div class="form-row form-group">
+												<div class="col-md-4">
+													<label class="label-column">Categoria</label>
+												</div>
+												<div class="col-xs-2">
+													<input class="input-column" type="text"
+														id="editProdottoCategoria" disabled="disabled" name="editProdottoCategoria">
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6 ">
+											<div class="form-row form-group">
+												<div class="col-md-4">
+													<label class="label-column">Costo €</label>
+												</div>
+												<div class="col-xs-2">
+													<input class="input-column" type="text"
+														id="editProdottoCosto" name="editProdottoCosto">
+												</div>
+											</div>
+											<div class="form-row form-group">
+												<div class="col-md-4">
+													<label class="label-column">Quantita'</label>
+												</div>
+												<div class="col-xs-2">
+													<input class="input-column" type="text"
+														id="editProdottoQuantita" name="editProdottoQuantita">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div style="text-align: center; whidt: 100%; margin-top: 25px">
+										<div align="center">
+											<label class="label-column">Descrizione Prodotti
+												Offerti *</label>
+										</div>
+										<textarea class="form-control"
+											style="margin-left: auto; margin-right: auto; resize: none; border: 2px green solid; border-radius: 15px; min-height: 150px; background-color: #cfc7af; min-width: 100%;"
+											maxlength="1000" name="editProdottoDescrizione" id="editProdottoDescrizione"></textarea>
+									</div>
+									<br>
+									<div class="container-fluid" align="center">
+										<button class="button btn" type="button" id="annulla_prodotto">Annulla</button>
+										<button class="button btn">Salva</button>
+									</div>
+								</form>
+
+							</div>
+						</div>
+						<!-- end prodotti -->
 					</div>
-					<!-- end prodotti -->
+				</div>
+			</div>
+		</div>
+		<!-- Modal TERRENI-->
+		<div id="modalDelete" class="modal fade" role="dialog"
+			style="z-index: 2500; border-radius: 25px">
+
+			<div class="modal-dialog" style="border: 2px green solid">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Elimina Terreno</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p>Sei sicuro di voler eliminare questo terreno?</p>
+					</div>
+					<div class="modal-footer">
+						<form action="TerrenoOspitaOrtaggi" method="get">
+							<div class="container" align="right">
+								<input type="text" style="display: none" id="idDaEliminare"
+									name="tempId"> <input type="text" style="display: none"
+									id="delete" name="delete" value="true">
+								<button type="button" class="btn" style="border-radius: 15px"
+									data-dismiss="modal">Annulla</button>
+								<button type="submit" class="btn btn-success"
+									style="border-radius: 15px">Conferma</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Modal -->
-	<div id="modalDelete" class="modal fade" role="dialog"
+	<!-- end modal -->
+
+	<!-- Modal PRODOTTI-->
+	<div id="deleteProdotto" class="modal fade" role="dialog"
 		style="z-index: 2500; border-radius: 25px">
 
 		<div class="modal-dialog" style="border: 2px green solid">
@@ -576,18 +724,19 @@
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Elimina Terreno</h4>
+					<h4 class="modal-title">Elimina Prodotto</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body">
-					<p>Sei sicuro di voler eliminare questo terreno?</p>
+					<p>Sei sicuro di voler eliminare questo prodotto?</p>
 				</div>
 				<div class="modal-footer">
-					<form action="TerrenoOspitaOrtaggi" method="get">
+					<form action="InserisciProdotto" method="get">
 						<div class="container" align="right">
-							<input type="text" style="display: none" id="idDaEliminare"
-								name="tempId"> <input type="text" style="display: none"
-								id="delete" name="delete" value="true">
+							<input type="text" style="display: none;"
+								id="prodottoDaEliminare" name="tempId"> <input
+								type="text" style="display: none" id="delete" name="delete"
+								value="true">
 							<button type="button" class="btn" style="border-radius: 15px"
 								data-dismiss="modal">Annulla</button>
 							<button type="submit" class="btn btn-success"
@@ -596,7 +745,6 @@
 					</form>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<!-- end modal -->

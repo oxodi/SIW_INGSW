@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="assets/css/registration.min.css">
 <link rel="stylesheet" href="assets/css/inserimentoTerreno.css">
 <script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/controlloTerreno.js"></script>
 <!-- Script for load Navigation Bar -->
 <script>
 	$(function() {
@@ -91,7 +92,7 @@
 	<div class="row register-form" style="width: 100%">
 		<div class="col-md-10 offset-md-1">
 			<form class="custom-form" method="post"
-				action="TerrenoOspitaOrtaggi?edit=false">
+				action="TerrenoOspitaOrtaggi?edit=false" id="controllo">
 
 				<div id="inserimento">
 					<h1>Inserimento Terreno</h1>
@@ -222,7 +223,7 @@
 									data-target="#modalAnnullamento" type="button">Annulla</button>
 
 								<button class="button btn" id="avanti" type="button"
-									style="word-spacing: 4px">Avanti ▶</button>
+									style="word-spacing: 4px" onclick="Controllo()">Avanti ▶</button>
 
 							</div>
 						</div>

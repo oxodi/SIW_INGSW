@@ -65,7 +65,7 @@
 	<div class="row register-form" style="width: 100%">
 		<div class="col-md-10 offset-md-1">
 			<form class="custom-form" method="post"
-				action="InserisciProdotto">
+				action="InserisciProdotto?edit=false">
 				<div id="inserimento">
 					<h1>Inserimento Prodotto</h1>
 					<div class="row">
