@@ -95,6 +95,13 @@
 				<servlet-name>CambiaPassword</servlet-name>
 				<servlet-class>controller.CambiaPassword</servlet-class>
 			</servlet>
+			<servlet>
+				<description>
+				</description>
+				<display-name>InserisciProdotto</display-name>
+				<servlet-name>InserisciProdotto</servlet-name>
+				<servlet-class>controller.InserisciProdotto</servlet-class>
+			</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -161,6 +168,10 @@
 		<servlet-mapping>
 			<servlet-name>CambiaPassword</servlet-name>
 			<url-pattern>/CambiaPassword</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>InserisciProdotto</servlet-name>
+			<url-pattern>/InserisciProdotto</url-pattern>
 		</servlet-mapping>
 	
 	<welcome-file-list>
