@@ -19,6 +19,7 @@ import entita.ortaggio.Peperoncino;
 import entita.ortaggio.Peperone;
 import entita.ortaggio.Pomodoro;
 import entita.ortaggio.Spinacio;
+import entita.ortaggio.TerrenoPrenotabile;
 import entita.ortaggio.Zucchina;
 import persistence.dao.OrtaggioDao;
 
@@ -166,6 +167,9 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 			break;
 		case 12:
 			ortaggio = new Zucchina();
+			break;
+		case 99:
+			ortaggio = new TerrenoPrenotabile();
 			break;
 		default:
 			System.out.println("Ortaggio non presente");

@@ -1,4 +1,4 @@
-@charset "ISO-8859-1";
+@charset "UTF-8";
 
 body {
 	background-color: black;
@@ -55,13 +55,13 @@ body {
 
 
 h1{
-  font-size: 50px;
+  font-size: 5.5vw;
   color: black;
    text-shadow: 5px 5px #a0a0a0;
 }
 
 h2{
-	font-size: 35px;
+	font-size: 3.5vw;
 }
 
 .button {

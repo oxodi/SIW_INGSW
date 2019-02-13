@@ -97,7 +97,7 @@ $(document).ready(function() {
 									Completo: selezionare gli ortaggi e la quantità da coltivare
 									nel periodo <em>${terreno.periodiDisponibilita }</em>
 							</strong></label>
-							<label style="margin-top: 2%; margin-left: 12%"> <strong>Coltivabili
+							<label style="margin-top: 2%; margin-left: 10%"> <strong>Coltivabili
 									in serra</strong></label>
 							<label class="switch"><input type="checkbox"
 								id="switchDiv"> <span class="slider round"></span> </label>

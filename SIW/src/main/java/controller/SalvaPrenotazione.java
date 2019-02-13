@@ -31,6 +31,7 @@ public class SalvaPrenotazione extends HttpServlet {
 		System.out.println("Sono in salva Prenotazione");
 		PrenotazioneDao prenotazioneDao= PostgresDAOFactory.getInstance().getPrenotazioneDAO();
 		OrtaggioDao ortaggioDao = PostgresDAOFactory.getInstance().getOrtaggioDAO();
+		TerrenoDao terrenoDao =  PostgresDAOFactory.getInstance().getTerrenoDAO();
 		Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
 		int btnterreno = (Integer) request.getSession().getAttribute("idTerreno");
 		
@@ -45,9 +46,12 @@ public class SalvaPrenotazione extends HttpServlet {
 		
 		for(int a = 0; a < el.length; a++) {
 			Prenotazione prenotazione = new Prenotazione();
+			Terreno terreno = terrenoDao.cercaPerChiavePrimaria(btnterreno);
 			prenotazione.setDataPrenotazione(new Date());
 			prenotazione.setIdCliente(cliente.getId());
 			prenotazione.setIdTerreno(btnterreno);
+			int quantita = 0;
+			
 			String[] i = el[a].split(",");
 
 			for(int it= 0; it<i.length; it++) {
@@ -55,13 +59,22 @@ public class SalvaPrenotazione extends HttpServlet {
 					int id_ortaggio = ortaggioDao.restituisciId(i[it]);
 					prenotazione.setId_ortaggio(id_ortaggio);
 				}else if(it==1){
-					int quantita = Integer.parseInt(i[it]);
+					quantita = Integer.parseInt(i[it]);
+				
 					prenotazione.setQuantita(quantita);
 				}else if(it==4) {
 					if(i[it].equals("si")) {
 						prenotazione.setSerra(true);
+						int dimensioneTerreno = terreno.getDimensione() - quantita;
+						terreno.setDimensione(dimensioneTerreno);
+						int dimensioneSerra = terreno.getDimensioneSerra() - quantita;
+						terreno.setDimensioneSerra(dimensioneSerra);
+						terrenoDao.aggiorna(terreno);
 					} else {
 						prenotazione.setSerra(false);
+						int dimensioneTerreno = terreno.getDimensione() - quantita;
+						terreno.setDimensione(dimensioneTerreno);
+						terrenoDao.aggiorna(terreno);
 					}
 
 				}

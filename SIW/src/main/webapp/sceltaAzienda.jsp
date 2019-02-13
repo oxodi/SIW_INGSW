@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -38,7 +38,7 @@
 
 		<h1>Scegli Azienda</h1>
 		<h5>Tutte le aziende di seguito hanno almeno un terreno che
-			soddisfa le tue esigenze. Scorrile tutte e clicca su quella che più
+			soddisfa le tue esigenze. Scorrile tutte e clicca su quella che piÃ¹
 			ti convince.</h5>
 
 		<form action="DammiTerreniAzienda" method="get">
