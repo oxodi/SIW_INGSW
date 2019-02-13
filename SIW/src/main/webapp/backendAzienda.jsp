@@ -95,14 +95,14 @@
 	});
 </script>
 <script>
-	function Prodotto(id,nome,categoria,costo,quantita,descrizione) {
+	function Prodotto(id, nome, categoria, costo, quantita, descrizione) {
 		$("#editProdottoId").val(id);
 		$("#editProdottoNome").val(nome);
 		$("#editProdottoCategoria").val(categoria);
 		$("#editProdottoCosto").val(costo);
 		$("#editProdottoDescrizione").val(descrizione);
 		$("#editProdottoQuantita").val(quantita);
-		
+
 		$("#prodotti").hide("fast");
 		$("#info_prodotto").show("slow");
 	}
@@ -354,70 +354,72 @@
 							</div>
 							<br>
 							<div class="organize" align="center">
-								<button class="button btn" type="submit">Salva</button>
+								<button class="button buttonoverflow btn" type="submit">Salva</button>
 							</div>
 						</form>
 					</div>
 					<!-- terreni -->
 					<div class="tab-pane" style="margin-top: 20px;" id="imieiterreni">
-						<div class="table-responsive" id="terreni">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>Locazione</th>
-										<th>Dimensione</th>
-										<th>Dimensione Serra</th>
-										<th>Servizio Completo</th>
-										<th>Servizio Parziale</th>
-										<th>Periodo Coltivazione</th>
-										<th>Costo</th>
-										<th>Modifica</th>
-										<th>Elimina</th>
-									</tr>
-								</thead>
-								<tbody id="items">
+						<div class="container" id="terreni">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<thead>
+										<tr align="center">
+											<th>Locazione</th>
+											<th>Dimensione</th>
+											<th>Dimensione Serra</th>
+											<th>Servizio Completo</th>
+											<th>Servizio Parziale</th>
+											<th>Periodo Coltivazione</th>
+											<th>Costo</th>
+											<th>Modifica</th>
+											<th>Elimina</th>
+										</tr>
+									</thead>
+									<tbody id="items">
 
 
-									<c:forEach items="${terreni}" var="t">
-										<tr data-toggle="collapse" data-target="#demo1"
-											class="accordion-toggle ">
+										<c:forEach items="${terreni}" var="t">
+											<tr data-toggle="collapse" data-target="#demo1"
+												class="accordion-toggle " align="center">
 
-											<td>${t.locazione}</td>
-											<td>${t.dimensione }</td>
-											<td>${t.dimensioneSerra }</td>
-											<td><c:choose>
-													<c:when test="${t.servizioCompleto}">SI</c:when>
-													<c:otherwise>NO</c:otherwise>
-												</c:choose></td>
-											<td><c:choose>
-													<c:when test="${t.servizioParziale}">SI</c:when>
-													<c:otherwise>NO</c:otherwise>
-												</c:choose></td>
-											<td>${t.periodiDisponibilita}</td>
-											<td>${t.costo}€</td>
-											<td>
-												<button
-													onclick="edit('${t.id}','${t.locazione}', '${t.dimensione}', '${t.dimensioneSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
-													name="${t.id}" type="button" id="modifica"
-													class="button_modifica btn"></button>
-											</td>
-											<td>
-												<%-- <a
+												<td>${t.locazione}</td>
+												<td>${t.dimensione }</td>
+												<td>${t.dimensioneSerra }</td>
+												<td><c:choose>
+														<c:when test="${t.servizioCompleto}">SI</c:when>
+														<c:otherwise>NO</c:otherwise>
+													</c:choose></td>
+												<td><c:choose>
+														<c:when test="${t.servizioParziale}">SI</c:when>
+														<c:otherwise>NO</c:otherwise>
+													</c:choose></td>
+												<td>${t.periodiDisponibilita}</td>
+												<td>${t.costo}€</td>
+												<td>
+													<button
+														onclick="edit('${t.id}','${t.locazione}', '${t.dimensione}', '${t.dimensioneSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
+														name="${t.id}" type="button" id="modifica"
+														class="button_modifica btn"></button>
+												</td>
+												<td>
+													<%-- <a
 												href="TerrenoOspitaOrtaggi?delete=true&id=${t.id}">
 													<button type="submit" class="button_elimina btn"></button>
 											</a> --%>
 
-												<button type="button" name="${t.id}" data-toggle="modal"
-													data-target="#modalDelete" class="button_elimina btn"
-													onclick="del('${t.id}'); "></button>
-											</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+													<button type="button" name="${t.id}" data-toggle="modal"
+														data-target="#modalDelete" class="button_elimina btn"
+														onclick="del('${t.id}'); "></button>
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
 							<div align="center" style="margin-top: 30px">
 								<a href="PageLoader?id=inserimentoTerreno">
-									<button class="button btn" type="submit">Aggiungi
+									<button class="button buttonoverflow btn" type="submit">Aggiungi
 										Terreno</button>
 								</a>
 							</div>
@@ -527,9 +529,9 @@
 										</div>
 									</div>
 									<div align="center">
-										<button class="button btn" id="annulla_modifica" type="button">Annulla</button>
-										<button class="button btn" type="submit">Salva</button>
-										<button class="button btn" id="modificaOrtaggi" type="button">Mostra
+										<button class="button buttonoverflow btn" id="annulla_modifica" type="button">Annulla</button>
+										<button class="button buttonoverflow btn" type="submit">Salva</button>
+										<button class="button buttonoverflow btn" id="modificaOrtaggi" type="button">Mostra
 											ortaggi</button>
 									</div>
 								</form>
@@ -554,8 +556,8 @@
 									</table>
 								</div>
 								<div align="center">
-									<button class="button btn" id="annulla_ortaggi" type="button">Annulla</button>
-									<button class="button btn" type="submit">Salva</button>
+									<button class="button buttonoverflow btn" id="annulla_ortaggi" type="button">Annulla</button>
+									<button class="button buttonoverflow btn" type="submit">Salva</button>
 								</div>
 							</div>
 						</div>
@@ -566,10 +568,11 @@
 					<!--prodotti -->
 					<div class="tab-pane" style="margin-top: 20px; margin-bottom: 50px"
 						id="imieiprodotti">
-						<div class="table-responsive" id="prodotti">
+						<div class="container-fluid" id="prodotti">
+						<div class="table-responsive">
 							<table class="table table-hover">
 								<thead>
-									<tr>
+									<tr align="center">
 										<th>Nome</th>
 										<th>Categoria</th>
 										<th>Prezzo</th>
@@ -580,7 +583,7 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${prodotti}" var="p">
-										<tr>
+										<tr align="center">
 											<td>${p.nome}</td>
 											<td>${p.categoria}</td>
 											<td>${p.costoUnitario}</td>
@@ -597,9 +600,10 @@
 									</c:forEach>
 								</tbody>
 							</table>
+							</div>
 							<div align="center" style="margin-top: 30px">
 								<a href="inserimentoProdotto.jsp">
-									<button class="button btn" type="submit">Aggiungi
+									<button class="button buttonoverflow btn"  type="submit">Aggiungi
 										Prodotto</button>
 								</a>
 							</div>
@@ -610,7 +614,8 @@
 								<div align="center">
 									<h4>Modifica dati Prodotto</h4>
 								</div>
-								<form action="InserisciProdotto?edit=true" method="post" id="modificaProdotto">
+								<form action="InserisciProdotto?edit=true" method="post"
+									id="modificaProdotto">
 									<div class="row" style="margin-top: 40px">
 										<div class="col-md-6 ">
 											<div class="form-row form-group" style="display: none;">
@@ -624,7 +629,8 @@
 													<label class="label-column">Nome</label>
 												</div>
 												<div class="col-xs-2">
-													<input class="input-column" type="text" disabled="disabled" id="editProdottoNome" name="editProdottoNome">
+													<input class="input-column" type="text" disabled="disabled"
+														id="editProdottoNome" name="editProdottoNome">
 												</div>
 											</div>
 											<div class="form-row form-group">
@@ -633,7 +639,8 @@
 												</div>
 												<div class="col-xs-2">
 													<input class="input-column" type="text"
-														id="editProdottoCategoria" disabled="disabled" name="editProdottoCategoria">
+														id="editProdottoCategoria" disabled="disabled"
+														name="editProdottoCategoria">
 												</div>
 											</div>
 										</div>
@@ -665,12 +672,13 @@
 										</div>
 										<textarea class="form-control"
 											style="margin-left: auto; margin-right: auto; resize: none; border: 2px green solid; border-radius: 15px; min-height: 150px; background-color: #cfc7af; min-width: 100%;"
-											maxlength="1000" name="editProdottoDescrizione" id="editProdottoDescrizione"></textarea>
+											maxlength="1000" name="editProdottoDescrizione"
+											id="editProdottoDescrizione"></textarea>
 									</div>
 									<br>
 									<div class="container-fluid" align="center">
-										<button class="button btn" type="button" id="annulla_prodotto">Annulla</button>
-										<button class="button btn">Salva</button>
+										<button class="button buttonoverflow btn" type="button" id="annulla_prodotto">Annulla</button>
+										<button class="button buttonoverflow btn" id="buttonoverflow">Salva</button>
 									</div>
 								</form>
 
@@ -703,9 +711,9 @@
 									name="tempId"> <input type="text" style="display: none"
 									id="delete" name="delete" value="true">
 								<button type="button" class="btn" style="border-radius: 15px"
-									data-dismiss="modal">Annulla</button>
+									data-dismiss="modal" id="buttonoverflow">Annulla</button>
 								<button type="submit" class="btn btn-success"
-									style="border-radius: 15px">Conferma</button>
+									style="border-radius: 15px" id="buttonoverflow">Conferma</button>
 							</div>
 						</form>
 					</div>
@@ -738,9 +746,9 @@
 								type="text" style="display: none" id="delete" name="delete"
 								value="true">
 							<button type="button" class="btn" style="border-radius: 15px"
-								data-dismiss="modal">Annulla</button>
+								data-dismiss="modal" id="buttonoverflow">Annulla</button>
 							<button type="submit" class="btn btn-success"
-								style="border-radius: 15px">Conferma</button>
+								style="border-radius: 15px" id="buttonoverflow">Conferma</button>
 						</div>
 					</form>
 				</div>

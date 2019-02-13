@@ -8,7 +8,7 @@ h1 {
 
 .border-profile {
 	margin-top: 50px;
-	width: 75%;
+	width: 95%;
 	border-color: #734d26;
 	border-width: 3px;
 	border-radius: 25px;
@@ -125,7 +125,7 @@ h1 {
 	outline: none !important;
 }
 
-#buttonoverflow{
+.buttonoverflow{
 	max-width: 100%;
 	overflow: hidden;
 	text-overflow: ellipsis;

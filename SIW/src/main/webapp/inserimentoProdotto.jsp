@@ -203,9 +203,9 @@
 
 						<div class="container" align="right">
 							<button type="button" class="btn " data-dismiss="modal"
-								style="border-radius: 15px">NO</button>
+								style="border-radius: 15px">Annulla</button>
 							<a href="PageLoader?id=backendAzienda"><button type="button"
-									class="btn btn-success" style="border-radius: 15px">SI</button>
+									class="btn btn-success" style="border-radius: 15px">Conferma</button>
 							</a>
 						</div>
 					</div>
