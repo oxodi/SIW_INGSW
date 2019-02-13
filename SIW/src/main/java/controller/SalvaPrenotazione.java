@@ -56,6 +56,7 @@ public class SalvaPrenotazione extends HttpServlet {
 
 			for(int it= 0; it<i.length; it++) {
 				if(it==0) {
+					System.out.println(i[it]);
 					int id_ortaggio = ortaggioDao.restituisciId(i[it]);
 					prenotazione.setId_ortaggio(id_ortaggio);
 				}else if(it==1){
