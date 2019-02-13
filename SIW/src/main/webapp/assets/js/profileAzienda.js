@@ -18,7 +18,7 @@ function mostraOrtaggi(terreno_id) {
 					      '<th>'+data[i].resa+'</th>'+
 					      '<th>'+data[i].costo+'</th>'+
 					      '<th>'+data[i].tempo+'</th>'+
-					      '<th><button type="button" class="button_modifica btn" onclick="" id=modificaOrtaggio></th>'+
+					      '<th><button type="button" class="button_modifica btn" onclick="modificaOrtaggi();" id=modifica_ortaggio></th>'+
 					      '<th><button type="button" class="button_elimina btn" id=cancellaOrtaggio></th>'+
 					      '</tr>'
 					);
@@ -112,6 +112,18 @@ $(document).ready(function() {
 	$("#annulla_prodotto").click(function() {
 		$("#info_prodotto").hide("fast");
 		$("#prodotti").show("slow");
+
+	});
+});
+
+function modificaOrtaggi() {
+	$("#containerModificaOrtaggi").hide("fast");
+	$("#formModificaOrtaggio").show("slow");
+}
+$(document).ready(function() {
+	$("#annulla_ortaggio").click(function() {
+		$("#formModificaOrtaggio").hide("fast");
+		$("#containerModificaOrtaggi").show("slow");
 
 	});
 });

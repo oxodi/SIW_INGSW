@@ -459,8 +459,78 @@
 									<button class="button buttonoverflow btn" type="submit">Salva</button>
 								</div>
 							</div>
+							<!-- modifca ortaggi terreno -->
+							<div class="container" id="formModificaOrtaggio"
+								style="display: none">
+								<div align="center">
+									<h4>Modifica dati Ortaggi</h4>
+								</div>
+								<form class="custom-form" method="post"
+									action="TerrenoOspitaOrtaggi?edit=true">
+									<div class="row" style="margin-top: 40px">
+										<div class="col-md-6 ">
+											<div class="form-row form-group" style="display: none;">
+												<div class="col-xs-2" style="display: none !important">
+													<input class="input-column" type="text" id="editOrtaggioId"
+														name="editOrtaggioId">
+												</div>
+											</div>
+											<div class="form-row form-group">
+												<div class="col-md-4">
+													<label class="label-column">Nome</label>
+												</div>
+												<div class="col-xs-2">
+													<input class="input-column" type="text" disabled="disabled"
+														id="editOrtaggioNome">
+												</div>
+											</div>
+											<br>
+											<div class="form-row form-group">
+
+												<div class="col-md-4">
+													<label class="label-column">Resa</label>
+												</div>
+												<div class="col-xs-2">
+													<input class="input-column" type="text"
+														id="editOrtaggioResa" name="editOrtaggioResa">
+												</div>
+
+											</div>
+											<br>
+										</div>
+
+										<div class="col-md-6 ">
+											<div class="form-row form-group">
+												<div class="col-md-4">
+													<label class="label-column">Costo €</label>
+												</div>
+												<div class="col-xs-2">
+													<input class="input-column" type="text"
+														id="editOrtaggioCosto" name="editOrtaggioCosto">
+												</div>
+											</div>
+											<br>
+											<div class="form-row form-group">
+												<div class="col-md-4">
+													<label class="label-column">Tempo Coltivazione</label>
+												</div>
+												<div class="col-xs-2">
+													<input class="input-column" type="text"
+														id="editOrtaggioTempo" name="editOrtaggioTempo">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div align="center">
+										<button class="button buttonoverflow btn"
+											id="annulla_ortaggio" type="button">Annulla</button>
+										<button class="button buttonoverflow btn" type="submit">Salva</button>
+									</div>
+								</form>
+							</div>
+							<!-- end modifica ortaggio -->
 						</div>
-						<!-- end modifiche -->
+						<!-- end modifiche terreno -->
 					</div>
 					<!-- end terreni -->
 
