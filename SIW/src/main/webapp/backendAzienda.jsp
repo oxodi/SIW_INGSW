@@ -15,108 +15,6 @@
 <meta charset="ISO-8859-1">
 <title>Area Azienda</title>
 
-<script src="assets/js/profileAzienda.js"></script>
-<script src="assets/js/dammiOrtaggi.js"></script>
-
-<script>
-	$(function() {
-		$("#navbar").load("navBarAreaAziende.jsp");
-		$("#footer").load("footer.jsp");
-	});
-</script>
-
-<script>
-	function edit(id, locazione, dim, dimSerra, costo, servizioC, servizioP,
-			periodo) {
-		$("#editFormId").val(id);
-		$("#editFormLocazione").val(locazione);
-		$("#editFormDimensione").val(dim);
-		$("#editFormDimensioneSerra").val(dimSerra);
-		$("#editFormCosto").val(costo);
-		if (servizioC === 'true') {
-			$("#editCheckCompleto").attr('checked', true);
-		} else {
-			$("#editCheckCompleto").attr('checked', false);
-		}
-		if (servizioP === 'true') {
-			$("#editCheckParziale").attr('checked', true);
-		} else {
-			$("#editCheckParziale").attr('checked', false);
-		}
-		$('#dropdownDisponibilita').val(periodo);
-		$("#terreni").hide("fast");
-		$("#info_terreno").show("slow");
-
-	}
-</script>
-
-<script>
-	function del(id) {
-		//alert(id);
-		$('#idDaEliminare').val(id);
-
-	}
-</script>
-<script>
-	function delProdotto(id) {
-		//alert(id);
-		$('#prodottoDaEliminare').val(id);
-
-	}
-</script>
-
-<script>
-	$(document).ready(function() {
-		$("#annulla_modifica").click(function() {
-			$("#terreni").show("slow");
-			$("#info_terreno").hide("fast");
-
-		});
-	});
-</script>
-<script>
-	$(document).ready(function() {
-		$("#modificaOrtaggi").click(function() {
-			$("#formModificaTerreno").hide("fast");
-			$("#containerModificaOrtaggi").show("slow");
-			var terreno_id = $("#editFormId").val();
-			mostraOrtaggi(terreno_id)
-
-		});
-	});
-</script>
-<script>
-	$(document).ready(function() {
-		$("#annulla_ortaggi").click(function() {
-			$("#containerModificaOrtaggi").hide("fast");
-			$("#formModificaTerreno").show("slow");
-
-		});
-	});
-</script>
-<script>
-	function Prodotto(id, nome, categoria, costo, quantita, descrizione) {
-		$("#editProdottoId").val(id);
-		$("#editProdottoNome").val(nome);
-		$("#editProdottoCategoria").val(categoria);
-		$("#editProdottoCosto").val(costo);
-		$("#editProdottoDescrizione").val(descrizione);
-		$("#editProdottoQuantita").val(quantita);
-
-		$("#prodotti").hide("fast");
-		$("#info_prodotto").show("slow");
-	}
-</script>
-<script>
-	$(document).ready(function() {
-		$("#annulla_prodotto").click(function() {
-			$("#info_prodotto").hide("fast");
-			$("#prodotti").show("slow");
-
-		});
-	});
-</script>
-
 <meta charset="ISO-8859-1">
 <title>profilo azienda</title>
 </head>
@@ -522,17 +420,15 @@
 													name="editCheckCompleto" value="completo"><label>
 													Servizio Completo</label>
 											</div>
-
-
 											<br>
-
 										</div>
 									</div>
 									<div align="center">
-										<button class="button buttonoverflow btn" id="annulla_modifica" type="button">Annulla</button>
+										<button class="button buttonoverflow btn"
+											id="annulla_modifica" type="button">Annulla</button>
 										<button class="button buttonoverflow btn" type="submit">Salva</button>
-										<button class="button buttonoverflow btn" id="modificaOrtaggi" type="button">Mostra
-											ortaggi</button>
+										<button class="button buttonoverflow btn" id="modificaOrtaggi"
+											type="button">Mostra ortaggi</button>
 									</div>
 								</form>
 							</div>
@@ -542,11 +438,13 @@
 								<div class="table-responsive" id="table-scroll">
 									<table class="table table-hover" id="formModificaOrtaggi">
 										<thead>
-											<tr>
+											<tr align="center">
 												<th><strong>Nome</strong></th>
 												<th><strong>Resa</strong></th>
 												<th><strong>Prezzo</strong></th>
 												<th><strong>Tempo Coltivazione</strong></th>
+												<th><strong>Modifica</strong></th>
+												<th><strong>Elimina</strong></th>
 
 											</tr>
 										</thead>
@@ -556,7 +454,8 @@
 									</table>
 								</div>
 								<div align="center">
-									<button class="button buttonoverflow btn" id="annulla_ortaggi" type="button">Annulla</button>
+									<button class="button buttonoverflow btn" id="annulla_ortaggi"
+										type="button">Annulla</button>
 									<button class="button buttonoverflow btn" type="submit">Salva</button>
 								</div>
 							</div>
@@ -569,41 +468,40 @@
 					<div class="tab-pane" style="margin-top: 20px; margin-bottom: 50px"
 						id="imieiprodotti">
 						<div class="container-fluid" id="prodotti">
-						<div class="table-responsive">
-							<table class="table table-hover">
-								<thead>
-									<tr align="center">
-										<th>Nome</th>
-										<th>Categoria</th>
-										<th>Prezzo</th>
-										<th>Quantita'</th>
-										<th>Modifica</th>
-										<th>Elimina</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${prodotti}" var="p">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<thead>
 										<tr align="center">
-											<td>${p.nome}</td>
-											<td>${p.categoria}</td>
-											<td>${p.costoUnitario}</td>
-											<td>${p.quantita}</td>
-											<td><button class="button_modifica btn" type="button"
-													onclick="Prodotto('${p.id}','${p.nome}','${p.categoria}','${p.costoUnitario}','${p.quantita}','${p.descrizione}');"></button></td>
-
-											<td><button class="button_elimina btn"
-													data-toggle="modal" data-target="#deleteProdotto"
-													type="button" name="${p.id}"
-													onclick="delProdotto('${p.id}');"></button></td>
+											<th>Nome</th>
+											<th>Categoria</th>
+											<th>Prezzo</th>
+											<th>Quantita'</th>
+											<th>Modifica</th>
+											<th>Elimina</th>
 										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${prodotti}" var="p">
+											<tr align="center">
+												<td>${p.nome}</td>
+												<td>${p.categoria}</td>
+												<td>${p.costoUnitario}</td>
+												<td>${p.quantita}</td>
+												<td><button class="button_modifica btn" type="button"
+														onclick="Prodotto('${p.id}','${p.nome}','${p.categoria}','${p.costoUnitario}','${p.quantita}','${p.descrizione}');"></button></td>
 
-									</c:forEach>
-								</tbody>
-							</table>
+												<td><button class="button_elimina btn"
+														data-toggle="modal" data-target="#deleteProdotto"
+														type="button" name="${p.id}"
+														onclick="delProdotto('${p.id}');"></button></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 							</div>
 							<div align="center" style="margin-top: 30px">
 								<a href="inserimentoProdotto.jsp">
-									<button class="button buttonoverflow btn"  type="submit">Aggiungi
+									<button class="button buttonoverflow btn" type="submit">Aggiungi
 										Prodotto</button>
 								</a>
 							</div>
@@ -677,7 +575,8 @@
 									</div>
 									<br>
 									<div class="container-fluid" align="center">
-										<button class="button buttonoverflow btn" type="button" id="annulla_prodotto">Annulla</button>
+										<button class="button buttonoverflow btn" type="button"
+											id="annulla_prodotto">Annulla</button>
 										<button class="button buttonoverflow btn" id="buttonoverflow">Salva</button>
 									</div>
 								</form>
@@ -757,5 +656,6 @@
 	</div>
 	<!-- end modal -->
 	<div id="footer"></div>
+	<script src="assets/js/profileAzienda.js"></script>
 </body>
 </html>

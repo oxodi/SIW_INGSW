@@ -37,6 +37,7 @@ public class PrelevaOrtaggi extends HttpServlet {
 			for(int i = 0;i<listOrtaggi.size();i++)
 			{
 				JSONObject temp = new JSONObject();
+				temp.put("id", listOrtaggi.get(i).getId());
 				temp.put("nome",listOrtaggi.get(i).getNome());
 				temp.put("resa",listOrtaggi.get(i).getResa());
 				temp.put("costo",listOrtaggi.get(i).getPrezzo());
