@@ -59,6 +59,10 @@ function edit(id, locazione, dim, dimSerra, costo, servizioC, servizioP,periodo)
 		$("#editCheckParziale").attr('checked', false);
 	}
 	$('#dropdownDisponibilita').val(periodo);
+	
+	var terreno_id = $("#editFormId").val();
+	mostraOrtaggi(terreno_id)
+	
 	$("#terreni").hide("fast");
 	$("#info_terreno").show("slow");
 
@@ -85,8 +89,7 @@ $(document).ready(function() {
 	$("#modificaOrtaggi").click(function() {
 		$("#formModificaTerreno").hide("fast");
 		$("#containerModificaOrtaggi").show("slow");
-		var terreno_id = $("#editFormId").val();
-		mostraOrtaggi(terreno_id)
+		
 
 	});
 });
@@ -97,7 +100,7 @@ $(document).ready(function() {
 
 	});
 });
-function Prodotto(id, nome, categoria, costo, quantita, descrizione) {
+function prodotto(id, nome, categoria, costo, quantita, descrizione) {
 	$("#editProdottoId").val(id);
 	$("#editProdottoNome").val(nome);
 	$("#editProdottoCategoria").val(categoria);
@@ -117,13 +120,17 @@ $(document).ready(function() {
 });
 
 function modificaOrtaggi() {
-	$("#containerModificaOrtaggi").hide("fast");
+	$("#containerModificaOrtaggi").hide("slow");
+	$("#info_terreno").hide("slow");
 	$("#formModificaOrtaggio").show("slow");
+	
+	
 }
 $(document).ready(function() {
 	$("#annulla_ortaggio").click(function() {
-		$("#formModificaOrtaggio").hide("fast");
+		$("#formModificaOrtaggio").hide("slow");
 		$("#containerModificaOrtaggi").show("slow");
+		$("#info_terreno").show("slow");
 
 	});
 });

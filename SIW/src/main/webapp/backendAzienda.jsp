@@ -423,43 +423,43 @@
 											<br>
 										</div>
 									</div>
+									<!-- Ortaggi terreno -->
+									<div class="container" id="containerModificaOrtaggi"
+										style="margin-top: 20px">
+										<div align="center">
+											<h4>Ortaggi Coltivabili</h4>
+										</div>
+										<div class="table-responsive" id="table-scroll" style="margin-top: 20px">
+											<table class="table table-hover" id="formModificaOrtaggi">
+												<thead>
+													<tr align="center">
+														<th><strong>Nome</strong></th>
+														<th><strong>Resa</strong></th>
+														<th><strong>Prezzo</strong></th>
+														<th><strong>Tempo Coltivazione</strong></th>
+														<th><strong>Modifica</strong></th>
+														<th><strong>Elimina</strong></th>
+
+													</tr>
+												</thead>
+												<tbody id="items">
+
+												</tbody>
+											</table>
+										</div>
+									</div>
 									<div align="center">
 										<button class="button buttonoverflow btn"
 											id="annulla_modifica" type="button">Annulla</button>
 										<button class="button buttonoverflow btn" type="submit">Salva</button>
-										<button class="button buttonoverflow btn" id="modificaOrtaggi"
-											type="button">Mostra ortaggi</button>
 									</div>
 								</form>
 							</div>
-							<!-- Ortaggi terreno -->
-							<div class="container" id="containerModificaOrtaggi"
-								style="display: none">
-								<div class="table-responsive" id="table-scroll">
-									<table class="table table-hover" id="formModificaOrtaggi">
-										<thead>
-											<tr align="center">
-												<th><strong>Nome</strong></th>
-												<th><strong>Resa</strong></th>
-												<th><strong>Prezzo</strong></th>
-												<th><strong>Tempo Coltivazione</strong></th>
-												<th><strong>Modifica</strong></th>
-												<th><strong>Elimina</strong></th>
 
-											</tr>
-										</thead>
-										<tbody id="items">
-
-										</tbody>
-									</table>
-								</div>
-								<div align="center">
-									<button class="button buttonoverflow btn" id="annulla_ortaggi"
-										type="button">Annulla</button>
-									<button class="button buttonoverflow btn" type="submit">Salva</button>
-								</div>
-							</div>
-							<!-- modifca ortaggi terreno -->
+							
+						</div>
+						<!-- end modifiche terreno -->
+						<!-- modifca ortaggi terreno -->
 							<div class="container" id="formModificaOrtaggio"
 								style="display: none">
 								<div align="center">
@@ -529,8 +529,6 @@
 								</form>
 							</div>
 							<!-- end modifica ortaggio -->
-						</div>
-						<!-- end modifiche terreno -->
 					</div>
 					<!-- end terreni -->
 
@@ -558,7 +556,7 @@
 												<td>${p.costoUnitario}</td>
 												<td>${p.quantita}</td>
 												<td><button class="button_modifica btn" type="button"
-														onclick="Prodotto('${p.id}','${p.nome}','${p.categoria}','${p.costoUnitario}','${p.quantita}','${p.descrizione}');"></button></td>
+														onclick="prodotto('${p.id}','${p.nome}','${p.categoria}','${p.costoUnitario}','${p.quantita}','${p.descrizione}')"></button></td>
 
 												<td><button class="button_elimina btn"
 														data-toggle="modal" data-target="#deleteProdotto"
