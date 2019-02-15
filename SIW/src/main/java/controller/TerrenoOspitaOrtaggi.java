@@ -12,9 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.json.JSONObject;
+
 import entita.Azienda;
 import entita.Terreno;
+import entita.ortaggio.Ortaggio;
 import persistence.PostgresDAOFactory;
+import persistence.dao.OrtaggioDao;
 import persistence.dao.TerrenoDao;
 
 /**
@@ -108,6 +112,19 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 				   line = reader.readLine();
 				  }
 			System.out.println(jsonReceived);
+			
+			try {
+				JSONObject datiDaSalvare = new JSONObject(jsonReceived);
+				OrtaggioDao ortaggioTmp = PostgresDAOFactory.getInstance().getOrtaggioDAO();
+				Ortaggio ortaggioNew = ortaggioTmp.ortaggioSpecifico(datiDaSalvare.getInt("idOrtaggio"));
+				ortaggioNew.setId_terreno(datiDaSalvare.getInt("idTerreno"));
+				ortaggioNew.setPrezzo(datiDaSalvare.getDouble("costoOrtaggio"));
+				ortaggioNew.setTempoColtivazione(datiDaSalvare.getInt("tempoOrtaggio"));
+				
+			
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 
 		}
 		

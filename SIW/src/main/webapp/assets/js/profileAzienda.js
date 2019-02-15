@@ -45,6 +45,8 @@ function mostraOrtaggi(terreno_id) {
 			e.preventDefault();
 		//var dati = $("#editOrtaggioNome").val();
 		var nome = {
+				idTerreno: $("#editFormId").val(),
+				idOrtaggio: $("#editOrtaggioId").val(),
 				nomeOrtaggio: $("#editOrtaggioNome").val(),	
 				resaOrtaggio: $("#editOrtaggioResa").val(),
 				costoOrtaggio: $("#editOrtaggioCosto").val(),

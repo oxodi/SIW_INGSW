@@ -15,5 +15,7 @@ public interface OrtaggioDao {
 	public void cancella(Ortaggio ortaggio);
 	
 	public int restituisciId(String nome);
+	
+	public Ortaggio ortaggioSpecifico(int id);
 
 }

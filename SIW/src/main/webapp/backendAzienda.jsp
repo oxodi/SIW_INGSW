@@ -323,7 +323,7 @@
 							</div>
 						</div>
 
-						<!-- modifica -->
+						<!-- modifica terreno-->
 						<div class="container" id="info_terreno"
 							style="display: none; margin-top: 20px">
 							<div class="container" id="formModificaTerreno">
