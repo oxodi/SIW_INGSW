@@ -13,12 +13,12 @@ function mostraOrtaggi(terreno_id) {
 			for(i = 0; i < data.length;i++)
 				{
 					var $row = $('<tr align="center" >'+
-						  '<th style="display:none;">'+data[i].id+'</th>'+
-					      '<th>'+data[i].nome+'</th>'+
-					      '<th>'+data[i].resa+'</th>'+
-					      '<th>'+data[i].costo+'</th>'+
-					      '<th>'+data[i].tempo+'</th>'+
-					      '<th><button type="button" class="button_modifica btn" onclick="modificaOrtaggi();" id=modifica_ortaggio></th>'+
+						  '<th id="listaOrtaggioId'+data[i].id+'" style="display:none;">'+data[i].id+'</th>'+
+					      '<th id="listaOrtaggioNome'+data[i].id+'">'+data[i].nome+'</th>'+
+					      '<th id="listaOrtaggioResa'+data[i].id+'">'+data[i].resa+'</th>'+
+					      '<th id="listaOrtaggioCosto'+data[i].id+'">'+data[i].costo+'</th>'+
+					      '<th id="listaOrtaggioTempo'+data[i].id+'">'+data[i].tempo+'</th>'+
+					      '<th><button type="button" class="button_modifica btn" onclick="modificaOrtaggi('+data[i].id+')" id=modifica_ortaggio></th>'+
 					      '<th><button type="button" class="button_elimina btn" id=cancellaOrtaggio></th>'+
 					      '</tr>'
 					);
@@ -37,6 +37,41 @@ function mostraOrtaggi(terreno_id) {
 		}
 	});	
 }
+
+
+//function SalvaTerrenoModificato() {
+	$(document).ready(function() {
+		$("#confermaModificaOrtaggio").click(function(e) {
+			e.preventDefault();
+		//var dati = $("#editOrtaggioNome").val();
+		var nome = {
+				nomeOrtaggio: $("#editOrtaggioNome").val(),	
+				resaOrtaggio: $("#editOrtaggioResa").val(),
+				costoOrtaggio: $("#editOrtaggioCosto").val(),
+				tempoOrtaggio: $("#editOrtaggioTempo").val(),
+		};
+		alert(nome.nomeOrtaggio+" "+nome.resaOrtaggio);
+		//alert(dati);
+	$.ajax({
+		type: "POST",
+		url : "TerrenoOspitaOrtaggi?edit=false&editOrtaggio=true",
+		//data: {nomeOrtaggio: $("#editOrtaggioNome").val()},
+		contentType: "application/json; charset=utf-8",
+		dataType : "json",
+		data: JSON.stringify(nome),
+	
+		error: function(data) {
+			alert("errore");
+		},
+		success: function(data){
+			alert("tutto ok");
+		}
+		
+	});
+		});
+});	
+	
+
 $(function() {
 	$("#navbar").load("navBarAreaAziende.jsp");
 	$("#footer").load("footer.jsp");
@@ -119,10 +154,15 @@ $(document).ready(function() {
 	});
 });
 
-function modificaOrtaggi() {
+function modificaOrtaggi(id) {
 	$("#containerModificaOrtaggi").hide("slow");
 	$("#info_terreno").hide("slow");
 	$("#formModificaOrtaggio").show("slow");
+	
+	$("#editOrtaggioNome").val($('#listaOrtaggioNome'+id).text());
+	$("#editOrtaggioResa").val($('#listaOrtaggioResa'+id).text());
+	$("#editOrtaggioCosto").val($('#listaOrtaggioCosto'+id).text());
+	$("#editOrtaggioTempo").val($('#listaOrtaggioTempo'+id).text());
 	
 	
 }

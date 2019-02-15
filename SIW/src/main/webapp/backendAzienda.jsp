@@ -371,11 +371,9 @@
 														id="editFormDimensioneSerra"
 														name="editFormDimensioneSerra">
 												</div>
-
 											</div>
 											<br>
 										</div>
-
 										<div class="col-md-6 ">
 											<div class="form-row form-group">
 												<div class="col-md-4">
@@ -400,7 +398,6 @@
 														<option value="autunno">Autunno</option>
 														<option value="inverno">Inverno</option>
 														<!-- <option value="annuale">Annuale</option>  -->
-
 													</select>
 												</div>
 											</div>
@@ -439,11 +436,9 @@
 														<th><strong>Tempo Coltivazione</strong></th>
 														<th><strong>Modifica</strong></th>
 														<th><strong>Elimina</strong></th>
-
 													</tr>
 												</thead>
 												<tbody id="items">
-
 												</tbody>
 											</table>
 										</div>
@@ -454,19 +449,18 @@
 										<button class="button buttonoverflow btn" type="submit">Salva</button>
 									</div>
 								</form>
-							</div>
-
-							
+							</div>	
 						</div>
 						<!-- end modifiche terreno -->
+						
 						<!-- modifca ortaggi terreno -->
 							<div class="container" id="formModificaOrtaggio"
 								style="display: none">
 								<div align="center">
 									<h4>Modifica dati Ortaggi</h4>
 								</div>
-								<form class="custom-form" method="post"
-									action="TerrenoOspitaOrtaggi?edit=true">
+								<form class="custom-form" method="POST"
+									action="">
 									<div class="row" style="margin-top: 40px">
 										<div class="col-md-6 ">
 											<div class="form-row form-group" style="display: none;">
@@ -494,7 +488,6 @@
 													<input class="input-column" type="text"
 														id="editOrtaggioResa" name="editOrtaggioResa">
 												</div>
-
 											</div>
 											<br>
 										</div>
@@ -524,7 +517,7 @@
 									<div align="center">
 										<button class="button buttonoverflow btn"
 											id="annulla_ortaggio" type="button">Annulla</button>
-										<button class="button buttonoverflow btn" type="submit">Salva</button>
+										<button class="button buttonoverflow btn" id="confermaModificaOrtaggio" type="submit">Salva</button>
 									</div>
 								</form>
 							</div>

@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.File;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -38,13 +40,14 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 				RequestDispatcher rd = req.getRequestDispatcher("PrelevaDatiTerreno");
 				rd.forward(req, resp);
 			}
+			
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getParameter("edit").equals("true")) {
 			
-			System.out.println("Sono nell'edit");
+			System.out.println("Sono nell'edit ");
 			System.out.println("sto cambiando l'ID " + req.getParameter("editFormId"));
 			int id = Integer.parseInt(req.getParameter("editFormId"));
 			int dimensione = Integer.parseInt(req.getParameter("editFormDimensione"));
@@ -91,8 +94,25 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 			terrenoNew.aggiorna(terreno);
 			RequestDispatcher rd = req.getRequestDispatcher("PrelevaDatiTerreno");
 			rd.forward(req, resp);
-		} else {
+		} 
+		
+		else if(req.getParameter("editOrtaggio").equals("true")) {
+			System.out.println("Sono nell'edit dell'ortaggio");
+			String jsonReceived = "";
+			BufferedReader reader = new BufferedReader(new InputStreamReader(req.getInputStream()));
+			String line = reader.readLine();
+			System.out.println("Json "+line);
+			while (line != null) {
+					System.out.println("ciao"+line);
+				   jsonReceived = jsonReceived + line + "\n";
+				   line = reader.readLine();
+				  }
+			System.out.println(jsonReceived);
 
+		}
+		
+		else {
+			System.out.println("Sono nell'inserimento degli ortaggi");
 			Terreno terreno = new Terreno();
 			int dimensione = Integer.parseInt(req.getParameter("dimensione_terreno"));
 			int dimensioneSerra = Integer.parseInt(req.getParameter("dimensione_serra"));
