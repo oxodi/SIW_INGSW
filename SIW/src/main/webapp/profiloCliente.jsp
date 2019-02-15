@@ -9,15 +9,15 @@
 <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	id="bootstrap-css">
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="assets/css/backend.css">
-<link rel="stylesheet" href="assets/css/profiloCliente.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">	
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="assets/css/profiloCliente.css">
+<script src="assets/js/profiloCliente.js"></script>
+
 <title>Area Cliente</title>
 
-<script src="assets/js/profiloCliente.js"></script>
 
 <script>
 	$(function() {
