@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import entita.Prenotazione;
+import entita.ortaggio.Ortaggio;
 import persistence.dao.PrenotazioneDao;
 
 public class PrenotazioneDaoJDBC implements PrenotazioneDao {
@@ -124,7 +125,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 		try {
 			Prenotazione prenotazione;
 			PreparedStatement statement;
-			String query = "SELECT * FROM prenotazione WHERE id_cliente = ?";
+			String query = "SELECT id_terreno, id_cliente FROM prenotazione WHERE id_cliente = ? GROUP BY id_terreno, id_cliente" ;
 
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, idCliente);
@@ -135,13 +136,12 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				prenotazione = new Prenotazione();
 				prenotazione.setIdCliente(result.getInt("id_cliente"));
 				prenotazione.setIdTerreno(result.getInt("id_terreno"));
-				prenotazione.setId_ortaggio(result.getInt("id_ortaggio"));
-				prenotazione.setQuantita(result.getInt("quantita"));
-				long secs = result.getDate("data").getTime();
-				prenotazione.setDataPrenotazione(new java.util.Date(secs));
-				prenotazione.setSerra(result.getBoolean("serra"));
-				prenotazioni.add(prenotazione);
-
+//				prenotazione.setId_ortaggio(result.getInt("id_ortaggio"));
+//				prenotazione.setQuantita(result.getInt("quantita"));
+//				long secs = result.getDate("data").getTime();
+//				prenotazione.setDataPrenotazione(new java.util.Date(secs));
+//				prenotazione.setSerra(result.getBoolean("serra"));
+//				
 				prenotazioni.add(prenotazione);
 			}
 		} catch (SQLException e) {
@@ -149,6 +149,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 		} finally {
 			try {
 				connection.close();
+				
 			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
@@ -274,6 +275,38 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 			}
 		}
 		return prenotazioni;
+	}
+
+	@Override
+	public int tempoColtivazionePerTerrenoOrtaggio(int idTerreno, int idOrtaggio) {
+		Connection connection = this.dataSource.getConnection();
+		int tempoColtivazione = 0;
+		
+		try {
+		
+			PreparedStatement statement;
+			String query = "SELECT * FROM ospita WHERE id_terreno = ? AND id_ortaggio = ?";
+		
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, idTerreno);
+			statement.setInt(2, idOrtaggio);
+			
+			ResultSet result = statement.executeQuery();
+
+			if(result.next()) {
+
+				tempoColtivazione = result.getInt("tempo_coltivazione");
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return tempoColtivazione;
 	}
 
 }

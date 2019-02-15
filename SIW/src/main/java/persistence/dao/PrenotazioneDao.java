@@ -18,6 +18,10 @@ public interface PrenotazioneDao {
 	public List<Prenotazione> cercaPerClienteTerreno(int idCliente, int idTerreno);
 
 	public List<Prenotazione> cercaTutti();
+	
+	public int tempoColtivazionePerTerrenoOrtaggio(int idTerreno, int idOrtaggio);
 
 	public void cancella(Prenotazione prenotazione);
+	
+	
 }

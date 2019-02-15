@@ -74,34 +74,48 @@
 		<servlet-name>eliminaTerreno</servlet-name>
 		<servlet-class>controller.eliminaTerreno</servlet-class>
 	</servlet>
-			<servlet>
+	<servlet>
 		<description>
 		</description>
 		<display-name>DammiTerreno</display-name>
 		<servlet-name>DammiTerreno</servlet-name>
 		<servlet-class>controller.DammiTerreno</servlet-class>
 	</servlet>
-			<servlet>
-				<description>
+	<servlet>
+		<description>
 				</description>
-				<display-name>SalvaPrenotazione</display-name>
-				<servlet-name>SalvaPrenotazione</servlet-name>
-				<servlet-class>controller.SalvaPrenotazione</servlet-class>
-			</servlet>
-			<servlet>
-				<description>
+		<display-name>SalvaPrenotazione</display-name>
+		<servlet-name>SalvaPrenotazione</servlet-name>
+		<servlet-class>controller.SalvaPrenotazione</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
 				</description>
-				<display-name>CambiaPassword</display-name>
-				<servlet-name>CambiaPassword</servlet-name>
-				<servlet-class>controller.CambiaPassword</servlet-class>
-			</servlet>
-			<servlet>
-				<description>
+		<display-name>CambiaPassword</display-name>
+		<servlet-name>CambiaPassword</servlet-name>
+		<servlet-class>controller.CambiaPassword</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
 				</description>
-				<display-name>InserisciProdotto</display-name>
-				<servlet-name>InserisciProdotto</servlet-name>
-				<servlet-class>controller.InserisciProdotto</servlet-class>
-			</servlet>
+		<display-name>InserisciProdotto</display-name>
+		<servlet-name>InserisciProdotto</servlet-name>
+		<servlet-class>controller.InserisciProdotto</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+				</description>
+		<display-name>aggiornaDatiCliente</display-name>
+		<servlet-name>aggiornaDatiCliente</servlet-name>
+		<servlet-class>controller.aggiornaDatiCliente</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+				</description>
+		<display-name>DammiPrenotazioniCliente</display-name>
+		<servlet-name>DammiPrenotazioniCliente</servlet-name>
+		<servlet-class>controller.DammiPrenotazioniCliente</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -157,23 +171,31 @@
 		<servlet-name>eliminaTerreno</servlet-name>
 		<url-pattern>/eliminaTerreno</url-pattern>
 	</servlet-mapping>
-		<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>DammiTerreno</servlet-name>
 		<url-pattern>/DammiTerreno</url-pattern>
 	</servlet-mapping>
-		<servlet-mapping>
-			<servlet-name>SalvaPrenotazione</servlet-name>
-			<url-pattern>/SalvaPrenotazione</url-pattern>
-		</servlet-mapping>
-		<servlet-mapping>
-			<servlet-name>CambiaPassword</servlet-name>
-			<url-pattern>/CambiaPassword</url-pattern>
-		</servlet-mapping>
-		<servlet-mapping>
-			<servlet-name>InserisciProdotto</servlet-name>
-			<url-pattern>/InserisciProdotto</url-pattern>
-		</servlet-mapping>
-	
+	<servlet-mapping>
+		<servlet-name>SalvaPrenotazione</servlet-name>
+		<url-pattern>/SalvaPrenotazione</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CambiaPassword</servlet-name>
+		<url-pattern>/CambiaPassword</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>InserisciProdotto</servlet-name>
+		<url-pattern>/InserisciProdotto</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>aggiornaDatiCliente</servlet-name>
+		<url-pattern>/aggiornaDatiCliente</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DammiPrenotazioniCliente</servlet-name>
+		<url-pattern>/DammiPrenotazioniCliente</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>Home</welcome-file>
 	</welcome-file-list>

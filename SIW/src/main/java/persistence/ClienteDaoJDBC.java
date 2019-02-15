@@ -146,11 +146,12 @@ public class ClienteDaoJDBC implements ClienteDao {
 
 			PreparedStatement statement = connection.prepareStatement(update);
 
-			statement.setString(5, cliente.getIndirizzo());
-			statement.setString(7, cliente.getCitta());
-			statement.setString(8, cliente.getCap());
-			statement.setString(9, cliente.getProvincia());
-			statement.setString(10, cliente.getTelefono());
+			statement.setString(1, cliente.getIndirizzo());
+			statement.setString(2, cliente.getCitta());
+			statement.setString(3, cliente.getCap());
+			statement.setString(4, cliente.getProvincia());
+			statement.setString(5, cliente.getTelefono());
+			statement.setInt(6, cliente.getId());
 			
 			statement.executeUpdate();
 

@@ -31,17 +31,18 @@
 				<li class="nav-item" role="presentation"><a
 					class="nav-link text-dark" href="#"><strong>Ordina un
 							prodotto</strong></a></li>
-				<c:if test="${sessionScope.cliente == null}">			
-				<li class="nav-item" role="presentation"><a
-					class="nav-link text-dark" href="PageLoader?id=azienda"><strong>Area
-							Aziende</strong></a></li>
+				<c:if test="${sessionScope.cliente == null}">
+					<li class="nav-item" role="presentation"><a
+						class="nav-link text-dark" href="PageLoader?id=azienda"><strong>Area
+								Aziende</strong></a></li>
 				</c:if>
 				<c:if test="${sessionScope.cliente != null}">
 					<li class="nav-item" role="presentation"><a
-					class="nav-link text-dark" href="PageLoader?id=bachecaClienti"><strong>Bacheca</strong></a></li>
+						class="nav-link text-dark" href="PageLoader?id=bachecaClienti"><strong>Bacheca</strong></a></li>
 				</c:if>
-				
-				
+
+
+
 				<!-- 	<li class="dropdown nav-item"><a
 					class="dropdown-toggle nav-link" data-toggle="dropdown"
 					aria-expanded="false" href="#">Dropdown </a>
@@ -66,11 +67,15 @@
 				<a href="Login?logout=true">Logout</a> --%>
 				<ul class="nav navbar-nav" style="margin-left: 15px;">
 					<li class="nav-item" style="margin-top: 15px;">
-						<p><strong>Benvenuto, ${sessionScope.cliente.getNome()}</strong></p>
+						<p>
+							<strong>Benvenuto, ${sessionScope.cliente.getNome()}</strong>
+						</p>
 					</li>
 				</ul>
 				<div class="logout" style="margin-left: 15px;">
-				<a href="Login?logout=true"> <img src="assets/img/logout2.png"> <strong>Logout</strong> </a>
+					<a href="Login?logout=true"> <img src="assets/img/logout2.png">
+						<strong>Logout</strong>
+					</a>
 				</div>
 			</c:if>
 			<c:if test="${sessionScope.cliente == null}">

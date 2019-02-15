@@ -42,9 +42,9 @@ public class PageLoader extends HttpServlet {
 			rd.include(req, resp);
 		}
 		else if(id.equals("bachecaClienti")) {
-			RequestDispatcher rd = req.getRequestDispatcher("profiloCliente.jsp");
-			rd.include(req, resp);
-		
+			RequestDispatcher rd = req.getRequestDispatcher("DammiPrenotazioniCliente?edit=true");
+			rd.forward(req, resp);
+
 		}
 		else if(id.equals("home"))
 		{
