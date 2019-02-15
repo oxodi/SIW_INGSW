@@ -151,8 +151,12 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 				throw new PersistenceException(e3.getMessage());
 			}
 		}
+	
 	}
 
+	
+	
+	
 	@Override
 	public void cancella(Terreno terreno) {
 		Connection connection = this.dataSource.getConnection();
@@ -482,6 +486,39 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
+
+	}
+
+	@Override
+	public void aggiornaOrtaggio(Ortaggio ortaggio) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+
+			String aggiorna = "UPDATE ospita SET prezzo = ?, tempo_coltivazione = ? WHERE id_terreno = ?, id_ortaggio = ?";
+			PreparedStatement statement = connection.prepareStatement(aggiorna);
+			statement.setDouble(1, ortaggio.getPrezzo());
+			statement.setInt(2, ortaggio.getTempoColtivazione());
+			statement.setInt(3, ortaggio.getId_terreno());
+			statement.setInt(4, ortaggio.getId());
+			
+			statement.executeUpdate();
+
+		} catch (SQLException e) {
+			if (connection != null) {
+				try {
+					connection.rollback();
+				} catch (SQLException e2) {
+					throw new PersistenceException(e2.getMessage());
+				}
+			}
+		} finally {
+			try {
+				connection.close();
+			} catch (Exception e3) {
+				throw new PersistenceException(e3.getMessage());
+			}
+		}
+	
 
 	}
 }
