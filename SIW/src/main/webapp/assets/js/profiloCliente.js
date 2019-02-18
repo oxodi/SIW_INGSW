@@ -49,23 +49,31 @@ function aggiornaDati(idCliente){
 
 function mostraOrtaggi(idTerreno){
 
+	console.log(idTerreno);
 	$.ajax({
 		type: "GET",
 		url: "DammiPrenotazioniCliente?edit=false&id_terreno="+idTerreno,
 		datatype: "json",
-		//data: JSON.stringify(terreno),
 		success: function(data){
-			alert("SONO IN MOSTRA ORTAGGI"+ data);
-			for(i = 0; i < data.length;i++){
-				alert('data[i].nome');
-				
-				$('#group-of-rows-1').html("<tr>"+ 
-											"<td>"+data[i].date+"</td> " +
-											"<td>"+data[i].nome+"</td> " +
-											"<td>"+data[i].tempoColtivazione+"</td> " +
-											"<td>"+data[i].quantita+"</td> " +
-											"<td>"+data[i].serra+"</td> " +
-										"</tr");
+
+			var ortaggiPrenotati = JSON.parse(data);
+			
+			
+				for(i = 0; i < ortaggiPrenotati.length;i++)
+				{
+					var $row = $("<tr>"+ 
+							"<td>"+ortaggiPrenotati[i].date+"</td> " +
+							"<td>"+ortaggiPrenotati[i].nome+"</td> " +
+							"<td>"+ortaggiPrenotati[i].tempoColtivazione+"</td> " +
+							"<td>"+ortaggiPrenotati[i].quantita+"</td> " +
+							"<td>"+ortaggiPrenotati[i].serra+"</td> " +
+						"</tr>"
+					);
+					
+					
+					$("body").find('#group-of-rows-1'+idTerreno).append($row);
+					
+				//	$("#group-of-rows-1"+idTerreno).append($row);
 				
 				
 			}

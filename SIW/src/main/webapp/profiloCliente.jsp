@@ -308,7 +308,7 @@
 											<td>${aziende[status.index].ragioneSociale}</td>
 										</tr>
 								</tbody>
-								<tbody id="group-of-rows-1" class="collapse">
+								<tbody id="group-of-rows-1${t.id}" class="collapse">
 									<!-- <tr>
 								
 									</tr>
