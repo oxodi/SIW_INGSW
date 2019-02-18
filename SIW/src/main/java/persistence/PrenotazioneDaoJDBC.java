@@ -240,7 +240,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 	public List<Prenotazione> cercaPerClienteTerreno(int idCliente, int idTerreno) {
 		Connection connection = this.dataSource.getConnection();
 		List<Prenotazione> prenotazioni = new LinkedList<Prenotazione>();
-
+		
 		try {
 			Prenotazione prenotazione;
 			PreparedStatement statement;
@@ -261,8 +261,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 				prenotazione.setSerra(result.getBoolean("serra"));
-				prenotazioni.add(prenotazione);
-
+			
 				prenotazioni.add(prenotazione);
 			}
 		} catch (SQLException e) {

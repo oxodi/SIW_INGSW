@@ -4,8 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,9 +45,14 @@ public class DammiPrenotazioniCliente extends HttpServlet {
 		TerrenoDao terrenodao = factory.getTerrenoDAO();
 		AziendaDao aziendadao = factory.getAziendaDAO();
 		
+		DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
+		
 		
 		Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
-
+		String dataNascita = format.format(cliente.getDataDiNascita());
+		System.out.println("DATAAAAA------ : "+dataNascita);
+		
+		request.setAttribute("dataNascitaCliente", dataNascita);
 		
 		if (request.getParameter("edit").equals("true")) {
 			
@@ -61,7 +70,7 @@ public class DammiPrenotazioniCliente extends HttpServlet {
 
 			request.setAttribute("terreni", terreni);
 			request.setAttribute("aziende", aziende);
-
+			
 			RequestDispatcher rd = request.getRequestDispatcher("profiloCliente.jsp");
 			rd.forward(request, response);
 			
@@ -83,11 +92,16 @@ public class DammiPrenotazioniCliente extends HttpServlet {
 			
 			JSONArray prenotazioniJSON = new JSONArray();
 			
+			
 			for(Prenotazione pren : prenotazioniOrtaggi) {
+				
 				
 				JSONObject tmp = new JSONObject();
 				
-				tmp.put("date",pren.getDataPrenotazione());
+				Date data = pren.getDataPrenotazione();
+				
+
+				tmp.put("date",format.format(data));
 				
 				String nomeOrtaggio = ortaggiodao.cercaPerChiavePrimaria(pren.getId_ortaggio()).getNome();
 				tmp.put("nome",nomeOrtaggio);
@@ -107,7 +121,7 @@ public class DammiPrenotazioniCliente extends HttpServlet {
 				prenotazioniJSON.put(tmp);
 				
 			}
-			
+		
 			PrintWriter pw = response.getWriter();
 			pw.print(prenotazioniJSON.toString());
 			System.out.println(prenotazioniJSON.toString());

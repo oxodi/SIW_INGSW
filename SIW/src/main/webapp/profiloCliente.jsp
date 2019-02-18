@@ -76,7 +76,7 @@
 								${sessionScope.cliente.getEmail() }</li>
 							<li class="list-group-item text-left style-info"><span
 								class="pull-left"><strong>Data di nascita</strong></span>
-								${sessionScope.cliente.getDataDiNascita() }</li>
+								${dataNascitaCliente}</li>
 						</ul>
 					</div>
 				</div>
@@ -186,7 +186,7 @@
 									<div class="col-xs-2 ">
 										<input class="input-column" type="text" name="data_nascita"
 											disabled="disabled"
-											value="${sessionScope.cliente.getDataDiNascita()}">
+											value="${dataNascitaCliente}">
 									</div>
 
 								</div>
@@ -308,29 +308,19 @@
 											<td>${aziende[status.index].ragioneSociale}</td>
 										</tr>
 								</tbody>
-								<tbody id="group-of-rows-1${t.id}" class="collapse">
-									<!-- <tr>
-								
-									</tr>
+								<tbody id="group-of-rows-1${t.id}" class="collapse custom">
 									<tr>
-										<td>- child row</td>
-										<td>data 1</td>
-										<td>data 1</td>
-										<td>data 1</td>
-									</tr> -->
+										<td><strong>Data</strong></td>
+										<td><strong>Ortaggio</strong></td>
+										<td><strong>Tempo Coltivazione</strong></td>
+										<td><strong>Quantità</strong></td>
+										<td><strong>Serra</strong></td>
+									</tr>
 									
 								</tbody>
 									</c:forEach>
 							</table>
 
-
-
-							<div align="center">
-								<a href="#">
-									<button class="button btn" type="submit">Aggiungi
-										Terreno</button>
-								</a>
-							</div>
 
 						</div>
 

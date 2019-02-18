@@ -1,15 +1,15 @@
 //function Cliente(id, citta, provincia, cap, indirizzo, telefono){
-//	this.id = id;
-//	this.citta = citta;
-//	this.provincia = provincia;
-//	this.cap = cap;
-//	this.indirizzo = indirizzo;
-//	this.telefono = telefono;
+//this.id = id;
+//this.citta = citta;
+//this.provincia = provincia;
+//this.cap = cap;
+//this.indirizzo = indirizzo;
+//this.telefono = telefono;
 //}
-	
+
 
 function aggiornaDati(idCliente){
-	
+
 	var cliente = {
 			id : idCliente,
 			citta : $('#citta').val(),
@@ -18,8 +18,8 @@ function aggiornaDati(idCliente){
 			indirizzo : $('#indirizzo').val(),
 			telefono : $('#telefono').val()
 	};
-	 
-		
+
+
 	$.ajax({
 		type: "POST",
 		url: "aggiornaDatiCliente",
@@ -27,29 +27,28 @@ function aggiornaDati(idCliente){
 		data: JSON.stringify(cliente),
 		success: function(data){
 			var clienteRicevuto = JSON.parse(data);
-			
+
 			$("#provincia").text(clienteRicevuto.provincia);
 			$("#cap").text(clienteRicevuto.cap);
 			$("#citta").text(clienteRicevuto.citta);
 			$("#indirizzo").text(clienteRicevuto.indirizzo);
 			$("#telefono").text(clienteRicevuto.telefono);
-			
+
 			$("#tel").html("<strong>Telefono</strong> "+ clienteRicevuto.telefono);
 			$("#cit").html("<strong>Città</strong> "+ clienteRicevuto.citta +"("+clienteRicevuto.provincia+")");
 			$("#indi").html("<strong>Indirizzo</strong> "+ clienteRicevuto.indirizzo +" ("+ clienteRicevuto.cap+")");
-			
+
 			$('#modalSuccess').modal('show');	
-			}
-		
+		}
+
 	});
-	
+
 }
 
 
 
 function mostraOrtaggi(idTerreno){
 
-	console.log(idTerreno);
 	$.ajax({
 		type: "GET",
 		url: "DammiPrenotazioniCliente?edit=false&id_terreno="+idTerreno,
@@ -57,30 +56,41 @@ function mostraOrtaggi(idTerreno){
 		success: function(data){
 
 			var ortaggiPrenotati = JSON.parse(data);
-			
-			
-				for(i = 0; i < ortaggiPrenotati.length;i++)
-				{
-					var $row = $("<tr>"+ 
-							"<td>"+ortaggiPrenotati[i].date+"</td> " +
-							"<td>"+ortaggiPrenotati[i].nome+"</td> " +
-							"<td>"+ortaggiPrenotati[i].tempoColtivazione+"</td> " +
-							"<td>"+ortaggiPrenotati[i].quantita+"</td> " +
-							"<td>"+ortaggiPrenotati[i].serra+"</td> " +
-						"</tr>"
-					);
-					
-					
-					$("body").find('#group-of-rows-1'+idTerreno).append($row);
-					
-				//	$("#group-of-rows-1"+idTerreno).append($row);
-				
-				
-			}
 
+			var groupRows = document.getElementById("group-of-rows-1"+idTerreno);
+
+			$(groupRows).empty();
+			
+			
+			var rowIndex = "<tr>"
+								+"		<td><strong>Data</strong></td> "
+								+"		<td><strong>Ortaggio</strong></td>"
+								+"		<td><strong>Tempo Coltivazione</strong></td>"
+								+"		<td><strong>Quantità</strong></td>"
+								+"		<td><strong>Serra</strong></td>"
+								+	"</tr>";
+			
+			$(groupRows).append(rowIndex);
+			
+			for(i = 0; i < ortaggiPrenotati.length;i++)
+			{
+				var $row = $("<tr>"+ 
+						"<td>"+ortaggiPrenotati[i].date+"</td> " +
+						"<td>"+ortaggiPrenotati[i].nome+"</td> " +
+						"<td>"+ortaggiPrenotati[i].tempoColtivazione+"</td> " +
+						"<td>"+ortaggiPrenotati[i].quantita+"</td> " +
+						"<td>"+ortaggiPrenotati[i].serra+"</td> " +
+						"</tr>"
+				);
+
+				$(groupRows).append($row);
+
+			}	
+	
+			$(groupRows).collapse("toggle");
 		}
-		
+
 	});
-	
-	
+
+
 }
