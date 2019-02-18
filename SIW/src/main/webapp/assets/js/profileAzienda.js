@@ -1,3 +1,14 @@
+$(function() {
+	$("#navbar").load("navBarAreaAziende.jsp");
+	$("#footer").load("footer.jsp");
+});
+
+/**
+ * mostra una lista degli ortaggi 
+ * in base al terreno selezionato
+ * @param terreno_id
+ * @returns
+ */
 function mostraOrtaggi(terreno_id) {
 
 	$.ajax({
@@ -38,7 +49,11 @@ function mostraOrtaggi(terreno_id) {
 	});	
 }
 
-
+/**
+ * chiamata ajax per la modifica degli ortaggi
+ * prelevando i dati dalla form
+ * @returns
+ */
 //function SalvaTerrenoModificato() {
 	$(document).ready(function() {
 		$("#confermaModificaOrtaggio").click(function(e) {
@@ -50,9 +65,9 @@ function mostraOrtaggi(terreno_id) {
 				nomeOrtaggio: $("#editOrtaggioNome").val(),	
 				resaOrtaggio: $("#editOrtaggioResa").val(),
 				costoOrtaggio: $("#editOrtaggioCosto").val(),
-				tempoOrtaggio: $("#editOrtaggioTempo").val(),
+				tempoOrtaggio: $("#editOrtaggioTempo").val()
 		};
-		alert(nome.nomeOrtaggio+" "+nome.resaOrtaggio);
+		//alert(nome.nomeOrtaggio+" "+nome.idOrtaggio);
 		//alert(dati);
 	$.ajax({
 		type: "POST",
@@ -61,24 +76,27 @@ function mostraOrtaggi(terreno_id) {
 		contentType: "application/json; charset=utf-8",
 		dataType : "json",
 		data: JSON.stringify(nome),
-	
-		error: function(data) {
-			alert("errore");
-		},
 		success: function(data){
-			alert("tutto ok");
+			alert(data.success);
 		}
 		
-	});
 		});
+	});
 });	
-	
 
-$(function() {
-	$("#navbar").load("navBarAreaAziende.jsp");
-	$("#footer").load("footer.jsp");
-});
-
+/**
+ * funzione per popolare la form delle info 
+ * sul terrno
+ * @param id
+ * @param locazione
+ * @param dim
+ * @param dimSerra
+ * @param costo
+ * @param servizioC
+ * @param servizioP
+ * @param periodo
+ * @returns
+ */
 function edit(id, locazione, dim, dimSerra, costo, servizioC, servizioP,periodo) {
 	$("#editFormId").val(id);
 	$("#editFormLocazione").val(locazione);
@@ -104,16 +122,31 @@ function edit(id, locazione, dim, dimSerra, costo, servizioC, servizioP,periodo)
 	$("#info_terreno").show("slow");
 
 }
+/**
+ * funzione che setta l'id del terreno da eliminare
+ * @param id
+ * @returns
+ */
 function del(id) {
 	//alert(id);
 	$('#idDaEliminare').val(id);
 
 }
+/**
+ * funzione che setta l'id del prodotto da eliminare
+ * @param id
+ * @returns
+ */
 function delProdotto(id) {
 	//alert(id);
 	$('#prodottoDaEliminare').val(id);
 
 }
+/**
+ * funzione che fa apparire il div della lista dei terreni
+ * e nasconde la form di modifica dei dati del terreno
+ * @returns
+ */
 $(document).ready(function() {
 	$("#annulla_modifica").click(function() {
 		$("#terreni").show("slow");
@@ -122,6 +155,11 @@ $(document).ready(function() {
 	});
 });
 
+/**
+ * funzine che fa apparire la form di modifica 
+ * degli ortaggi
+ * @returns
+ */
 $(document).ready(function() {
 	$("#modificaOrtaggi").click(function() {
 		$("#formModificaTerreno").hide("fast");
@@ -130,6 +168,10 @@ $(document).ready(function() {
 
 	});
 });
+/**
+ * funzione che nasconde la modifica dell'ortaggio
+ * @returns
+ */
 $(document).ready(function() {
 	$("#annulla_ortaggi").click(function() {
 		$("#containerModificaOrtaggi").hide("fast");
@@ -137,6 +179,17 @@ $(document).ready(function() {
 
 	});
 });
+/**
+ * funzione per popolare e visualizzare la form 
+ * sulle info dei prodotti inseriti dall'azienda
+ * @param id
+ * @param nome
+ * @param categoria
+ * @param costo
+ * @param quantita
+ * @param descrizione
+ * @returns
+ */
 function prodotto(id, nome, categoria, costo, quantita, descrizione) {
 	$("#editProdottoId").val(id);
 	$("#editProdottoNome").val(nome);
@@ -148,6 +201,10 @@ function prodotto(id, nome, categoria, costo, quantita, descrizione) {
 	$("#prodotti").hide("fast");
 	$("#info_prodotto").show("slow");
 }
+/**
+ * nasconde le info dei prodotti
+ * @returns
+ */
 $(document).ready(function() {
 	$("#annulla_prodotto").click(function() {
 		$("#info_prodotto").hide("fast");
@@ -156,11 +213,17 @@ $(document).ready(function() {
 	});
 });
 
+/**
+ * funzione per popolare la form
+ * sulle info degli ortaggi
+ * @param id
+ * @returns
+ */
 function modificaOrtaggi(id) {
 	$("#containerModificaOrtaggi").hide("slow");
 	$("#info_terreno").hide("slow");
 	$("#formModificaOrtaggio").show("slow");
-	
+	$("#editOrtaggioId").val(id);
 	$("#editOrtaggioNome").val($('#listaOrtaggioNome'+id).text());
 	$("#editOrtaggioResa").val($('#listaOrtaggioResa'+id).text());
 	$("#editOrtaggioCosto").val($('#listaOrtaggioCosto'+id).text());
@@ -168,6 +231,11 @@ function modificaOrtaggi(id) {
 	
 	
 }
+/**
+ * fa nasconde la form 
+ * di modifca dell'ortaggio 
+ * @returns
+ */
 $(document).ready(function() {
 	$("#annulla_ortaggio").click(function() {
 		$("#formModificaOrtaggio").hide("slow");
@@ -176,7 +244,3 @@ $(document).ready(function() {
 
 	});
 });
-
-function formModificaOrtaggi(){
-	
-}

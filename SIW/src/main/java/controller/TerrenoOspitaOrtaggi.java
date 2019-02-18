@@ -2,6 +2,7 @@ package controller;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.File;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -107,7 +108,7 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 			String line = reader.readLine();
 			System.out.println("Json "+line);
 			while (line != null) {
-					System.out.println("ciao"+line);
+					System.out.println("Json "+line);
 				   jsonReceived = jsonReceived + line + "\n";
 				   line = reader.readLine();
 				  }
@@ -116,12 +117,23 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 			try {
 				JSONObject datiDaSalvare = new JSONObject(jsonReceived);
 				OrtaggioDao ortaggioTmp = PostgresDAOFactory.getInstance().getOrtaggioDAO();
+				System.out.println("Provo a salvare"+datiDaSalvare.getString("idOrtaggio"));
 				Ortaggio ortaggioNew = ortaggioTmp.ortaggioSpecifico(datiDaSalvare.getInt("idOrtaggio"));
 				ortaggioNew.setId_terreno(datiDaSalvare.getInt("idTerreno"));
 				ortaggioNew.setPrezzo(datiDaSalvare.getDouble("costoOrtaggio"));
 				ortaggioNew.setTempoColtivazione(datiDaSalvare.getInt("tempoOrtaggio"));
 				
-			
+				TerrenoDao terrenoTmp = PostgresDAOFactory.getInstance().getTerrenoDAO();
+				terrenoTmp.aggiornaOrtaggio(ortaggioNew);
+				System.out.println("Sto aggiornando i dati dell'ortaggio "+ortaggioNew.getId());
+				
+				JSONObject risposta = new JSONObject();
+				risposta.put("success", "I dati sono stati aggiornati");
+				PrintWriter pw = resp.getWriter();
+				pw.print(risposta.toString());
+				System.out.println(risposta);
+				pw.close();
+				
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

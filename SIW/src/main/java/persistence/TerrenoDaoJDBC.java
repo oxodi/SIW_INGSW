@@ -492,9 +492,10 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 	@Override
 	public void aggiornaOrtaggio(Ortaggio ortaggio) {
 		Connection connection = this.dataSource.getConnection();
+		
 		try {
-
-			String aggiorna = "UPDATE ospita SET prezzo = ?, tempo_coltivazione = ? WHERE id_terreno = ?, id_ortaggio = ?";
+			//connection.setAutoCommit(false);
+			String aggiorna = "UPDATE ospita SET prezzo = ?, tempo_coltivazione = ? WHERE id_terreno = ? AND id_ortaggio = ?";
 			PreparedStatement statement = connection.prepareStatement(aggiorna);
 			statement.setDouble(1, ortaggio.getPrezzo());
 			statement.setInt(2, ortaggio.getTempoColtivazione());

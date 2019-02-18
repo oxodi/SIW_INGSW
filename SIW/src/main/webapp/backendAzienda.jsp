@@ -464,7 +464,7 @@
 									<div class="row" style="margin-top: 40px">
 										<div class="col-md-6 ">
 											<div class="form-row form-group" style="display: none;">
-												<div class="col-xs-2" style="display: none !important">
+												<div class="col-xs-2" >
 													<input class="input-column" type="text" id="editOrtaggioId"
 														name="editOrtaggioId">
 												</div>
