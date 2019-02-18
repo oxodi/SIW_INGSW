@@ -25,56 +25,6 @@
 	});
 </script>
 
-<script >
- $(document).ready(function() {
-	 var numeroLattici = 0;
-	 var numeroOli = 0;
-	 var numeroVerdure = 0;
-	 var numeroFrutti = 0;
-	 var numeroVini = 0;
-	 var numeroCarni = 0;
-	 
-	 
-	 <c:forEach items="${prodotti }" var="p">
-	 	var categoria = "${p.categoria}"; 
-	 	switch (categoria) {
-		case "Latticini":
-			numeroLattici++;
-			break;
-		case "Oli e derivati":
-			numeroOli++;
-			break;
-		case "Verdure":
-			numeroVerdure++;
-			break;
-		case "Frutti":
-			numeroFrutti++;
-			break;
-		case "Vini":
-			numeroVini++;
-			break;
-		case "Carni e derivati":
-			numeroCarni++;
-			break;
-
-		default:
-			break;
-		}
-		
-	 	   
-	 </c:forEach> 
-	 
-	 document.getElementById("numeroLattici").textContent= numeroLattici;
-	 document.getElementById("numeroOli").textContent= numeroOli;
-	 document.getElementById("numeroVerdure").textContent= numeroVerdure;
-	 document.getElementById("numeroFrutti").textContent= numeroFrutti;
-	 document.getElementById("numeroVini").textContent= numeroVini;
-	 document.getElementById("numeroCarni").textContent= numeroCarni;
-	 
- });
-
-</script>
-
 </head>
 <body>
 	<!-- Start: Navigation with Button -->
@@ -117,12 +67,9 @@
 				</form>
 
 				<ul class="list-unstyled list-lg">
-					<li><a href="#">Latticini <span class="float-right badge badge-light round" id="numeroLattici"></span> </a></li>
-					<li><a href="#">Oli e derivati  <span class="float-right badge badge-light round" id="numeroOli"></span>  </a></li>
-					<li><a href="#">Verdure <span class="float-right badge badge-light round" id="numeroVerdure"></span>  </a></li>
-					<li><a href="#">Frutti <span class="float-right badge badge-light round" id="numeroFrutti"></span>  </a></li>
-					<li><a href="#">Vini <span class="float-right badge badge-light round" id="numeroVini"></span>  </a></li>
-					<li><a href="#">Carni e derivati <span class="float-right badge badge-light round" id="numeroCarni"></span>  </a></li>
+					<c:forEach items="${categorie }" var="c">
+					<li><a href="#">${c.categoria } <span class="float-right badge badge-light round" id="numeroLattici">${c.quantita }</span></a></li>
+					</c:forEach>
 				</ul>  
 			</div> <!-- card-body.// -->
 		</div> <!-- collapse .// -->
