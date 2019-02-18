@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+body {
+	background-color: black;
+	background: url("../img/weblink21.gif");
+	background-size: 100px;
+	background-attachment: fixed;
+	outline: none;
+}
+
+#divGenerale.row{
+	border-style: solid; 
+	border-radius: 25px; 
+	border-color: green;
+	padding: 3%;
+}
+
+#titolo.row{
+	width: 100%;
+	background: pink;
+}
+
+#corpo.row{
+	margin-top: 5%;
+	background: purple;
+	
+}
+
+#divFiltri.card-filter{
+	border-style: solid; 
+	border-radius: 25px; 
+	border-color: green;
+	background: yellow;
+}
+
+#prodotti.col-sm-9{
+	overflow-y: scroll;
+	max-height: 900px;
+	min-height: 900px;
+	background: brown;
+}
+
+#prodotto.card-product {
+	background: red;
+	border-style: solid; 
+	border-radius: 25px; 
+	border-color: green;
+	margin-bottom: 5%;
+}

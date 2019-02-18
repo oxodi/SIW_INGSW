@@ -18,6 +18,15 @@ public class Azienda {
 	private String provincia;
 	private String descrizioneServizi;
 	private List<Terreno> terreni;
+	private List<Prodotto> prodotti;
+
+	public List<Prodotto> getProdotti() {
+		return prodotti;
+	}
+
+	public void setProdotti(List<Prodotto> prodotti) {
+		this.prodotti = prodotti;
+	}
 
 	public Azienda() {
 	}

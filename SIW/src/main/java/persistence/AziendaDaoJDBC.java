@@ -87,7 +87,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 				azienda.setDescrizioneServizi(result.getString("descrizione"));
 				azienda.setEmail(result.getString("email"));
 				azienda.setTerreni(new TerrenoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
-
+				azienda.setProdotti(new ProdottoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -129,6 +129,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 				azienda.setDescrizioneServizi(result.getString("descrizione"));
 				azienda.setEmail(result.getString("email"));
 				azienda.setTerreni(new TerrenoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
+				azienda.setProdotti(new ProdottoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
 
 				aziende.add(azienda);
 			}
@@ -278,6 +279,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 				azienda.setDescrizioneServizi(result.getString("descrizione"));
 				azienda.setEmail(result.getString("email"));
 				azienda.setTerreni(new TerrenoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
+				azienda.setProdotti(new ProdottoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
 
 				aziende.add(azienda);
 			}
@@ -320,6 +322,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 				azienda.setDescrizioneServizi(result.getString("descrizione"));
 				azienda.setEmail(result.getString("email"));
 				azienda.setTerreni(new TerrenoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
+				azienda.setProdotti(new ProdottoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
 
 			}
 		} catch (SQLException e) {
@@ -363,6 +366,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 				azienda.setDescrizioneServizi(result.getString("descrizione"));
 				azienda.setEmail(result.getString("email"));
 				azienda.setTerreni(new TerrenoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
+				azienda.setProdotti(new ProdottoDaoJDBC(dataSource).cercaPerAzienda(result.getInt("id")));
 
 			}
 		} catch (SQLException e) {

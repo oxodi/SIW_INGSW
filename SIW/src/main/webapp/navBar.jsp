@@ -29,7 +29,7 @@
 								un terreno</strong></a></li>
 				</c:if>
 				<li class="nav-item" role="presentation"><a
-					class="nav-link text-dark" href="#"><strong>Ordina un
+					class="nav-link text-dark" href="PageLoader?id=ordinaProdotto"><strong>Ordina un
 							prodotto</strong></a></li>
 				<c:if test="${sessionScope.cliente == null}">
 					<li class="nav-item" role="presentation"><a

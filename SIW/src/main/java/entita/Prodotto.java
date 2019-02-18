@@ -9,9 +9,18 @@ public class Prodotto {
 	private int quantita;
 	private double costoUnitario;
 	private int idAzienda;
+	private String nomeAzienda;
 	
 	
 	
+	public String getNomeAzienda() {
+		return nomeAzienda;
+	}
+
+	public void setNomeAzienda(String nomeAzienda) {
+		this.nomeAzienda = nomeAzienda;
+	}
+
 	public Prodotto() {
 	}
 
