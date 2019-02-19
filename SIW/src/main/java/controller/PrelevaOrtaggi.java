@@ -50,7 +50,26 @@ public class PrelevaOrtaggi extends HttpServlet {
 			System.out.println(ortaggiJson);
 			pw.close();
 		}
-
+		else if(req.getParameter("addOrtaggio").equals("true")) {
+			JSONArray ortaggiJson = new JSONArray();
+			OrtaggioDao ortaggidao = PostgresDAOFactory.getInstance().getOrtaggioDAO();
+			List<Ortaggio> listOrtaggi = ortaggidao.cercaTutti();
+			for(int i = 0;i<listOrtaggi.size();i++)
+			{
+				JSONObject temp = new JSONObject();
+				temp.put("id", listOrtaggi.get(i).getId());
+				temp.put("nome",listOrtaggi.get(i).getNome());
+				temp.put("resa",listOrtaggi.get(i).getResa());
+				temp.put("costo",listOrtaggi.get(i).getPrezzo());
+				temp.put("tempo", listOrtaggi.get(i).getTempoColtivazione());
+				ortaggiJson.put(temp);
+			}
+			
+			PrintWriter pw = resp.getWriter();
+			pw.print(ortaggiJson.toString());
+			System.out.println(ortaggiJson);
+			pw.close();
+		}
 
 		else {
 

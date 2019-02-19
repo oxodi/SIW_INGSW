@@ -328,7 +328,7 @@
 							style="display: none; margin-top: 20px">
 							<div class="container" id="formModificaTerreno">
 								<div align="center">
-									<h4>Modifica dati Terreno</h4>
+									<h4>Informazioni sul Terreno</h4>
 								</div>
 								<form class="custom-form" method="post"
 									action="TerrenoOspitaOrtaggi?edit=true">
@@ -447,6 +447,7 @@
 										<button class="button buttonoverflow btn"
 											id="annulla_modifica" type="button">Annulla</button>
 										<button class="button buttonoverflow btn" type="submit">Salva</button>
+										<button class="button buttonoverflow btn" type="button" id="buttonAggiungiOrtaggio" onclick="funAggiungiOrtaggi()">Aggiungi Ortaggio</button>
 									</div>
 								</form>
 							</div>	
