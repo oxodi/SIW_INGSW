@@ -222,15 +222,15 @@
 							<!-- fine colonna 2 -->
 							<div class="container-fluid">
 								<div align="center" style="margin: 3%">
-									<button class="button buttonoverflow btn" data-toggle="modal"
-										data-target="#modalAnnullamento" type="button">Annulla</button>
+									<button class="button buttonoverflow btn" data-toggle="modal" 
+									data-target="#modalAnnullamento" type="button">Annulla</button>
 
 									<button class="button buttonoverflow btn" id="avanti"
 										type="button" style="word-spacing: 4px" onclick="Controllo()">Avanti
 										▶</button>
 
 								</div>
-							</div>
+							</div> 
 						</div>
 					</div>
 					<div class="container" id="inserimento_file" style="display: none">

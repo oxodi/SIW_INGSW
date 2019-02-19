@@ -17,6 +17,8 @@
 
 <link rel="stylesheet" href="assets/css/registration.min.css">
 <link rel="stylesheet" href="assets/css/inserimentoTerreno.css">
+<link rel="stylesheet" href="assets/css/inserimentoProdotto.css">
+<link rel="stylesheet" href="assets/css/backend.css">
 <script src="assets/js/jquery.min.js"></script>
 <!-- Script for load Navigation Bar -->
 <script>
@@ -32,7 +34,6 @@
 		$("#validazioneQuantita").text($("#quantita").val());
 		$("#validazioneCosto").text($("#costo").val());
 		$("#validazioneDescrizione").text($("#descrizione").val());
-
 
 	};
 </script>
@@ -62,68 +63,74 @@
 	<!-- Start: Navigation with Button -->
 	<div id="navbar"></div>
 	<!-- End: Navigation with Button -->
-	<div class="row register-form" style="width: 100%">
-		<div class="col-md-10 offset-md-1">
-			<form class="custom-form" method="post"
-				action="InserisciProdotto?edit=false">
-				<div id="inserimento">
-					<h1>Inserimento Prodotto</h1>
-					<div class="row">
-						<!-- colonna 1  -->
-						<div class="col-md-6 ">
-							<div class="form-row form-group">
-								<div class="col-md-4" align="left">
-									<label class="label-column">Nome</label>
-								</div>
-								<div class="col-xs-2">
-									<input class="input-column" type="text" name="nome" id="nome"
-										placeholder="">
-								</div>
-							</div>
-							<div class="form-row form-group">
-								<div class="col-md-4" align="left">
-									<label class="label-column">Categoria</label>
-								</div>
-								<div class="col-xs-2">
-									<input class="input-column" type="text" name="categoria"
-										id="categoria" placeholder="">
-								</div>
-							</div>
-							<div class="form-row form-group">
-								<div class="col-md-4" align="left">
-									<label class="label-column">Quantità</label>
-								</div>
-								<div class="col-xs-2">
-									<input class="input-column" type="text" name="quantita"
-										id="quantita" placeholder="">
-								</div>
-							</div>
-							<div class="form-row form-group">
-								<div class="col-md-4" align="left">
-									<label class="label-column">Costo</label>
-								</div>
-								<div class="col-xs-2">
-									<input class="input-column" type="text" name="costo" id="costo"
-										placeholder="">
-								</div>
-							</div>
-						</div>
-						<!-- fine colonna 1 -->
-						<!-- colonna 2 -->
-						<div class="col-md-6">
-									<div class="form-group">
-										<label for="comment">Descrizione:</label>
-										<textarea class="form-control input-column" rows="8" id="descrizione" name="descrizione"></textarea>
+	<div class="container-fluid border-profile-prodotto">
+		<div class="row register-form-prodotto">
+			<div class="col-md-auto" style="width: 100%">
+				<form class="custom-form" method="post"
+					action="InserisciProdotto?edit=false">
+					<div id="inserimento">
+						<h1 style="overflow: auto;">Inserimento Prodotto</h1>
+						<div class="row">
+							<!-- colonna 1  -->
+							<div class="col-md-6 ">
+								<div class="form-row form-group">
+									<div class="col-md-4" align="left">
+										<label class="label-column">Nome</label>
 									</div>
-						</div>
+									<div class="col-xs-2">
+										<input class="input-column" type="text" name="nome" id="nome"
+											placeholder="">
+									</div>
+								</div>
+								<br>
+								<div class="form-row form-group">
+									<div class="col-md-4" align="left">
+										<label class="label-column">Categoria</label>
+									</div>
+									<div class="col-xs-2">
+										<input class="input-column" type="text" name="categoria"
+											id="categoria" placeholder="">
+									</div>
+								</div>
+								<br>
+								<div class="form-row form-group">
+									<div class="col-md-4" align="left">
+										<label class="label-column">Quantità</label>
+									</div>
+									<div class="col-xs-2">
+										<input class="input-column" type="text" name="quantita"
+											id="quantita" placeholder="">
+									</div>
+								</div>
+								<br>
+								<div class="form-row form-group">
+									<div class="col-md-4" align="left">
+										<label class="label-column">Costo €</label>
+									</div>
+									<div class="col-xs-2">
+										<input class="input-column" type="text" name="costo"
+											id="costo" placeholder="">
+									</div>
+								</div>
+							</div>
+							<!-- fine colonna 1 -->
+							<!-- colonna 2 -->
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="comment">Descrizione:</label>
+										<textarea class="form-control"
+										style="margin-left: auto; margin-right: auto; resize: none; border: 2px green solid; border-radius: 15px; background-color: #cfc7af"
+										rows="8"  name="formDescrizione"></textarea>
+								</div>
+							</div>
 							<!-- fine colonna 2 -->
 							<div class="container">
 								<div align="center">
-									<button class="button btn" data-toggle="modal"
-										data-target="#modalAnnullamento" type="button">Annulla</button>
+									<button class="button buttonoverflow btn" data-toggle="modal"
+										data-target="#annullamentoProdotto" type="button">Annulla</button>
 
-									<button class="button btn" id="avanti" type="button"
-										style="word-spacing: 4px">Avanti ▶</button>
+									<button class="button buttonoverflow btn" id="avanti"
+										type="button" style="word-spacing: 4px">Avanti ▶</button>
 
 								</div>
 							</div>
@@ -151,8 +158,7 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td class="input" id="validazioneNome" scope="row">
-											</td>
+											<td class="input" id="validazioneNome" scope="row"></td>
 											<td class="input" id="validazioneCategoria" scope="row"></td>
 											<td class="input" id="validazioneQuantita" scope="row">
 											</td>
@@ -183,38 +189,36 @@
 
 						</div>
 					</div>
-			</form>
-		</div>
-		<div id="modalAnnullamento" class="modal fade" role="dialog"
-			style="z-index: 2500; border-radius: 25px">
-
-			<div class="modal-dialog" style="border: 2px green solid">
-
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title">Conferma Annullamento</h4>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-					<div class="modal-body">
-						<p>Sei sicuro di voler annullare l'inserimento?</p>
-					</div>
-					<div class="modal-footer">
-
-						<div class="container" align="right">
-							<button type="button" class="btn " data-dismiss="modal"
-								style="border-radius: 15px">Annulla</button>
-							<a href="PageLoader?id=backendAzienda"><button type="button"
-									class="btn btn-success" style="border-radius: 15px">Conferma</button>
-							</a>
-						</div>
-					</div>
-				</div>
-
+				</form>
 			</div>
 		</div>
 	</div>
-
+	
+	<div id="annullamentoProdotto" class="modal fade" role="dialog"
+		style="z-index: 2500; border-radius: 25px">
+		<div class="modal-dialog" style="border: 2px green solid">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Conferma Annullamento</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>Sei sicuro di voler annullare l'inserimento?</p>
+				</div>
+				<div class="modal-footer">
+						<div class="container" align="right">
+							<button type="button" class="btn" style="border-radius: 15px"
+								data-dismiss="modal" id="buttonoverflow">Annulla</button>
+							<a href="PageLoader?id=backendAzienda"><button type="button"
+										class="btn btn-success"
+										style="font: bold; border-radius: 15px">Conferma</button> </a>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end modal -->
 	<!-- End: Article List -->
 	<!-- Start: footer -->
 	<div id="footer"></div>
