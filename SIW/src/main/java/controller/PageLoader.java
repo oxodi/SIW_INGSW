@@ -1,7 +1,6 @@
+
 package controller;
-
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -71,7 +70,7 @@ public class PageLoader extends HttpServlet {
 		else if(id.equals("inserimentoTerreno")) {
 			if(req.getSession().getAttribute("azienda") != null)
 			{
-				RequestDispatcher rd = req.getRequestDispatcher("PrelevaOrtaggi?edit=false");
+				RequestDispatcher rd = req.getRequestDispatcher("PrelevaOrtaggi?edit=false&addOrtaggio=false");
 				rd.forward(req, resp);
 			}
 			else

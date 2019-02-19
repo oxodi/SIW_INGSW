@@ -1,4 +1,3 @@
-
 //Intercetta il click sul Tab Pane
 //$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 //    var target = $(e.target).attr("href");
@@ -14,20 +13,91 @@ function annullaAddOrtaggio(){
 	$('#divAddOrtaggio').remove();
 	$('#info_terreno').show('slow');
 }
-
+//Cancella l'ortaggio selezionato nella tab di modifica terreno
+function cancellaOrtaggio(idTerreno,idOrtaggio){
+		var $modal = ('<div id="modalCancellaOrtaggio" class="modal fade" role="dialog" style="z-index: 2500; border-radius: 25px">'+
+						'<div class="modal-dialog" style="border: 2px green solid">'+
+							'<div class="modal-content">'+
+								'<div class="modal-header">'+
+									'<h4 class="modal-title">Elimina Ortaggio</h4>'+
+									'<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+								'</div>'+
+											'<div class="modal-body">'+
+												'<p>Sei sicuro di voler eliminare questo ortaggio?</p>'+
+											'</div>'+
+											'<div class="modal-footer">'+
+													'<div class="container" align="right">'+
+														'<button type="button" class="btn" style="border-radius: 15px" data-dismiss="modal" id="buttonoverflow">Annulla</button>'+
+														'<button type="button" class="btn btn-success" style="border-radius: 15px" id="btnConfermaCancellaOrtaggio">Conferma</button>'+
+													'</div>'+
+												'</div>'+
+											'</div>'+
+										'</div>'+
+									'</div>'						
+					)
+					$(document).ready(function(){
+						  $('body').append($modal);
+						  $('#modalCancellaOrtaggio').modal('show');
+						});
+		
+					$(document).ready(function() {
+						$("#btnConfermaCancellaOrtaggio").click(function(e) {
+							$('#modalCancellaOrtaggio').modal('hide');
+							$.ajax({
+								url: 'TerrenoOspitaOrtaggi?delete=true&deleteOrtaggio&idTerreno='+idTerreno+'&idOrtaggio='+idOrtaggio,
+								method: 'GET',
+								error: function() {
+									alert("si è verificato un errore");
+								},
+								success : function(data) {
+									$('#modalCancellaOrtaggio').remove();
+									$("#info_terreno").show("slow");
+									mostraOrtaggi($("#editFormId").val());
+									var allerta = $('<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertConferma">'+
+												'<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+												'<span aria-hidden="true">&times;</span>'+
+												'</button>'+
+												'<strong>Perfetto! ortaggio cancellato'+
+												'</div>'
+										);
+									$("#info_terreno").prepend(allerta);
+									$("#alertConferma").show('slow').delay(5000).fadeOut();
+								}
+							});
+						});
+					});
+		
+		
+}
 //preleva i dati se checked
-function sulcess(){
-	$('#tabella').find('input[type="checkbox"]:checked').each(
-		function() {
-			var riga = $(this).val();
-			var $row = $('<tr>' + '<th>' + $('#nome' + riga).text()
-					+ '</th>' + '<th>' + $('#prezzo' + riga).val()
-					+ '</th>' + '<th>' + $('#resa' + riga).text()
-					+ '</th>' + '<th>' + $('#tempo' + riga).val()
-					+ '</th>' + '</tr>');
-			document.body.innerHTML = $row.text();
+function salvaOrtaggi(terrenoId)
+{
+		$.ajax({
+			url: 'TerrenoOspitaOrtaggi?edit=false&editOrtaggio=false&aggiuntaOrtaggi&terrenoId='+terrenoId,
+			method: 'POST',
+			data: $("#formAddOrtaggio").serialize(),
+			error: function() {
+				alert("si è verificato un errore");
+			},
+			success : function(data) {
+				$('#divAddOrtaggio').remove();
+				//$("#containerModificaOrtaggi").show("slow");
+				$("#info_terreno").show("slow");
+				mostraOrtaggi($("#editFormId").val());
+				var allerta = $('<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertConferma">'+
+							'<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+							'<span aria-hidden="true">&times;</span>'+
+							'</button>'+
+							'<strong>Perfetto! I nuovi ortaggi sono stati aggiunti.'+
+							'</div>'
+					);
+				$("#info_terreno").prepend(allerta);
+				//$("#alertConferma").hide('slow').delay('9000');
+				$("#alertConferma").show('slow').delay(5000).fadeOut();
+			}
 		});
-	}
+
+}
 //ajax Aggiungi ortaggi a terreno pre-esistente
 function funAggiungiOrtaggi(){
 	
@@ -41,10 +111,10 @@ function funAggiungiOrtaggi(){
 		success : function(data) {
 			$("#info_terreno").hide('slow');
 			var table = $('<div class="container-fluid" id="divAddOrtaggio">'+
-							'<form class="custom-form" method="post" action="TerrenoOspitaOrtaggi?edit=false" id="formAddOrtaggio">'+
+							'<form class="custom-form" method="post" id="formAddOrtaggio">'+
 								'<div class="form-row form-group">'+
 									'<div class="table-responsive" id="table-scroll">'+
-										'<table class="table table-hover" id="tabella">'+
+										'<table class="table table-hover" id="tabAggiuntaOrtaggi">'+
 											'<thead>'+
 												'<tr>'+
 													'<th></th>'+
@@ -61,7 +131,7 @@ function funAggiungiOrtaggi(){
 									'</div>'+
 									'<div align="center">'+
 									'<button class="button buttonoverflow btn" onclick="annullaAddOrtaggio()" type="button">Annulla</button>'+
-									'<button class="button buttonoverflow btn" type="button" onclick="sulcess()" >Salva</button>'+
+									'<button class="button btn" onclick="salvaOrtaggi('+terreno_id+')" type="button">Salva</button>'+
 								'</div>'+
 						'</form>'+
 					'</div>'
@@ -70,15 +140,16 @@ function funAggiungiOrtaggi(){
 			for(var i = 0; i<data.length;i++)
 				{
 					var $row = $('<tr class="accordion-toggle" data-toggle="collapse">'+
-														'<td><input type="checkbox" value="" name="ortaggiSelezionati"></td>'+
-														'<td id="nome">'+data[i].nome+'</td>'+
-														'<td id="resa">'+data[i].resa+'</td>'+
-														'<td><input class="input-column" type="text" style="max-width: 80px" name="prezzo" id="prezzo" placeholder="prezzo"></td>'+
-														'<td><input class="input-column" type="text" style="max-width: 80px" name="tempo" id="tempo" placeholder="giorni"></td>'+
+														'<td><input type="checkbox" value="'+data[i].id+'" name="ortaggiSelezionati"></td>'+
+														'<td id="nome'+data[i].id+'">'+data[i].nome+'</td>'+
+														'<td id="resa'+data[i].id+'">'+data[i].resa+'</td>'+
+														'<td><input class="input-column" type="text" style="max-width: 80px" name="prezzo'+data[i].id+'" id="prezzo" placeholder="prezzo"></td>'+
+														'<td><input class="input-column" type="text" style="max-width: 80px" name="tempo'+data[i].id+'" id="tempo" placeholder="giorni"></td>'+
 													'</tr>'
 					)
-					$("#tabella > tbody:last").append($row);
+					$("#tabAggiuntaOrtaggi > tbody:last").append($row);
 				}
+			
 			}
 	});
 }
@@ -110,7 +181,7 @@ function mostraOrtaggi(terreno_id) {
 					      '<th id="listaOrtaggioCosto'+data[i].id+'">'+data[i].costo+'</th>'+
 					      '<th id="listaOrtaggioTempo'+data[i].id+'">'+data[i].tempo+'</th>'+
 					      '<th><button type="button" class="button_modifica btn" onclick="modificaOrtaggi('+data[i].id+')" id=modifica_ortaggio></th>'+
-					      '<th><button type="button" class="button_elimina btn" id=cancellaOrtaggio></th>'+
+					      '<th><button type="button" class="button_elimina btn" onclick="cancellaOrtaggio('+terreno_id+','+data[i].id+')"></th>'+
 					      '</tr>'
 					);
 					$('#formModificaOrtaggi> tbody:last').append($row);
@@ -229,6 +300,8 @@ function del(id) {
 	$('#idDaEliminare').val(id);
 
 }
+
+
 /**
  * funzione che setta l'id del prodotto da eliminare
  * 
