@@ -287,8 +287,8 @@
 					<div class="tab-pane" style="margin-top: 20px; margin-bottom: 50px"
 						id="prenotazioni">
 						<div class="table-responsive" id="terreni">
-							<table class="table table-hover">
-								<thead>
+							<table class="table table-hover" >
+								<thead style="background: #f7d08c">
 									<tr>
 										<th>Info</th>
 										<th>Terreno</th>
@@ -298,24 +298,17 @@
 								</thead>
 								<c:forEach items="${terreni}" var="t" varStatus="status">
 									
-								<tbody id="items">
+								<tbody id="items" style="background: #f4ddb5">
 										<tr class="clickable" data-toggle="collapse"
 											data-target="#group-of-rows-1" aria-expanded="false"
 											aria-controls="group-of-rows-1">
-											<td><a><i class="fa fa-plus" aria-hidden="true" onclick="mostraOrtaggi(${t.id})"></i></a></td>
+											<td><a><i class="fa fa-plus" aria-hidden="true" onclick="mostraOrtaggi('${t.id}','${t.periodiDisponibilita}')"></i></a></td>
 											<td>${t.id}</td>
 											<td>${t.locazione}</td>
 											<td>${aziende[status.index].ragioneSociale}</td>
 										</tr>
 								</tbody>
-								<tbody id="group-of-rows-1${t.id}" class="collapse custom">
-									<tr>
-										<td><strong>Data</strong></td>
-										<td><strong>Ortaggio</strong></td>
-										<td><strong>Tempo Coltivazione</strong></td>
-										<td><strong>Quantità</strong></td>
-										<td><strong>Serra</strong></td>
-									</tr>
+								<tbody id="group-of-rows-1${t.id}" class="collapse"> 
 									
 								</tbody>
 									</c:forEach>

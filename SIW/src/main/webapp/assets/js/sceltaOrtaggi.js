@@ -1,3 +1,39 @@
+function visualizzaOrtaggi(){
+	$("#chiudimappa").hide();
+	$("#divaprimappa").show();
+	
+	$("#mapesterno").hide("slow");
+	$("#myscegli").show("slow");
+
+}
+
+
+function apriMappa(locazione){
+
+	$("#divaprimappa").hide();
+	$("#chiudimappa").show();
+
+	
+	$("#myscegli").hide("slow");
+	$("#mapesterno").show("slow");
+
+	//var pointCenter = https://api.mapbox.com/geocoding/v5/mapbox.places/.json?access_token=pk.eyJ1IjoidmluY2V6b2JvMSIsImEiOiJjanNieXMxZ3MwMjI0NDlubWtxdjFibGswIn0._jWzMdZSVOpRdyFAHG8shA
+
+	mapboxgl.accessToken = 'pk.eyJ1IjoidmluY2V6b2JvMSIsImEiOiJjanNieXMxZ3MwMjI0NDlubWtxdjFibGswIn0._jWzMdZSVOpRdyFAHG8shA';
+	var map = new mapboxgl.Map({
+		container : 'map', // container id
+		style : 'mapbox://styles/mapbox/satellite-v9', // stylesheet location
+		center : [ 16.25,39.3], // starting position [lng, lat]
+		zoom : 16
+	// starting zoom
+	});
+	map.addControl(new mapboxgl.NavigationControl());
+}
+
+
+	
+
+
 function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTotale, dimSerra, idInput){
 	var checkbox = document.getElementById(id);
 	var	body = document.getElementById('body');

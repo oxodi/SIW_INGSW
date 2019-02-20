@@ -47,7 +47,7 @@ function aggiornaDati(idCliente){
 
 
 
-function mostraOrtaggi(idTerreno){
+function mostraOrtaggi(idTerreno, periodoColtivazione){
 
 	$.ajax({
 		type: "GET",
@@ -56,33 +56,59 @@ function mostraOrtaggi(idTerreno){
 		success: function(data){
 
 			var ortaggiPrenotati = JSON.parse(data);
-
+			var periodo = periodoColtivazione;
 			var groupRows = document.getElementById("group-of-rows-1"+idTerreno);
-
+			
+			
 			$(groupRows).empty();
 			
 			
 			var rowIndex = "<tr>"
 								+"		<td><strong>Data</strong></td> "
 								+"		<td><strong>Ortaggio</strong></td>"
-								+"		<td><strong>Tempo Coltivazione</strong></td>"
 								+"		<td><strong>Quantità</strong></td>"
-								+"		<td><strong>Serra</strong></td>"
+								+"		<td><strong>Progresso Coltivazione</strong></td>"
 								+	"</tr>";
 			
 			$(groupRows).append(rowIndex);
 			
 			for(i = 0; i < ortaggiPrenotati.length;i++)
-			{
-				var $row = $("<tr>"+ 
-						"<td>"+ortaggiPrenotati[i].date+"</td> " +
-						"<td>"+ortaggiPrenotati[i].nome+"</td> " +
-						"<td>"+ortaggiPrenotati[i].tempoColtivazione+"</td> " +
-						"<td>"+ortaggiPrenotati[i].quantita+"</td> " +
-						"<td>"+ortaggiPrenotati[i].serra+"</td> " +
-						"</tr>"
-				);
+			{		
+				
+				if(ortaggiPrenotati[i].serra === "si")
+					var serra = " (serra)";
+				else
+					var serra = "";
+				
+				if(ortaggiPrenotati[i].nome == "Terreno"){
+				
+					var $row = $("<tr>"+ 
+							"<td>"+ortaggiPrenotati[i].date+"</td> " +
+							"<td>"+ortaggiPrenotati[i].nome+"</td> " +
+							"<td>"+ortaggiPrenotati[i].quantita + serra + "</td> " +
+							"<td>"+periodo+"</td>" +
+							"</tr>"
+						
+					);
 
+				}
+				else{
+					var $row = $("<tr>"+ 
+							"<td>"+ortaggiPrenotati[i].date+"</td> " +
+							"<td>"+ortaggiPrenotati[i].nome+"</td> " +
+							"<td>"+ortaggiPrenotati[i].quantita + serra + "</td> " +
+							"<td> <div class='progress'>" +
+							"<div class='progress-bar bg-success'style='width:"+ortaggiPrenotati[i].progresso+"%'>"+ortaggiPrenotati[i].progresso+"%</div"+
+							+"</div>"+
+							"</td> " +
+							"</tr>"
+						
+					);
+					
+					
+					
+				}
+				
 				$(groupRows).append($row);
 
 			}	
@@ -92,5 +118,6 @@ function mostraOrtaggi(idTerreno){
 
 	});
 
-
+  //"<div class='progress-bar bg-success' role='progressbar' aria-valuenow="+ortaggiPrenotati[i].progresso+"aria-valuemin='0' aria-valuemax='100' style='width:"+ortaggiPrenotati[i].progresso+"%'>"+ortaggiPrenotati[i].progresso+"%</div"+
+	
 }

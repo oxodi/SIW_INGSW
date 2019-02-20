@@ -6,15 +6,25 @@
 
 <head>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<!-- <meta name="viewport"
+	content="width=device-width, initial-scale=1.0, shrink-to-fit=no"> -->
+<meta name='viewport'
+	content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
 <title>SIW</title>
 
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Lora">
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+<link
+	href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css'
+	rel='stylesheet' />
+
 <script src="assets/js/jquery.min.js"></script>
+<script
+	src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 
 <link rel="stylesheet" href="assets/css/sceltaOrtaggi.css">
 <script src="assets/js/sceltaOrtaggi.js"></script>
@@ -52,21 +62,12 @@
 
 							}
 						});
+					
+				
 			});
 </script>
 
-<!-- <script>
-$(document).ready(function() {
-	  $('.accordion-toggle').click(function(event) {
-	    if (event.target.type !== 'checkbox') {
-	      $(':checkbox', this).trigger('click');
-	    }
-	  });
-	});
-</script> -->
 
-
-</head>
 
 <body>
 	<!-- Start: Navigation with Button -->
@@ -77,18 +78,52 @@ $(document).ready(function() {
 		style="border-style: solid; border-radius: 25px; border-color: green">
 
 
+		<div class="row">
+			<div class="col-8">
 
-		<h1 style="margin: 2%; margin-bottom: 0">Terreno n°${terreno.id}
-			di ${azienda.ragioneSociale}</h1>
+				<h1 style="margin: 2%; margin-bottom: 0">Terreno
+					n°${terreno.id} di ${azienda.ragioneSociale}</h1>
+			</div>
+			
+			<!-- div apri mappa -->
+			<div class="col-4" style="margin-top: 3%" id="divaprimappa">
+				<a href="#" onclick="apriMappa('${terreno.locazione}')" id="mappa" style="margin-left: 38%; font-family: Arial, Courier; font-size: 25px; display: block; cursor: pointer">
+					<strong>Mappa</strong>
+					<i class='fas fa-map-marker-alt' style='font-size: 36px; color: #d13a04'></i>
+					
+				
+				</a>
+			</div>
+			<!-- fine div apri mappa -->
+			
+	
+			
+			<!-- div chiudi mappa -->
+			<div class="col-4" style="margin-top: 3%; display: none!important" id="chiudimappa" >
+				<a href="#" onclick="visualizzaOrtaggi()" id="chiudi" style="margin-left: 38%; font-family: Arial, Courier; font-size: 25px; display: block; cursor: pointer">
+					<strong>Chiudi</strong>
+					<i class='fas fa-times' style='font-size: 36px; color: #d13a04'></i>
+					
+				
+				</a>
+			</div>
+			<!-- fine div chiudi mappa -->
+	
+	
+			
+		</div>
+
 		<h3 style="margin: 2%; margin-top: 0; margin-left: 3%">${terreno.locazione}</h3>
+
 		<h4 id="terrenoDisp" style="margin-left: 65%; margin-bottom: -1%;"></h4>
 
 		<div class="row" style="width: 100%; margin: 0">
+		
 			<div class="scegli" style="width: 100%" id="myscegli">
 
 
 				<div class="form-row form-group" align="center"
-					style="margin-bottom: 0">
+					style="margin-bottom: 0" id="intestazione">
 
 
 					<c:choose>
@@ -167,8 +202,6 @@ $(document).ready(function() {
 				</div>
 
 
-
-
 				<div class="form-row form-group"
 					style="width: 100%; display: none !important;" id="serra">
 					<div class="table-responsive" id="table-scroll"
@@ -212,7 +245,22 @@ $(document).ready(function() {
 				</div>
 				<!-- fine div NOSERRA -->
 
+				
+			
+
+
 			</div>
+			
+			
+			<div id="mapesterno" style="display: none !important;">	
+								<!-- div mappa  -->
+			<div  id="map">
+			</div>
+			<!-- fine div mappa -->
+			</div>
+
+						
+		
 		</div>
 		<div class="soloTerreno" id="mysoloTerreno">
 

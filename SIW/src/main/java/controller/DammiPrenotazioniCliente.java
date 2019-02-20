@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,7 +51,6 @@ public class DammiPrenotazioniCliente extends HttpServlet {
 		
 		Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
 		String dataNascita = format.format(cliente.getDataDiNascita());
-		System.out.println("DATAAAAA------ : "+dataNascita);
 		
 		request.setAttribute("dataNascitaCliente", dataNascita);
 		
@@ -92,6 +92,8 @@ public class DammiPrenotazioniCliente extends HttpServlet {
 			
 			JSONArray prenotazioniJSON = new JSONArray();
 			
+			long dataCorrente = new Date().getTime();
+			TimeUnit timeUnit = TimeUnit.DAYS;
 			
 			for(Prenotazione pren : prenotazioniOrtaggi) {
 				
@@ -99,11 +101,14 @@ public class DammiPrenotazioniCliente extends HttpServlet {
 				JSONObject tmp = new JSONObject();
 				
 				Date data = pren.getDataPrenotazione();
+				long progresso = dataCorrente - pren.getDataPrenotazione().getTime();
+				long progressoGiorni = timeUnit.convert(progresso, TimeUnit.MILLISECONDS);
+				String nomeOrtaggio = ortaggiodao.cercaPerChiavePrimaria(pren.getId_ortaggio()).getNome();
+				int tempoColtivazione = prenotazionedao.tempoColtivazionePerTerrenoOrtaggio(idTerreno, pren.getId_ortaggio());
+				double progressoFinale;
 				
 
 				tmp.put("date",format.format(data));
-				
-				String nomeOrtaggio = ortaggiodao.cercaPerChiavePrimaria(pren.getId_ortaggio()).getNome();
 				tmp.put("nome",nomeOrtaggio);
 				tmp.put("quantita",pren.getQuantita());
 				
@@ -112,11 +117,16 @@ public class DammiPrenotazioniCliente extends HttpServlet {
 				else
 					tmp.put("serra", "no");
 				
-				int tempoColtivazione = prenotazionedao.tempoColtivazionePerTerrenoOrtaggio(idTerreno, pren.getId_ortaggio());
+				if(tempoColtivazione == 0) 
+					progressoFinale = 0.0;
+				else
+					progressoFinale =  (progressoGiorni * 100) / tempoColtivazione;
 				
-				System.out.println("TEMPO COLTIVAZIONE: "+tempoColtivazione);
-				tmp.put("tempoColtivazione", tempoColtivazione);
+	
+				if(progressoFinale > 100)
+					progressoFinale = 100.0;
 				
+				tmp.put("progresso", progressoFinale);
 				
 				prenotazioniJSON.put(tmp);
 				
