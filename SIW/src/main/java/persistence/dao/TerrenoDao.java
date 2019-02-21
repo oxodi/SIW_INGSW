@@ -11,6 +11,8 @@ public interface TerrenoDao {
 	public void salva(Terreno terreno);
 
 	public void aggiorna(Terreno terreno);
+	
+	public void aggiornaQuantitaPrenotata(Terreno terreno);
 
 	public void cancella(Terreno terreno);
 

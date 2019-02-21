@@ -84,15 +84,15 @@
 														<em>Completo.</em>
 														<br>
 													</c:if>
-													<b>Spazio coltivabile:</b> <em>${t.dimensione } m<sup>2</sup></em>
+													<b>Terreno prenotato:</b> <em>${t.terrenoPrenotato}/${t.dimTerreno} m<sup>2</sup></em>
 													<br>
-													<c:if test="${t.dimensioneSerra == 0}">
-														<b>Spazio in serra:</b>
+													<c:if test="${t.dimSerra == 0}">
+														<b>Serra prenotata:</b>
 														<em>Serra non presente.</em>
 														<br>
 													</c:if>
-													<c:if test="${t.dimensioneSerra > 0}">
-														<b>Spazio in serra:</b> ${t.dimensioneSerra } m<sup>2</sup>.  <br>
+													<c:if test="${t.dimSerra > 0}">
+														<b>Serra prenotata:</b> ${t.serraPrenotata}/${t.dimSerra} m<sup>2</sup>.  <br>
 													</c:if>
 
 													<b>Periodo:</b> <em>${t.periodiDisponibilita }.</em>

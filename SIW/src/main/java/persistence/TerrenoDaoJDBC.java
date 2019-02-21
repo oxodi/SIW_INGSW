@@ -31,18 +31,20 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 			int id = GestoreID.getId(connection, "terreno_id_seq", "terreno");
 			terreno.setId(id);
 
-			String insert = "INSERT INTO terreno(id, locazione, dimensione, dimensione_serra, servizio_parziale, servizio_completo, periodo_coltivazione, id_azienda, costo_terreno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String insert = "INSERT INTO terreno(id, locazione, dim_totale_terreno, dim_totale_serra, terreno_prenotato, serra_prenotata, servizio_parziale, servizio_completo, periodo_coltivazione, id_azienda, costo_terreno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setInt(1, terreno.getId());
 			statement.setString(2, terreno.getLocazione());
-			statement.setInt(3, terreno.getDimensione());
-			statement.setInt(4, terreno.getDimensioneSerra());
-			statement.setBoolean(5, terreno.isServizioParziale());
-			statement.setBoolean(6, terreno.isServizioCompleto());
-			statement.setString(7, terreno.getPeriodiDisponibilita());
-			statement.setInt(8, terreno.getIdAzienda());
-			statement.setDouble(9, terreno.getCosto());
+			statement.setInt(3, terreno.getDimTerreno());
+			statement.setInt(4, terreno.getDimSerra());
+			statement.setInt(5, 0); //inizializzo a 0 il terreno prenotato
+			statement.setInt(6, 0); //inizializzo a 0 la serra prenotata
+			statement.setBoolean(7, terreno.isServizioParziale());
+			statement.setBoolean(8, terreno.isServizioCompleto());
+			statement.setString(9, terreno.getPeriodiDisponibilita());
+			statement.setInt(10, terreno.getIdAzienda());
+			statement.setDouble(11, terreno.getCosto());
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -125,10 +127,10 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 
-			String aggiorna = "UPDATE terreno SET dimensione = ?, dimensione_serra = ?, servizio_parziale = ?, servizio_completo = ?, periodo_coltivazione = ?, costo_terreno = ? WHERE id = ?";
+			String aggiorna = "UPDATE terreno SET dim_totale_terreno = ?, dim_totale_serra = ?, servizio_parziale = ?, servizio_completo = ?, periodo_coltivazione = ?, costo_terreno = ? WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(aggiorna);
-			statement.setInt(1, terreno.getDimensione());
-			statement.setInt(2, terreno.getDimensioneSerra());
+			statement.setInt(1, terreno.getDimTerreno());
+			statement.setInt(2, terreno.getDimSerra());
 			statement.setBoolean(3, terreno.isServizioParziale());
 			statement.setBoolean(4, terreno.isServizioCompleto());
 			statement.setString(5, terreno.getPeriodiDisponibilita());
@@ -192,8 +194,10 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 				terreno = new Terreno();
 				terreno.setId(result.getInt("id"));
 				terreno.setCosto(result.getDouble("costo_terreno"));
-				terreno.setDimensione(result.getInt("dimensione"));
-				terreno.setDimensioneSerra(result.getInt("dimensione_serra"));
+				terreno.setDimTerreno(result.getInt("dim_totale_terreno"));
+				terreno.setDimSerra(result.getInt("dim_totale_serra"));
+				terreno.setTerrenoPrenotato(result.getInt("terreno_prenotato"));
+				terreno.setSerraPrenotata(result.getInt("serra_prenotata"));
 				terreno.setLocazione(result.getString("locazione"));
 				terreno.setServizioCompleto(result.getBoolean("servizio_completo"));
 				terreno.setServizioParziale(result.getBoolean("servizio_parziale"));
@@ -501,6 +505,38 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 			statement.setInt(2, ortaggio.getTempoColtivazione());
 			statement.setInt(3, ortaggio.getId_terreno());
 			statement.setInt(4, ortaggio.getId());
+			
+			statement.executeUpdate();
+
+		} catch (SQLException e) {
+			if (connection != null) {
+				try {
+					connection.rollback();
+				} catch (SQLException e2) {
+					throw new PersistenceException(e2.getMessage());
+				}
+			}
+		} finally {
+			try {
+				connection.close();
+			} catch (Exception e3) {
+				throw new PersistenceException(e3.getMessage());
+			}
+		}
+	
+
+	}
+
+	@Override
+	public void aggiornaQuantitaPrenotata(Terreno terreno) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+
+			String aggiorna = "UPDATE terreno SET terreno_prenotato = ?, serra_prenotata = ? WHERE id = ?";
+			PreparedStatement statement = connection.prepareStatement(aggiorna);
+			statement.setInt(1, terreno.getTerrenoPrenotato());
+			statement.setInt(2, terreno.getSerraPrenotata());
+			statement.setInt(7, terreno.getId());
 			
 			statement.executeUpdate();
 

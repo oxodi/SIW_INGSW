@@ -17,8 +17,10 @@ public class Terreno {
 	 */
 	private boolean servizioParziale;
 	private boolean servizioCompleto;
-	private int dimensione;// in mt2
-	private int dimensioneSerra;// in mt2
+	private int dimTerreno;// in mt2
+	private int dimSerra;// in mt2
+	private int terrenoPrenotato = 0;
+	private int serraPrenotata = 0;
 	private ArrayList<Ortaggio> ortaggi;
 	private double costo; // costo al mt2 del terreno
 	private String periodiDisponibilita;
@@ -27,14 +29,14 @@ public class Terreno {
 	public Terreno() {
 	}
 
-	public Terreno(int idAzienda, String locazione, boolean servizioParziale, boolean servizioCompleto, int dimensione,
-			int dimensioneSerra, ArrayList<Ortaggio> ortaggi, double costo, String periodiDisponobilita) {
+	public Terreno(int idAzienda, String locazione, boolean servizioParziale, boolean servizioCompleto, int dimTerreno,
+			int dimSerra, ArrayList<Ortaggio> ortaggi, double costo, String periodiDisponobilita) {
 		this.idAzienda = idAzienda;
 		this.locazione = locazione;
 		this.servizioParziale = servizioParziale;
 		this.servizioCompleto = servizioCompleto;
-		this.dimensione = dimensione;
-		this.dimensioneSerra = dimensioneSerra;
+		this.dimTerreno = dimTerreno;
+		this.dimSerra = dimSerra;
 		this.ortaggi = ortaggi;
 		this.costo = costo;
 		this.periodiDisponibilita = periodiDisponobilita;
@@ -88,12 +90,8 @@ public class Terreno {
 	 * Setta la dimensione del terreno serra e controlla che quest ultima non sia
 	 * maggiore di quella del terreno
 	 */
-	public void setDimensioneSerra(int dimensioneSerra) {
-		if (dimensioneSerra <= dimensione)
-			this.dimensioneSerra = dimensioneSerra;
-		else
-			throw new IllegalArgumentException(
-					"La dimensione del Terreno Serra non può essere maggiore di quella del terreno");
+	public void setDimSerra(int dimensioneSerra) {
+			this.dimSerra = dimensioneSerra;
 	}
 
 	public String getLocazione() {
@@ -104,16 +102,16 @@ public class Terreno {
 		this.locazione = locazione;
 	}
 
-	public int getDimensione() {
-		return dimensione;
+	public int getDimTerreno() {
+		return dimTerreno;
 	}
 
-	public void setDimensione(int dimensione) {
-		this.dimensione = dimensione;
+	public void setDimTerreno(int dimensione) {
+		this.dimTerreno = dimensione;
 	}
 
-	public int getDimensioneSerra() {
-		return dimensioneSerra;
+	public int getDimSerra() {
+		return dimSerra;
 	}
 
 	public double getCosto() {
@@ -140,11 +138,27 @@ public class Terreno {
 		this.documento = documento;
 	}
 	
+	public int getTerrenoPrenotato() {
+		return terrenoPrenotato;
+	}
+
+	public void setTerrenoPrenotato(int terrenoPrenotato) {
+		this.terrenoPrenotato = terrenoPrenotato;
+	}
+
+	public int getSerraPrenotata() {
+		return serraPrenotata;
+	}
+
+	public void setSerraPrenotata(int serraPrenotata) {
+		this.serraPrenotata = serraPrenotata;
+	}
+
 	@Override
 	public String toString() {
 		String output = "Terreno[" + this.id + ", " + this.idAzienda + ", " + this.locazione + ", "
-				+ this.servizioParziale + ", " + this.servizioCompleto + ", " + this.dimensione + ", "
-				+ this.dimensioneSerra + ", " + this.costo + ", " + this.periodiDisponibilita + "] ";
+				+ this.servizioParziale + ", " + this.servizioCompleto + ", " + this.dimTerreno + ", "
+				+ this.dimSerra + ", " + this.costo + ", " + this.periodiDisponibilita + "] ";
 
 		String output2 = toStringOrtaggi(this.ortaggi);
 		return output + output2;

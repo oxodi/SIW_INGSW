@@ -79,8 +79,8 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 
 			TerrenoDao terrenoNew = PostgresDAOFactory.getInstance().getTerrenoDAO();
 			Terreno terreno = terrenoNew.cercaPerChiavePrimaria(id);
-			terreno.setDimensione(dimensione);
-			terreno.setDimensioneSerra(dimensioneSerra);
+			terreno.setDimTerreno(dimensione);
+			terreno.setDimSerra(dimensioneSerra);
 			terreno.setCosto(costo);
 			terreno.setPeriodiDisponibilita(dispon);
 			if (parziale != null && !parziale.isEmpty()) {
@@ -100,8 +100,8 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 				terreno.setServizioCompleto(false);
 			}
 			System.out.println("Sto aggiornando... " + terreno.getId());
-			System.out.println("Sto aggiornando... " + terreno.getDimensione());
-			System.out.println("Sto aggiornando... " + terreno.getDimensioneSerra());
+			System.out.println("Sto aggiornando... " + terreno.getDimTerreno());
+			System.out.println("Sto aggiornando... " + terreno.getDimSerra());
 			System.out.println("Sto aggiornando... " + terreno.getCosto());
 			System.out.println("Sto aggiornando... " + terreno.getPeriodiDisponibilita());
 

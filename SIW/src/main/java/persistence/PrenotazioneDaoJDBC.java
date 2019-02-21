@@ -136,12 +136,7 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				prenotazione = new Prenotazione();
 				prenotazione.setIdCliente(result.getInt("id_cliente"));
 				prenotazione.setIdTerreno(result.getInt("id_terreno"));
-//				prenotazione.setId_ortaggio(result.getInt("id_ortaggio"));
-//				prenotazione.setQuantita(result.getInt("quantita"));
-//				long secs = result.getDate("data").getTime();
-//				prenotazione.setDataPrenotazione(new java.util.Date(secs));
-//				prenotazione.setSerra(result.getBoolean("serra"));
-//				
+		
 				prenotazioni.add(prenotazione);
 			}
 		} catch (SQLException e) {

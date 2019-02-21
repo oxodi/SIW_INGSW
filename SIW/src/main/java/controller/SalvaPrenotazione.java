@@ -66,16 +66,14 @@ public class SalvaPrenotazione extends HttpServlet {
 				}else if(it==4) {
 					if(i[it].equals("si")) {
 						prenotazione.setSerra(true);
-						int dimensioneTerreno = terreno.getDimensione() - quantita;
-						terreno.setDimensione(dimensioneTerreno);
-						int dimensioneSerra = terreno.getDimensioneSerra() - quantita;
-						terreno.setDimensioneSerra(dimensioneSerra);
-						terrenoDao.aggiorna(terreno);
+						int dimensioneSerra = terreno.getSerraPrenotata() + quantita;
+						terreno.setSerraPrenotata(dimensioneSerra);
+						terrenoDao.aggiornaQuantitaPrenotata(terreno);
 					} else {
 						prenotazione.setSerra(false);
-						int dimensioneTerreno = terreno.getDimensione() - quantita;
-						terreno.setDimensione(dimensioneTerreno);
-						terrenoDao.aggiorna(terreno);
+						int dimensioneTerreno = terreno.getTerrenoPrenotato() + quantita;
+						terreno.setSerraPrenotata(dimensioneTerreno);
+						terrenoDao.aggiornaQuantitaPrenotata(terreno);
 					}
 
 				}

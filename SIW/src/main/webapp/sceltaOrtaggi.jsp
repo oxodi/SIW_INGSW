@@ -41,24 +41,27 @@
 <script>
 	$(document).ready(function() {
 
-				var dimTotale = ${terreno.dimensione};
-				var dimSerra = ${terreno.dimensioneSerra};
-				var dimTerreno = dimTotale - dimSerra;
 				
-				$("#terrenoDisp").html("Disponibilità terreno: " + dimTerreno+ " m<sup>2</sup>");
+				var dimSerra = ${terreno.dimSerra};
+				var dimTerreno = ${terreno.dimTerreno};
+				
+				var terrenoPren = ${terreno.terrenoPrenotato};
+				var serraPren = ${terreno.serraPrenotata};
+				
+				$("#terrenoDisp").html("Disponibilità terreno: " +terrenoPren+ "/" +dimTerreno+ " m<sup>2</sup>");
 
 				$("#switchDiv").click(function() {
 
 							if ($(this).is(':checked')) {
 								$("#noserra").hide("slow");
 								$("#serra").show("slow");
-								$("#terrenoDisp").html("Disponibilità serra: " + dimSerra+ " m<sup>2</sup>");
+								$("#terrenoDisp").html("Disponibilità serra: " +serraPren+ "/" +dimSerra+ " m<sup>2</sup>");
 							}
 							if (!$(this).is(':checked')) {
 
 								$("#serra").hide("slow");
 								$("#noserra").show("slow");
-								$("#terrenoDisp").html("Disponibilità terreno: " + dimTerreno+ " m<sup>2</sup>");
+								$("#terrenoDisp").html("Disponibilità terreno: " +terrenoPren+ "/" +dimTerreno+ " m<sup>2</sup>");
 
 							}
 						});
@@ -66,7 +69,6 @@
 				
 			});
 </script>
-
 
 
 <body>
@@ -115,11 +117,22 @@
 
 		<h3 style="margin: 2%; margin-top: 0; margin-left: 3%">${terreno.locazione}</h3>
 
+		<div class="alert alert-success" id="alertConferma" style="display: none!important">
+  					<strong>Ortaggio inserito!</strong> 
+  		</div>
+  		
+  		<div class="alert alert-success" id="alertModifica" style="display: none!important">
+  					<strong>Quantità modificata!</strong> 
+  		</div>
+		
 		<h4 id="terrenoDisp" style="margin-left: 65%; margin-bottom: -1%;"></h4>
-
+		
 		<div class="row" style="width: 100%; margin: 0">
 		
 			<div class="scegli" style="width: 100%" id="myscegli">
+
+
+				
 
 
 				<div class="form-row form-group" align="center"
@@ -190,8 +203,7 @@
 											<td><input class="input-column" type="text"
 												style="max-width: 80px" id="${o.id}input"
 												onchange="aggiornaResocontoTerreno('${o.nome}', this.value, '${o.resa}', '${o.prezzo}', '${o.id}', 
-												'${terreno.dimensione}', '${terreno.dimensioneSerra}', this.id)">
-												<!-- 'dimensioneTerreno(${terreno.dimensione}, ${terreno.dimensioneSerra}) -->
+												'${terreno.dimTerreno}', '${terreno.terrenoPrenotato}', this.id)">
 												m<sup>2</sup></td>
 										</tr>
 									</c:if>
@@ -234,7 +246,7 @@
 											<td><input class="input-column" type="text"
 												style="max-width: 80px" id="${o.id}inputS"
 												onchange="aggiornaResocontoSerra('${o.nome}', this.value, '${o.resa}', '${o.prezzo}', '${o.id}S',
-												'${terreno.dimensioneSerra}', this.id)">
+												'${terreno.dimSerra}','${terreno.serraPrenotata}', this.id)">
 												m<sup>2</sup></td>
 										</tr>
 									</c:if>
@@ -316,7 +328,7 @@
 									<td><input class="input-column" type="text"
 										style="max-width: 80px" id="terrenoSolo"
 										onchange="aggiornaResocontoTerreno('Terreno', this.value, '-', '${terreno.costo}', 'soloTerreno', 
-												'${terreno.dimensione}', '${terreno.dimensioneSerra}', this.id)">
+												'${terreno.dimTerreno}', '${terreno.terrenoPrenotato}', this.id)">
 										m<sup>2</sup></td>
 								</tr>
 							</c:if>

@@ -13,28 +13,62 @@ function apriMappa(locazione){
 	$("#divaprimappa").hide();
 	$("#chiudimappa").show();
 
-	
+
 	$("#myscegli").hide("slow");
 	$("#mapesterno").show("slow");
 
-	//var pointCenter = https://api.mapbox.com/geocoding/v5/mapbox.places/.json?access_token=pk.eyJ1IjoidmluY2V6b2JvMSIsImEiOiJjanNieXMxZ3MwMjI0NDlubWtxdjFibGswIn0._jWzMdZSVOpRdyFAHG8shA
 
-	mapboxgl.accessToken = 'pk.eyJ1IjoidmluY2V6b2JvMSIsImEiOiJjanNieXMxZ3MwMjI0NDlubWtxdjFibGswIn0._jWzMdZSVOpRdyFAHG8shA';
-	var map = new mapboxgl.Map({
-		container : 'map', // container id
-		style : 'mapbox://styles/mapbox/satellite-v9', // stylesheet location
-		center : [ 16.25,39.3], // starting position [lng, lat]
-		zoom : 16
-	// starting zoom
+
+	var centerLocation; 
+
+	var settings = {
+			"async": true,
+			"crossDomain": true,
+			"url": "https://api.mapbox.com/geocoding/v5/mapbox.places/"+locazione+".json?access_token=pk.eyJ1IjoidmluY2V6b2JvMSIsImEiOiJjanNieXMxZ3MwMjI0NDlubWtxdjFibGswIn0._jWzMdZSVOpRdyFAHG8shA",
+			"method": "GET",
+			"headers": {}
+	}
+
+	$.ajax(settings).done(function (response) {
+		console.log(response);
+		centerLocation = response.features[0].center;
+
+		mapboxgl.accessToken = 'pk.eyJ1IjoidmluY2V6b2JvMSIsImEiOiJjanNieXMxZ3MwMjI0NDlubWtxdjFibGswIn0._jWzMdZSVOpRdyFAHG8shA';
+		var mapBox = new mapboxgl.Map({
+			container : 'map', // container id
+			style : 'mapbox://styles/mapbox/satellite-streets-v9', // stylesheet location
+			center : centerLocation, // starting position [lng, lat]
+			zoom : 13
+			// starting zoom
+		});
+		mapBox.addControl(new mapboxgl.NavigationControl());
+
+		new mapboxgl.Marker()
+		.setLngLat(centerLocation)
+		.addTo(mapBox);
+
+
+//		map.addControl(new mapboxgl.GeolocateControl({
+//			positionOptions: {
+//				enableHighAccuracy: true
+//			},
+//			trackUserLocation: true
+//		}));
+//		
+		new mapboxgl.Marker()
+		.setLngLat(centerLocation)
+		.addTo(mapBox);
+
 	});
-	map.addControl(new mapboxgl.NavigationControl());
+
+
 }
 
 
 	
 
 
-function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTotale, dimSerra, idInput){
+function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTerreno, terrenoPrenotato, idInput){
 	var checkbox = document.getElementById(id);
 	var	body = document.getElementById('body');
 	var riga; 
@@ -42,12 +76,9 @@ function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTotale, d
 	var ortaggio = document.getElementById(nome);
 	var dimInserita = calcolaDimTerreno(quantita, "no");  //"&#x2718"
 
-	var dimTerreno = dimTotale - dimSerra;
-
-
 	if (checkbox.checked){
 	
-		if(dimInserita > dimTerreno){
+		if( (dimInserita + terrenoPrenotato) > dimTerreno){
 			$('#modalError').modal('show');	
 			document.getElementById(idInput).value = '';
 		}
@@ -83,7 +114,9 @@ function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTotale, d
 
 				riga.setAttribute("id", nome);
 				
-				alert("Ortaggio inserito!")
+				//alert("Ortaggio inserito!");  
+				$("#alertConferma").show('slow').delay(3500).fadeOut();
+				
 			}else{	
 
 				for(var i = 0; i<((body.rows.length)-3); i++){
@@ -128,7 +161,8 @@ function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTotale, d
 
 					riga.setAttribute("id", nome);
 					
-					alert("Quantità modificata!")
+					$("#alertModifica").show('slow').delay(3500).fadeOut();
+					
 				}
 			}
 		}
@@ -143,7 +177,7 @@ function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTotale, d
 
 
 
-function aggiornaResocontoSerra(nome, quantita, resa, prezzo, id, dimSerra, idInput){
+function aggiornaResocontoSerra(nome, quantita, resa, prezzo, id, dimSerra, serraPrenotata, idInput){
 	var checkbox = document.getElementById(id);
 	var	body = document.getElementById('body');
 	var riga; 
@@ -152,7 +186,7 @@ function aggiornaResocontoSerra(nome, quantita, resa, prezzo, id, dimSerra, idIn
 	var dimInserita = calcolaDimSerra(quantita, "si"); //&#x2714
 
 	if (checkbox.checked){
-		if(dimInserita > dimSerra){
+		if( (dimInserita + serraPrenotata) > dimSerra){
 			$('#modalError').modal('show');
 			document.getElementById(idInput).value = '';
 		}
@@ -178,7 +212,9 @@ function aggiornaResocontoSerra(nome, quantita, resa, prezzo, id, dimSerra, idIn
 
 				riga.setAttribute("id", nome);
 				
-				alert("Ortaggio inserito!");
+				$("#alertConferma").show('slow').delay(3500).fadeOut();
+				
+				
 			}else{	
 
 				for(var i = 0; i<((body.rows.length)-3); i++){
@@ -212,7 +248,8 @@ function aggiornaResocontoSerra(nome, quantita, resa, prezzo, id, dimSerra, idIn
 
 					riga.setAttribute("id", nome);	
 					
-					alert("Quantità modificata!");
+					$("#alertModifica").show('slow').delay(3500).fadeOut();
+					
 				}
 			}
 		}
@@ -300,14 +337,14 @@ function calcolaImporti(){
 	$("#totale").html("<strong>" + (somma + ((somma/100) * 10)).toFixed(2) + "</strong>" );
 }
 
-function dimensioneTerreno(totale, serra){
-
-	var dimTotale = totale;
-	var dimSerra = serra;
-	var dimTerreno = dimTotale - dimSerra;
-
-	return dimTerreno;
-}
+//function dimensioneTerreno(totale, serra){
+//
+//	var dimTotale = totale;
+//	var dimSerra = serra;
+//	var dimTerreno = dimTotale - dimSerra;
+//
+//	return dimTerreno;
+//}
 
 
 function prova(paypal,mastercard){
