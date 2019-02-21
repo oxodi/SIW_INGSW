@@ -9,149 +9,264 @@ $(function() {
 	$("#footer").load("footer.jsp");
 });
 
-function annullaAddOrtaggio(){
+function ortaggiPrenotati(terreno) {
+	alert("info terreno" + terreno);
+	$('#listaOrtaggi' + id).empty();
+	var $table = ('<tr align="center">' + '<th>Nome</th>' + '<th>Quantità</th>'
+			+ '<th>Serra</th>' + '</tr>')
+	$('#listaOrtaggi' + terreno).append($table);
+	$.ajax({
+		url : "DammiPrenotazioneAzienda?edit=false&id_terreno=" + terreno,
+		method : "GET",
+		dataType : "json",
+
+		error : function() {
+			alert("si è verificato un errore in listaOrtaggi");
+		},
+
+		success : function(data) {
+			for (var i = 0; i < data.length; i++) {
+
+				var $row = ('<tr align="center">' + '<td>' + data[i].ortaggio
+						+ '</td>' + '<td>' + data[i].quantita + '</td>'
+						+ '<td>' + data[i].serra + '</td>')
+			}
+
+		}
+
+	});
+
+}
+
+function prenotazioniAzienda() {
+
+	$('#prenotazioni').empty();
+	var $table = ('<div class="container-fluid" id="prenotazioniAzienda">'
+			+ '<div class="form-row form-group">'
+			+ '<div class="table-responsive" id="table-scroll">'
+			+ '<table class="table table-hover" id="tabListaPrenotazioni">'
+			+ '<thead>' + '<tr align="center">' + '<th>Terreno</th>'
+			+ '<th>Cliente</th>' + '<th>Data</th>'
+			+ '<th>Dettagli Prenotazione</th>' + '</tr>' + '</thead>'
+			+ '</table>' + '</div>' + '</div>' + '</div>')
+
+	$("#prenotazioni").append($table);
+
+	var $loading = ('<div class="container-fluid" align="center" id="loading">'
+			+ '<div class="loader" role="status" >' + '</div>' + '</div>')
+	$("#prenotazioni").append($loading);
+	$
+			.ajax({
+				url : 'DammiPrenotazioneAzienda?edit=true',
+				method : 'GET',
+				dataType : "json",
+				error : function() {
+					alert("si è verificato un errore");
+				},
+
+				success : function(data) {
+
+					for (var i = 0; i < data.length; i++) {
+						var $row = ('<tbody>'
+								+ '<tr align="center" data-toggle="collapse" data-target="#listaOrtaggi'
+								+ data[i].id_terreno
+								+ '" aria-expanded="false" aria-controls="listaOrtaggi">'
+								+ '<td>'
+								+ data[i].terreno
+								+ '</td>'
+								+ '<td>'
+								+ data[i].cliente_nome
+								+ ', '
+								+ data[i].cliente_cognome
+								+ '</td>'
+								+ '<td>'
+								+ data[i].data
+								+ '</td>'
+								+ '<td><button class="button_info btn" type="button" aria-hidden="true" onclick="ortaggiPrenotati('
+								+ data[i].id_terreno + ')"></button></td>'
+								+ '</tbody>'
+								+ '<tbody class="collapse" id="listaOrtaggi'
+								+ data[i].id_terreno + '"' + '</tbody')
+						$("#tabListaPrenotazioni").append($row);
+					}
+
+					$("#loading").remove();
+
+				}
+
+			});
+
+}
+
+function annullaAddOrtaggio() {
 	$('#divAddOrtaggio').remove();
 	$('#info_terreno').show('slow');
 }
-//Cancella l'ortaggio selezionato nella tab di modifica terreno
-function cancellaOrtaggio(idTerreno,idOrtaggio){
-		var $modal = ('<div id="modalCancellaOrtaggio" class="modal fade" role="dialog" style="z-index: 2500; border-radius: 25px">'+
-						'<div class="modal-dialog" style="border: 2px green solid">'+
-							'<div class="modal-content">'+
-								'<div class="modal-header">'+
-									'<h4 class="modal-title">Elimina Ortaggio</h4>'+
-									'<button type="button" class="close" data-dismiss="modal">&times;</button>'+
-								'</div>'+
-											'<div class="modal-body">'+
-												'<p>Sei sicuro di voler eliminare questo ortaggio?</p>'+
-											'</div>'+
-											'<div class="modal-footer">'+
-													'<div class="container" align="right">'+
-														'<button type="button" class="btn" style="border-radius: 15px" data-dismiss="modal" id="buttonoverflow">Annulla</button>'+
-														'<button type="button" class="btn btn-success" style="border-radius: 15px" id="btnConfermaCancellaOrtaggio">Conferma</button>'+
-													'</div>'+
-												'</div>'+
-											'</div>'+
-										'</div>'+
-									'</div>'						
-					)
-					$(document).ready(function(){
-						  $('body').append($modal);
-						  $('#modalCancellaOrtaggio').modal('show');
-						});
-		
-					$(document).ready(function() {
-						$("#btnConfermaCancellaOrtaggio").click(function(e) {
-							$('#modalCancellaOrtaggio').modal('hide');
-							$.ajax({
-								url: 'TerrenoOspitaOrtaggi?delete=true&deleteOrtaggio&idTerreno='+idTerreno+'&idOrtaggio='+idOrtaggio,
-								method: 'GET',
-								error: function() {
-									alert("si è verificato un errore");
-								},
-								success : function(data) {
-									$('#modalCancellaOrtaggio').remove();
-									$("#info_terreno").show("slow");
-									mostraOrtaggi($("#editFormId").val());
-									var allerta = $('<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertConferma">'+
-												'<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
-												'<span aria-hidden="true">&times;</span>'+
-												'</button>'+
-												'<strong>Perfetto! ortaggio cancellato'+
-												'</div>'
-										);
-									$("#info_terreno").prepend(allerta);
-									$("#alertConferma").show('slow').delay(5000).fadeOut();
-								}
-							});
-						});
+// Cancella l'ortaggio selezionato nella tab di modifica terreno
+function cancellaOrtaggio(idTerreno, idOrtaggio) {
+	var $modal = ('<div id="modalCancellaOrtaggio" class="modal fade" role="dialog" style="z-index: 2500; border-radius: 25px">'
+			+ '<div class="modal-dialog" style="border: 2px green solid">'
+			+ '<div class="modal-content">'
+			+ '<div class="modal-header">'
+			+ '<h4 class="modal-title">Elimina Ortaggio</h4>'
+			+ '<button type="button" class="close" data-dismiss="modal">&times;</button>'
+			+ '</div>'
+			+ '<div class="modal-body">'
+			+ '<p>Sei sicuro di voler eliminare questo ortaggio?</p>'
+			+ '</div>'
+			+ '<div class="modal-footer">'
+			+ '<div class="container" align="right">'
+			+ '<button type="button" class="btn" style="border-radius: 15px" data-dismiss="modal" id="buttonoverflow">Annulla</button>'
+			+ '<button type="button" class="btn btn-success" style="border-radius: 15px" id="btnConfermaCancellaOrtaggio">Conferma</button>'
+			+ '</div>' + '</div>' + '</div>' + '</div>' + '</div>')
+	$(document).ready(function() {
+		$('body').append($modal);
+		$('#modalCancellaOrtaggio').modal('show');
+	});
+
+	$(document)
+			.ready(
+					function() {
+						$("#btnConfermaCancellaOrtaggio")
+								.click(
+										function(e) {
+											$('#modalCancellaOrtaggio').modal(
+													'hide');
+											$
+													.ajax({
+														url : 'TerrenoOspitaOrtaggi?delete=true&deleteOrtaggio&idTerreno='
+																+ idTerreno
+																+ '&idOrtaggio='
+																+ idOrtaggio,
+														method : 'GET',
+														error : function() {
+															alert("si è verificato un errore");
+														},
+														success : function(data) {
+															$(
+																	'#modalCancellaOrtaggio')
+																	.remove();
+															$("#info_terreno")
+																	.show(
+																			"slow");
+															mostraOrtaggi($(
+																	"#editFormId")
+																	.val());
+															var allerta = $('<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertConferma">'
+																	+ '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+																	+ '<span aria-hidden="true">&times;</span>'
+																	+ '</button>'
+																	+ '<strong>Perfetto! ortaggio cancellato'
+																	+ '</div>');
+															$("#info_terreno")
+																	.prepend(
+																			allerta);
+															$("#alertConferma")
+																	.show(
+																			'slow')
+																	.delay(5000)
+																	.fadeOut();
+														}
+													});
+										});
 					});
-		
-		
-}
-//preleva i dati se checked
-function salvaOrtaggi(terrenoId)
-{
-		$.ajax({
-			url: 'TerrenoOspitaOrtaggi?edit=false&editOrtaggio=false&aggiuntaOrtaggi&terrenoId='+terrenoId,
-			method: 'POST',
-			data: $("#formAddOrtaggio").serialize(),
-			error: function() {
-				alert("si è verificato un errore");
-			},
-			success : function(data) {
-				$('#divAddOrtaggio').remove();
-				//$("#containerModificaOrtaggi").show("slow");
-				$("#info_terreno").show("slow");
-				mostraOrtaggi($("#editFormId").val());
-				var allerta = $('<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertConferma">'+
-							'<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
-							'<span aria-hidden="true">&times;</span>'+
-							'</button>'+
-							'<strong>Perfetto! I nuovi ortaggi sono stati aggiunti.'+
-							'</div>'
-					);
-				$("#info_terreno").prepend(allerta);
-				//$("#alertConferma").hide('slow').delay('9000');
-				$("#alertConferma").show('slow').delay(5000).fadeOut();
-			}
-		});
 
 }
-//ajax Aggiungi ortaggi a terreno pre-esistente
-function funAggiungiOrtaggi(){
-	
-	var terreno_id = $("#editFormId").val();
-	$.ajax({
-		url : "PrelevaOrtaggi?edit=false&addOrtaggio=true",
-		dataType : 'json',
-		error : function() {
-			alert("si è verificato un errore");
-		},
-		success : function(data) {
-			$("#info_terreno").hide('slow');
-			var table = $('<div class="container-fluid" id="divAddOrtaggio">'+
-							'<form class="custom-form" method="post" id="formAddOrtaggio">'+
-								'<div class="form-row form-group">'+
-									'<div class="table-responsive" id="table-scroll">'+
-										'<table class="table table-hover" id="tabAggiuntaOrtaggi">'+
-											'<thead>'+
-												'<tr>'+
-													'<th></th>'+
-													'<th><strong>Nome</strong></th>'+
-													'<th><strong>Resa</strong></th>'+
-													'<th><strong>Prezzo (€/mt²)</strong></th>'+
-													'<th><strong>Tempo Coltivazione (giorni)</strong></th>'+
-												'</tr>'+
-											'</thead>'+
-											'<tbody id="ortaggiColtivabili">'+
-											'</tbody>'+
-										'</table>'+
-										'</div>'+
-									'</div>'+
-									'<div align="center">'+
-									'<button class="button buttonoverflow btn" onclick="annullaAddOrtaggio()" type="button">Annulla</button>'+
-									'<button class="button btn" onclick="salvaOrtaggi('+terreno_id+')" type="button">Salva</button>'+
-								'</div>'+
-						'</form>'+
-					'</div>'
-			);
-			$("#imieiterreni").append(table);
-			for(var i = 0; i<data.length;i++)
-				{
-					var $row = $('<tr class="accordion-toggle" data-toggle="collapse">'+
-														'<td><input type="checkbox" value="'+data[i].id+'" name="ortaggiSelezionati"></td>'+
-														'<td id="nome'+data[i].id+'">'+data[i].nome+'</td>'+
-														'<td id="resa'+data[i].id+'">'+data[i].resa+'</td>'+
-														'<td><input class="input-column" type="text" style="max-width: 80px" name="prezzo'+data[i].id+'" id="prezzo" placeholder="prezzo"></td>'+
-														'<td><input class="input-column" type="text" style="max-width: 80px" name="tempo'+data[i].id+'" id="tempo" placeholder="giorni"></td>'+
-													'</tr>'
-					)
-					$("#tabAggiuntaOrtaggi > tbody:last").append($row);
+// preleva i dati se checked
+function salvaOrtaggi(terrenoId) {
+	$
+			.ajax({
+				url : 'TerrenoOspitaOrtaggi?edit=false&editOrtaggio=false&aggiuntaOrtaggi&terrenoId='
+						+ terrenoId,
+				method : 'POST',
+				data : $("#formAddOrtaggio").serialize(),
+				error : function() {
+					alert("si è verificato un errore");
+				},
+				success : function(data) {
+					$('#divAddOrtaggio').remove();
+					// $("#containerModificaOrtaggi").show("slow");
+					$("#info_terreno").show("slow");
+					mostraOrtaggi($("#editFormId").val());
+					var allerta = $('<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertConferma">'
+							+ '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+							+ '<span aria-hidden="true">&times;</span>'
+							+ '</button>'
+							+ '<strong>Perfetto! I nuovi ortaggi sono stati aggiunti.'
+							+ '</div>');
+					$("#info_terreno").prepend(allerta);
+					// $("#alertConferma").hide('slow').delay('9000');
+					$("#alertConferma").show('slow').delay(5000).fadeOut();
 				}
-			
-			}
-	});
+			});
+
+}
+// ajax Aggiungi ortaggi a terreno pre-esistente
+function funAggiungiOrtaggi() {
+
+	var terreno_id = $("#editFormId").val();
+	$
+			.ajax({
+				url : "PrelevaOrtaggi?edit=false&addOrtaggio=true",
+				dataType : 'json',
+				error : function() {
+					alert("si è verificato un errore");
+				},
+				success : function(data) {
+					$("#info_terreno").hide('slow');
+					var table = $('<div class="container-fluid" id="divAddOrtaggio">'
+							+ '<form class="custom-form" method="post" id="formAddOrtaggio">'
+							+ '<div class="form-row form-group">'
+							+ '<div class="table-responsive" id="table-scroll">'
+							+ '<table class="table table-hover" id="tabAggiuntaOrtaggi">'
+							+ '<thead>'
+							+ '<tr>'
+							+ '<th></th>'
+							+ '<th><strong>Nome</strong></th>'
+							+ '<th><strong>Resa</strong></th>'
+							+ '<th><strong>Prezzo (€/mt²)</strong></th>'
+							+ '<th><strong>Tempo Coltivazione (giorni)</strong></th>'
+							+ '</tr>'
+							+ '</thead>'
+							+ '<tbody id="ortaggiColtivabili">'
+							+ '</tbody>'
+							+ '</table>'
+							+ '</div>'
+							+ '</div>'
+							+ '<div align="center">'
+							+ '<button class="button buttonoverflow btn" onclick="annullaAddOrtaggio()" type="button">Annulla</button>'
+							+ '<button class="button btn" onclick="salvaOrtaggi('
+							+ terreno_id
+							+ ')" type="button">Salva</button>'
+							+ '</div>' + '</form>' + '</div>');
+					$("#imieiterreni").append(table);
+					for (var i = 0; i < data.length; i++) {
+						var $row = $('<tr class="accordion-toggle" data-toggle="collapse">'
+								+ '<td><input type="checkbox" value="'
+								+ data[i].id
+								+ '" name="ortaggiSelezionati"></td>'
+								+ '<td id="nome'
+								+ data[i].id
+								+ '">'
+								+ data[i].nome
+								+ '</td>'
+								+ '<td id="resa'
+								+ data[i].id
+								+ '">'
+								+ data[i].resa
+								+ '</td>'
+								+ '<td><input class="input-column" type="text" style="max-width: 80px" name="prezzo'
+								+ data[i].id
+								+ '" id="prezzo" placeholder="prezzo"></td>'
+								+ '<td><input class="input-column" type="text" style="max-width: 80px" name="tempo'
+								+ data[i].id
+								+ '" id="tempo" placeholder="giorni"></td>'
+								+ '</tr>')
+						$("#tabAggiuntaOrtaggi > tbody:last").append($row);
+					}
+
+				}
+			});
 }
 
 /**
@@ -162,43 +277,70 @@ function funAggiungiOrtaggi(){
  */
 function mostraOrtaggi(terreno_id) {
 
-	$.ajax({
-		url : "PrelevaOrtaggi?edit=true&addOrtaggio=false&editFormId="+terreno_id,
-		dataType : 'json',
-		error : function() {
-			alert("si è verificato un errore");
-		},
-		success : function(data) {
-			// alert(JSON.stringify(data));
-			// var x = JSON.parse(data);
-			$('#formModificaOrtaggi> tbody').empty();
-			for(i = 0; i < data.length;i++)
-				{
-					var $row = $('<tr align="center" >'+
-						  '<th id="listaOrtaggioId'+data[i].id+'" style="display:none;">'+data[i].id+'</th>'+
-					      '<th id="listaOrtaggioNome'+data[i].id+'">'+data[i].nome+'</th>'+
-					      '<th id="listaOrtaggioResa'+data[i].id+'">'+data[i].resa+'</th>'+
-					      '<th id="listaOrtaggioCosto'+data[i].id+'">'+data[i].costo+'</th>'+
-					      '<th id="listaOrtaggioTempo'+data[i].id+'">'+data[i].tempo+'</th>'+
-					      '<th><button type="button" class="button_modifica btn" onclick="modificaOrtaggi('+data[i].id+')" id=modifica_ortaggio></th>'+
-					      '<th><button type="button" class="button_elimina btn" onclick="cancellaOrtaggio('+terreno_id+','+data[i].id+')"></th>'+
-					      '</tr>'
-					);
-					$('#formModificaOrtaggi> tbody:last').append($row);
-			}
-// var colHeader = Object.keys(data[0]);
-//
-// for(var i=0; i<3; i++){
-// $('#formModificaOrtaggi> tbody').append('<tr></tr>')
-// for(var j= 0; j<colHeader.length; j++){
-// $('#formModificaOrtaggi> tbody tr').append('<td>' + data[i][colHeader[j]] +
-// '</td>');
-// }
-// }
-//			
-//			
-		}
-	});	
+	$
+			.ajax({
+				url : "PrelevaOrtaggi?edit=true&addOrtaggio=false&editFormId="
+						+ terreno_id,
+				dataType : 'json',
+				error : function() {
+					alert("si è verificato un errore");
+				},
+				success : function(data) {
+					// alert(JSON.stringify(data));
+					// var x = JSON.parse(data);
+					$('#formModificaOrtaggi> tbody').empty();
+					for (i = 0; i < data.length; i++) {
+						var $row = $('<tr align="center" >'
+								+ '<th id="listaOrtaggioId'
+								+ data[i].id
+								+ '" style="display:none;">'
+								+ data[i].id
+								+ '</th>'
+								+ '<th id="listaOrtaggioNome'
+								+ data[i].id
+								+ '">'
+								+ data[i].nome
+								+ '</th>'
+								+ '<th id="listaOrtaggioResa'
+								+ data[i].id
+								+ '">'
+								+ data[i].resa
+								+ '</th>'
+								+ '<th id="listaOrtaggioCosto'
+								+ data[i].id
+								+ '">'
+								+ data[i].costo
+								+ '</th>'
+								+ '<th id="listaOrtaggioTempo'
+								+ data[i].id
+								+ '">'
+								+ data[i].tempo
+								+ '</th>'
+								+ '<th><button type="button" class="button_modifica btn" onclick="modificaOrtaggi('
+								+ data[i].id
+								+ ')" id=modifica_ortaggio></th>'
+								+ '<th><button type="button" class="button_elimina btn" onclick="cancellaOrtaggio('
+								+ terreno_id
+								+ ','
+								+ data[i].id
+								+ ')"></th>'
+								+ '</tr>');
+						$('#formModificaOrtaggi> tbody:last').append($row);
+					}
+					// var colHeader = Object.keys(data[0]);
+					//
+					// for(var i=0; i<3; i++){
+					// $('#formModificaOrtaggi> tbody').append('<tr></tr>')
+					// for(var j= 0; j<colHeader.length; j++){
+					// $('#formModificaOrtaggi> tbody tr').append('<td>' +
+					// data[i][colHeader[j]] +
+					// '</td>');
+					// }
+					// }
+					//			
+					//			
+				}
+			});
 }
 
 /**
@@ -207,49 +349,73 @@ function mostraOrtaggi(terreno_id) {
  * @returns
  */
 // function SalvaTerrenoModificato() {
-	$(document).ready(function() {
-		$("#confermaModificaOrtaggio").click(function(e) {
-			e.preventDefault();
-		// var dati = $("#editOrtaggioNome").val();
-		var nome = {
-				idTerreno: $("#editFormId").val(),
-				idOrtaggio: $("#editOrtaggioId").val(),
-				nomeOrtaggio: $("#editOrtaggioNome").val(),	
-				resaOrtaggio: $("#editOrtaggioResa").val(),
-				costoOrtaggio: $("#editOrtaggioCosto").val(),
-				tempoOrtaggio: $("#editOrtaggioTempo").val()
-		};
-		// alert(nome.nomeOrtaggio+" "+nome.idOrtaggio);
-		// alert(dati);
-	$.ajax({
-		type: "POST",
-		url : "TerrenoOspitaOrtaggi?edit=false&editOrtaggio=true",
-		// data: {nomeOrtaggio: $("#editOrtaggioNome").val()},
-		contentType: "application/json; charset=utf-8",
-		dataType : "json",
-		data: JSON.stringify(nome),
-		success: function(data){
-			//alert(data.success);
-			$("#formModificaOrtaggio").hide("slow");
-			$("#containerModificaOrtaggi").show("slow");
-			$("#info_terreno").show("slow");
-			mostraOrtaggi($("#editFormId").val());
-			var allerta = $('<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertConferma">'+
-						'<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
-						'<span aria-hidden="true">&times;</span>'+
-						'</button>'+
-						'<strong>Perfetto! I dati sono stati aggiornati.'+
-						'</div>'
-				);
-			$("#info_terreno").prepend(allerta);
-			//$("#alertConferma").hide('slow').delay('9000');
-			$("#alertConferma").show('slow').delay(5000).fadeOut();
+$(document)
+		.ready(
+				function() {
+					$("#confermaModificaOrtaggio")
+							.click(
+									function(e) {
+										e.preventDefault();
+										// var dati =
+										// $("#editOrtaggioNome").val();
+										var nome = {
+											idTerreno : $("#editFormId").val(),
+											idOrtaggio : $("#editOrtaggioId")
+													.val(),
+											nomeOrtaggio : $(
+													"#editOrtaggioNome").val(),
+											resaOrtaggio : $(
+													"#editOrtaggioResa").val(),
+											costoOrtaggio : $(
+													"#editOrtaggioCosto").val(),
+											tempoOrtaggio : $(
+													"#editOrtaggioTempo").val()
+										};
+										// alert(nome.nomeOrtaggio+"
+										// "+nome.idOrtaggio);
+										// alert(dati);
+										$
+												.ajax({
+													type : "POST",
+													url : "TerrenoOspitaOrtaggi?edit=false&editOrtaggio=true",
+													// data: {nomeOrtaggio:
+													// $("#editOrtaggioNome").val()},
+													contentType : "application/json; charset=utf-8",
+													dataType : "json",
+													data : JSON.stringify(nome),
+													success : function(data) {
+														// alert(data.success);
+														$(
+																"#formModificaOrtaggio")
+																.hide("slow");
+														$(
+																"#containerModificaOrtaggi")
+																.show("slow");
+														$("#info_terreno")
+																.show("slow");
+														mostraOrtaggi($(
+																"#editFormId")
+																.val());
+														var allerta = $('<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertConferma">'
+																+ '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+																+ '<span aria-hidden="true">&times;</span>'
+																+ '</button>'
+																+ '<strong>Perfetto! I dati sono stati aggiornati.'
+																+ '</div>');
+														$("#info_terreno")
+																.prepend(
+																		allerta);
+														// $("#alertConferma").hide('slow').delay('9000');
+														$("#alertConferma")
+																.show('slow')
+																.delay(5000)
+																.fadeOut();
 
-		}
-		
-		});	
-	});
-});	
+													}
+
+												});
+									});
+				});
 
 /**
  * funzione per popolare la form delle info sul terreno
@@ -264,7 +430,8 @@ function mostraOrtaggi(terreno_id) {
  * @param periodo
  * @returns
  */
-function edit(id, locazione, dim, dimSerra, costo, servizioC, servizioP,periodo) {
+function edit(id, locazione, dim, dimSerra, costo, servizioC, servizioP,
+		periodo) {
 	$("#editFormId").val(id);
 	$("#editFormLocazione").val(locazione);
 	$("#editFormDimensione").val(dim);
@@ -281,10 +448,10 @@ function edit(id, locazione, dim, dimSerra, costo, servizioC, servizioP,periodo)
 		$("#editCheckParziale").attr('checked', false);
 	}
 	$('#dropdownDisponibilita').val(periodo);
-	
+
 	var terreno_id = $("#editFormId").val();
 	mostraOrtaggi(terreno_id)
-	
+
 	$("#terreni").hide("fast");
 	$("#info_terreno").show("slow");
 
@@ -300,7 +467,6 @@ function del(id) {
 	$('#idDaEliminare').val(id);
 
 }
-
 
 /**
  * funzione che setta l'id del prodotto da eliminare
@@ -336,7 +502,6 @@ $(document).ready(function() {
 	$("#modificaOrtaggi").click(function() {
 		$("#formModificaTerreno").hide("fast");
 		$("#containerModificaOrtaggi").show("slow");
-		
 
 	});
 });
@@ -399,12 +564,11 @@ function modificaOrtaggi(id) {
 	$("#info_terreno").hide("slow");
 	$("#formModificaOrtaggio").show("slow");
 	$("#editOrtaggioId").val(id);
-	$("#editOrtaggioNome").val($('#listaOrtaggioNome'+id).text());
-	$("#editOrtaggioResa").val($('#listaOrtaggioResa'+id).text());
-	$("#editOrtaggioCosto").val($('#listaOrtaggioCosto'+id).text());
-	$("#editOrtaggioTempo").val($('#listaOrtaggioTempo'+id).text());
-	
-	
+	$("#editOrtaggioNome").val($('#listaOrtaggioNome' + id).text());
+	$("#editOrtaggioResa").val($('#listaOrtaggioResa' + id).text());
+	$("#editOrtaggioCosto").val($('#listaOrtaggioCosto' + id).text());
+	$("#editOrtaggioTempo").val($('#listaOrtaggioTempo' + id).text());
+
 }
 /**
  * fa nascondere la form di modifica dell'ortaggio

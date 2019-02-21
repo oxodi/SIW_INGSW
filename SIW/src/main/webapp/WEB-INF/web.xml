@@ -123,6 +123,13 @@
 		<servlet-name>DammiProdotto</servlet-name>
 		<servlet-class>controller.DammiProdotto</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>DammiPrenotazioneAzienda</display-name>
+		<servlet-name>DammiPrenotazioneAzienda</servlet-name>
+		<servlet-class>controller.DammiPrenotazioneAzienda</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -206,6 +213,10 @@
 	<servlet-mapping>
 		<servlet-name>DammiProdotto</servlet-name>
 		<url-pattern>/DammiProdotto</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DammiPrenotazioneAzienda</servlet-name>
+		<url-pattern>/DammiPrenotazioneAzienda</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>Home</welcome-file>

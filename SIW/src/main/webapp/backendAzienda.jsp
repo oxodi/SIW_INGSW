@@ -85,7 +85,7 @@
 								terreni</a></li>
 						<li><a data-toggle="tab" href="#imieiprodotti">I miei
 								prodotti</a></li>
-						<li><a data-toggle="tab" href="#prenotazioni">Prenotazioni</a></li>
+						<li><a data-toggle="tab" href="#prenotazioni" onclick="prenotazioniAzienda()">Prenotazioni</a></li>
 						<li class="active"><a data-toggle="tab" href="#modificadati">
 								Dati Azienda</a></li>
 
@@ -285,8 +285,8 @@
 												class="accordion-toggle " align="center">
 
 												<td>${t.locazione}</td>
-												<td>${t.dimensione }</td>
-												<td>${t.dimensioneSerra }</td>
+												<td>${t.dimTerreno }</td>
+												<td>${t.dimSerra }</td>
 												<td><c:choose>
 														<c:when test="${t.servizioCompleto}">SI</c:when>
 														<c:otherwise>NO</c:otherwise>
@@ -299,7 +299,7 @@
 												<td>${t.costo}€</td>
 												<td>
 													<button
-														onclick="edit('${t.id}','${t.locazione}', '${t.dimensione}', '${t.dimensioneSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
+														onclick="edit('${t.id}','${t.locazione}', '${t.dimTerreno}', '${t.dimSerra}','${t.costo}', '${t.servizioCompleto}', '${t.servizioParziale}', '${t.periodiDisponibilita}')"
 														name="${t.id}" type="button" id="modifica"
 														class="button_modifica btn"></button>
 												</td>
@@ -656,6 +656,7 @@
 						<div class="container-fluid" align="center">
 							<h4>Prenotazioni Terreni</h4>
 						</div>
+						
 					</div>	
 					<!-- end prenotazioni -->
 					<!-- statistiche -->
