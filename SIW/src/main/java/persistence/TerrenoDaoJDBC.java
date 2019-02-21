@@ -31,15 +31,13 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 			int id = GestoreID.getId(connection, "terreno_id_seq", "terreno");
 			terreno.setId(id);
 
-			String insert = "INSERT INTO terreno(id, locazione, dim_totale_terreno, dim_totale_serra, terreno_prenotato, serra_prenotata, servizio_parziale, servizio_completo, periodo_coltivazione, id_azienda, costo_terreno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String insert = "INSERT INTO terreno(id, locazione, dim_totale_terreno, dim_totale_serra, servizio_parziale, servizio_completo, periodo_coltivazione, id_azienda, costo_terreno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setInt(1, terreno.getId());
 			statement.setString(2, terreno.getLocazione());
 			statement.setInt(3, terreno.getDimTerreno());
 			statement.setInt(4, terreno.getDimSerra());
-			statement.setInt(5, 0); //inizializzo a 0 il terreno prenotato
-			statement.setInt(6, 0); //inizializzo a 0 la serra prenotata
 			statement.setBoolean(7, terreno.isServizioParziale());
 			statement.setBoolean(8, terreno.isServizioCompleto());
 			statement.setString(9, terreno.getPeriodiDisponibilita());
