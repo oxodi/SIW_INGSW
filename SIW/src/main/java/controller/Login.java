@@ -1,6 +1,8 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
@@ -8,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
 
 import entita.Azienda;
 import entita.Cliente;
@@ -47,6 +51,38 @@ public class Login extends HttpServlet {
 				RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
 				rs.include(request, response);
 			}
+		} else if (request.getParameter("area").equals("facebook")) {
+
+			String jsonReceived = "";
+			BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+			String line = reader.readLine();
+			System.out.println("Json " + line);
+			while (line != null) {
+				System.out.println("Json " + line);
+				jsonReceived = jsonReceived + line + "\n";
+				line = reader.readLine();
+			}
+			System.out.println(jsonReceived);
+			JSONObject dati = new JSONObject(jsonReceived);
+			JSONObject risposta = new JSONObject();
+			
+			Cliente user = clientedao.cercaPerEmail(dati.getString("email"));
+			if(user == null)
+			{
+				risposta.put("resp", "nok");
+			}
+			else
+			{
+				System.out.println("L'utente è stato trovato, login: "+user.getNome());
+				request.getSession().setAttribute("cliente", user);
+				risposta.put("resp", "ok");
+			}
+			
+			PrintWriter pw = response.getWriter();
+			pw.print(risposta.toString());
+			System.out.println(risposta);
+			pw.close();
+			
 		} else if (request.getParameter("area").equals("azienda")) {
 			System.out.println(email + pass);
 			if (aziendadao.checkAzienda(email, pass)) {
@@ -62,12 +98,13 @@ public class Login extends HttpServlet {
 			}
 		}
 	}
-	
+
 	@Override
-		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(req.getParameter("logout").equals("true"))
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		if (req.getParameter("logout").equals("true"))
 			req.getSession().invalidate();
-			RequestDispatcher rs = req.getRequestDispatcher("Home");
-			rs.forward(req, resp);
-		}
+		RequestDispatcher rs = req.getRequestDispatcher("Home");
+		rs.forward(req, resp);
+	}
+
 }

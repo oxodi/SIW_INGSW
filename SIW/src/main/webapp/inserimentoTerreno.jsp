@@ -91,7 +91,7 @@
 		<div class="row register-form1">
 			<div class="col-md-auto" style="width: 100%">
 				<form class="custom-form" method="post"
-					action="TerrenoOspitaOrtaggi?edit=false" id="controllo">
+					action="TerrenoOspitaOrtaggi?edit=false&editOrtaggio=false" id="controllo">
 
 					<div id="inserimento">
 						<h1>Inserimento Terreno</h1>

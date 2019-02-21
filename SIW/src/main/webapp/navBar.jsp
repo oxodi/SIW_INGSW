@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="assets/css/navbar.css">
 <script src="assets/js/navBar.js"></script>
+<script src="assets/js/fbLogin.js"></script>
 <nav
 	class="navbar navbar-light navbar-expand-md navigation-clean-button"
 	style="background-color: transparent; position: relative; z-index: 2000">
@@ -73,7 +74,7 @@
 					</li>
 				</ul>
 				<div class="logout" style="margin-left: 15px;">
-					<a href="Login?logout=true"> <img src="assets/img/logout2.png">
+					<a href="Login?logout=true" onclick="fbLogout()"> <img src="assets/img/logout2.png">
 						<strong>Logout</strong>
 					</a>
 				</div>
@@ -89,11 +90,14 @@
 								<div class="col-md-12">
 									Accedi con
 									<div class="social-buttons">
-										<a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i>
+										<a href="javascript:void(0);" onclick="fbLogin()" id="fbLink" class="btn btn-fb"><i class="fa fa-facebook"></i>
 											Facebook</a>
 										<!--  <a href="#" class="btn btn-tw"><i
 										class="fa fa-twitter"></i> Twitter</a>
 								 -->
+								 <div id="userData"></div>
+								 <div id="status"></div>
+								 
 									</div>
 									o
 									<form class="form" role="form" method="post"

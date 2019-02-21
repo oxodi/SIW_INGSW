@@ -1,6 +1,8 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import entita.Cliente;
 import persistence.PostgresDAOFactory;
 import persistence.dao.ClienteDao;
@@ -23,12 +27,31 @@ import persistence.dao.ClienteDao;
  */
 public class RegistrationClient extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameterMap().containsKey("fbReg")) {
+			String jsonReceived = "";
+			BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+			String line = reader.readLine();
+			System.out.println("Json " + line);
+			while (line != null) {
+				System.out.println("Json " + line);
+				jsonReceived = jsonReceived + line + "\n";
+				line = reader.readLine();
+			}
+			System.out.println(jsonReceived);
+			JSONObject datiDaSalvare = new JSONObject(jsonReceived);
+			PostgresDAOFactory factory = PostgresDAOFactory.getInstance();
+			ClienteDao cliente = factory.getClienteDAO();
+			Cliente fbClient = new Cliente();
+			fbClient.setNome(datiDaSalvare.getString("first_name"));
+			fbClient.setCognome(datiDaSalvare.getString("last_name"));
+			fbClient.setEmail(datiDaSalvare.getString("email"));
+			
+		}
+		else {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		PostgresDAOFactory factory = PostgresDAOFactory.getInstance();
@@ -68,7 +91,7 @@ public class RegistrationClient extends HttpServlet {
 			out.println("Inserimento dati errato");
 			e.printStackTrace();
 		}
-		
+	}
 		//doGet(request, response);
 	}
 

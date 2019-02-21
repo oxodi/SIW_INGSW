@@ -37,7 +37,7 @@
 						<label class="col-form-label" for="name-input-field">Nome</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text" name="nome">
+						<input class="form-control" type="text" name="nome" id="nome" value="nome">
 					</div>
 				</div>
 				<div class="form-row form-group">
