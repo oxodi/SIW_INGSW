@@ -7,7 +7,6 @@
 //this.telefono = telefono;
 //}
 
-
 function aggiornaDati(idCliente){
 
 	var cliente = {

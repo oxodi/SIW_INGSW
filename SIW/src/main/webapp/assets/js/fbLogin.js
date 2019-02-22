@@ -34,7 +34,7 @@ function fbLogin() {
 			// Get and display the user profile data
 			getFbUserData();
 		} else {
-			alert('User cancelled login or did not fully authorize.');
+			alert("L'utente ha annullato l'accesso oppure non è registrato su facebook.");
 		}
 	}, {
 		scope : 'email'
@@ -66,32 +66,15 @@ function getFbUserData() {
 							//location.reload();
 							window.location.href = "Home";
 						} else {
-						
-//							var $modal = ('<div id="modalRegistrazioneFB" class="modal fade" role="dialog" style="z-index: 2500; border-radius: 25px">'
-//									+ '<div class="modal-dialog" style="border: 2px green solid">'
-//									+ '<div class="modal-content">'
-//									+ '<div class="modal-header">'
-//									+ '<h4 class="modal-title">Primo accesso</h4>'
-//									+ '<button type="button" class="close" data-dismiss="modal">&times;</button>'
-//									+ '</div>'
-//									+ '<div class="modal-body">'
-//									+ '<p>Questa è la prima volta che ti colleghi al nostro sito,<br> devi prima registrarti per poter usare il login con Facebook</p>'
-//									+ '</div>'
-//									+ '<div class="modal-footer">'
-//									+ '<div class="container" align="right">'
-//									+ '<button type="button" class="btn" style="border-radius: 15px" data-dismiss="modal" id="buttonoverflow">Indietro</button>'
-//									+ '<a href="PageLoader?id=utente" ><button type="button" class="btn btn-success" style="border-radius: 15px" id="btnRegistrazione">Procedi</button></a>'
-//									+ '</div>' + '</div>' + '</div>' + '</div>' + '</div>')
-//								$('body').prepend($modal);
-//								$('#modalRegistrazioneFB').modal('show');
 							$.ajax({
 								url:"RegistrationClient?fbReg",
 								method:"POST",
 								dataType : 'json',
 								contentType : "application/json; charset=utf-8",
 								data: JSON.stringify(response),
-								success: function(){
-									
+								success: function(data){
+									console.log(data.success);
+									window.location.href = "PageLoader?id=utente";
 								}
 							});
 						}

@@ -43,13 +43,19 @@ public class RegistrationClient extends HttpServlet {
 			}
 			System.out.println(jsonReceived);
 			JSONObject datiDaSalvare = new JSONObject(jsonReceived);
-			PostgresDAOFactory factory = PostgresDAOFactory.getInstance();
-			ClienteDao cliente = factory.getClienteDAO();
 			Cliente fbClient = new Cliente();
 			fbClient.setNome(datiDaSalvare.getString("first_name"));
 			fbClient.setCognome(datiDaSalvare.getString("last_name"));
 			fbClient.setEmail(datiDaSalvare.getString("email"));
 			
+			request.getSession().setAttribute("tempFbCliente", fbClient);
+			request.getSession().setAttribute("fbUser","true");
+			JSONObject risposta = new JSONObject();
+			risposta.put("success", "Utente generato da facebook");
+			PrintWriter pw = response.getWriter();
+			pw.print(risposta.toString());
+			System.out.println(risposta);
+			pw.close();
 		}
 		else {
 		response.setContentType("text/html;charset=UTF-8");

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -30,14 +31,33 @@
 	<!-- End: Navigation with Button -->
 	<div class="row register-form">
 		<div class="col-md-8 offset-md-2">
-			<form class="custom-form" id="registrazioneCliente" method="post" action="RegistrationClient">
+			<form class="custom-form" id="registrazioneCliente" method="post"
+				action="RegistrationClient">
 				<h1>Registrazione Cliente</h1>
+				<c:if test="${sessionScope.fbUser == true}">
+					<h6 style="margin-top: -30px"><strong>Benvenuto! e' la prima volta che
+						effettui l'accesso, completa la form per registrarti sul nostro
+						sito.</strong></h6>
+						<br><br>
+				</c:if>
+
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
 						<label class="col-form-label" for="name-input-field">Nome</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text" name="nome" id="nome" value="nome">
+						<c:choose>
+							<c:when test="${sessionScope.fbUser == true}">
+								<input class="form-control" type="text" name="nome" id="nome"
+									style="background-color: #8b9dc3;"
+									value="${sessionScope.tempFbCliente.getNome()}" readonly>
+								<a class="fa fa-facebook-square"
+									style="display: inline; font-size: 20px"></a>
+							</c:when>
+							<c:otherwise>
+								<input class="form-control" type="text" name="nome" id="nome">
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -45,12 +65,24 @@
 						<label class="col-form-label" for="name-input-field">Cognome</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text" name="cognome">
+						<c:choose>
+							<c:when test="${sessionScope.fbUser == true}">
+								<input class="form-control" type="text" name="cognome"
+									style="background-color: #8b9dc3;"
+									value="${sessionScope.tempFbCliente.getCognome()}" readonly>
+								<a class="fa fa-facebook-square"
+									style="display: inline; font-size: 20px"></a>
+							</c:when>
+							<c:otherwise>
+								<input class="form-control" type="text" name="cognome">
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">Codice Fiscale</label>
+						<label class="col-form-label" for="name-input-field">Codice
+							Fiscale</label>
 					</div>
 					<div class="col-sm-6 input-column">
 						<input class="form-control" type="text" name="codice_fiscale">
@@ -58,7 +90,8 @@
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="name-input-field">Data di Nascita</label>
+						<label class="col-form-label" for="name-input-field">Data
+							di Nascita</label>
 					</div>
 					<div class="col-sm-6 input-column">
 						<input class="form-control" type="text" name="data_di_nascita">
@@ -109,7 +142,19 @@
 						<label class="col-form-label" for="email-input-field">e-mail</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="email" name="email" >
+						<c:choose>
+							<c:when test="${sessionScope.fbUser == true}">
+								<input class="form-control" type="email" name="email"
+									style="background-color: #8b9dc3;"
+									value="${sessionScope.tempFbCliente.getEmail()}" readonly>
+								<a class="fa fa-facebook-square"
+									style="display: inline; font-size: 20px"></a>
+							</c:when>
+							<c:otherwise>
+								<input class="form-control" type="email" name="email">
+							</c:otherwise>
+						</c:choose>
+
 					</div>
 				</div>
 				<div class="form-row form-group">
@@ -122,7 +167,8 @@
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-4 label-column">
-						<label class="col-form-label" for="repeat-pawssword-input-field">Ripeti Password </label>
+						<label class="col-form-label" for="repeat-pawssword-input-field">Ripeti
+							Password </label>
 					</div>
 					<div class="col-sm-6 input-column">
 						<input class="form-control" type="password">
@@ -133,12 +179,22 @@
 						class="form-check-label" for="formCheck-1">Ho letto e
 						accettato i termini e condizione di servizio</label>
 				</div>
-				<button class="button btn" type="submit" style="outline: none !important;">Conferma</button>
+				<c:if test="${sessionScope.fbUser == true}">
+					<a href="Login?logout=true">
+						<button class="button" style="background-color: #3b5998"
+							type="button" style="outline: none !important;">
+							<i class="fa fa-sign-out" style="font-size: 20px">Esci da
+								Facebook</i>
+						</button>
+					</a>
+				</c:if>
+				<button class="button btn" type="submit"
+					style="outline: none !important;">Conferma</button>
 			</form>
 		</div>
 	</div>
 	<!-- End: Article List -->
-<!-- Start: footer -->
+	<!-- Start: footer -->
 	<div id="footer"></div>
 	<!-- End: footer -->
 	<!-- Start: Projects Clean -->
