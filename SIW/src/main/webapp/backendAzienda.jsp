@@ -80,7 +80,7 @@
 				<div class="navbar-collapse topnav " style="border-color: green;">
 					<ul class="nav nav-pills">
 						
-						<li><a data-toggle="tab" href="#statistiche">Statistiche</a></li>
+						<li><a data-toggle="tab" href="#tabStatistiche" onclick="chartStatistiche()">Statistiche</a></li>
 						<li><a data-toggle="tab" href="#imieiterreni">I miei
 								terreni</a></li>
 						<li><a data-toggle="tab" href="#imieiprodotti">I miei
@@ -661,10 +661,8 @@
 					<!-- end prenotazioni -->
 					<!-- statistiche -->
 					<div class="tab-pane" style="margin-top: 20px; margin-bottom: 50px"
-						id="statistiche">
-						<div class="container-fluid" align="center">
-							<h4>Statistiche Generali</h4>
-						</div>
+						id="tabStatistiche">
+						<div id="chartStatistiche"></div>
 					</div>
 					<!-- end statistiche -->
 				</div>

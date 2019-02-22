@@ -9,12 +9,12 @@ $(function() {
 	$("#footer").load("footer.jsp");
 });
 
+$(function() {
+	$("#chartStatistiche").load("assets/jsf/statistiche.jsp");
+});
+
 function ortaggiPrenotati(terreno) {
-	alert("info terreno" + terreno);
-	$('#listaOrtaggi' + id).empty();
-	var $table = ('<tr align="center">' + '<th>Nome</th>' + '<th>Quantità</th>'
-			+ '<th>Serra</th>' + '</tr>')
-			$('#listaOrtaggi' + terreno).append($table);
+	
 	$.ajax({
 		url : "DammiPrenotazioneAzienda?edit=false&id_terreno=" + terreno,
 		method : "GET",
@@ -25,11 +25,16 @@ function ortaggiPrenotati(terreno) {
 		},
 
 		success : function(data) {
+			$('#listaOrtaggi' + terreno).empty();
+			var $table = ('<tr align="center">' + '<th>Nome</th>' + '<th>Quantità</th>'
+					+ '<th>Serra</th>' + '</tr>')
+			$('#listaOrtaggi' + terreno).append($table);
 			for (var i = 0; i < data.length; i++) {
 
 				var $row = ('<tr align="center">' + '<td>' + data[i].ortaggio
 						+ '</td>' + '<td>' + data[i].quantita + '</td>'
 						+ '<td>' + data[i].serra + '</td>')
+					$("#listaOrtaggi"+terreno).append($row);
 			}
 
 		}
@@ -37,7 +42,6 @@ function ortaggiPrenotati(terreno) {
 	});
 
 }
-
 function prenotazioniAzienda() {
 
 	$('#prenotazioni').empty();
