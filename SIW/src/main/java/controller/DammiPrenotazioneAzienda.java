@@ -8,23 +8,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import entita.Azienda;
-import entita.Cliente;
 import entita.Prenotazione;
 import entita.Terreno;
-import entita.ortaggio.Ortaggio;
 import persistence.PostgresDAOFactory;
-import persistence.dao.ClienteDao;
-import persistence.dao.OrtaggioDao;
 import persistence.dao.PrenotazioneDao;
 import persistence.dao.TerrenoDao;
 
@@ -38,7 +31,6 @@ public class DammiPrenotazioneAzienda extends HttpServlet {
 		System.out.println("sono nella servlet dammi prenotazioni");
 		PostgresDAOFactory factory = PostgresDAOFactory.getInstance();
 		Azienda azienda = (Azienda) request.getSession().getAttribute("azienda");
-		ClienteDao clienteDAO = factory.getClienteDAO();
 		TerrenoDao terrenoDAO = factory.getTerrenoDAO();
 		PrenotazioneDao prenotazioneDAO = factory.getPrenotazioneDAO();
 		
@@ -69,19 +61,7 @@ public class DammiPrenotazioneAzienda extends HttpServlet {
 			
 			System.out.println("PRENOTAZIONI NON ORDINATE: "+prenotazioni.size());
 			System.out.println("PRENOTAZIONI  ORDINATE: "+ordinata.size());
-			
-			List<String> nomi = new ArrayList<String>();
-			List<String> cognomi  = new ArrayList<String>();
-			List<String> terrenoNome  = new ArrayList<String>();
-			
-			for(int i = 0 ; i < ordinata.size(); i++) {
-				Cliente cliente = clienteDAO.cercaPerChiavePrimaria(ordinata.get(i).getIdCliente());
-				Terreno terreno = terrenoDAO.cercaPerChiavePrimaria(ordinata.get(i).getIdTerreno());
-				nomi.add(cliente.getNome());
-				cognomi.add(cliente.getCognome());
-				terrenoNome.add(terreno.getLocazione());
-			}
-			
+		
 			DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALIAN);
 			JSONArray prenotazionijson = new JSONArray();
 			
@@ -89,9 +69,9 @@ public class DammiPrenotazioneAzienda extends HttpServlet {
 				JSONObject tmp = new JSONObject();
 				tmp.put("id_terreno", ordinata.get(i).getIdTerreno());
 				tmp.put("id_cliente", ordinata.get(i).getIdCliente());
-				tmp.put("terreno", terrenoNome.get(i));
-				tmp.put("cliente_nome", nomi.get(i));
-				tmp.put("cliente_cognome", cognomi.get(i));
+				tmp.put("terreno", ordinata.get(i).getLocazioneTerreno());
+				tmp.put("cliente_nome", ordinata.get(i).getNomeCliente());
+				tmp.put("cliente_cognome", ordinata.get(i).getCognomeCliente());
 				Date date = ordinata.get(i).getDataPrenotazione();
 				tmp.put("data", format.format(date));
 				
@@ -110,15 +90,18 @@ public class DammiPrenotazioneAzienda extends HttpServlet {
 			System.out.println("sono in prenotazioni per cliente");
 			int idTerreno = Integer.parseInt(request.getParameter("id_terreno"));
 			List<Prenotazione> prenotazioneOrtaggi = prenotazioneDAO.cercaPerTerreno(idTerreno);
-			OrtaggioDao ortaggioDAO = factory.getOrtaggioDAO();
 			
 			JSONArray ortaggiJson = new JSONArray();
 			
 			for(int i = 0 ; i < prenotazioneOrtaggi.size(); i++) {
 				JSONObject tmp = new JSONObject();
-				Ortaggio ortaggio = ortaggioDAO.cercaPerChiavePrimaria(prenotazioneOrtaggi.get(i).getId_ortaggio());
 				
-				tmp.put("ortaggio", ortaggio.getNome());
+				if(prenotazioneOrtaggi.get(i).getNomeOrtaggio().equals("Terreno")) {
+				tmp.put("ortaggio", "Servizio Parziale");
+				}
+				else
+					tmp.put("ortaggio", prenotazioneOrtaggi.get(i).getNomeOrtaggio());
+				
 				tmp.put("quantita", prenotazioneOrtaggi.get(i).getQuantita());
 				if(prenotazioneOrtaggi.get(i).isSerra()) {
 					tmp.put("serra","SI");

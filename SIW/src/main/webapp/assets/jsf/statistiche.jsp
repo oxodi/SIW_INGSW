@@ -9,10 +9,11 @@
 <script >
 function chartStatistiche(){ 
 		
+	var pippo = 10;
 		var ctx = document.getElementById('myChart').getContext('2d');
 		var chart = new Chart(ctx, {
 		    // The type of chart we want to create
-		    type: 'line',
+		    type: 'bar',
 
 		    // The data for our dataset
 		    data: {
@@ -21,7 +22,7 @@ function chartStatistiche(){
 		            label: "Info Terreni",
 		            backgroundColor: 'rgb(255, 204, 0,.2)',
 		            borderColor: 'rgb(153, 102, 0)',
-		            data: [1, 10, 5, 2, 20, 30, 45, 40,10,],
+		            data: [1, 10, 5, 2, 20, 30, 10, 5,pippo,],
 		        }]
 		    },
 
