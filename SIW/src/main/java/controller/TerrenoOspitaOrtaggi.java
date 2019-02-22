@@ -43,7 +43,7 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 				System.out.println("Ho eliminato l'ortaggio " + idOrtaggio + " ospitato dal terreno " + idTerreno);
 
 			}
-		} else {
+		 else {
 
 			TerrenoDao terrenoNew = PostgresDAOFactory.getInstance().getTerrenoDAO();
 			Terreno terreno = new Terreno();
@@ -55,6 +55,7 @@ public class TerrenoOspitaOrtaggi extends HttpServlet {
 			rd.forward(req, resp);
 		}
 	}
+}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

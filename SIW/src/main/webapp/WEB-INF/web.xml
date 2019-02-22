@@ -130,6 +130,13 @@
 		<servlet-name>DammiPrenotazioneAzienda</servlet-name>
 		<servlet-class>controller.DammiPrenotazioneAzienda</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>CalcolaStatistiche</display-name>
+		<servlet-name>CalcolaStatistiche</servlet-name>
+		<servlet-class>controller.CalcolaStatistiche</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -217,6 +224,10 @@
 	<servlet-mapping>
 		<servlet-name>DammiPrenotazioneAzienda</servlet-name>
 		<url-pattern>/DammiPrenotazioneAzienda</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CalcolaStatistiche</servlet-name>
+		<url-pattern>/CalcolaStatistiche</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>Home</welcome-file>

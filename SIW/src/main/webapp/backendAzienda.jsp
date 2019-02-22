@@ -9,6 +9,8 @@
 <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	id="bootstrap-css">
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+
 <link rel="stylesheet" href="assets/css/backend.css">
 <link rel="stylesheet" href="assets/css/home.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,7 +82,7 @@
 				<div class="navbar-collapse topnav " style="border-color: green;">
 					<ul class="nav nav-pills">
 						
-						<li><a data-toggle="tab" href="#tabStatistiche" onclick="chartStatistiche()">Statistiche</a></li>
+						<li><a data-toggle="tab" href="#tabStatistiche">Statistiche</a></li>
 						<li><a data-toggle="tab" href="#imieiterreni">I miei
 								terreni</a></li>
 						<li><a data-toggle="tab" href="#imieiprodotti">I miei
@@ -96,7 +98,7 @@
 
 				<!-- form azienda -->
 				<div class="tab-content clearfix">
-					<div class="custom-form tab-pane active" style="margin-top: 20px"
+					<div class="custom-form tab-pane" style="margin-top: 20px"
 						id="modificadati">
 						<form action="InserisciAzienda?edit=true" method="post">
 							<div class="row">
@@ -104,7 +106,7 @@
 									<br>
 									<div class="form-row form-group" style="display: none">
 										<div class="col-xs-2">
-											<input class="input-column" type="text" name="id_azienda"
+											<input class="input-column" type="text" name="id_azienda" id="id_azienda"
 												value="${sessionScope.azienda.getId()}">
 										</div>
 
@@ -660,9 +662,9 @@
 					</div>	
 					<!-- end prenotazioni -->
 					<!-- statistiche -->
-					<div class="tab-pane" style="margin-top: 20px; margin-bottom: 50px"
+					<div class="tab-pane active" style="margin-top: 20px; margin-bottom: 50px"
 						id="tabStatistiche">
-						<div id="chartStatistiche"></div>
+							<canvas id="myChart"></canvas>
 					</div>
 					<!-- end statistiche -->
 				</div>

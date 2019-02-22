@@ -9,37 +9,103 @@ $(function() {
 	$("#footer").load("footer.jsp");
 });
 
-$(function() {
-	$("#chartStatistiche").load("assets/jsf/statistiche.jsp");
+$(function chartStatistiche(){
+	var idAzienda = $('#id_azienda').val();
+		$.ajax({
+			url: "CalcolaStatistiche?azienda="+idAzienda,
+			method: "GET",
+			dataType: "json",
+			success: function(data){
+				var ctx = document.getElementById('myChart').getContext('2d');
+				var chart = new Chart(ctx, {
+				    // The type of chart we want to create
+				    type: 'bar',
+				    
+				    // The data for our dataset
+				    data: {
+				    	
+				        datasets: [{
+				        	
+				            label: "Primavera",
+				            backgroundColor: 'rgb(0, 153, 51,.3)',
+				            borderColor: 'rgba(255,99,132,1)',
+				            data: [15],
+				            
+				        },
+				        {
+				        	
+				        	 label: "Estate",
+					            backgroundColor: 'rgb(0, 153, 204,.3)',
+					            borderColor: 'rgb(153, 102, 0)',
+					            data: [10],
+				        },
+				        {
+				        	
+				        	label: "Autunno",
+				            backgroundColor: 'rgb(255, 204, 0,.3)',
+				            borderColor: 'rgb(153, 102, 0)',
+				            data: [data.autunno],
+				        },
+				        {
+				        	
+				        	label: "Inverno",
+				            backgroundColor: 'rgb(92, 92, 138,.3)',
+				            borderColor: 'rgb(92, 92, 138)',
+				            data: [15],
+				        }
+				        ],
+				       
+				    },
+
+				    // Configuration options go here
+				    options: {
+				    	scales:{
+				    		yAxes:[{
+				    			ticks:{
+				    				min: 0,
+				    				stepSize: 1
+				    			}
+				    		}]
+				    	}
+				    }
+				});
+			},
+			error: function(data){
+				
+			}
+		});
+		
 });
 
-function ortaggiPrenotati(terreno) {
+function ortaggiPrenotati(terreno) {	
 	
-	$.ajax({
-		url : "DammiPrenotazioneAzienda?edit=false&id_terreno=" + terreno,
-		method : "GET",
-		dataType : "json",
-
-		error : function() {
-			alert("si è verificato un errore in listaOrtaggi");
-		},
-
-		success : function(data) {
-			$('#listaOrtaggi' + terreno).empty();
-			var $table = ('<tr align="center">' + '<th>Nome</th>' + '<th>Quantità</th>'
-					+ '<th>Serra</th>' + '</tr>')
-			$('#listaOrtaggi' + terreno).append($table);
-			for (var i = 0; i < data.length; i++) {
-
-				var $row = ('<tr align="center">' + '<td>' + data[i].ortaggio
-						+ '</td>' + '<td>' + data[i].quantita + '</td>'
-						+ '<td>' + data[i].serra + '</td>')
-					$("#listaOrtaggi"+terreno).append($row);
-			}
-
-		}
-
-	});
+	
+			$.ajax({
+				url : "DammiPrenotazioneAzienda?edit=false&id_terreno=" + terreno,
+				method : "GET",
+				dataType : "json",
+		
+				error : function() {
+					alert("si è verificato un errore in listaOrtaggi");
+				},
+		
+				success : function(data) {
+					$('#listaOrtaggi' + terreno).empty();
+					var $table = ('<tr align="center">' + '<th>Nome</th>' + '<th>Quantità</th>'
+							+ '<th>Serra</th>' + '</tr>')
+					$('#listaOrtaggi' + terreno).append($table);
+					for (var i = 0; i < data.length; i++) {
+		
+						var $row = ('<tr align="center">' + '<td>' + data[i].ortaggio
+								+ '</td>' + '<td>' + data[i].quantita + '</td>'
+								+ '<td>' + data[i].serra + '</td>')
+							$("#listaOrtaggi"+terreno).append($row);
+					}
+					
+					$("#loading").remove();
+				}
+		
+			});
 
 }
 function prenotazioniAzienda() {
@@ -51,7 +117,7 @@ function prenotazioniAzienda() {
 			+ '<table class="table table-hover" id="tabListaPrenotazioni">'
 			+ '<thead>' + '<tr align="center">' + '<th>Terreno</th>'
 			+ '<th>Cliente</th>' + '<th>Data</th>'
-			+ '<th>Dettagli Prenotazione</th>' + '</tr>' + '</thead>'
+			+ '<th>Dettagli</th>' + '</tr>' + '</thead>'
 			+ '</table>' + '</div>' + '</div>' + '</div>')
 
 			$("#prenotazioni").append($table);
@@ -72,7 +138,7 @@ function prenotazioniAzienda() {
 
 			for (var i = 0; i < data.length; i++) {
 				var $row = ('<tbody>'
-						+ '<tr align="center" data-toggle="collapse" data-target="#listaOrtaggi'
+						+ '<tr id="rigaPren" align="center" data-toggle="collapse" data-target="#listaOrtaggi'
 						+ data[i].id_terreno
 						+ '" aria-expanded="false" aria-controls="listaOrtaggi">'
 						+ '<td>'
