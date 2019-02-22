@@ -29,7 +29,7 @@ $(function chartStatistiche(){
 				            label: "Primavera",
 				            backgroundColor: 'rgb(0, 153, 51,.3)',
 				            borderColor: 'rgba(255,99,132,1)',
-				            data: [15],
+				            data: [data.primavera],
 				            
 				        },
 				        {
@@ -37,7 +37,7 @@ $(function chartStatistiche(){
 				        	 label: "Estate",
 					            backgroundColor: 'rgb(0, 153, 204,.3)',
 					            borderColor: 'rgb(153, 102, 0)',
-					            data: [10],
+					            data: [data.estate],
 				        },
 				        {
 				        	
@@ -51,7 +51,7 @@ $(function chartStatistiche(){
 				        	label: "Inverno",
 				            backgroundColor: 'rgb(92, 92, 138,.3)',
 				            borderColor: 'rgb(92, 92, 138)',
-				            data: [15],
+				            data: [data.inverno],
 				        }
 				        ],
 				       
