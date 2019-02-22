@@ -47,18 +47,7 @@ function apriMappa(locazione){
 		.setLngLat(centerLocation)
 		.addTo(mapBox);
 
-
-//		map.addControl(new mapboxgl.GeolocateControl({
-//			positionOptions: {
-//				enableHighAccuracy: true
-//			},
-//			trackUserLocation: true
-//		}));
-//		
-		new mapboxgl.Marker()
-		.setLngLat(centerLocation)
-		.addTo(mapBox);
-
+		
 	});
 
 
@@ -74,18 +63,19 @@ function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTerreno, 
 	var riga; 
 
 	var ortaggio = document.getElementById(nome);
-	var dimInserita = calcolaDimTerreno(quantita, "no");  //"&#x2718"
+	var dimInserita = calcolaDimTerreno(quantita, "no");  
+	var dimInseritaTotale = dimInserita + parseInt(terrenoPrenotato);
 
 	if (checkbox.checked){
-	
-		if( (dimInserita + terrenoPrenotato) > dimTerreno){
-			$('#modalError').modal('show');	
-			document.getElementById(idInput).value = '';
-		}
-		else{
 
-			if( ortaggio === null){
 
+		if( ortaggio === null){
+
+			if( dimInseritaTotale > dimTerreno){
+				$('#modalError').modal('show');	
+				document.getElementById(idInput).value = '';
+			}
+			else{
 				riga = body.insertRow(0);
 
 				var cellaNome = riga.insertCell(0);
@@ -98,41 +88,47 @@ function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTerreno, 
 				cellaNome.innerHTML = nome;
 				cellaQuantita.innerHTML = quantita;
 				cellaPrezzo.innerHTML = (prezzo * quantita).toFixed(2);
-				
-				
+
+
 				if(id == "soloTerreno"){
 					cellaSerra.innerHTML = "-";
 					cellaResa.innerHTML = resa;
-					
+
 				}
 				else{
 					cellaSerra.innerHTML = "no"; 
 					cellaResa.innerHTML = (resa * quantita).toFixed(2);
-					
+
 				}
 				cellaElimina.innerHTML = "<button class='btn btn-sm btn-danger' onclick='btnCancella(this, id)'><i class='fa fa-trash'></i> </button>";
 
 				riga.setAttribute("id", nome);
-				
-				//alert("Ortaggio inserito!");  
+
 				$("#alertConferma").show('slow').delay(3500).fadeOut();
+			}
+		}else{	
+
+			for(var i = 0; i<((body.rows.length)-3); i++){
+
+				var str = body.rows[i].cells.item(4).innerHTML;
+			}
+
+			if(str != "no"){
+				$('#modalErrorOrt').modal('show');
+				document.getElementById(idInput).value = '';
+			}
+			//rimuoviamo la riga già presente per poi riinserirla con le dovute modifiche
+			else{
 				
-			}else{	
-
-				for(var i = 0; i<((body.rows.length)-3); i++){
-
-					var str = body.rows[i].cells.item(4).innerHTML;
-				}
-
-				if(str != "no"){
-					$('#modalErrorOrt').modal('show');
+				$('#' + nome).remove();
+				dimInserita = calcolaDimTerreno(quantita, "no");
+				dimInseritaTotale = dimInserita + parseInt(terrenoPrenotato);
+				
+				if( dimInseritaTotale > dimTerreno){
+					$('#modalError').modal('show');	
 					document.getElementById(idInput).value = '';
 				}
-				//rimuoviamo la riga già presente per poi riinserirla con le dovute modifiche
 				else{
-					$('#' + nome).remove();
-
-
 					riga = body.insertRow(0);
 
 					var cellaNome = riga.insertCell(0);
@@ -145,28 +141,28 @@ function aggiornaResocontoTerreno(nome, quantita, resa, prezzo, id, dimTerreno, 
 					cellaNome.innerHTML = nome;
 					cellaQuantita.innerHTML = quantita;	
 					cellaPrezzo.innerHTML = (prezzo * quantita).toFixed(2);
-					
+
 					if(id == "soloTerreno"){
 						cellaSerra.innerHTML = "-";
 						cellaResa.innerHTML = resa;
-						
+
 					}
 					else{
 						cellaSerra.innerHTML = "no"; 
 						cellaResa.innerHTML = (resa * quantita).toFixed(2);
-						
+
 					}
-					
+
 					cellaElimina.innerHTML = "<button class='btn btn-sm btn-danger' onclick='btnCancella(this, id)'><i class='fa fa-trash'></i> </button>";
 
 					riga.setAttribute("id", nome);
-					
+
 					$("#alertModifica").show('slow').delay(3500).fadeOut();
-					
-				}
+				}	
 			}
 		}
 	}
+
 
 	calcolaImporti();
 
@@ -183,17 +179,19 @@ function aggiornaResocontoSerra(nome, quantita, resa, prezzo, id, dimSerra, serr
 	var riga; 
 
 	var ortaggio = document.getElementById(nome);
-	var dimInserita = calcolaDimSerra(quantita, "si"); //&#x2714
+	var dimInserita = calcolaDimSerra(quantita, "si"); 
+
+	var dimInseritaTotale = dimInserita + parseInt(serraPrenotata);
 
 	if (checkbox.checked){
-		if( (dimInserita + serraPrenotata) > dimSerra){
-			$('#modalError').modal('show');
-			document.getElementById(idInput).value = '';
-		}
-		else{	
 
-			if( ortaggio === null){
+		if( ortaggio === null){
 
+			if( dimInseritaTotale > dimSerra){
+				$('#modalError').modal('show');
+				document.getElementById(idInput).value = '';
+			}
+			else{
 				riga = body.insertRow(0);
 
 				var cellaNome = riga.insertCell(0);
@@ -211,25 +209,32 @@ function aggiornaResocontoSerra(nome, quantita, resa, prezzo, id, dimSerra, serr
 				cellaElimina.innerHTML = "<button class='btn btn-sm btn-danger' onclick='btnCancella(this, id)'><i class='fa fa-trash'></i> </button>";
 
 				riga.setAttribute("id", nome);
-				
+
 				$("#alertConferma").show('slow').delay(3500).fadeOut();
-				
-				
-			}else{	
 
-				for(var i = 0; i<((body.rows.length)-3); i++){
+			}
+		}else{	
 
-					var str = body.rows[i].cells.item(4).innerHTML;
-				}
+			for(var i = 0; i<((body.rows.length)-3); i++){
 
-				if(str != "si"){
-					$('#modalErrorOrt').modal('show');
+				var str = body.rows[i].cells.item(4).innerHTML;
+			}
+
+			if(str != "si"){
+				$('#modalErrorOrt').modal('show');
+				document.getElementById(idInput).value = '';
+			}
+			else{
+				//rimuoviamo la riga già presente per poi riinserirla con le dovute modifiche				
+				$('#' + nome).remove();
+				dimInserita = calcolaDimSerra(quantita, "si"); 
+				dimInseritaTotale = dimInserita + parseInt(serraPrenotata);
+
+				if( dimInseritaTotale > dimSerra){
+					$('#modalError').modal('show');
 					document.getElementById(idInput).value = '';
 				}
 				else{
-					//rimuoviamo la riga già presente per poi riinserirla con le dovute modifiche				
-					$('#' + nome).remove();
-
 					riga = body.insertRow(0);
 
 					var cellaNome = riga.insertCell(0);
@@ -247,9 +252,8 @@ function aggiornaResocontoSerra(nome, quantita, resa, prezzo, id, dimSerra, serr
 					cellaElimina.innerHTML = "<button class='btn btn-sm btn-danger' onclick='btnCancella(this, id)'><i class='fa fa-trash'></i> </button>";
 
 					riga.setAttribute("id", nome);	
-					
+
 					$("#alertModifica").show('slow').delay(3500).fadeOut();
-					
 				}
 			}
 		}
@@ -258,6 +262,9 @@ function aggiornaResocontoSerra(nome, quantita, resa, prezzo, id, dimSerra, serr
 	calcolaImporti();
 
 }
+
+	
+
 
 
 
@@ -286,14 +293,16 @@ function btnCancella(row, id){
 
 function calcolaDimTerreno(quantita, serra){
 	var somma = 0;
-
+	
 	for(var i = 0; i<((body.rows.length)-3); i++){
-
+	
 		var str = body.rows[i].cells.item(1).innerHTML;
 		var subString = str.substring(0, str.length - 4);
-
-		if(body.rows[i].cells.item(4).innerHTML === serra)
-			somma += parseInt(subString);
+		
+		if(body.rows[i].cells.item(4).innerHTML === serra){
+			somma += parseInt(str); //(substring)
+		}
+	
 	}
 	somma += parseInt(quantita);
 
@@ -313,7 +322,7 @@ function calcolaDimSerra(quantita, serra){
 		var subString = str.substring(0, str.length - 4);
 
 		if(body.rows[i].cells.item(4).innerHTML === serra)
-			somma += parseInt(subString);
+			somma += parseInt(str); //(subString)
 	}
 	somma += parseInt(quantita);
 

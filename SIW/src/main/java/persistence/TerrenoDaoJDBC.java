@@ -38,11 +38,11 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 			statement.setString(2, terreno.getLocazione());
 			statement.setInt(3, terreno.getDimTerreno());
 			statement.setInt(4, terreno.getDimSerra());
-			statement.setBoolean(5, terreno.isServizioParziale());
-			statement.setBoolean(6, terreno.isServizioCompleto());
-			statement.setString(7, terreno.getPeriodiDisponibilita());
-			statement.setInt(8, terreno.getIdAzienda());
-			statement.setDouble(9, terreno.getCosto());
+			statement.setBoolean(7, terreno.isServizioParziale());
+			statement.setBoolean(8, terreno.isServizioCompleto());
+			statement.setString(9, terreno.getPeriodiDisponibilita());
+			statement.setInt(10, terreno.getIdAzienda());
+			statement.setDouble(11, terreno.getCosto());
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -534,7 +534,7 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 			PreparedStatement statement = connection.prepareStatement(aggiorna);
 			statement.setInt(1, terreno.getTerrenoPrenotato());
 			statement.setInt(2, terreno.getSerraPrenotata());
-			statement.setInt(7, terreno.getId());
+			statement.setInt(3, terreno.getId());
 			
 			statement.executeUpdate();
 

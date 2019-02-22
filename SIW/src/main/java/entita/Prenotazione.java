@@ -10,19 +10,65 @@ public class Prenotazione {
 	private int id_ortaggio;
 	private int quantita;
 	private boolean serra;
+	private String nomeCliente;
+	private String cognomeCliente;
+	private String locazioneTerreno;
+	private String nomeOrtaggio;
 
 	public Prenotazione() {
 	}
 
-	public Prenotazione(int idCliente, int idTerreno, Date dataPrenotazione, int  id_ortaggio,int quantita, boolean serra) {
+	public Prenotazione(int idCliente, int idTerreno, Date dataPrenotazione, int  id_ortaggio,int quantita,
+			boolean serra, String nomeCliente, String cognomeCliente, String locazioneTerreno, String nomeOrtaggio) {
+		
 		this.idCliente = idCliente;
 		this.idTerreno = idTerreno;
 		this.dataPrenotazione = dataPrenotazione;
 		this.id_ortaggio = id_ortaggio;
 		this.quantita = quantita;
 		this.serra = serra;
+		this.nomeCliente = nomeCliente;
+		this.cognomeCliente = cognomeCliente;
+		this.locazioneTerreno = locazioneTerreno;
+		this.nomeOrtaggio = nomeOrtaggio;
 	}
 
+	
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
+	}
+
+	public String getCognomeCliente() {
+		return cognomeCliente;
+	}
+
+	public void setCognomeCliente(String cognomeCliente) {
+		this.cognomeCliente = cognomeCliente;
+	}
+
+	public String getLocazioneTerreno() {
+		return locazioneTerreno;
+	}
+
+	public void setLocazioneTerreno(String locazioneTerreno) {
+		this.locazioneTerreno = locazioneTerreno;
+	}
+
+	public String getNomeOrtaggio() {
+		return nomeOrtaggio;
+	}
+
+	public void setNomeOrtaggio(String nomeOrtaggio) {
+		this.nomeOrtaggio = nomeOrtaggio;
+	}
+
+
+	
+	
 	public boolean isSerra() {
 		return serra;
 	}

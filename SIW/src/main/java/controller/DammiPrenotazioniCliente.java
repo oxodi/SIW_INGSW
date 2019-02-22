@@ -56,8 +56,6 @@ public class DammiPrenotazioniCliente extends HttpServlet {
 		
 		if (request.getParameter("edit").equals("true")) {
 			
-
-			
 			
 			List<Prenotazione> prenotazioni = prenotazionedao.cercaPerCliente(cliente.getId());
 			List<Terreno> terreni = new ArrayList<Terreno>();
@@ -87,7 +85,6 @@ public class DammiPrenotazioniCliente extends HttpServlet {
 			int idTerreno = Integer.parseInt(request.getParameter("id_terreno"));
 			System.out.println("ID TERRENO: "+idTerreno);
 			
-			OrtaggioDao ortaggiodao = factory.getOrtaggioDAO();
 			List<Prenotazione> prenotazioniOrtaggi = prenotazionedao.cercaPerClienteTerreno(cliente.getId(), idTerreno);
 			
 			JSONArray prenotazioniJSON = new JSONArray();
@@ -103,13 +100,13 @@ public class DammiPrenotazioniCliente extends HttpServlet {
 				Date data = pren.getDataPrenotazione();
 				long progresso = dataCorrente - pren.getDataPrenotazione().getTime();
 				long progressoGiorni = timeUnit.convert(progresso, TimeUnit.MILLISECONDS);
-				String nomeOrtaggio = ortaggiodao.cercaPerChiavePrimaria(pren.getId_ortaggio()).getNome();
+				//String nomeOrtaggio = ortaggiodao.cercaPerChiavePrimaria(pren.getId_ortaggio()).getNome();
 				int tempoColtivazione = prenotazionedao.tempoColtivazionePerTerrenoOrtaggio(idTerreno, pren.getId_ortaggio());
 				double progressoFinale;
 				
 
 				tmp.put("date",format.format(data));
-				tmp.put("nome",nomeOrtaggio);
+				tmp.put("nome",pren.getNomeOrtaggio());
 				tmp.put("quantita",pren.getQuantita());
 				
 				if(pren.isSerra())

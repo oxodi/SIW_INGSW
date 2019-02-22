@@ -1,20 +1,13 @@
 package persistence;
 
-import java.security.PrivilegedExceptionAction;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import entita.Prenotazione;
-import entita.ortaggio.Ortaggio;
 import persistence.dao.PrenotazioneDao;
 
 public class PrenotazioneDaoJDBC implements PrenotazioneDao {
@@ -31,7 +24,8 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 
 		try {
 
-				String insert = "INSERT INTO prenotazione(id_cliente, id_terreno, id_ortaggio, quantita, data, serra) VALUES (?,?,?,?,?,?)";
+				String insert = "INSERT INTO prenotazione(id_cliente, id_terreno, id_ortaggio, quantita, data, serra, nome_cliente, cognome_cliente,"
+						+ "locazione_terreno, nome_ortaggio) VALUES (?,?,?,?,?,?,?,?,?,?)";
 				PreparedStatement statement = connection.prepareStatement(insert);
 
 				statement.setInt(1, prenotazione.getIdCliente());
@@ -41,6 +35,11 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				long secs = prenotazione.getDataPrenotazione().getTime();
 				statement.setDate(5, new java.sql.Date(secs));
 				statement.setBoolean(6, prenotazione.isSerra());
+				statement.setString(7, prenotazione.getNomeCliente());
+				statement.setString(8, prenotazione.getCognomeCliente());
+				statement.setString(9, prenotazione.getLocazioneTerreno());
+				statement.setString(10, prenotazione.getNomeOrtaggio());
+				
 				statement.executeUpdate();
 			
 
@@ -79,6 +78,12 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 				prenotazione.setSerra(result.getBoolean("serra"));
+				prenotazione.setNomeCliente(result.getString("nome_cliente"));
+				prenotazione.setCognomeCliente(result.getString("cognome_cliente"));
+				prenotazione.setLocazioneTerreno(result.getString("locazione_terreno"));
+				prenotazione.setNomeOrtaggio(result.getString("nome_ortaggio"));
+				
+				
 				prenotazioni.add(prenotazione);
 			}
 		} catch (SQLException e) {
@@ -176,8 +181,11 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 				prenotazione.setSerra(result.getBoolean("serra"));
-				prenotazioni.add(prenotazione);
-
+				prenotazione.setNomeCliente(result.getString("nome_cliente"));
+				prenotazione.setCognomeCliente(result.getString("cognome_cliente"));
+				prenotazione.setLocazioneTerreno(result.getString("locazione_terreno"));
+				prenotazione.setNomeOrtaggio(result.getString("nome_ortaggio"));
+				
 				prenotazioni.add(prenotazione);
 			}
 		} catch (SQLException e) {
@@ -215,8 +223,11 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 				prenotazione.setSerra(result.getBoolean("serra"));
-				prenotazioni.add(prenotazione);
-
+				prenotazione.setNomeCliente(result.getString("nome_cliente"));
+				prenotazione.setCognomeCliente(result.getString("cognome_cliente"));
+				prenotazione.setLocazioneTerreno(result.getString("locazione_terreno"));
+				prenotazione.setNomeOrtaggio(result.getString("nome_ortaggio"));
+				
 				prenotazioni.add(prenotazione);
 			}
 		} catch (SQLException e) {
@@ -256,6 +267,10 @@ public class PrenotazioneDaoJDBC implements PrenotazioneDao {
 				long secs = result.getDate("data").getTime();
 				prenotazione.setDataPrenotazione(new java.util.Date(secs));
 				prenotazione.setSerra(result.getBoolean("serra"));
+				prenotazione.setNomeCliente(result.getString("nome_cliente"));
+				prenotazione.setCognomeCliente(result.getString("cognome_cliente"));
+				prenotazione.setLocazioneTerreno(result.getString("locazione_terreno"));
+				prenotazione.setNomeOrtaggio(result.getString("nome_ortaggio"));
 			
 				prenotazioni.add(prenotazione);
 			}
