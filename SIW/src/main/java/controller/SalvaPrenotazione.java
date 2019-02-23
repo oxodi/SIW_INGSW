@@ -31,18 +31,19 @@ public class SalvaPrenotazione extends HttpServlet {
 		Terreno terreno = (Terreno) request.getSession().getAttribute("terrenoSessione");
 		
 		String[] elementi = request.getParameterValues("str[]");
-		String[] el = elementi[0].split("@");
-		 
-		for(int i = 1; i<el.length; i++) {
-			el[i] = el[i].substring(1);
+		String[] ortaggiPrenotati = elementi[0].split("@");
+		
+		for(int i = 1; i<ortaggiPrenotati.length; i++) {
+			
+			ortaggiPrenotati[i] = ortaggiPrenotati[i].substring(1);
+			
 		}
+	
 		
-		
-		
-		for(int a = 0; a < el.length; a++) {
+		for(int a = 0; a < ortaggiPrenotati.length; a++) {
 			
 			Prenotazione prenotazione = new Prenotazione();
-			//Terreno terreno = terrenoDao.cercaPerChiavePrimaria(terreno.getId());
+		
 			prenotazione.setDataPrenotazione(new Date());
 			prenotazione.setIdCliente(cliente.getId());
 			prenotazione.setIdTerreno(terreno.getId());
@@ -52,22 +53,28 @@ public class SalvaPrenotazione extends HttpServlet {
 			
 			int quantita = 0;
 			
-			String[] i = el[a].split(",");
-
-			for(int it= 0; it<i.length; it++) {
+			String[] colOrtaggi = ortaggiPrenotati[a].split(",");
+			
+			for(int it= 0; it<colOrtaggi.length; it++) {
+				System.out.println("colOrtaggi["+it+"]: "+ colOrtaggi[it]);
+				System.out.println();
+			}
+			for(int it= 0; it<colOrtaggi.length; it++) {
 				if(it==0) {
-					System.out.println(i[it]);
-					int id_ortaggio = ortaggioDao.restituisciId(i[it]);
-					prenotazione.setId_ortaggio(id_ortaggio);
-					prenotazione.setNomeOrtaggio(i[it]);
-				}else if(it==1){
-					quantita = Integer.parseInt(i[it]);
 				
+					int id_ortaggio = ortaggioDao.restituisciId(colOrtaggi[it]);
+					prenotazione.setId_ortaggio(id_ortaggio);
+					prenotazione.setNomeOrtaggio(colOrtaggi[it]);
+					
+				}else if(it==1){
+					
+					quantita = Integer.parseInt(colOrtaggi[it]);
 					prenotazione.setQuantita(quantita);
+			
 				}else if(it==4) {
-					if(i[it].equals("si")) {
+					if(colOrtaggi[it].equals("si")) {
 						
-						prenotazione.setSerra(true);
+						prenotazione.setSerra(true);	
 						int dimensioneSerra = terreno.getSerraPrenotata() + quantita;
 						terreno.setSerraPrenotata(dimensioneSerra);
 						
@@ -77,20 +84,15 @@ public class SalvaPrenotazione extends HttpServlet {
 						int dimensioneTerreno = terreno.getTerrenoPrenotato() + quantita;
 						terreno.setTerrenoPrenotato(dimensioneTerreno);
 						}
-					terrenoDao.aggiornaQuantitaPrenotata(terreno);
 					
-
+					terrenoDao.aggiornaQuantitaPrenotata(terreno);	
 				}
-
+				//System.out.println("Quantità: "+quantita);
 				
 			}
 			prenotazioneDao.salva(prenotazione);
 			
 		}
-
-
-		
-
 		
 		RequestDispatcher rd = request.getRequestDispatcher("ricevutaPagamento.jsp");
 		rd.forward(request, response);

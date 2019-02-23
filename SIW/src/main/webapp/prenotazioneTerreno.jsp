@@ -46,8 +46,8 @@
 					<div class="searchbar">
 					
 						<input class="search_input" type="text" name="inputCerca"
-							placeholder="Cerca un'azienda.."> <button name="btnCerca" value="cercaAzienda" class="search_icon"><i
-							class="fa fa-search"></i></button>
+							placeholder="Cerca un'azienda.." style="outline: none!important"> <button name="btnCerca" value="cercaAzienda" class="search_icon"><i
+							class="fa fa-search" style="outline: none!important"></i></button>
 					</div>
 				</div>
 			</div>

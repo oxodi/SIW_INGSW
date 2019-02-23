@@ -373,9 +373,9 @@ function prova(paypal,mastercard){
 				str.push(body.rows[i].cells.item(j).innerHTML);
 			}	
 			str.push(body.rows[i].cells.item(4).innerHTML+"@");
-
 		}
-		$.get("SalvaPrenotazione", {'str[]':[ str.slice(length)]});
+	
+		$.get("SalvaPrenotazione", {'str[]':[ str.slice()]});
 		caricaPag();
 	}
 	
