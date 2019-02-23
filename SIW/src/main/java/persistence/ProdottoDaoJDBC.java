@@ -285,4 +285,44 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 
 	}
 
+	@Override
+	public List<Prodotto> dammiPagina(int pagina) {
+		Connection connection = this.dataSource.getConnection();
+		List<Prodotto> prodotti = new LinkedList<Prodotto>();
+
+		try {
+			Prodotto prodotto;
+			PreparedStatement statement;
+			
+			int inizio = (pagina * 10);
+			int fine = (inizio + 10);
+			String query = "SELECT * FROM prodotto WHERE id BETWEEN "+inizio+" AND "+fine;
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+
+			while (result.next()) {
+
+				prodotto = new Prodotto();
+				prodotto.setId(result.getInt("id"));
+				prodotto.setNome(result.getString("nome"));
+				prodotto.setCategoria(result.getString("categoria"));
+				prodotto.setDescrizione(result.getString("descrizione"));
+				prodotto.setQuantita(result.getInt("quantita"));
+				prodotto.setCostoUnitario(result.getDouble("costo_unitario"));
+				prodotto.setIdAzienda(result.getInt("id_azienda"));
+
+				prodotti.add(prodotto);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return prodotti;
+	}
+
 }

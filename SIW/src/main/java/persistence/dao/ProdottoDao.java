@@ -9,9 +9,11 @@ public interface ProdottoDao {
 	public void salva(Prodotto prodotto);
 
 	public Prodotto cercaPerChiavePrimaria(int id);
-
+	
 	public Prodotto cercaPerNome(String nome);
 
+	public List<Prodotto> dammiPagina(int pagina);
+	
 	public List<Prodotto> cercaPerCategoria(String categoria);
 
 	public List<Prodotto> cercaTutti();
