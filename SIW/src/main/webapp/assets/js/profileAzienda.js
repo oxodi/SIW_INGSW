@@ -90,6 +90,11 @@ function ortaggiPrenotati(terreno) {
 				},
 		
 				success : function(data) {
+					
+					$("#list_info"+terreno).remove();
+					var $chiudi =('<button class="button_chiudi btn" id="chiudi'+terreno+'" type="button"></button>')
+					$("#info_row"+terreno).append($chiudi);
+					
 					$('#listaOrtaggi' + terreno).empty();
 					var $table = ('<tr align="center">' + '<th>Nome</th>' + '<th>Quantità</th>'
 							+ '<th>Serra</th>' + '</tr>')
@@ -138,25 +143,15 @@ function prenotazioniAzienda() {
 
 			for (var i = 0; i < data.length; i++) {
 				var $row = ('<tbody>'
-						+ '<tr id="rigaPren" align="center" data-toggle="collapse" data-target="#listaOrtaggi'
-						+ data[i].id_terreno
-						+ '" aria-expanded="false" aria-controls="listaOrtaggi">'
-						+ '<td>'
-						+ data[i].terreno
-						+ '</td>'
-						+ '<td>'
-						+ data[i].cliente_nome
-						+ ', '
-						+ data[i].cliente_cognome
-						+ '</td>'
-						+ '<td>'
-						+ data[i].data
-						+ '</td>'
-						+ '<td><button class="button_info btn" type="button" aria-hidden="true" onclick="ortaggiPrenotati('
-						+ data[i].id_terreno + ')"></button></td>'
+						+ '<tr id="rigaPren" align="center" data-toggle="collapse" data-target="#listaOrtaggi'+ data[i].id_terreno+ '" aria-expanded="false" aria-controls="listaOrtaggi">'
+						+ '<td>'+ data[i].terreno+ '</td>'
+						+ '<td>'+ data[i].cliente_nome+ ', '+ data[i].cliente_cognome+ '</td>'
+						+ '<td>'+ data[i].data+ '</td>'
+						+ '<td id="info_row'+data[i].id_terreno+'"><button class="button_info btn" id="list_info'+data[i].id_terreno+'" type="button"'  
+						+ 'onclick="ortaggiPrenotati('+ data[i].id_terreno + ')"></button></td>'
+						+ '</tr>'
 						+ '</tbody>'
-						+ '<tbody class="collapse" id="listaOrtaggi'
-						+ data[i].id_terreno + '"' + '</tbody')
+						+ '<tbody class="collapse" id="listaOrtaggi'+ data[i].id_terreno + '"' + '</tbody')
 						$("#tabListaPrenotazioni").append($row);
 			}
 

@@ -154,6 +154,15 @@ h1 {
 	background-image: url("../img/infooo.png");
 	outline: none !important;
 }
+.button_chiudi {
+	background-color: transparent;
+	width: 50px;
+	height: 40px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url("../img/chiudi.png");
+	outline: none !important;
+}
 .button_modifica {
 	background-color: transparent;
 	width: 50px;
