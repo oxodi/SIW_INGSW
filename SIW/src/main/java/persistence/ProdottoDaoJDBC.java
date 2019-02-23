@@ -286,7 +286,7 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 	}
 
 	@Override
-	public List<Prodotto> dammiPagina(int pagina) {
+	public List<Prodotto> dammiProdottiPerPagina(int pagina) {
 		Connection connection = this.dataSource.getConnection();
 		List<Prodotto> prodotti = new LinkedList<Prodotto>();
 
@@ -323,6 +323,72 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 			}
 		}
 		return prodotti;
+	}
+
+	@Override
+	public List<Prodotto> filtraPerPrezzo(int min, int max) {
+		Connection connection = this.dataSource.getConnection();
+		List<Prodotto> prodotti = new LinkedList<Prodotto>();
+
+		try {
+			Prodotto prodotto;
+			PreparedStatement statement;
+			
+			String query = "SELECT * FROM prodotto WHERE costo_unitario BETWEEN "+min+" AND "+max;
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+
+			while (result.next()) {
+
+				prodotto = new Prodotto();
+				prodotto.setId(result.getInt("id"));
+				prodotto.setNome(result.getString("nome"));
+				prodotto.setCategoria(result.getString("categoria"));
+				prodotto.setDescrizione(result.getString("descrizione"));
+				prodotto.setQuantita(result.getInt("quantita"));
+				prodotto.setCostoUnitario(result.getDouble("costo_unitario"));
+				prodotto.setIdAzienda(result.getInt("id_azienda"));
+
+				prodotti.add(prodotto);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return prodotti;
+	}
+	
+
+	@Override
+	public int sizeProdotti() {
+		Connection connection = this.dataSource.getConnection();
+		int numProdotti;
+		
+		try {
+			PreparedStatement statement;
+			
+			String query = "SELECT COUNT (id) FROM prodotto";
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			
+			numProdotti = result.getInt("count");
+			
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		
+		return numProdotti;
 	}
 
 }

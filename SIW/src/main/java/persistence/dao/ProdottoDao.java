@@ -12,7 +12,11 @@ public interface ProdottoDao {
 	
 	public Prodotto cercaPerNome(String nome);
 
-	public List<Prodotto> dammiPagina(int pagina);
+	public int sizeProdotti();
+	
+	public List<Prodotto> dammiProdottiPerPagina(int pagina);
+	
+	public List<Prodotto> filtraPerPrezzo(int min, int max);
 	
 	public List<Prodotto> cercaPerCategoria(String categoria);
 
