@@ -77,6 +77,13 @@ $(function chartStatistiche(){
 		
 });
 
+function distruggiOrtaggiPrenotati(terreno){
+	$("#chiudi"+terreno).remove();
+	$('#listaOrtaggi' + terreno).remove();
+	var $apri = ('<button class="button_info btn" id="list_info'+terreno+'" type="button" onclick="ortaggiPrenotati('+terreno + ')"></button>')
+	$("#info_row"+terreno).append($apri);
+}
+
 function ortaggiPrenotati(terreno) {	
 	
 	
@@ -92,7 +99,7 @@ function ortaggiPrenotati(terreno) {
 				success : function(data) {
 					
 					$("#list_info"+terreno).remove();
-					var $chiudi =('<button class="button_chiudi btn" id="chiudi'+terreno+'" type="button"></button>')
+					var $chiudi =('<button class="button_chiudi btn" id="chiudi'+terreno+'" onclick="distruggiOrtaggiPrenotati('+terreno+')" type="button"></button>')
 					$("#info_row"+terreno).append($chiudi);
 					
 					$('#listaOrtaggi' + terreno).empty();
