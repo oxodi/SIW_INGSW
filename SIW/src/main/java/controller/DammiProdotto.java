@@ -41,6 +41,12 @@ public class DammiProdotto extends HttpServlet {
 		
 		System.out.println("Pagina: "+pagina);
 		List<Prodotto> prodotti = prodottoDao.dammiProdottiPerPagina(pagina);
+		
+		for (Prodotto prodotto : prodotti) {
+			int id_azienda = prodotto.getIdAzienda();
+			prodotto.setNomeAzienda(aziendaDao.restituisciNome(id_azienda));
+		}
+		
 		List<String> aziende = aziendaDao.cercaAziendaConProdotto();
 		
 		request.setAttribute("prodotti", prodotti);

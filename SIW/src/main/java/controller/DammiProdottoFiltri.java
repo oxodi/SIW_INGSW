@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entita.Prodotto;
 import persistence.PostgresDAOFactory;
+import persistence.dao.AziendaDao;
 import persistence.dao.ProdottoDao;
 
 /**
@@ -24,26 +26,41 @@ public class DammiProdottoFiltri extends HttpServlet {
 		System.out.println("Sono in DammiProdottoFiltri");
 		PostgresDAOFactory factory = PostgresDAOFactory.getInstance();
 		ProdottoDao prodottoDao = factory.getProdottoDAO();
+		AziendaDao aziendaDao = factory.getAziendaDAO();
 		List<Prodotto> prodotti = null;
 		String filtro = request.getParameter("filtro");
+		System.out.println(filtro);
+	
 		if(filtro.equals("cat")) {
-			String categoria = request.getParameter("categoria");
-			int numeroProdotti = prodottoDao.sizeProdottiCategoria(categoria);
-			double numeroPagineTemp = (double) numeroProdotti / 10;
-			int numeroPagine =  (int) Math.ceil(numeroPagineTemp);
-			int pagina;
-			if(request.getParameter("pagina") != null) {
-				pagina = (Integer.parseInt(request.getParameter("pagina"))) - 1;
-			} else {
-				pagina = 0;
-			}
 			
+			String categoria = request.getParameter("categoria");
 			prodotti = prodottoDao.cercaPerCategoria(categoria);
-			System.out.println(categoria);
+		
+		} else if (filtro.equals("az")) {
+			
+			String azienda = request.getParameter("azienda");
+			int id_azienda = aziendaDao.restituisciID(azienda);
+			prodotti = prodottoDao.cercaPerAzienda(id_azienda);
+		} else if (filtro.equals("prezzo")) {
+			
+			int min = Integer.parseInt(request.getParameter("minPrezzo"));
+			int max = Integer.parseInt(request.getParameter("maxPrezzo"));
+			prodotti = prodottoDao.filtraPerPrezzo(min, max);
+		} else if (filtro.equals("cerca")) {
+			String nomeProdotto = request.getParameter("nomeProdotto");
+			Prodotto prodotto = prodottoDao.cercaPerNome(nomeProdotto);
+			prodotti = new ArrayList<Prodotto>();
+			prodotti.add(prodotto);
 		}
 		
+		for (Prodotto prodotto : prodotti) {
+			int id_azienda = prodotto.getIdAzienda();
+			prodotto.setNomeAzienda(aziendaDao.restituisciNome(id_azienda));
+		} 
 		
+		List<String> aziende = aziendaDao.cercaAziendaConProdotto();
 		request.setAttribute("prodotti", prodotti);
+		request.setAttribute("aziende", aziende);
 		RequestDispatcher rd = request.getRequestDispatcher("ordinaProdotto.jsp");
 		rd.forward(request, response);
 	}
