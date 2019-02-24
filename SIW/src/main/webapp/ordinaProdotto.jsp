@@ -332,6 +332,7 @@
 									type="checkbox" name="postapayCheckbox" id="mastercard"
 									value="Ford"> <label class="mastercard" for="postapay"><img
 										src="assets\img\ruotaStagioni\ImgMastercard.jpg" /></label></li>
+										
 							</ul>
 						</div>
 
