@@ -64,11 +64,13 @@
 		</header>
 		<div style="" class="filter-content collapse show" id="collapse22">
 			<div class="card-body">
-				<form class="pb-3">
+				<form class="pb-3"  method="get" action="DammiProdottoFiltri">
 				<div class="input-group">
-				  <input class="form-control" placeholder="Search" type="text">
+				   <input class="form-control" value="cerca" name="filtro" style="display: none;">
+				  <input class="form-control" placeholder="Search" type="text" name="nomeProdotto">
+				 
 				  <div class="input-group-append">
-				    <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+				     <button name="btn" value="cercaNome" class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button> 
 				  </div>
 				</div>
 				</form>
@@ -97,22 +99,29 @@
 				<h6 class="title">By Price  </h6>
 			</a>
 		</header>
+		<form action="DammiProdottoFiltri" method="get">
 		<div class="filter-content collapse show" id="collapse33">
+			
 			<div class="card-body">
-				<input type="range" class="custom-range" min="0" max="100" name="">
+			
+				<!-- <input type="range" class="custom-range" min="0" max="100" name=""> -->
 				<div class="form-row">
 				<div class="form-group col-md-6">
+				  <input class="form-control" value="prezzo" name="filtro" style="display: none;">
 				  <label>Min</label>
-				  <input class="form-control" placeholder="$0" type="number">
+				  <input class="form-control" placeholder="€0" type="number" name="minPrezzo">
 				</div>
 				<div class="form-group text-right col-md-6">
 				  <label>Max</label>
-				  <input class="form-control" placeholder="$1,0000" type="number">
+				  <input class="form-control" placeholder="€100" type="number" name="maxPrezzo">
 				</div>
 				</div> <!-- form-row.// -->
-				<button class="btn btn-block btn-outline-primary">Apply</button>
+				<button class="btn btn-block btn-outline-primary" type="submit">Applica</button>
+			
 			</div> <!-- card-body.// -->
+			
 		</div> <!-- collapse .// -->
+		</form>
 	</article> <!-- card-group-item.// -->
 	<article class="card-group-item">
 		<header class="card-header">
@@ -125,7 +134,7 @@
 			<div class="card-body">
 			<ul class="list-unstyled list-lg ">
 			<c:forEach items="${aziende }" var="a">
-				<li class="filtroBordo"><a class="filtroInterno" href="#" onclick="filtraAzienda('${a}')">${a} </a></li>
+				<li class="filtroBordo"><a class="filtroInterno" href="DammiProdottoFiltri?filtro=az&azienda=${a }" onclick="submit">${a} </a></li>
 			</c:forEach>
 			</ul>
 			</div> <!-- card-body.// -->
