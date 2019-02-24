@@ -348,27 +348,27 @@
 											<td> </td>
 											<td> </td>
 											<td> </td>
-											<td><h5>Subtotal</h5></td>
-											<td class="text-right"><h5>
-													<strong>$24.59</strong>
+											<td><h5>Parziale  €</h5></td>
+											<td class="text-right"><h5 id="parziale">
+													<strong></strong>
 												</h5></td>
 										</tr>
 										<tr>
 											<td> </td>
 											<td> </td>
 											<td> </td>
-											<td><h5>Estimated shipping</h5></td>
-											<td class="text-right"><h5>
-													<strong>$6.94</strong>
+											<td><h5>Spese di spedizione  €</h5 ></td>
+											<td class="text-right"><h5 id="spedizione">
+													<strong></strong>
 												</h5></td>
 										</tr>
 										<tr>
 											<td> </td>
 											<td> </td>
 											<td> </td>
-											<td><h3>Total</h3></td>
-											<td class="text-right"><h3>
-													<strong>$31.53</strong>
+											<td><h3>Totale  €</h3></td>
+											<td class="text-right"><h3 id="totale">
+													<strong></strong>
 												</h3></td>
 										</tr>
 										<tr>

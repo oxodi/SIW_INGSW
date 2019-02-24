@@ -21,7 +21,7 @@ function visualizzaCarrello(){
 	
 	
 	var body = document.getElementById('body');
-	alert("sono fuori dal for");
+	var somma = 0;
 	
 	for(var i = 0; i<prodotti.carrello.length; i++){
 		alert("Sono nel for");
@@ -45,28 +45,27 @@ function visualizzaCarrello(){
 						"<option>2</option>"+
 						"<option>3</option>"+
 						"<option>4</option>"+
+						"<option>5</option>"+
+						"<option>6</option>"+
 						"</select></td>"+
 						"<td>"+
 						"<div class='price-wrap'>"+
-						"<var class='price'>USD 145</var>"+
-						"<small class='text-muted'>(USD5 each)</small>"+
+						"<var class='price'>€ "+prodotti.carrello[i].prezzo+"</var>"+
 						"</div>" +
 						"</td>" +
 						"<td class='text-right'><a href='' class='btn btn-outline-danger'> × Rimuovi</a></td>"+
 						"</tr>"
 				
 		);
-		
+		somma += parseFloat(prodotti.carrello[i].prezzo);
 		$(body).append($row);
 	
 	}
-
-
-
-
-
 	
-
-
-
+	var spedizione = (somma / 100) * 5;
+	var totale = somma + spedizione;
+	
+	$('#parziale').html(somma.toFixed(2));
+	$('#spedizione').html(spedizione.toFixed(2));
+	$('#totale').html(totale.toFixed(2));
 }
