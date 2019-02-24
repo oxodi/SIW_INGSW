@@ -293,8 +293,14 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 			Prodotto prodotto;
 			PreparedStatement statement;
 
-			int inizio = (pagina * 10);
-			int fine = (inizio + 10);
+			int inizio = 0;
+			int fine = 10;
+			
+			if(pagina > 0) {
+				inizio = (pagina * 10) + 1;
+				fine = (inizio + 9);
+			}
+			
 			String query = "SELECT * FROM prodotto WHERE id BETWEEN "+inizio+" AND "+fine;
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
@@ -391,63 +397,6 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 		return numProdotti;
 	}
 
-	@Override
-	public int sizeProdottiCategoria(String categoria) {
-		Connection connection = this.dataSource.getConnection();
-		int numProdotti = 0;
-
-		try {
-			PreparedStatement statement;
-			String query = "SELECT COUNT (id) FROM prodotto WHERE categoria=?";
-
-			statement = connection.prepareStatement(query);
-			statement.setString(1, categoria);
-			ResultSet result = statement.executeQuery();
-			
-			if(result.next())
-				numProdotti = result.getInt("count");
-
-		} catch (SQLException e) {
-			throw new PersistenceException(e.getMessage());
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
-
-		return numProdotti;
-	}
-
-	@Override
-	public int sizeProdottiAzienda(int idAzienda) {
-		Connection connection = this.dataSource.getConnection();
-		int numProdotti = 0;
-
-		try {
-			PreparedStatement statement;
-			String query = "SELECT COUNT (id) FROM prodotto WHERE id_azienda=?";
-
-			statement = connection.prepareStatement(query);
-			statement.setInt(1, idAzienda);
-			ResultSet result = statement.executeQuery();
-			
-			if(result.next())
-				numProdotti = result.getInt("count");
-
-		} catch (SQLException e) {
-			throw new PersistenceException(e.getMessage());
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
-
-		return numProdotti;
-	}
 }
 
 

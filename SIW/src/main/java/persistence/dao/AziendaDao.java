@@ -15,6 +15,8 @@ public interface AziendaDao {
 	
 	public List<Azienda> cercaTutti();
 
+	public int restituisciID(String nome);
+	
 	public void aggiorna(Azienda azienda);
 
 	public void cancella(Azienda azienda);

@@ -397,7 +397,7 @@ public class AziendaDaoJDBC implements AziendaDao {
 
 			while (result.next()) {
 				nomeAzienda = (result.getString("ragione_sociale"));
-			
+
 
 				nomiAziende.add(nomeAzienda);
 			}
@@ -413,4 +413,33 @@ public class AziendaDaoJDBC implements AziendaDao {
 		return nomiAziende;
 	}
 
+	@Override
+	public int restituisciID(String nome) {
+		Connection connection = this.dataSource.getConnection();
+		int id = 0;
+
+		try {
+			String query = "SELECT id FROM azienda WHERE ragione_sociale = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, nome);
+			ResultSet result = statement.executeQuery();
+
+			if (result.next()) {
+				id = result.getInt("id");
+
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+
+			}
+		}
+		return id;
+	}
 }
+
+
