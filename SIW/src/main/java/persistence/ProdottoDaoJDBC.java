@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-
 import entita.Prodotto;
 import persistence.dao.ProdottoDao;
 
@@ -208,7 +207,7 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 			statement.setDouble(2, prodotto.getCostoUnitario());
 			statement.setString(3, prodotto.getDescrizione());
 			statement.setInt(4, prodotto.getId());
-			
+
 
 			statement.executeUpdate();
 
@@ -293,7 +292,7 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 		try {
 			Prodotto prodotto;
 			PreparedStatement statement;
-			
+
 			int inizio = (pagina * 10);
 			int fine = (inizio + 10);
 			String query = "SELECT * FROM prodotto WHERE id BETWEEN "+inizio+" AND "+fine;
@@ -333,7 +332,7 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 		try {
 			Prodotto prodotto;
 			PreparedStatement statement;
-			
+
 			String query = "SELECT * FROM prodotto WHERE costo_unitario BETWEEN "+min+" AND "+max;
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
@@ -362,22 +361,23 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 		}
 		return prodotti;
 	}
-	
+
 
 	@Override
 	public int sizeProdotti() {
 		Connection connection = this.dataSource.getConnection();
-		int numProdotti;
-		
+		int numProdotti = 0;
+
 		try {
 			PreparedStatement statement;
-			
+
 			String query = "SELECT COUNT (id) FROM prodotto";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
-			
-			numProdotti = result.getInt("count");
-			
+
+			if(result.next())
+				numProdotti = result.getInt("count");
+
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -387,8 +387,67 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		
+
 		return numProdotti;
 	}
 
+	@Override
+	public int sizeProdottiCategoria(String categoria) {
+		Connection connection = this.dataSource.getConnection();
+		int numProdotti = 0;
+
+		try {
+			PreparedStatement statement;
+			String query = "SELECT COUNT (id) FROM prodotto WHERE categoria=?";
+
+			statement = connection.prepareStatement(query);
+			statement.setString(1, categoria);
+			ResultSet result = statement.executeQuery();
+			
+			if(result.next())
+				numProdotti = result.getInt("count");
+
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+
+		return numProdotti;
+	}
+
+	@Override
+	public int sizeProdottiAzienda(int idAzienda) {
+		Connection connection = this.dataSource.getConnection();
+		int numProdotti = 0;
+
+		try {
+			PreparedStatement statement;
+			String query = "SELECT COUNT (id) FROM prodotto WHERE id_azienda=?";
+
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, idAzienda);
+			ResultSet result = statement.executeQuery();
+			
+			if(result.next())
+				numProdotti = result.getInt("count");
+
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+
+		return numProdotti;
+	}
 }
+
+

@@ -29,7 +29,6 @@
 
 
 <meta charset="ISO-8859-1">
-<title>profilo azienda</title>
 </head>
 <body>
 
@@ -298,7 +297,7 @@
 								</thead>
 								<c:forEach items="${terreni}" var="t" varStatus="status">
 									
-								<tbody id="items" style="background: #f4ddb5">
+							 	<tbody id="items" style="background: #f4ddb5">
 										<tr class="clickable" data-toggle="collapse"
 											data-target="#group-of-rows-1" aria-expanded="false"
 											aria-controls="group-of-rows-1">
@@ -317,144 +316,7 @@
 
 						</div>
 
-						<!-- modifica -->
-						<div class="container" id="info_terreno"
-							style="display: none; margin-top: 20px">
-							<div class="container" id="formModificaTerreno">
-								<div align="center">
-									<h4>Modifica dati Terreno</h4>
-								</div>
-								<form class="custom-form" method="post"
-									action="TerrenoOspitaOrtaggi?edit=true">
-									<div class="row" style="margin-top: 40px">
-										<div class="col-md-6 ">
-											<div class="form-row form-group" style="display: none;">
-												<div class="col-xs-2" style="display: none !important">
-													<input class="input-column" type="text" id="editFormId"
-														name="editFormId">
-												</div>
-											</div>
-											<div class="form-row form-group">
-												<div class="col-md-4">
-													<label class="label-column">Locazione</label>
-												</div>
-												<div class="col-xs-2">
-													<input class="input-column" type="text" disabled="disabled"
-														id="editFormLocazione">
-												</div>
-											</div>
-											<br>
-											<div class="form-row form-group">
-
-												<div class="col-md-4">
-													<label class="label-column">Dimensione (mt²)</label>
-												</div>
-												<div class="col-xs-2">
-													<input class="input-column" type="text"
-														id="editFormDimensione" name="editFormDimensione">
-												</div>
-
-											</div>
-											<br>
-											<div class="form-row form-group">
-												<div class="col-md-4">
-													<label class="label-column">Dimensione Serra (mt²)</label>
-												</div>
-												<div class="col-xs-2">
-													<input class="input-column" type="text"
-														id="editFormDimensioneSerra"
-														name="editFormDimensioneSerra">
-												</div>
-
-											</div>
-											<br>
-										</div>
-
-										<div class="col-md-6 ">
-											<div class="form-row form-group">
-												<div class="col-md-4">
-													<label class="label-column">Costo (€/mt²)</label>
-												</div>
-												<div class="col-xs-2">
-													<input class="input-column" type="text" id="editFormCosto"
-														name="editFormCosto">
-												</div>
-											</div>
-											<br>
-											<div class="form-row form-group">
-												<div class="col-md-4" align="left">
-													<label class="label-column">Periodo Disponibilita'</label>
-												</div>
-												<div class="col-xs-2">
-													<select class="input-column"
-														style="margin: 3%; padding: 3px;"
-														id="dropdownDisponibilita" name="dropdownDisponibilita">
-														<option value="primavera">Primavera</option>
-														<option value="estate">Estate</option>
-														<option value="autunno">Autunno</option>
-														<option value="inverno">Inverno</option>
-														<!-- <option value="annuale">Annuale</option>  -->
-
-													</select>
-												</div>
-											</div>
-											<br>
-											<div class="form-row form-group">
-												<label class="label-column"><strong>Seleziona
-														i sevizi</strong></label>
-											</div>
-											<div class="form-check" align="left">
-												<input id="editCheckParziale" type="checkbox"
-													name="editCheckParziale" value="parziale"><label>
-													Servizio Parziale</label>
-											</div>
-											<br>
-											<div class="form-check" align="left">
-												<input id="editCheckCompleto" type="checkbox"
-													name="editCheckCompleto" value="completo"><label>
-													Servizio Completo</label>
-											</div>
-
-
-											<br>
-
-										</div>
-									</div>
-									<div align="center">
-										<button class="button btn" id="annulla_modifica" type="button">Annulla</button>
-										<button class="button btn" type="submit">Salva</button>
-										<button class="button btn" id="modificaOrtaggi" type="button">Mostra
-											ortaggi</button>
-									</div>
-								</form>
-							</div>
-							<!-- Form Modifica Ortaggi -->
-							<div class="container" id="containerModificaOrtaggi"
-								style="display: none">
-								<div class="table-responsive" id="table-scroll">
-									<table class="table table-hover" id="formModificaOrtaggi">
-										<thead>
-											<tr>
-												<th><strong>Nome</strong></th>
-												<th><strong>Resa</strong></th>
-												<th><strong>Prezzo</strong></th>
-												<th><strong>Tempo Coltivazione</strong></th>
-
-											</tr>
-										</thead>
-										<tbody id="items">
-
-										</tbody>
-									</table>
-								</div>
-								<div align="center">
-									<button class="button btn" id="annulla_ortaggi" type="button">Annulla</button>
-									<button class="button btn" type="submit">Salva</button>
-								</div>
-							</div>
-						</div>
-						<!-- end modifiche -->
-
+					
 					</div>
 
 				</div>

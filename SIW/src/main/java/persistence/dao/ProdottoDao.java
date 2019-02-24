@@ -14,6 +14,10 @@ public interface ProdottoDao {
 
 	public int sizeProdotti();
 	
+	public int sizeProdottiCategoria(String categoria);
+	
+	public int sizeProdottiAzienda(int idAzienda);
+	
 	public List<Prodotto> dammiProdottiPerPagina(int pagina);
 	
 	public List<Prodotto> filtraPerPrezzo(int min, int max);
