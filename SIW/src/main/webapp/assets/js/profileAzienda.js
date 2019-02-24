@@ -188,7 +188,7 @@ function prenotazioniAzienda() {
 				var $row = ('<tbody>'
 						+ '<tr id="rigaPren" align="center" data-toggle="collapse" data-target="#listaOrtaggi'+ data[i].id_terreno+ '" aria-expanded="false" aria-controls="listaOrtaggi">'
 						+ '<td>'+ data[i].terreno+ '</td>'
-						+ '<td>'+ data[i].cliente_nome+ ', '+ data[i].cliente_cognome+ '</td>'
+						+ '<td>'+ data[i].cliente_nome+ ' '+ data[i].cliente_cognome+ '</td>'
 						+ '<td>'+ data[i].data+ '</td>'
 						+ '<td id="info_row'+data[i].id_terreno+'"><button class="button_info btn" id="list_info'+data[i].id_terreno+'" type="button"'  
 						+ 'onclick="ortaggiPrenotati('+ data[i].id_terreno + ')"></button></td>'
