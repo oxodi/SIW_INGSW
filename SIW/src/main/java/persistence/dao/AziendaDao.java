@@ -17,6 +17,8 @@ public interface AziendaDao {
 
 	public int restituisciID(String nome);
 	
+	public String restituisciNome(int idAzienda);
+	
 	public void aggiorna(Azienda azienda);
 
 	public void cancella(Azienda azienda);

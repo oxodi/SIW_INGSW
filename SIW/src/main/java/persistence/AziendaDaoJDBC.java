@@ -440,6 +440,35 @@ public class AziendaDaoJDBC implements AziendaDao {
 		}
 		return id;
 	}
+
+	@Override
+	public String restituisciNome(int idAzienda) {
+		Connection connection = this.dataSource.getConnection();
+		String nome = "";
+		
+		try {
+			String query = "SELECT ragione_sociale FROM azienda WHERE id = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, idAzienda);
+			ResultSet result = statement.executeQuery();
+
+			if (result.next()) {
+				nome = result.getString("ragione_sociale");
+
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+
+			}
+		}
+		return nome;
+
+	}
 }
 
 
