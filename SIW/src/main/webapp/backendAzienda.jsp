@@ -87,6 +87,7 @@
 								terreni</a></li>
 						<li><a data-toggle="tab" href="#imieiprodotti">I miei
 								prodotti</a></li>
+						<li><a data-toggle="tab" href="#ordini" onclick="ordiniEffettuati()">Ordini</a></li>
 						<li><a data-toggle="tab" href="#prenotazioni" onclick="prenotazioniAzienda()">Prenotazioni</a></li>
 						<li class="active"><a data-toggle="tab" href="#modificadati">
 								Dati Azienda</a></li>
@@ -661,12 +662,20 @@
 						
 					</div>	
 					<!-- end prenotazioni -->
+					
+					<!-- Ordini -->
+					<div class="tab-pane" style="margin-top: 20px; margin-bottom: 50px"
+						id="ordini">
+							<div id="divOrdini"></div>
+					</div>
+					<!-- End Ordini -->
 					<!-- statistiche -->
 					<div class="tab-pane active" style="margin-top: 20px; margin-bottom: 50px"
 						id="tabStatistiche">
 							<canvas id="myChart"></canvas>
 					</div>
 					<!-- end statistiche -->
+					
 				</div>
 			</div>
 		</div>

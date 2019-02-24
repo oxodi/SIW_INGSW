@@ -59,9 +59,7 @@ function getFbUserData() {
 					contentType : "application/json; charset=utf-8",
 					dataType : "json",
 					data : JSON.stringify(response),
-					success : function(data) {
-						alert("sto loggando con FB");
-						
+					success : function(data) {						
 						if (data.resp === "ok") {
 							//location.reload();
 							window.location.href = "Home";

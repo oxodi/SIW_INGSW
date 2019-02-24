@@ -9,6 +9,42 @@ $(function() {
 	$("#footer").load("footer.jsp");
 });
 
+function ordiniEffettuati(){
+	$("#divOrdini").empty();
+	var $table = ('<div class="container-fluid" id="containerOrdini">'
+			+ '<div class="form-row form-group">'
+			+ '<div class="table-responsive" id="table-scroll">'
+			+ '<table class="table table-hover" id="tabListaOrdini">'
+			+ '<thead>' + '<tr align="center">' + '<th>Prodotto</th>'
+			+ '<th>Cliente</th>' + '<th>Data</th>'
+			+ '<th>Dettagli</th>' + '</tr>' + '</thead>'
+			+ '</table>' + '</div>' + '</div>' + '</div>')
+	
+	$("#divOrdini").append($table);
+	$.ajax({
+		url: "DammiOrdini",
+		method: "GET",
+		dataType: "json",
+		contentType : "application/json; charset=utf-8",
+		success: function(data){
+			for(var i = 0;i<data.length;i++){
+				var $row = ('<tbody>'
+					+ '<tr id="rigaOrdini" align="center" data-toggle="collapse" data-target="#listaOrdini" aria-expanded="false" aria-controls="listaOrdini">'
+					+ '<td>'+data[i].NomeProdotto+'</td>'
+					+ '<td>'+data[i].NomeCliente+'</td>'
+					+ '<td>'+data[i].DataAcquisto+'</td>'
+					+ '</tr>'
+					+ '</tbody>')
+										
+					$("#tabListaOrdini").append($row);
+			}
+			
+		}
+	});
+
+	
+}
+
 $(function chartStatistiche(){
 	var idAzienda = $('#id_azienda').val();
 		$.ajax({

@@ -137,6 +137,13 @@
 		<servlet-name>CalcolaStatistiche</servlet-name>
 		<servlet-class>controller.CalcolaStatistiche</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>DammiOrdini</display-name>
+		<servlet-name>DammiOrdini</servlet-name>
+		<servlet-class>controller.DammiOrdini</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -228,6 +235,10 @@
 	<servlet-mapping>
 		<servlet-name>CalcolaStatistiche</servlet-name>
 		<url-pattern>/CalcolaStatistiche</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DammiOrdini</servlet-name>
+		<url-pattern>/DammiOrdini</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>Home</welcome-file>
