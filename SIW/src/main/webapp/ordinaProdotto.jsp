@@ -49,12 +49,6 @@
 						</div>
 					</div>
 				</div>
-
-
-<!-- 				<div class="row" id="titolo" >
-	<h1 >Compra i prodotti direttamente dalle aziende</h1>
-	<h2></h2>
-	</div> -->
 	
 	<div class="row" id= "corpo">
 	<aside class="col-sm-3">
