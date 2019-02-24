@@ -33,8 +33,8 @@
 		$("#validazioneCategoria").text($("#categoria").val());
 		$("#validazioneQuantita").text($("#quantita").val());
 		$("#validazioneCosto").text($("#costo").val());
-		$("#validazioneDescrizione").text($("#descrizione").val());
-
+		$("#validazioneDescrizione").text($("#formDescrizione").val());
+		
 	};
 </script>
 <script>
@@ -88,8 +88,20 @@
 										<label class="label-column">Categoria</label>
 									</div>
 									<div class="col-xs-2">
-										<input class="input-column" type="text" name="categoria"
-											id="categoria" placeholder="">
+										<!-- <input class="input-column" type="text" name="categoria"
+											id="categoria" placeholder=""> -->
+											<select class="input-column" style="padding: 5px;"
+											name="categoria" id="categoria">
+											<option value="Latticini">Latticini</option>
+											<option value="Oli">Oli e derivati</option>
+											<option value="Verdure">Verdure</option>
+											<option value="Frutti">Frutti</option>
+											<option value="Vini">Vini</option>
+											<option value="Carni">Carni e derivati</option>
+											<option value="Altro">Altro</option>
+											<!-- <option value="annuale">Annuale</option>  -->
+
+										</select>
 									</div>
 								</div>
 								<br>
@@ -120,7 +132,7 @@
 									<label for="comment">Descrizione:</label>
 										<textarea class="form-control"
 										style="margin-left: auto; margin-right: auto; resize: none; border: 2px green solid; border-radius: 15px; background-color: #cfc7af"
-										rows="8"  name="formDescrizione"></textarea>
+										rows="8" name="formDescrizione" id="formDescrizione"></textarea>
 								</div>
 							</div>
 							<!-- fine colonna 2 -->
@@ -160,11 +172,9 @@
 										<tr>
 											<td class="input" id="validazioneNome" scope="row"></td>
 											<td class="input" id="validazioneCategoria" scope="row"></td>
-											<td class="input" id="validazioneQuantita" scope="row">
-											</td>
+											<td class="input" id="validazioneQuantita" scope="row"></td>
 											<td class="input" id="validazioneCosto" scope="row"></td>
-											<td class="input" id="validazioneDescrizione" scope="row">
-											</td>
+											<td class="input" id="validazioneDescrizione" scope="row"></td>
 										</tr>
 									</tbody>
 								</table>

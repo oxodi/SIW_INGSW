@@ -66,7 +66,7 @@ public class InserisciProdotto extends HttpServlet {
 			String categoria = req.getParameter("categoria");
 			int quantita = Integer.parseInt(req.getParameter("quantita"));
 			double costo = Double.parseDouble(req.getParameter("costo"));
-			String descrizione = req.getParameter("descrizione");
+			String descrizione = req.getParameter("formDescrizione");
 			Azienda aziendaInSessione = (Azienda) req.getSession().getAttribute("azienda");
 			Prodotto p = new Prodotto();
 			System.out.println("Setto il nome: " + nome);
