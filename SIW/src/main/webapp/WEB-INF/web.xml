@@ -144,6 +144,13 @@
 		<servlet-name>DammiOrdini</servlet-name>
 		<servlet-class>controller.DammiOrdini</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>DammiProdottoFiltri</display-name>
+		<servlet-name>DammiProdottoFiltri</servlet-name>
+		<servlet-class>controller.DammiProdottoFiltri</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -239,6 +246,10 @@
 	<servlet-mapping>
 		<servlet-name>DammiOrdini</servlet-name>
 		<url-pattern>/DammiOrdini</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DammiProdottoFiltri</servlet-name>
+		<url-pattern>/DammiProdottoFiltri</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>Home</welcome-file>

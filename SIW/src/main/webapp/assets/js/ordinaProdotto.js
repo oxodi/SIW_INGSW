@@ -1,7 +1,10 @@
 /**
  * 
  */
-function mostra(prodotti) {
+function filtraCategoria(categoria) {
+	
+	$('#'+categoria).hide();
+
 	
 }
 

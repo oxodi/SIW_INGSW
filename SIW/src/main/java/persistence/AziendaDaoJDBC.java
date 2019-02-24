@@ -383,4 +383,34 @@ public class AziendaDaoJDBC implements AziendaDao {
 
 	}
 
+	@Override
+	public List<String> cercaAziendaConProdotto() {
+		Connection connection = this.dataSource.getConnection();
+		List<String> nomiAziende = new LinkedList<String>();
+
+		try {
+			String nomeAzienda;
+			PreparedStatement statement;
+			String query = "SELECT DISTINCT ragione_sociale FROM azienda INNER JOIN prodotto ON azienda.id = prodotto.id_azienda";
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+
+			while (result.next()) {
+				nomeAzienda = (result.getString("ragione_sociale"));
+			
+
+				nomiAziende.add(nomeAzienda);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return nomiAziende;
+	}
+
 }

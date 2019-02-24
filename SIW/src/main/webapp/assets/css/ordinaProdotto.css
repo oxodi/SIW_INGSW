@@ -15,6 +15,10 @@ body {
 	padding: 3%;
 }
 
+#cart.col-sm-4{
+	margin-top: 15px;
+}
+
 #titolo.row{
 	width: 100%;
 	background: pink;
@@ -33,10 +37,21 @@ body {
 	background: yellow;
 }
 
+.filtroBordo{
+	border: solid;
+	margin-top: 2%;
+	border-radius: 25px;
+	border-color: green;
+	text-align: center;
+	
+}
+
+.filtroInterno{
+	color: black;
+}
+
 #prodotti.col-sm-9{
-	overflow-y: scroll;
-	max-height: 900px;
-	min-height: 900px;
+
 	background: brown;
 }
 
@@ -46,4 +61,35 @@ body {
 	border-radius: 25px; 
 	border-color: green;
 	margin-bottom: 5%;
+}
+
+
+#insiemePagine.pagination{
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: green;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+
+.view {
+  display: block !important;
+  opacity: 1 !important;
+  transform: scale(1) rotate(0deg);
+  border-radius:4px;
+  animation: selected 300ms 1 ease-in-out;
 }

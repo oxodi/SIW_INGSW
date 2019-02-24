@@ -23,5 +23,7 @@ public interface AziendaDao {
 	
 	public boolean checkAzienda(String email, String password);
 	
+	public List<String> cercaAziendaConProdotto();
+	
 	public List<Azienda> cercaAziendaPerTipologiaPeriodo(boolean servizioParziale, boolean servizioCompleto, String periodo);
 }

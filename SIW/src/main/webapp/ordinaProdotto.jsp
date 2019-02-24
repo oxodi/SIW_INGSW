@@ -37,11 +37,24 @@
 <div class="container">
 
 <div class="row" id="divGenerale">
-	
-	<div class="row" id="titolo" >
+
+				<div class="row">
+					<div class="col-sm-8">
+						<h1>Compra i prodotti direttamente dalle aziende</h1>
+					</div>
+					<div class="col-sm-4" id="cart">
+						<div style="margin-left: 60%">
+							<strong style="font-size: 20px">Carrello</strong><i
+								class="fa fa-shopping-cart" style="font-size: 40px;"></i>
+						</div>
+					</div>
+				</div>
+
+
+<!-- 				<div class="row" id="titolo" >
 	<h1 >Compra i prodotti direttamente dalle aziende</h1>
 	<h2></h2>
-	</div>
+	</div> -->
 	
 	<div class="row" id= "corpo">
 	<aside class="col-sm-3">
@@ -66,10 +79,19 @@
 				</div>
 				</form>
 
-				<ul class="list-unstyled list-lg">
-					<c:forEach items="${categorie }" var="c">
-					<li><a href="#">${c.categoria } <span class="float-right badge badge-light round" id="numeroLattici">${c.quantita }</span></a></li>
-					</c:forEach>
+				<ul class="list-unstyled list-lg ">
+					
+					<li class="filtroBordo"><a class="filtroInterno" href="DammiProdotto" onclick="submit">Tutti </a></li>
+					<li class="filtroBordo"><a class="filtroInterno" href="DammiProdottoFiltri?filtro=cat&categoria=Latticini" onclick="submit">Latticini </a></li>
+					<li class="filtroBordo"><a class="filtroInterno" href="DammiProdottoFiltri?filtro=cat&categoria=Oli e derivati" onclick="submit">Oli e derivati </a></li>
+					<li class="filtroBordo"><a class="filtroInterno" href="DammiProdottoFiltri?filtro=cat&categoria=Verdure" onclick="submit">Verdure </a></li>
+					<li class="filtroBordo"><a class="filtroInterno" href="DammiProdottoFiltri?filtro=cat&categoria=Frutti" onclick="submit">Frutti </a></li>
+					<li class="filtroBordo"><a class="filtroInterno" href="DammiProdottoFiltri?filtro=cat&categoria=Vini" onclick="submit">Vini </a></li>
+					<li class="filtroBordo"><a class="filtroInterno" href="DammiProdottoFiltri?filtro=cat&categoria=Carni e derivati" onclick="submit">Carni e derivati </a></li>
+					<li class="filtroBordo"><a class="filtroInterno" href="DammiProdottoFiltri?filtro=cat&categoria=Altro" onclick="submit">Altro </a></li>
+					
+					<%-- <span class="float-right badge badge-light round" id="numeroLattici">${c.quantita }</span>
+					 --%>
 				</ul>  
 			</div> <!-- card-body.// -->
 		</div> <!-- collapse .// -->
@@ -107,33 +129,27 @@
 		</header>
 		<div class="filter-content collapse show" id="collapse44">
 			<div class="card-body">
-			<form>
+			<ul class="list-unstyled list-lg ">
 			<c:forEach items="${aziende }" var="a">
-				<label class="form-check">
-				  <input class="form-check-input" value="" type="checkbox">
-				  <span class="form-check-label">
-				  	<span class="float-right badge badge-light round">${a.prodotti.size() }</span>
-				    ${a.ragioneSociale }
-				  </span>
-				</label>  <!-- form-check.// -->
+				<li class="filtroBordo"><a class="filtroInterno" href="#" onclick="filtraAzienda('${a}')">${a} </a></li>
 			</c:forEach>
-			</form>
+			</ul>
 			</div> <!-- card-body.// -->
 		</div> <!-- collapse .// -->
 	</article> <!-- card-group-item.// -->
-</div> <!-- card.// -->
+</div> <!-- card.// --> <!-- divFiltri -->
 
 
 	</aside> <!-- col.// -->
-	<aside class="col-sm-9" id="prodotti">
+	<aside class="col-sm-9 " id="prodotti">
 
 <c:forEach items="${prodotti }" var="p">
 <article class="card card-product" id="prodotto">
 	<div class="card-body">
 	<div class="row">
-		<aside class="col-sm-3">
+		<aside class="col-sm-3" style="max-height: 10%;">
 			<img src="http://www.patatedelfucino.it/wp-content/uploads/2016/09/agria.png"
-			class="img-reponsive img-rounded" id="imageAzienda" style="max-height: 50%;" />
+			class="img-reponsive img-rounded" id="imageAzienda" style="max-height: 30%;" />
 		</aside> <!-- col.// -->
 		<article class="col-sm-6">
 				<h4 class="title"> ${p.nome}  </h4>
@@ -173,6 +189,17 @@
 
 	</aside> <!-- col.// -->
 </div>
+<div id="numPagina" style="width: 100%;" >
+<div class="pagination" id="insiemePagine">
+  <a href="#">&laquo;</a>
+  <c:forEach var="i" begin="1" end="${numeroPagine }">	
+  <a href="<%=request.getContextPath()%>/DammiProdotto?pagina=${i}">${i}</a>
+  <!-- <a class="active" href="#">2</a> -->
+  </c:forEach>
+  <a href="#">&raquo;</a>
+</div> <!-- pagination -->
+</div>
+
 </div>
 
 </div> <!-- container .//  -->
