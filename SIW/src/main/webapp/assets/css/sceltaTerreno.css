@@ -8,12 +8,23 @@ body {
 	outline: none;
 }
 
+/* style logout */
+.logout a:link, .logout a:visited {
+    text-decoration: none;
+    color: #009d00;
+    /* background-color: transparent; */
+}
+.logout a:hover, .logout a:active {
+    text-decoration: underline;
+    color: #62cc02;
+}
+
 #divGenerale.col-sm-8{
 	border-style: solid; 
 	border-radius: 25px; 
 	border-color: green;
 	padding: 0px !important;
-	background: #ffd480;
+	background: #ddb162;
 }
 
 #divAzienda {
@@ -23,8 +34,7 @@ body {
 }
  
 #centerColumn{
-	/* background: url("../img/TrattoreBuono.jpg"); */
-	background: #996600;
+	background: url("../img/terrenobg.jpg"); 
 	border-radius: 25px;
 	border-style: solid;
 	border-color: #664400;
@@ -34,34 +44,18 @@ body {
 	display: flex;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
+	margin-bottom: 3%;
 	margin-top: 3%;
-	overflow-y: scroll;
-	max-height: 600px;
-	min-height: 600px; 
 }
 
 
 #cardTerreno.card{
 	/* background: url("../img/terrenobg.jpg"); */
-	background: #ffd480;
+	background: #e9cc98;
 	border-style: solid; 
 	border-radius: 25px; 
 	border-color: #664400; 
-	margin-top: 3%;
-}
-
-
-
-
-
-h1{
-  font-size: 5.5vw;
-  color: black;
-   text-shadow: 5px 5px #a0a0a0;
-}
-
-h2{
-	font-size: 3.5vw;
+	margin-bottom: 10%;
 }
 
 .button {
@@ -94,6 +88,8 @@ h2{
 	right: 20px;
 	
 }
+
+
 
 
 
