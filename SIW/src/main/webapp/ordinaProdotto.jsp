@@ -45,10 +45,10 @@
 							<h1 style="color: white;">Scegli i tuoi prodotti preferiti</h1>
 						</div>
 						<div class="col-sm-4" id="cart">
-							<div style="margin-left: 60%">
-								<a  onclick="visualizzaCarrello()"><strong
-									style="font-size: 20px ; color: white;">Carrello</strong><i
-									class="fa fa-shopping-cart" style="font-size: 40px; color: white;"></i></a>
+							<div id="clickCarrello">
+								<a id="scrittaClickCarrello" onclick="visualizzaCarrello()"><strong>Carrello</strong>
+								<i class="fa fa-shopping-cart" id="disegnoClickCarrello"></i>
+								<i id="dimensioneCarrello" style="color: #25ed3b;"></i></a>
 							</div>
 						</div>
 					</div>
@@ -189,6 +189,15 @@
 						<aside class="col-sm-9 " id="prodotti">
 
 							<c:forEach items="${prodotti }" var="p">
+								<div class="alert alert-success" id="alertConferma${p.id }"
+									style="display: none !important">
+									<strong>Prodotto inserito nel carrello!</strong>
+								</div>
+								<div class="alert alert-warning" id="alertGiaInserito${p.id }"
+									style="display: none !important">
+									<strong>Prodotto già inserito, puoi modificare la quantità nel tuo carrello!</strong>
+								</div>
+
 								<article class="card card-product" id="prodotto">
 									<div class="card-body">
 										<div class="row">
@@ -239,7 +248,7 @@
 													<br>
 													<p>
 														<button class="button"
-															onclick="aggiungiAlCarrello('${p.id }''${p.nome}','${p.categoria}','${p.quantita}','${p.costoUnitario}','${p.nomeAzienda}')">Aggiungi
+															onclick="aggiungiAlCarrello('${p.id }','${p.nome}','${p.categoria}','${p.quantita}','${p.costoUnitario}','${p.nomeAzienda}')">Aggiungi
 															al carrello</button>
 												</div>
 												<!-- action-wrap.// -->
@@ -296,7 +305,7 @@
 
 
 
-				<div class="container-fluid" id="divCarrello" style="display: none">
+				<div class="container-fluid" id="divCarrello">
 
 
 					<div class="container">
@@ -305,7 +314,7 @@
 							<strong>Il tuo carrello</strong>
 						</p>
 						<hr>
-						<div class="alert alert-warning" id="alertConferma"
+						<div class="alert alert-warning" id="alertWarning"
 							style="display: none !important">
 							<strong>Attenzione!</strong>
 							La quantità inserita supera quella disponibile.
@@ -313,7 +322,7 @@
 
 
 						<div class="card" style="background: #dbd3c9">
-							<table class="table table-hover shopping-cart-wrap">
+							<table class="table table-hover shopping-cart-wrap" id="tableCarrello">
 								<thead class="text-muted" style="background: #e2be8c">
 									<tr>
 										<th scope="col">Prodotto</th>

@@ -8,12 +8,51 @@ body {
 	outline: none;
 }
 
+
+
 #divGenerale.row{
 	border-style: solid; 
 	border-radius: 25px; 
 	border-color: green;
 	padding: 3%;
 	background: #6c3a37; 
+}
+
+#clickCarrello{
+	margin-left: 50%; 
+	cursor: pointer;
+}
+
+
+
+#scrittaClickCarrello{
+	font-size: 20px ; 
+	color: white;
+	cursor: pointer;
+}
+
+#disegnoClickCarrello{
+	font-size: 40px ; 
+	color: white;
+	cursor: pointer;
+}
+
+
+
+#scrittaClickCarrello:hover{
+	color: #e9cc98;
+}
+
+#disegnoClickCarrello:hover{
+	color: #e9cc98;
+}
+
+#divCarrello.container-fluid{
+	display: none;
+	background: url("../img/weblink21.gif");
+	border-style: solid; 
+	border-radius: 25px; 
+	border-color: green;
 }
 
 #cart.col-sm-4{
@@ -36,9 +75,6 @@ body {
 	color: green;
 	border-color: green;
 	border-radius: 25px;
-	
-	&:hover{
-		color: green;
 	}
 } 
 
@@ -116,6 +152,8 @@ body {
   transition: background-color .3s;
 }
 
+
+
 .pagination a.active {
   background-color: green;
   color: white;
@@ -123,6 +161,16 @@ body {
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
 
+/* style logout */
+.logout a:link, .logout a:visited {
+    text-decoration: none;
+    color: #009d00;
+    /* background-color: transparent; */
+}
+.logout a:hover, .logout a:active {
+    text-decoration: underline;
+    color: #62cc02;
+}
 
 .view {
   display: block !important;

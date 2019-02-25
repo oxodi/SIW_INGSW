@@ -13,7 +13,7 @@ function aggiungiAlCarrello(id, nome, categoria, quantita, prezzo, azienda){
 	}
 
 	if(presente == true){
-		alert("Hai già inserito questo ortaggio");
+		$('#alertGiaInserito'+id).show('slow').delay(3500).fadeOut();
 	}
 	else{
 		prodotti.carrello.push({ 
@@ -24,7 +24,11 @@ function aggiungiAlCarrello(id, nome, categoria, quantita, prezzo, azienda){
 			"prezzo" : prezzo,
 			"azienda" : azienda
 		});
+		$('#alertConferma'+id).show('slow').delay(3500).fadeOut();
+		$('#dimensioneCarrello').html("("+prodotti.carrello.length+")");
 	}
+	
+	
 }
 
 function visualizzaProdotti(){
