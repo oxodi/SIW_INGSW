@@ -28,7 +28,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			acquisto.setId(id);
 
 			String insert = "INSERT INTO acquisto(id, id_cliente, id_prodotto, data_acquisto,"
-					+ " data_ritiro) VALUES (?,?,?,?,?)";
+					+ " quantita) VALUES (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setInt(1, acquisto.getId());
@@ -36,9 +36,12 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			statement.setInt(3, acquisto.getIdProdotto());
 
 			long secsAcquisto = acquisto.getDataAcquisto().getTime();
-			long secsRitiro = acquisto.getDataRitiro().getTime();
+			
 			statement.setDate(4, new java.sql.Date(secsAcquisto));
-			statement.setDate(5, new java.sql.Date(secsRitiro));
+			statement.setInt(5, acquisto.getQuantita());
+			
+			statement.executeUpdate();
+		
 
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -56,7 +59,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 
-			String update = "UPDATE acquisto SET id_cliente = ?, id_prodotto = ?, data_acquisto = ?, data_ritiro = ? WHERE id = ?";
+			String update = "UPDATE acquisto SET id_cliente = ?, id_prodotto = ?, data_acquisto = ?, quantita = ? WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 
 			statement.setInt(1, acquisto.getId());
@@ -64,9 +67,8 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			statement.setInt(3, acquisto.getIdProdotto());
 
 			long secsAcquisto = acquisto.getDataAcquisto().getTime();
-			long secsRitiro = acquisto.getDataRitiro().getTime();
 			statement.setDate(4, new java.sql.Date(secsAcquisto));
-			statement.setDate(5, new java.sql.Date(secsRitiro));
+			statement.setInt(5, acquisto.getQuantita());
 
 			statement.executeUpdate();
 
@@ -122,9 +124,9 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 				acquisto.setIdProdotto(result.getInt("id_prodotto"));
 
 				long secsAcquisto = result.getDate("data_acquisto").getTime();
-				long secsRitiro = result.getDate("data_ritiro").getTime();
+			
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
-				acquisto.setDataRitiro(new java.util.Date(secsRitiro));
+				acquisto.setQuantita(result.getInt("quantita"));
 
 			}
 		} catch (SQLException e) {
@@ -162,9 +164,9 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 				acquisto.setIdProdotto(result.getInt("id_prodotto"));
 
 				long secsAcquisto = result.getDate("data_acquisto").getTime();
-				long secsRitiro = result.getDate("data_ritiro").getTime();
+
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
-				acquisto.setDataRitiro(new java.util.Date(secsRitiro));
+				acquisto.setQuantita(result.getInt("quantita"));
 
 				acquisti.add(acquisto);
 			}
@@ -202,10 +204,10 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 				acquisto.setIdProdotto(result.getInt("id_prodotto"));
 
 				long secsAcquisto = result.getDate("data_acquisto").getTime();
-				long secsRitiro = result.getDate("data_ritiro").getTime();
+				
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
-				acquisto.setDataRitiro(new java.util.Date(secsRitiro));
-
+				acquisto.setQuantita(result.getInt("quantita"));
+				
 				acquisti.add(acquisto);
 			}
 		} catch (SQLException e) {
@@ -242,9 +244,9 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 				acquisto.setIdProdotto(result.getInt("id_prodotto"));
 
 				long secsAcquisto = result.getDate("data_acquisto").getTime();
-				long secsRitiro = result.getDate("data_ritiro").getTime();
+				
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
-				acquisto.setDataRitiro(new java.util.Date(secsRitiro));
+				acquisto.setQuantita(result.getInt("quantita"));
 
 				acquisti.add(acquisto);
 			}
@@ -281,10 +283,10 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 				acquisto.setIdProdotto(result.getInt("id_prodotto"));
 
 				long secsAcquisto = result.getDate("data_acquisto").getTime();
-				long secsRitiro = result.getDate("data_ritiro").getTime();
+				
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
-				acquisto.setDataRitiro(new java.util.Date(secsRitiro));
-
+				acquisto.setQuantita(result.getInt("quantita"));
+				
 				acquisti.add(acquisto);
 			}
 		} catch (SQLException e) {

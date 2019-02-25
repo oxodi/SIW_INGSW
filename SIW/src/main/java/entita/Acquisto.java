@@ -8,16 +8,16 @@ public class Acquisto {
 	private int idCliente;
 	private int idProdotto;
 	private Date dataAcquisto;
-	private Date dataRitiro;
+	private int quantita;
 
 	public Acquisto() {
 	}
 
-	public Acquisto(int idCliente, int idProdotto, Date dataAcquisto, Date dataRitiro) {
+	public Acquisto(int idCliente, int idProdotto, Date dataAcquisto, int quantita) {
 		this.idCliente = idCliente;
 		this.idProdotto = idProdotto;
 		this.dataAcquisto = dataAcquisto;
-		this.dataRitiro = dataAcquisto;
+		this.quantita = quantita;
 	}
 
 	public int getId() {
@@ -28,12 +28,12 @@ public class Acquisto {
 		this.id = id;
 	}
 
-	public Date getDataRitiro() {
-		return dataRitiro;
+	public int getQuantita() {
+		return quantita;
 	}
 
-	public void setDataRitiro(Date dataRitiro) {
-		this.dataRitiro = dataRitiro;
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
 	}
 
 	public int getIdCliente() {

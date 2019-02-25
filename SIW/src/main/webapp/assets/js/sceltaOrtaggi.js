@@ -346,15 +346,6 @@ function calcolaImporti(){
 	$("#totale").html("<strong>" + (somma + ((somma/100) * 10)).toFixed(2) + "</strong>" );
 }
 
-//function dimensioneTerreno(totale, serra){
-//
-//	var dimTotale = totale;
-//	var dimSerra = serra;
-//	var dimTerreno = dimTotale - dimSerra;
-//
-//	return dimTerreno;
-//}
-
 
 function prova(paypal,mastercard){
 	

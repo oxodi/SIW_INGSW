@@ -151,6 +151,13 @@
 		<servlet-name>DammiProdottoFiltri</servlet-name>
 		<servlet-class>controller.DammiProdottoFiltri</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>SalvaAcquisto</display-name>
+		<servlet-name>SalvaAcquisto</servlet-name>
+		<servlet-class>controller.SalvaAcquisto</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -250,6 +257,10 @@
 	<servlet-mapping>
 		<servlet-name>DammiProdottoFiltri</servlet-name>
 		<url-pattern>/DammiProdottoFiltri</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SalvaAcquisto</servlet-name>
+		<url-pattern>/SalvaAcquisto</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>Home</welcome-file>
