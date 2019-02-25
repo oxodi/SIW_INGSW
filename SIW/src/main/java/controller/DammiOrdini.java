@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import entita.Acquisto;
 import entita.Azienda;
+import entita.Cliente;
 import entita.Prodotto;
 import persistence.PostgresDAOFactory;
 
@@ -29,8 +30,25 @@ public class DammiOrdini extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println(request.getParameterMap());
-
+		if(request.getParameterMap().containsKey("getDatiCliente")) {
+			int idCliente = Integer.parseInt(request.getParameter("getDatiCliente"));
+			Cliente cliente = PostgresDAOFactory.getInstance().getClienteDAO().cercaPerChiavePrimaria(idCliente);
+			JSONObject risposta = new JSONObject();
+			risposta.put("nome", cliente.getNome());
+			risposta.put("cognome", cliente.getCognome());
+			risposta.put("indirizzo", cliente.getIndirizzo());
+			risposta.put("citta", cliente.getCitta());
+			risposta.put("cap", cliente.getCap());
+			risposta.put("provincia", cliente.getProvincia());
+			risposta.put("telefono",cliente.getTelefono());
+			risposta.put("email", cliente.getEmail());
+			System.out.println(risposta);
+			PrintWriter pw = response.getWriter();
+			pw.print(risposta.toString());
+			pw.close();
+		}
+		
+		else {
 		Azienda azienda = (Azienda) request.getSession().getAttribute("azienda");
 		List<Prodotto> prodottiAzienda = PostgresDAOFactory.getInstance().getProdottoDAO()
 				.cercaPerAzienda(azienda.getId());
@@ -52,8 +70,9 @@ public class DammiOrdini extends HttpServlet {
 					.cercaPerChiavePrimaria(ordiniAzienda.get(i).getIdProdotto()).getNome());
 			tmp.put("NomeCliente", PostgresDAOFactory.getInstance().getClienteDAO()
 					.cercaPerChiavePrimaria(ordiniAzienda.get(i).getIdCliente()).getCodiceFiscale());
-
 			tmp.put("DataAcquisto", format.format(ordiniAzienda.get(i).getDataAcquisto()));
+			tmp.put("idCliente", PostgresDAOFactory.getInstance().getClienteDAO()
+					.cercaPerChiavePrimaria(ordiniAzienda.get(i).getIdCliente()).getId());
 
 			risposta.put(tmp);
 		}
@@ -61,7 +80,7 @@ public class DammiOrdini extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		pw.print(risposta.toString());
 		pw.close();
-
+		}
 	}
 
 }

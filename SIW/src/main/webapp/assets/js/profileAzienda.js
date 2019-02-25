@@ -9,8 +9,72 @@ $(function() {
 	$("#footer").load("footer.jsp");
 });
 
+function generaModalOrdine(idCliente){
+	var $baseModal = ('<div class="modal fade" id="ModalDettagliOrdine" style="z-index: 2500;">'+
+			'</div><!-- /.modal -->')
+			$('body').append($baseModal);
+			
+	$.ajax({
+		url: "DammiOrdini?getDatiCliente="+idCliente,
+		method: "GET",
+		dataType: "json",
+		success:function(data){
+			$('#ModalDettagliOrdine').empty();
+	var $modal = ('<div class="modal-dialog" style="border: 2px #ad835a solid; border-radius: 15px">'+
+  '<div class="modal-content" style="background: #d3c3b3; border-radius: 15px" align="center">'+
+    '<div class="modal-header">'+
+    '<h4 class="modal-title">Dettagli sul Cliente</h4>'+
+      '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+    '</div>'+
+    '<div class="modal-body">'+
+      '<table>'+
+          '<thead>'+
+          '</thead>'+
+          '<tbody class="table table-bordered">'+
+              '<tr>'+
+                  '<td><strong>Nome: </strong></td>'+
+                  '<td>'+data.nome+'</td>'+
+                  '<td><strong>Indirizzo: </strong></td>'+
+                  '<td>'+data.indirizzo+'</td>'+
+              '</tr>'+
+              '<tr>'+
+              	'<td><strong>Cognome: </strong></td>'+
+              	'<td>'+data.cognome+'</td>'+
+              	'<td><strong>Città: </strong></td>'+
+                '<td>'+data.citta+'</td>'+
+              '</tr>'+
+              '<tr>'+
+              '<td><strong>Telefono: </strong></td>'+
+              '<td>'+data.telefono+'</td>'+
+              '<td><strong>CAP: </strong></td>'+
+              '<td>'+data.cap+'</td>'+
+            '</tr>'+
+            '<tr>'+
+            '<td><strong>Email: </strong></td>'+
+            '<td>'+data.email+'</td>'+
+            '<td><strong>Provincia: </strong></td>'+
+            '<td>'+data.provincia+'</td>'+
+          '</tr>'+
+          '</tbody>'+
+      '</table>'+
+    '</div>'+
+    '<div class="modal-footer">'+
+      '<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>'+
+    '</div>'+
+  '</div><!-- /.modal-content -->'+
+'</div><!-- /.modal-dialog -->'
+)
+
+$('#ModalDettagliOrdine').append($modal);
+$('#ModalDettagliOrdine').modal('show');
+
+	}
+});
+}
+//Genera la tabella degli ordini
 function ordiniEffettuati(){
 	$("#divOrdini").empty();
+	
 	var $table = ('<div class="container-fluid" id="containerOrdini">'
 			+ '<div class="form-row form-group">'
 			+ '<div class="table-responsive" id="table-scroll">'
@@ -22,22 +86,23 @@ function ordiniEffettuati(){
 	
 	var $loading = ('<div class="container-fluid" align="center" id="loading">'
 			+ '<div class="loader" role="status" >' + '</div>' + '</div>')
-		
-			$("#ordini").append($loading);
 			
 	$("#divOrdini").append($table);
+	$("#divOrdini").append($loading);
 	$.ajax({
 		url: "DammiOrdini",
 		method: "GET",
 		dataType: "json",
 		contentType : "application/json; charset=utf-8",
 		success: function(data){
+			$("#tabListaOrdini > tbody").empty();
 			for(var i = 0;i<data.length;i++){
 				var $row = ('<tbody>'
 					+ '<tr id="rigaOrdini" align="center" data-toggle="collapse" data-target="#listaOrdini" aria-expanded="false" aria-controls="listaOrdini">'
 					+ '<td>'+data[i].NomeProdotto+'</td>'
 					+ '<td>'+data[i].NomeCliente+'</td>'
 					+ '<td>'+data[i].DataAcquisto+'</td>'
+					+ '<td><button class="button_info btn" id="list_info" type="button" onclick="generaModalOrdine('+data[i].idCliente+')"></button></td>'
 					+ '</tr>'
 					+ '</tbody>')
 										

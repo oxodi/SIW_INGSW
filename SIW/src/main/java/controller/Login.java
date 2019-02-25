@@ -89,7 +89,7 @@ public class Login extends HttpServlet {
 
 				Azienda user = aziendadao.cercaPerEmail(email);
 				request.getSession().setAttribute("azienda", user);
-				RequestDispatcher rs = request.getRequestDispatcher("homeAziende.jsp");
+				RequestDispatcher rs = request.getRequestDispatcher("PageLoader?id=backendAzienda");
 				rs.forward(request, response);
 			} else {
 				out.println("Username o Password errati");
