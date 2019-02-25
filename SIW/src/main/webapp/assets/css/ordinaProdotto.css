@@ -13,28 +13,51 @@ body {
 	border-radius: 25px; 
 	border-color: green;
 	padding: 3%;
+	background: #6c3a37; 
 }
 
 #cart.col-sm-4{
 	margin-top: 15px;
 }
 
-#titolo.row{
-	width: 100%;
-	background: pink;
-}
+
 
 #corpo.row{
 	margin-top: 5%;
-	background: purple;
+	background: transparent;
 	
 }
+.card-header{
+	background: #ddb162;
+}
+
+
+.btn-outline-primary{
+	color: green;
+	border-color: green;
+	border-radius: 25px;
+	
+	&:hover{
+		color: green;
+	}
+} 
+
+.btn-outline-primary:hover{
+	color: white;
+	background: green;
+	outline: none;
+	
+	
+	
+} 
+
+
 
 #divFiltri.card-filter{
 	border-style: solid; 
 	border-radius: 25px; 
 	border-color: green;
-	background: yellow;
+	background: #e9cc98;
 }
 
 .filtroBordo{
@@ -50,17 +73,32 @@ body {
 	color: black;
 }
 
+.filtroInterno:hover{
+	color: green;
+	line-height: none;
+}
+
+.
+
 #prodotti.col-sm-9{
 
-	background: brown;
+	background: transparent;
 }
 
 #prodotto.card-product {
-	background: red;
+	background: #e9cc98;
 	border-style: solid; 
 	border-radius: 25px; 
 	border-color: green;
 	margin-bottom: 5%;
+}
+
+#prodotto.card-product:last-child {
+	background: #e9cc98;
+	border-style: solid; 
+	border-radius: 25px; 
+	border-color: green;
+	margin-bottom: 0%;
 }
 
 

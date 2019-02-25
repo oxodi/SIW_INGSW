@@ -42,13 +42,13 @@
 				<div id="divScegliProdotti">
 					<div class="row">
 						<div class="col-sm-8">
-							<h1>Compra i prodotti direttamente dalle aziende</h1>
+							<h1 style="color: white;">Scegli i tuoi prodotti preferiti</h1>
 						</div>
 						<div class="col-sm-4" id="cart">
 							<div style="margin-left: 60%">
-								<a onclick="visualizzaCarrello()"><strong
-									style="font-size: 20px">Carrello</strong><i
-									class="fa fa-shopping-cart" style="font-size: 40px;"></i></a>
+								<a  onclick="visualizzaCarrello()"><strong
+									style="font-size: 20px ; color: white;">Carrello</strong><i
+									class="fa fa-shopping-cart" style="font-size: 40px; color: white;"></i></a>
 							</div>
 						</div>
 					</div>
@@ -59,11 +59,11 @@
 
 							<div class="card card-filter" id="divFiltri">
 								<article class="card-group-item">
-									<header class="card-header">
-										<a class="" aria-expanded="true" href="#"
+									<header class="card-header" style="border-radius:  25px 25px 0px 0px">
+										<a class="" style="color: green;" aria-expanded="true" href="#"
 											data-toggle="collapse" data-target="#collapse22"> <i
 											class="icon-action fa fa-chevron-down"></i>
-											<h6 class="title">By Category</h6>
+											<h6 class="title" style="color: green;" >Categoria</h6>
 										</a>
 									</header>
 									<div style="" class="filter-content collapse show"
@@ -78,7 +78,7 @@
 
 													<div class="input-group-append">
 														<button name="btn" value="cercaNome"
-															class="btn btn-primary" type="submit">
+															class="btn btn-primary" type="submit" style="background: green;">
 															<i class="fa fa-search"></i>
 														</button>
 													</div>
@@ -121,10 +121,10 @@
 								</article>
 								<!-- card-group-item.// -->
 								<article class="card-group-item">
-									<header class="card-header">
+									<header class="card-header" >
 										<a href="#" data-toggle="collapse" data-target="#collapse33">
-											<i class="icon-action fa fa-chevron-down"></i>
-											<h6 class="title">By Price</h6>
+											<i class="icon-action fa fa-chevron-down" style="color: green;"></i>
+											<h6 class="title" style="color: green;">Prezzo</h6>
 										</a>
 									</header>
 									<form action="DammiProdottoFiltri" method="get">
@@ -136,17 +136,17 @@
 												<div class="form-row">
 													<div class="form-group col-md-6">
 														<input class="form-control" value="prezzo" name="filtro"
-															style="display: none;"> <label>Min</label> <input
-															class="form-control" placeholder="€0" type="number"
-															name="minPrezzo">
+															style="display: none;"> <label>Min €</label> <input
+															class="form-control"  min="0"  type="number"
+															name="minPrezzo" value="0">
 													</div>
 													<div class="form-group text-right col-md-6">
-														<label>Max</label> <input class="form-control"
-															placeholder="€100" type="number" name="maxPrezzo">
+														<label>Max €</label> <input class="form-control"
+															value="100" type="number" name="maxPrezzo">
 													</div>
 												</div>
 												<!-- form-row.// -->
-												<button class="btn btn-block btn-outline-primary"
+												<button class="btn btn-block btn-outline-primary "
 													type="submit">Applica</button>
 
 											</div>
@@ -160,8 +160,8 @@
 								<article class="card-group-item">
 									<header class="card-header">
 										<a href="#" data-toggle="collapse" data-target="#collapse44">
-											<i class="icon-action fa fa-chevron-down"></i>
-											<h6 class="title">By Azienda</h6>
+											<i class="icon-action fa fa-chevron-down" style="color: green;"></i>
+											<h6 class="title" style="color: green;">Azienda</h6>
 										</a>
 									</header>
 									<div class="filter-content collapse show" id="collapse44">
@@ -192,12 +192,12 @@
 								<article class="card card-product" id="prodotto">
 									<div class="card-body">
 										<div class="row">
-											<aside class="col-sm-3" style="max-height: 10%;">
-												<img
-													src="http://www.patatedelfucino.it/wp-content/uploads/2016/09/agria.png"
+ 											<aside class="col-sm-3" style="max-height: 10%;">
+												 <img
+													src="https://www.w3schools.com/images/w3schools_green.jpg"
 													class="img-reponsive img-rounded" id="imageAzienda"
-													style="max-height: 30%;" />
-											</aside>
+													style="max-height: 100%;" /> 
+											</aside> 
 											<!-- col.// -->
 											<article class="col-sm-6">
 												<h4 class="title">${p.nome}</h4>
@@ -212,6 +212,18 @@
 													<dt>Azienda</dt>
 													<dd>${p.nomeAzienda }</dd>
 												</dl>
+												
+												<dl class="dlist-align" style="float: right;"> 
+													<dt>Quantità disponibile:</dt>
+													<c:if test="${p.quantita > 0 }">
+													<dd style="float: right;">${p.quantita }</dd>
+													</c:if>
+													<c:if test="${p.quantita == 0 }">
+														<dd style="float: right;">Prodotto non disponibile</dd>
+													</c:if>
+												</dl>
+												
+												
 												<!-- item-property-hor .// -->
 
 											</article>
@@ -223,11 +235,11 @@
 														<!-- <del class="price-old"> $98</del> -->
 													</div>
 													<!-- info-price-detail // -->
-													<p class="text-success">Free shipping</p>
+													<p class="text-success">Spedizione gratuita</p>
 													<br>
 													<p>
 														<button class="button"
-															onclick="aggiungiAlCarrello('${p.nome}','${p.categoria}','${p.quantita}','${p.costoUnitario}','${p.nomeAzienda}')">Aggiungi
+															onclick="aggiungiAlCarrello('${p.id }''${p.nome}','${p.categoria}','${p.quantita}','${p.costoUnitario}','${p.nomeAzienda}')">Aggiungi
 															al carrello</button>
 												</div>
 												<!-- action-wrap.// -->
@@ -248,13 +260,32 @@
 					</div>
 					<div id="numPagina" style="width: 100%;">
 						<div class="pagination" id="insiemePagine">
-							<a href="#">&laquo;</a>
-							<c:forEach var="i" begin="1" end="${numeroPagine }">
-								<a
-									href="<%=request.getContextPath()%>/DammiProdotto?pagina=${i}">${i}</a>
-								<!-- <a class="active" href="#">2</a> -->
+							
+							<c:choose>
+								<c:when test="${(pagina - 1) > 0 }">
+									<a href="<%=request.getContextPath()%>/DammiProdotto?pagina=${pagina - 1}">&laquo;</a>
+								</c:when>
+								<c:otherwise>
+									<a href="#" onclick="return false;">&laquo;</a>
+								</c:otherwise>
+							</c:choose>
+                           	<c:forEach var="i" begin="1" end="${numeroPagine }">
+								<c:if test="${i != pagina}">
+								<a href="<%=request.getContextPath()%>/DammiProdotto?pagina=${i}">${i}</a>
+								</c:if>
+								<c:if test="${i == pagina }">
+									<a class="active" href="<%=request.getContextPath()%>/DammiProdotto?pagina=${pagina}">${pagina }</a>
+								</c:if>
 							</c:forEach>
-							<a href="#">&raquo;</a>
+							<c:choose>
+								<c:when test="${pagina != numeroPagine}">
+									<a
+										href="<%=request.getContextPath()%>/DammiProdotto?pagina=${pagina + 1}">&raquo;</a>
+								</c:when>
+								<c:otherwise>
+									<a href="#" onclick="return false;">&raquo;</a>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<!-- pagination -->
 					</div>
@@ -274,7 +305,11 @@
 							<strong>Il tuo carrello</strong>
 						</p>
 						<hr>
-
+						<div class="alert alert-warning" id="alertConferma"
+							style="display: none !important">
+							<strong>Attenzione!</strong>
+							La quantità inserita supera quella disponibile.
+						</div>
 
 
 						<div class="card" style="background: #dbd3c9">
@@ -376,15 +411,15 @@
 											<td> </td>
 											<td> </td>
 											<td align="left">
-												<button type="button" class="btn btn-default">
+												<button type="button" class="btn btn-default" onclick="visualizzaProdotti()">
 													<i class="fa fa-arrow-left"></i> <span
 														class="glyphicon glyphicon-shopping-cart"></span> Continua
 													ad acquistare
 												</button>
 											</td>
 											<td align="right">
-												<button class="button">
-													Checkout <span class="glyphicon glyphicon-play"></span>
+												<button class="button" onclick="salvaAcquisto('paypall','mastercard')">
+													Conferma <span class="glyphicon glyphicon-play"></span>
 												</button>
 											</td>
 										</tr>

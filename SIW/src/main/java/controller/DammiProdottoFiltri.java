@@ -61,6 +61,8 @@ public class DammiProdottoFiltri extends HttpServlet {
 		List<String> aziende = aziendaDao.cercaAziendaConProdotto();
 		request.setAttribute("prodotti", prodotti);
 		request.setAttribute("aziende", aziende);
+		request.setAttribute("numeroPagine", 1);
+		request.setAttribute("pagina", 1);
 		RequestDispatcher rd = request.getRequestDispatcher("ordinaProdotto.jsp");
 		rd.forward(request, response);
 	}

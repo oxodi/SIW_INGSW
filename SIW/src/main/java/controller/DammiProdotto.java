@@ -41,7 +41,7 @@ public class DammiProdotto extends HttpServlet {
 		
 		System.out.println("Pagina: "+pagina);
 		List<Prodotto> prodotti = prodottoDao.dammiProdottiPerPagina(pagina);
-		
+		pagina = pagina+1;
 		for (Prodotto prodotto : prodotti) {
 			int id_azienda = prodotto.getIdAzienda();
 			prodotto.setNomeAzienda(aziendaDao.restituisciNome(id_azienda));
@@ -52,6 +52,7 @@ public class DammiProdotto extends HttpServlet {
 		request.setAttribute("prodotti", prodotti);
 		request.setAttribute("aziende", aziende);
 		request.setAttribute("numeroPagine", numeroPagine);
+		request.setAttribute("pagina", pagina);
 		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("ordinaProdotto.jsp");
