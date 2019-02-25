@@ -89,27 +89,32 @@ public class DammiPrenotazioneAzienda extends HttpServlet {
 			
 			System.out.println("sono in prenotazioni per cliente");
 			int idTerreno = Integer.parseInt(request.getParameter("id_terreno"));
+			int idCliente = Integer.parseInt(request.getParameter("id_cliente"));
 			List<Prenotazione> prenotazioneOrtaggi = prenotazioneDAO.cercaPerTerreno(idTerreno);
 			
 			JSONArray ortaggiJson = new JSONArray();
 			
 			for(int i = 0 ; i < prenotazioneOrtaggi.size(); i++) {
-				JSONObject tmp = new JSONObject();
-				
-				if(prenotazioneOrtaggi.get(i).getNomeOrtaggio().equals("Terreno")) {
-				tmp.put("ortaggio", "Servizio Parziale");
-				}
-				else
-					tmp.put("ortaggio", prenotazioneOrtaggi.get(i).getNomeOrtaggio());
-				
-				tmp.put("quantita", prenotazioneOrtaggi.get(i).getQuantita());
-				if(prenotazioneOrtaggi.get(i).isSerra()) {
-					tmp.put("serra","SI");
-				}
-				else
-					tmp.put("serra", "-");
-				
-				ortaggiJson.put(tmp);
+				if(prenotazioneOrtaggi.get(i).getIdCliente() == idCliente) {
+					JSONObject tmp = new JSONObject();
+					
+					System.out.println("ortaggio: "+prenotazioneOrtaggi.get(i).getNomeOrtaggio());
+					
+					if(prenotazioneOrtaggi.get(i).getNomeOrtaggio().equals("Terreno")) {
+					tmp.put("ortaggio", "Servizio Parziale");
+					}
+					else
+						tmp.put("ortaggio", prenotazioneOrtaggi.get(i).getNomeOrtaggio());
+					
+					tmp.put("quantita", prenotazioneOrtaggi.get(i).getQuantita());
+					if(prenotazioneOrtaggi.get(i).isSerra()) {
+						tmp.put("serra","SI");
+					}
+					else
+						tmp.put("serra", "-");
+					
+					ortaggiJson.put(tmp);
+				}	
 				
 			}
 			
