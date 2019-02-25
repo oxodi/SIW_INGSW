@@ -39,34 +39,7 @@
 		style="border-style: solid; border-radius: 25px; border-color: green; min-height: 500px;">
 		<img src="assets/img/ricevutaPagamento.png" alt="ricevuta" id="center">	
 		<h1 align="center" id="titolo">PAGAMENTO AVVENUTO CON SUCCESSO!</h1>
-		<%-- <div class="container custom">
-		
-		<p>  <!--  style="margin-left: 8%; margin-top: 2%;" -->
-			<c:forEach items="${prenotazioni }" var="p">
-				<br>
-				<strong>Cliente: </strong>
-				<br>
-				<br>
-				<strong>Terreno: </strong>
-				<br>
-				<br>
-				<strong>Ortaggio: </strong>
-				<br>
-				<br>
-				<strong>Quantità: </strong>
-				<br>
-				<br>
-				<strong>Data: </strong>
-				<br>
-				<br>
-				<strong>Serra: </strong>
-				<br>
-
-			</c:forEach>
-		</p>
-		
-		</div>
- --%>		<div class="container" align="center" style="margin-top: 5%">
+		<div class="container" align="center" style="margin-top: 5%">
 			<a href="Login?logout=false" class="button">OK! </a>
 		</div>
 </div>

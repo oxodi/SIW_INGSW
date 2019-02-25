@@ -86,6 +86,7 @@ public class DammiAzienda extends HttpServlet {
 
 
 		req.setAttribute("aziende", aziende);
+		req.setAttribute("numeroAziende", aziende.size());
 		RequestDispatcher rd = req.getRequestDispatcher("sceltaAzienda.jsp");
 		rd.forward(req, resp);
 	}

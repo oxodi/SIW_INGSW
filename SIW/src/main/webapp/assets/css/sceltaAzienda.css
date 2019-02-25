@@ -8,6 +8,17 @@ body {
 	outline: none;
 }
 
+/* style logout */
+.logout a:link, .logout a:visited {
+    text-decoration: none;
+    color: #009d00;
+    /* background-color: transparent; */
+}
+.logout a:hover, .logout a:active {
+    text-decoration: underline;
+    color: #62cc02;
+}
+
 h1{
   font-size: 50px;
   color: #000;
@@ -112,4 +123,40 @@ h1{
 	border-bottom-right-radius: 30px;
 	border-bottom-left-radius: 30px;
 }
+
+#tornaIndietro.button {
+	padding: 10px 25px;
+	/*font-size: 24px;*/
+	font-weight: 700;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: #fff;
+	background-color: green; /* #4CAF50*/
+	border: none;
+	border-radius: 15px;
+	/*box-shadow: 0 9px #999;   3D EFFECTS */
+	outline: none !important;
+	align: buttom;
+
+}
+
+#cercaTutte.button {
+	padding: 10px 25px;
+	/*font-size: 24px;*/
+	font-weight: 700;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: #fff;
+	background-color: green; /* #4CAF50*/
+	border: none;
+	border-radius: 15px;
+	/*box-shadow: 0 9px #999;   3D EFFECTS */
+	outline: none !important;
+	align: buttom;
+
+}
+
+
 
