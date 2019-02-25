@@ -20,6 +20,11 @@ function ordiniEffettuati(){
 			+ '<th>Dettagli</th>' + '</tr>' + '</thead>'
 			+ '</table>' + '</div>' + '</div>' + '</div>')
 	
+	var $loading = ('<div class="container-fluid" align="center" id="loading">'
+			+ '<div class="loader" role="status" >' + '</div>' + '</div>')
+		
+			$("#ordini").append($loading);
+			
 	$("#divOrdini").append($table);
 	$.ajax({
 		url: "DammiOrdini",
@@ -38,7 +43,7 @@ function ordiniEffettuati(){
 										
 					$("#tabListaOrdini").append($row);
 			}
-			
+			$("#loading").remove();
 		}
 	});
 
@@ -117,7 +122,6 @@ function distruggiOrtaggiPrenotati(terreno,cliente){
 	$("#chiudi"+terreno+cliente).remove();
 	$('#listaOrtaggi'+terreno+cliente).empty();
 	$('#listaOrtaggi'+terreno+cliente).removeClass('show');
-	//var $apri = ('<button class="button_info btn" id="list_info'+terreno+cliente+'" type="button" onclick="ortaggiPrenotati('+terreno+','+cliente+')"></button>')
 	var $button_info = ('<button class="button_info btn" id="list_info'+terreno+cliente+'" type="button"'  
 					+'onclick="ortaggiPrenotati('+terreno+','+cliente+')"></button>')
 	$("#info_row"+terreno+cliente).append($button_info);
@@ -137,7 +141,7 @@ function ortaggiPrenotati(terreno,cliente) {
 		
 				success : function(data) {
 					$("#list_info"+terreno+cliente).remove();
-					var $chiudi =('<button class="button_chiudi btn" id="chiudi'+terreno+cliente+'" onclick="distruggiOrtaggiPrenotati('+terreno+','+cliente+')" type="button"></button>')
+					var $chiudi =('<button class=" button_chiudi btn" id="chiudi'+terreno+cliente+'" onclick="distruggiOrtaggiPrenotati('+terreno+','+cliente+')" type="button"></button>')
 					$("#info_row"+terreno+cliente).append($chiudi);
 					
 					var $table = ('<tr align="center">' + '<th>Nome</th>' + '<th>Quantità</th>'
@@ -145,7 +149,7 @@ function ortaggiPrenotati(terreno,cliente) {
 					$('#listaOrtaggi'+terreno+cliente).append($table);
 					for (var i = 0; i < data.length; i++) {
 						
-						var $row = ('<tr align="center">' + '<td>' + data[i].ortaggio
+						var $row = ('<tr align="center" >' + '<td>' + data[i].ortaggio
 								+ '</td>' + '<td>' + data[i].quantita + '</td>'
 								+ '<td>' + data[i].serra + '</td>'
 								+ '</tr>')
@@ -163,8 +167,8 @@ function prenotazioniAzienda() {
 	var $table = ('<div class="container-fluid" id="prenotazioniAzienda">'
 			+ '<div class="form-row form-group">'
 			+ '<div class="table-responsive" id="table-scroll">'
-			+ '<table class="table table-hover" id="tabListaPrenotazioni" style="background-color:#006666; border-radius:15px">'
-			+ '<thead>' + '<tr align="center">' + '<th>Terreno</th>'
+			+ '<table class="table table-hover table-curved" id="tabListaPrenotazioni">'
+			+ '<thead style="background-color:#006600; color:white">' + '<tr align="center">' + '<th>Terreno</th>'
 			+ '<th>Cliente</th>' + '<th>Data</th>'
 			+ '<th>Dettagli</th>' + '</tr>' + '</thead>'
 			+ '</table>' + '</div>' + '</div>' + '</div>')
@@ -185,7 +189,7 @@ function prenotazioniAzienda() {
 
 		success : function(data) {
 			for (var i = 0; i < data.length; i++) {
-				var $row = ('<tbody style="backgroud-color:white">'
+				var $row = ('<tbody style="background-color:rgb(0, 102, 0,.4); color:white">'
 						+ '<tr id="rigaPren" align="center" data-toggle="collapse" data-target="#listaOrtaggi'+ data[i].id_terreno+data[i].id_cliente+'"aria-controls="listaOrtaggi">'
 						+ '<td>'+ data[i].terreno+ '</td>'
 						+ '<td>'+ data[i].cliente_nome+' '+ data[i].cliente_cognome+ '</td>'
@@ -194,7 +198,7 @@ function prenotazioniAzienda() {
 						+ 'onclick="ortaggiPrenotati('+data[i].id_terreno+','+data[i].id_cliente+')"></button></td>'
 						+ '</tr>'
 						+ '</tbody>'
-						+ '<tbody class="collapse table-info" id="listaOrtaggi'+data[i].id_terreno+data[i].id_cliente+'"' + '</tbody')
+						+ '<tbody class="collapse" style="background-color:rgb(255, 204, 0,0.4)" id="listaOrtaggi'+data[i].id_terreno+data[i].id_cliente+'"' + '</tbody')
 						$("#tabListaPrenotazioni").append($row);
 			}
 
