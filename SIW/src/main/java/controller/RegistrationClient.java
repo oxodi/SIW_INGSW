@@ -89,7 +89,12 @@ public class RegistrationClient extends HttpServlet {
 			/**
 			 * salvati i dati della registrazione del cliente torno all index
 			 */
-			out.println("Grazie per esserti registrato");
+			
+			out.println("<div class=\"alert alert-success\">\r\n" +
+					" <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>"+
+					"  <strong> Grazie per esserti registrato!</strong>Ora puoi effettuare il Login.\r\n" + 
+					"</div>");
+			
 			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			rd.include(request, response);
 			

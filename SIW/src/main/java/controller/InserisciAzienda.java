@@ -110,10 +110,13 @@ public class InserisciAzienda extends HttpServlet {
 			//	System.out.println(azienda.getId());
 
 			//doGet(request, response);
-
+			out.println("<div class=\"alert alert-success\">\r\n" +
+					" <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>"+
+					"  <strong> Grazie per esserti registrato!</strong>Ora puoi effettuare il Login.\r\n" + 
+					"</div>");
+			
 			RequestDispatcher rs = request.getRequestDispatcher("PageLoader?id=azienda");
 			rs.forward(request, response);
-			out.println("Grazie per esserti registrato");
 
 		}
 		catch (IOException e) {
