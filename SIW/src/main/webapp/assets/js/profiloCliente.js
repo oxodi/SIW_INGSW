@@ -50,7 +50,7 @@ function dammiPrenotazioni(){
 
 	$('#prenotazioni').empty();
 	
-	var $table = (" <div class='table-responsive' id='terreni'>" +
+	var $table = (" <div class='table-responsive' id='terreni' style='border-radius: 10px'>" +
 					"<table class='table table-hover' id='listaPrenotazioni'>" +
 					"<thead style='background: #f7d08c'>" +
 					"<tr>" +
@@ -82,7 +82,6 @@ function dammiPrenotazioni(){
 		success: function(data){
 			
 			var terreniPrenotati = JSON.parse(data);
-			alert("sono nell' ajax");
 			for (var i = 0; i < terreniPrenotati.length; i++){
 				
 				var $row = ("<tbody id='item' style='background: #f4ddb5'>" +
@@ -92,7 +91,7 @@ function dammiPrenotazioni(){
 							"<td>"+terreniPrenotati[i].idTerreno+"</td>" +
 							"<td>"+terreniPrenotati[i].locazione+"</td>" +
 							"<td>"+terreniPrenotati[i].azienda+"</td>" +
-							"<td><a><i class='fa fa-info-circle' aria-hidden='true' style='font-size: 25px; color: #136000' onclick='mostraOrtaggi("+terreniPrenotati[i].idTerreno+","+terreniPrenotati[i].periodi+")'></i></a></td>" +
+							"<td id='iconInfo"+terreniPrenotati[i].idTerreno+"'><a id='tagInfo"+terreniPrenotati[i].idTerreno+"'><i class='fa fa-info-circle' aria-hidden='true' style='font-size: 25px; color: #136000' onclick='mostraOrtaggi("+terreniPrenotati[i].idTerreno+",\""+terreniPrenotati[i].periodi+"\")'></i></a></td>" +
 							"</tr>" +
 							"</tbody>" +
 							"<tbody id='group-of-rows-1"+terreniPrenotati[i].idTerreno+"' class='collapse'> " + 
@@ -101,7 +100,7 @@ function dammiPrenotazioni(){
 				$("#listaPrenotazioni").append($row);			
 			}
 			$("#loading").remove();
-//			mostraOrtaggi("44","autunno");
+			
 		}
 	
 	});
@@ -114,30 +113,41 @@ function dammiPrenotazioni(){
 
 function mostraOrtaggi(idTerreno, periodoColtivazione){
 	
-	alert("sono in mostra ortaggi");
+	var groupRows = document.getElementById("group-of-rows-1"+idTerreno);
+	$(groupRows).empty();
+	
+	var rowIndex = "<tr>"
+		+"		<td><strong>Data</strong></td> "
+		+"		<td><strong>Ortaggio</strong></td>"
+		+"		<td><strong>Quantità</strong></td>"
+		+"		<td><strong>Progresso Coltivazione</strong></td>"
+		+	"</tr>";
+
+	$(groupRows).append(rowIndex);
+
+	
+	var $loading = ('<div class="container-fluid" align="center" id="loading">'
+			+ '<div class="loader" role="status" >' + '</div>' + '</div>')
+	$("#prenotazioni").append($loading);
+	
+	
+	
 	$.ajax({
 		type: "GET",
 		url: "DammiPrenotazioniCliente?edit=false&id_terreno="+idTerreno,
 		datatype: "json",
 		success: function(data){
 
+			$("#tagInfo"+idTerreno).remove();	
+			var $chiudi = $("<a id='tagInfoChiudi"+idTerreno+"'><i class='fa fa-times-circle' aria-hidden='true' style='font-size: 25px; color: #7c1212' onclick='chiudiCollapse("+idTerreno+",\""+periodoColtivazione+"\")'></i></a>")
+			$("#iconInfo"+idTerreno).append($chiudi);
+			
+			
+			
 			var ortaggiPrenotati = JSON.parse(data);
 			var periodo = periodoColtivazione;
-			var groupRows = document.getElementById("group-of-rows-1"+idTerreno);
 			
-			
-			$(groupRows).empty();
-			
-			
-			var rowIndex = "<tr>"
-								+"		<td><strong>Data</strong></td> "
-								+"		<td><strong>Ortaggio</strong></td>"
-								+"		<td><strong>Quantità</strong></td>"
-								+"		<td><strong>Progresso Coltivazione</strong></td>"
-								+	"</tr>";
-			
-			$(groupRows).append(rowIndex);
-			
+					
 			for(i = 0; i < ortaggiPrenotati.length;i++)
 			{		
 				
@@ -178,8 +188,8 @@ function mostraOrtaggi(idTerreno, periodoColtivazione){
 				$(groupRows).append($row);
 
 			}	
-	
 			$(groupRows).collapse("toggle");
+			$("#loading").remove();
 		}
 
 	});
@@ -187,11 +197,20 @@ function mostraOrtaggi(idTerreno, periodoColtivazione){
  
 }
 
+
+function chiudiCollapse(idTerreno, periodoColtivazione){
+	$("#tagInfoChiudi"+idTerreno).remove();
+	$("#group-of-rows-1"+idTerreno).empty();
+	$("#group-of-rows-1"+idTerreno).removeClass('show');
+	var $apri = $("<a id='tagInfo"+idTerreno+"'><i class='fa fa-info-circle' aria-hidden='true' style='font-size: 25px; color: #136000' onclick='mostraOrtaggi("+idTerreno+",\""+periodoColtivazione+"\")'></i></a>")
+	$("#iconInfo"+idTerreno).append($apri);
+	
+}
+
 function dammiAcquisti(){
-	alert("sono in dammi acquisti");
 	$('#acquisti').empty();
 	
-	var $table = (" <div class='table-responsive' id='acquistiTable'>" +
+	var $table = (" <div class='table-responsive' id='acquistiTable' style='border-radius: 10px'>" +
 					"<table class='table table-striped table-hover'>" +
 					"<thead style='background: #f7d08c'>" +
 					"<tr>" +

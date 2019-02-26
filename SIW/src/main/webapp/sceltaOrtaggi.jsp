@@ -48,20 +48,20 @@
 				var terrenoPren = ${terreno.terrenoPrenotato};
 				var serraPren = ${terreno.serraPrenotata};
 				
-				$("#terrenoDisp").html("Disponibilità terreno: " +terrenoPren+ "/" +dimTerreno+ " m<sup>2</sup>");
+				$("#terrenoDisp").html("Terreno prenotato: " +terrenoPren+ "/" +dimTerreno+ " m<sup>2</sup>");
 
 				$("#switchDiv").click(function() {
 
 							if ($(this).is(':checked')) {
 								$("#noserra").hide("slow");
 								$("#serra").show("slow");
-								$("#terrenoDisp").html("Disponibilità serra: " +serraPren+ "/" +dimSerra+ " m<sup>2</sup>");
+								$("#terrenoDisp").html("Serra prenotata: " +serraPren+ "/" +dimSerra+ " m<sup>2</sup>");
 							}
 							if (!$(this).is(':checked')) {
 
 								$("#serra").hide("slow");
 								$("#noserra").show("slow");
-								$("#terrenoDisp").html("Disponibilità terreno: " +terrenoPren+ "/" +dimTerreno+ " m<sup>2</sup>");
+								$("#terrenoDisp").html("Terreno prenotato: " +terrenoPren+ "/" +dimTerreno+ " m<sup>2</sup>");
 
 							}
 						});
@@ -89,9 +89,10 @@
 			
 			<!-- div apri mappa -->
 			<div class="col-4" style="margin-top: 3%" id="divaprimappa">
-				<a href="#" onclick="apriMappa('${terreno.locazione}')" id="mappa" style="margin-left: 38%; font-family: Arial, Courier; font-size: 25px; display: block; cursor: pointer">
+				<a href="#" class="linkMappa" onclick="apriMappa('${terreno.locazione}')" id="mappa" style="margin-left: 38%; font-family: Arial, Courier; font-size: 25px; display: block; cursor: pointer">
 					<strong>Mappa</strong>
 					<i class='fas fa-map-marker-alt' style='font-size: 36px; color: #d13a04'></i>
+				
 					
 				
 				</a>

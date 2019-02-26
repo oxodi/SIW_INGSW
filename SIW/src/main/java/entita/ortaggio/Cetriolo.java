@@ -5,7 +5,7 @@ public class Cetriolo extends Ortaggio {
 	public Cetriolo() {
 		this.setId(3);
 		this.setNome("Cetriolo");
-		this.setResa(1.0);
+		this.setResa(4.0);
 		this.setPeriodoColtivazione("estate");
 	}
 

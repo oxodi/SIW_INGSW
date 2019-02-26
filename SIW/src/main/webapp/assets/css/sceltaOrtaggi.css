@@ -1,6 +1,5 @@
 /* The switch - the box around the slider */
 
-
 a:link, a:visited {
     text-decoration: none;
      color: #4f2d1a;
@@ -11,6 +10,18 @@ a:hover, a:active {
     color: #7c2c2c;
 }
 
+
+/* style logout */
+.logout a:link, .logout a:visited {
+    text-decoration: none;
+    color: #009d00;
+}
+
+.logout a:hover, .logout a:active {
+    text-decoration: underline;
+    color: #62cc02;
+}
+/* ---------------------------------------  */
 
 #mapesterno{
 	

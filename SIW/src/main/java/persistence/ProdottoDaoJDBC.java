@@ -398,6 +398,34 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 	}
 
 	@Override
+	public int numProdotti(int idAzienda) {
+		Connection connection = this.dataSource.getConnection();
+		int numProdotti = 0;
+
+		try {
+			PreparedStatement statement;
+			
+			String query = "SELECT COUNT (id) FROM prodotto WHERE id_azienda = ?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, idAzienda);
+			ResultSet result = statement.executeQuery();
+			
+			if(result.next())
+				numProdotti = result.getInt("count");
+
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+
+		return numProdotti;
+	}
+	@Override
 	public String restituisciNome(int id) {
 		Connection connection = this.dataSource.getConnection();
 		String nomeProdotto = "";

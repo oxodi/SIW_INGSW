@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map.Entry;
+
+import javax.swing.Painter;
+
+import org.json.JSONObject;
 
 import entita.Azienda;
 import entita.Cliente;
@@ -555,5 +560,64 @@ public class TerrenoDaoJDBC implements TerrenoDao {
 		}
 	
 
+	}
+
+	@Override
+	public JSONObject restituisciLocazionePeriodo(int id) {
+		Connection connection = this.dataSource.getConnection();
+		JSONObject locazionePeriodo = new JSONObject();
+		
+		try {
+			PreparedStatement statement;
+			String query = "SELECT locazione, periodo_coltivazione,id_azienda FROM terreno WHERE id= ?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, id);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				locazionePeriodo.put("locazione", result.getString("locazione"));
+				locazionePeriodo.put("periodo", result.getString("periodo_coltivazione"));
+				locazionePeriodo.put("idAzienda", result.getInt("id_azienda"));
+			
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+			}
+		}
+		return locazionePeriodo;
+
+	}
+
+	@Override
+	public int numTerreni(int idAzienda) {
+		Connection connection = this.dataSource.getConnection();
+		int numTerreni = 0;
+
+		try {
+			PreparedStatement statement;
+			
+			String query = "SELECT COUNT (id) FROM terreno WHERE id_azienda = ?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, idAzienda);
+			ResultSet result = statement.executeQuery();
+			
+			if(result.next())
+				numTerreni = result.getInt("count");
+
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+
+		return numTerreni;
 	}
 }

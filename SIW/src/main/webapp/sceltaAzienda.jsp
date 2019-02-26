@@ -87,7 +87,7 @@
 										</div>
 
 										<div class="column" id="column3" style="margin-top: 3%;">
-											<b>Terreni disponibili: </b> <em>${a.terreni.size() }</em>
+											<b>Terreni disponibili: </b> <em>${a.numTerreni }</em>
 										</div>
 
 									</div>

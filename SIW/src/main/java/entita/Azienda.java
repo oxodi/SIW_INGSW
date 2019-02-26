@@ -19,6 +19,24 @@ public class Azienda {
 	private String descrizioneServizi;
 	private List<Terreno> terreni;
 	private List<Prodotto> prodotti;
+	private int numTerreni = 0;
+	private int numProdotti = 0;
+
+	public int getNumTerreni() {
+		return numTerreni;
+	}
+
+	public void setNumTerreni(int numTerreni) {
+		this.numTerreni = numTerreni;
+	}
+
+	public int getNumProdotti() {
+		return numProdotti;
+	}
+
+	public void setNumProdotti(int numProdotti) {
+		this.numProdotti = numProdotti;
+	}
 
 	public List<Prodotto> getProdotti() {
 		return prodotti;

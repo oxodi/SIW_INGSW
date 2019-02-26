@@ -5,7 +5,7 @@ public class Peperone extends Ortaggio {
 	public Peperone() {
 		this.setId(9);
 		this.setNome("Peperone");
-		this.setResa(1.0);
+		this.setResa(4.5);
 		this.setPeriodoColtivazione("primavera");
 	}
 
