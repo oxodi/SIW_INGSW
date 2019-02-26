@@ -556,8 +556,9 @@
 												<td>${p.categoria}</td>
 												<td>${p.costoUnitario}</td>
 												<td>${p.quantita}</td>
+												<td id="descrizioneProdottoModifica${p.id}" style="display: none;">${p.descrizione}</td>
 												<td><button class="button_modifica btn" type="button"
-														onclick="prodotto('${p.id}','${p.nome}','${p.categoria}','${p.costoUnitario}','${p.quantita}','${p.descrizione}')"></button></td>
+														onclick="prodotto('${p.id}','${p.nome}','${p.categoria}','${p.costoUnitario}','${p.quantita}')"></button></td>
 
 												<td><button class="button_elimina btn"
 														data-toggle="modal" data-target="#deleteProdotto"

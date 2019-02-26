@@ -713,7 +713,7 @@ function prodotto(id, nome, categoria, costo, quantita, descrizione) {
 	$("#editProdottoNome").val(nome);
 	$("#editProdottoCategoria").val(categoria);
 	$("#editProdottoCosto").val(costo);
-	$("#editProdottoDescrizione").val(descrizione);
+	$("#editProdottoDescrizione").val($("#descrizioneProdottoModifica"+id).text());
 	$("#editProdottoQuantita").val(quantita);
 
 	$("#prodotti").hide("fast");
