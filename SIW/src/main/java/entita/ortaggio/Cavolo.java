@@ -5,7 +5,7 @@ public class Cavolo extends Ortaggio {
 	public Cavolo() {
 		this.setId(2);
 		this.setNome("Cavolo");
-		this.setResa(1.0);
+		this.setResa(4.0);
 		this.setPeriodoColtivazione("annuale");
 	}
 

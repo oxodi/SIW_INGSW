@@ -56,22 +56,10 @@ public class DammiPrenotazioniCliente extends HttpServlet {
 		
 		if (request.getParameter("edit").equals("true")) {	
 			
-//			List<Prenotazione> prenotazioni = prenotazionedao.cercaPerCliente(cliente.getId());
-//			List<Terreno> terreni = new ArrayList<Terreno>();
-//			List<Azienda> aziende = new ArrayList<Azienda>();
-//
-//			for(int i=0; i<prenotazioni.size();i++) {
-//				terreni.add(terrenodao.cercaPerChiavePrimaria( prenotazioni.get(i).getIdTerreno()));
-//				aziende.add(aziendadao.cercaPerChiavePrimaria(terreni.get(i).getIdAzienda()));
-//			}
-//
-//			request.setAttribute("terreni", terreni);
-//			request.setAttribute("aziende", aziende);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("profiloCliente.jsp");
 			rd.forward(request, response);
-			
-			
+						
 
 		}
 		else if(request.getParameter("edit").equals("tabPren")) {
@@ -80,15 +68,15 @@ public class DammiPrenotazioniCliente extends HttpServlet {
 			JSONArray prenotazioniJSON = new JSONArray();
 				
 			for(Prenotazione prenotazione : prenotazioni) {
-				Terreno terreno = terrenodao.cercaPerChiavePrimaria(prenotazione.getIdTerreno());
-				Azienda azienda = aziendadao.cercaPerChiavePrimaria(terreno.getIdAzienda());
+				JSONObject locazionePeriodo = terrenodao.restituisciLocazionePeriodo(prenotazione.getIdTerreno());
+				String nomeAzienda = aziendadao.restituisciNome(locazionePeriodo.getInt("idAzienda"));
 				
 				JSONObject tmp = new JSONObject();
 				
 				tmp.put("idTerreno", prenotazione.getIdTerreno());
-				tmp.put("locazione", terreno.getLocazione());
-				tmp.put("azienda", azienda.getRagioneSociale());
-				tmp.put("periodi", terreno.getPeriodiDisponibilita());
+				tmp.put("locazione", locazionePeriodo.get("locazione"));
+				tmp.put("azienda", nomeAzienda);
+				tmp.put("periodi", locazionePeriodo.get("periodo"));
 				
 				prenotazioniJSON.put(tmp);
 			}

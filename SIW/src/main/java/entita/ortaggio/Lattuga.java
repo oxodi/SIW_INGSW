@@ -5,7 +5,7 @@ public class Lattuga extends Ortaggio {
 	public Lattuga() {
 		this.setId(5);
 		this.setNome("Lattuga");
-		this.setResa(1.0);
+		this.setResa(3.5);
 		this.setPeriodoColtivazione("annuale");
 	}
 

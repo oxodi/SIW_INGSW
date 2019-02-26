@@ -5,7 +5,7 @@ public class Spinacio extends Ortaggio {
 	public Spinacio() {
 		this.setId(11);
 		this.setNome("Spinacio");
-		this.setResa(1.0);
+		this.setResa(2.5);
 		this.setPeriodoColtivazione("annuale");
 	}
 	

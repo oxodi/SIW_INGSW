@@ -5,7 +5,7 @@ public class Cipolla extends Ortaggio {
 	public Cipolla() {
 		this.setId(4);
 		this.setNome("Cipolla");
-		this.setResa(1.0);
+		this.setResa(3.5);
 		this.setPeriodoColtivazione("annuale");
 	}
 

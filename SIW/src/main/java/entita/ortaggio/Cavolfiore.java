@@ -5,7 +5,7 @@ public class Cavolfiore extends Ortaggio {
 	public Cavolfiore() {
 		this.setId(1);
 		this.setNome("Cavolfiore");
-		this.setResa(1.0);
+		this.setResa(2.5);
 		this.setPeriodoColtivazione("annuale");
 	}
 

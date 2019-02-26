@@ -2,6 +2,10 @@ package persistence.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
+
+import org.json.JSONObject;
+
 import entita.Cliente;
 import entita.Prenotazione;
 import entita.Terreno;
@@ -24,6 +28,8 @@ public interface TerrenoDao {
 
 	public Terreno cercaPerChiavePrimaria(int id);
 	
+	public JSONObject restituisciLocazionePeriodo(int id);
+	
 	public ArrayList<Ortaggio> cercaOrtaggiPerTerreno(int id_terreno);
 
 	public List<Terreno> cercaPerServizio(boolean servizioParziale, boolean servizioCompleto);
@@ -36,8 +42,8 @@ public interface TerrenoDao {
 
 	public List<Terreno> cercaTutti();
 
-	//public List<Prenotazione> cercaPrenotazioniPerTerreno(int id_terreno);
-
+	public int numTerreni(int idAzienda);
+	
 	public List<Cliente> cercaClientiPerTerreno(int id_terreno);
 	
 	public void setDocumento(Terreno terreno, String documento);

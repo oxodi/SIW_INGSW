@@ -160,6 +160,7 @@ body {
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
 
+
 /* style logout */
 .logout a:link, .logout a:visited {
     text-decoration: none;

@@ -5,7 +5,7 @@ public class Melanzana extends Ortaggio {
 	public Melanzana() {
 		this.setId(6);
 		this.setNome("Melanzana");
-		this.setResa(1.0);
+		this.setResa(4.5);
 		this.setPeriodoColtivazione("primavera");
 	}
 

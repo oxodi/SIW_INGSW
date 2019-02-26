@@ -5,7 +5,7 @@ public class Patata extends Ortaggio {
 	public Patata() {
 		this.setId(7);
 		this.setNome("Patata");
-		this.setResa(1.0);
+		this.setResa(4.0);
 		this.setPeriodoColtivazione("estate");
 	}
 	
@@ -13,7 +13,7 @@ public class Patata extends Ortaggio {
 		super(prezzo, id_terreno, tempoColtivazione);
 		this.setId(7);
 		this.setNome("Patata");
-		this.setResa(1.0);
+		this.setResa(4.0);
 		this.setPeriodoColtivazione("estate");
 	}
 	

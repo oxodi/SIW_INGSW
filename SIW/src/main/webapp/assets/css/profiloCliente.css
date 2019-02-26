@@ -4,6 +4,17 @@
 	
 }
 
+/* style logout */
+.logout a:link, .logout a:visited {
+    text-decoration: none;
+    color: #009d00;
+    /* background-color: transparent; */
+}
+.logout a:hover, .logout a:active {
+    text-decoration: underline;
+    color: #62cc02;
+}
+
 .border-info-style{
 	margin-top: 5%; 
 	margin-bottom: 5%
