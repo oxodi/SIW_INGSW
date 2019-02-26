@@ -78,6 +78,9 @@ public class PrelevaOrtaggi extends HttpServlet {
 			// System.out.println((Ortaggio) req.getSession().getAttribute("ortaggio"));
 			OrtaggioDao ortaggidao = PostgresDAOFactory.getInstance().getOrtaggioDAO();
 			List<Ortaggio> listOrtaggi = ortaggidao.cercaTutti();
+//			for(int i = 0 ; i < listOrtaggi.size() ; i++) {
+//				System.out.println(listOrtaggi.get(i));
+//			}
 
 			req.setAttribute("ortaggi", listOrtaggi);
 
