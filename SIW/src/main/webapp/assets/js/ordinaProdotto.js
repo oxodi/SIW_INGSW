@@ -47,7 +47,7 @@ function visualizzaCarrello(){
 	var somma = 0;
 
 	for(var i = 0; i<prodotti.carrello.length; i++){
-		alert("ID prodotto: "+prodotti.carrello[i].id);
+		
 		var $row = $(  "<tr id="+prodotti.carrello[i].id+"> <td>" +
 				"<figure class='media'>" +
 				"<figcaption class='media-body'>" +

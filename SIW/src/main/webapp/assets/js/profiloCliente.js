@@ -46,8 +46,75 @@ function aggiornaDati(idCliente){
 
 
 
-function mostraOrtaggi(idTerreno, periodoColtivazione){
+function dammiPrenotazioni(){
 
+	$('#prenotazioni').empty();
+	
+	var $table = (" <div class='table-responsive' id='terreni'>" +
+					"<table class='table table-hover' id='listaPrenotazioni'>" +
+					"<thead style='background: #f7d08c'>" +
+					"<tr>" +
+					"<th>Azienda</th>" +
+					"<th>Terreno</th>" +
+					"<th>Locazione</th>" +
+					"<th>Dettagli</th>" +
+					"</tr>" +
+					"</thead>" +
+					"</table>" +
+					"</div>")
+					
+					
+	$("#prenotazioni").append($table);
+	
+	
+	var $loading = ('<div class="container-fluid" align="center" id="loading">'
+			+ '<div class="loader" role="status" >' + '</div>' + '</div>')
+	$("#prenotazioni").append($loading);
+	
+	$.ajax({
+		type: "GET",
+		url: "DammiPrenotazioniCliente?edit=tabPren",
+		data6type: "json",
+		
+		error : function() {
+			alert("si è verificato un errore");
+		},
+		success: function(data){
+			
+			var terreniPrenotati = JSON.parse(data);
+			alert("sono nell' ajax");
+			for (var i = 0; i < terreniPrenotati.length; i++){
+				
+				var $row = ("<tbody id='item' style='background: #f4ddb5'>" +
+							"<tr class='clickable' data-toggle='collapse'" +
+							"data-target='#group-of-rows-1' aria-expanded='false'" +
+							"aria-controls='group-of-rows-1'> " +
+							"<td>"+terreniPrenotati[i].idTerreno+"</td>" +
+							"<td>"+terreniPrenotati[i].locazione+"</td>" +
+							"<td>"+terreniPrenotati[i].azienda+"</td>" +
+							"<td><a><i class='fa fa-info-circle' aria-hidden='true' style='font-size: 25px; color: #136000' onclick='mostraOrtaggi("+terreniPrenotati[i].idTerreno+","+terreniPrenotati[i].periodi+")'></i></a></td>" +
+							"</tr>" +
+							"</tbody>" +
+							"<tbody id='group-of-rows-1"+terreniPrenotati[i].idTerreno+"' class='collapse'> " + 
+							"</tbody>")
+							
+				$("#listaPrenotazioni").append($row);			
+			}
+			$("#loading").remove();
+//			mostraOrtaggi("44","autunno");
+		}
+	
+	});
+	
+}
+
+
+
+
+
+function mostraOrtaggi(idTerreno, periodoColtivazione){
+	
+	alert("sono in mostra ortaggi");
 	$.ajax({
 		type: "GET",
 		url: "DammiPrenotazioniCliente?edit=false&id_terreno="+idTerreno,
@@ -117,6 +184,63 @@ function mostraOrtaggi(idTerreno, periodoColtivazione){
 
 	});
 
-  //"<div class='progress-bar bg-success' role='progressbar' aria-valuenow="+ortaggiPrenotati[i].progresso+"aria-valuemin='0' aria-valuemax='100' style='width:"+ortaggiPrenotati[i].progresso+"%'>"+ortaggiPrenotati[i].progresso+"%</div"+
-	
+ 
 }
+
+function dammiAcquisti(){
+	alert("sono in dammi acquisti");
+	$('#acquisti').empty();
+	
+	var $table = (" <div class='table-responsive' id='acquistiTable'>" +
+					"<table class='table table-striped table-hover'>" +
+					"<thead style='background: #f7d08c'>" +
+					"<tr>" +
+					"<th>Ordine</th>" +
+					"<th>Data</th>" +
+					"<th>Prodotto</th>" +
+					"<th>Quantità</th>" +
+					"<th>Importo</th>" +
+					"<th>Stato</th>" +
+					"</tr>" +
+					"</thead>" +
+					"<tbody id='tabAcquisti' style='background: #f4ddb5'>" +
+					"</tbody>" +
+					"</table>" +
+					"</div>")
+					
+					
+	$("#acquisti").append($table);
+	
+					
+	var $loading = ('<div class="container-fluid" align="center" id="loading">'
+			+ '<div class="loader" role="status" >' + '</div>' + '</div>')
+	$("#acquisti").append($loading);
+
+
+	$.ajax({
+		type: "GET",
+		url: "DammiAcquistiCliente",
+		datatype: "json",
+		
+		error : function() {
+			alert("si è verificato un errore");
+		},
+		success: function(data){
+
+			var acquisti = JSON.parse(data);
+			
+			for (var i = 0; i < acquisti.length; i++){
+				var $row = ("<tr>" +
+							"<td> N° " +acquisti[i].idOrdine+ "</td>"+
+							"<td>" +acquisti[i].date+ "</td>" +
+							"<td>" +acquisti[i].nome+ "</td>" +
+							"<td>" +acquisti[i].quantita+ "</td>" +
+							"<td> € " +acquisti[i].importo+ "</td>"+
+			 				"<td>" +acquisti[i].stato+ "</td>"+
+							"</tr>")
+				$("#tabAcquisti").append($row);				
+			}		
+			$("#loading").remove();
+		}
+	});
+}	

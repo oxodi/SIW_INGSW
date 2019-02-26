@@ -28,7 +28,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			acquisto.setId(id);
 
 			String insert = "INSERT INTO acquisto(id, id_cliente, id_prodotto, data_acquisto,"
-					+ " quantita) VALUES (?,?,?,?,?)";
+					+ " quantita, importo) VALUES (?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setInt(1, acquisto.getId());
@@ -39,6 +39,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			
 			statement.setDate(4, new java.sql.Date(secsAcquisto));
 			statement.setInt(5, acquisto.getQuantita());
+			statement.setDouble(6, acquisto.getImporto());
 			
 			statement.executeUpdate();
 		
@@ -59,7 +60,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 
-			String update = "UPDATE acquisto SET id_cliente = ?, id_prodotto = ?, data_acquisto = ?, quantita = ? WHERE id = ?";
+			String update = "UPDATE acquisto SET id_cliente = ?, id_prodotto = ?, data_acquisto = ?, quantita = ?, importo = ? WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(update);
 
 			statement.setInt(1, acquisto.getId());
@@ -69,7 +70,9 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			long secsAcquisto = acquisto.getDataAcquisto().getTime();
 			statement.setDate(4, new java.sql.Date(secsAcquisto));
 			statement.setInt(5, acquisto.getQuantita());
-
+			statement.setDouble(6, acquisto.getImporto());
+			
+			
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -127,6 +130,8 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
 				acquisto.setQuantita(result.getInt("quantita"));
+				acquisto.setImporto(result.getDouble("importo"));
+				
 
 			}
 		} catch (SQLException e) {
@@ -153,7 +158,7 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 			String query = "SELECT * FROM acquisto where id_cliente = ?";
 
 			statement = connection.prepareStatement(query);
-			statement.setInt(2, idCliente);
+			statement.setInt(1, idCliente);
 			ResultSet result = statement.executeQuery();
 
 			while (result.next()) {
@@ -167,6 +172,8 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
 				acquisto.setQuantita(result.getInt("quantita"));
+				acquisto.setImporto(result.getDouble("importo"));
+				
 
 				acquisti.add(acquisto);
 			}
@@ -207,6 +214,8 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 				
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
 				acquisto.setQuantita(result.getInt("quantita"));
+				acquisto.setImporto(result.getDouble("importo"));
+				
 				
 				acquisti.add(acquisto);
 			}
@@ -247,6 +256,8 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 				
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
 				acquisto.setQuantita(result.getInt("quantita"));
+				acquisto.setImporto(result.getDouble("importo"));
+				
 
 				acquisti.add(acquisto);
 			}
@@ -286,6 +297,8 @@ public class AcquistoDaoJDBC implements AcquistoDao {
 				
 				acquisto.setDataAcquisto(new java.util.Date(secsAcquisto));
 				acquisto.setQuantita(result.getInt("quantita"));
+				acquisto.setImporto(result.getDouble("importo"));
+				
 				
 				acquisti.add(acquisto);
 			}

@@ -116,8 +116,8 @@
 					<ul class="nav nav-pills">
 						<li class="active"><a data-toggle="tab" href="#modificadati">
 								Modifica i miei dati</a></li>
-						<li><a data-toggle="tab" href="#prenotazioni">Prenotazioni</a></li>
-						<li><a data-toggle="tab" href="imieiprodotti">Acquisti</a></li>
+						<li><a data-toggle="tab" href="#prenotazioni" onclick="dammiPrenotazioni()">Prenotazioni</a></li>
+						<li><a data-toggle="tab" href="#acquisti" onclick="dammiAcquisti()">Acquisti</a></li>
 
 					</ul>
 				</div>
@@ -285,39 +285,54 @@
 					<!-- PRENOTAZIONI -->
 					<div class="tab-pane" style="margin-top: 20px; margin-bottom: 50px"
 						id="prenotazioni">
-						<div class="table-responsive" id="terreni">
-							<table class="table table-hover" >
-								<thead style="background: #f7d08c">
-									<tr>
-										<th>Info</th>
-										<th>Terreno</th>
-										<th>Locazione</th>
-										<th>Azienda</th>
-									</tr>
-								</thead>
-								<c:forEach items="${terreni}" var="t" varStatus="status">
-									
-							 	<tbody id="items" style="background: #f4ddb5">
-										<tr class="clickable" data-toggle="collapse"
-											data-target="#group-of-rows-1" aria-expanded="false"
-											aria-controls="group-of-rows-1">
-											<td><a><i class="fa fa-plus" aria-hidden="true" onclick="mostraOrtaggi('${t.id}','${t.periodiDisponibilita}')"></i></a></td>
-											<td>${t.id}</td>
-											<td>${t.locazione}</td>
-											<td>${aziende[status.index].ragioneSociale}</td>
-										</tr>
-								</tbody>
-								<tbody id="group-of-rows-1${t.id}" class="collapse"> 
-									
-								</tbody>
-									</c:forEach>
-							</table>
-
-
-						</div>
-
+						
+						
+<%-- 						<div class="table-responsive" id="terreni">
+	<table class="table table-hover" >
+		<thead style="background: #f7d08c">
+			<tr>
+				<th>Azienda</th>
+				<th>Terreno</th>
+				<th>Locazione</th>
+				<th>Info</th>
+			</tr>
+		</thead>
+		<c:forEach items="${terreni}" var="t" varStatus="status">
+			
+	 	<tbody id="items" style="background: #f4ddb5">
+				<tr class="clickable" data-toggle="collapse"
+					data-target="#group-of-rows-1" aria-expanded="false"
+					aria-controls="group-of-rows-1">
+					<td>${t.id}</td>
+					<td>${t.locazione}</td>
+					<td>${aziende[status.index].ragioneSociale}</td>
+					<td><a><i class="fa fa-info-circle" aria-hidden="true" style="font-size: 25px; color: #136000" onclick="mostraOrtaggi('${t.id}','${t.periodiDisponibilita}')"></i></a></td>
 					
-					</div>
+				</tr>
+		</tbody>
+		<tbody id="group-of-rows-1${t.id}" class="collapse"> 
+			
+		</tbody>
+			</c:forEach>
+	</table>
+
+
+</div>
+						
+						
+						 --%>
+						
+						
+					
+					</div>  <!-- fine div prenotazioni -->
+					
+					
+					<!-- ACQUISTI -->
+					<div class="tab-pane" style="margin-top: 20px; margin-bottom: 50px"
+						id="acquisti">
+						
+					
+					</div>  <!-- fine div acquisti -->
 
 				</div>
 			</div>

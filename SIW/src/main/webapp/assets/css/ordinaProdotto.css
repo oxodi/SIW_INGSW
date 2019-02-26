@@ -38,8 +38,7 @@ body {
 }
 
 
-
-#scrittaClickCarrello:hover{
+#scrittaClickCarrello.a:hover{
 	color: #e9cc98;
 }
 

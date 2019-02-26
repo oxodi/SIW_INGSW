@@ -46,7 +46,7 @@
 						</div>
 						<div class="col-sm-4" id="cart">
 							<div id="clickCarrello">
-								<a id="scrittaClickCarrello" onclick="visualizzaCarrello()"><strong>Carrello</strong>
+								<a class="iconCarrello" id="scrittaClickCarrello" onclick="visualizzaCarrello()"><strong>Carrello</strong>
 								<i class="fa fa-shopping-cart" id="disegnoClickCarrello"></i>
 								<i id="dimensioneCarrello" style="color: #25ed3b;"></i></a>
 							</div>

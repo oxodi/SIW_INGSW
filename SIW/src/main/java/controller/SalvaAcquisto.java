@@ -51,9 +51,11 @@ public class SalvaAcquisto extends HttpServlet {
 			    int idCliente = cliente.getId();
 			    int idProdotto = Integer.parseInt(jsonobject.getString("id"));
 			    int quantita = Integer.parseInt(jsonobject.getString("quantita"));
+			    double costoUnitario = Double.parseDouble(jsonobject.getString("prezzo"));
+			    double importo = (costoUnitario * quantita);
 			    Date dataAcquisto = new Date();
 			    
-			    Acquisto acquisto = new Acquisto(idCliente, idProdotto, dataAcquisto, quantita);
+			    Acquisto acquisto = new Acquisto(idCliente, idProdotto, dataAcquisto, quantita, importo);
 			    Prodotto prodotto = prodottodao.cercaPerChiavePrimaria(idProdotto);
 			    
 			    int quantitaProdotto = prodotto.getQuantita() - quantita;

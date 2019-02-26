@@ -397,6 +397,33 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 		return numProdotti;
 	}
 
+	@Override
+	public String restituisciNome(int id) {
+		Connection connection = this.dataSource.getConnection();
+		String nomeProdotto = "";
+		
+		try {
+			String query = "SELECT nome FROM prodotto WHERE id = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, id);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				nomeProdotto = result.getString("nome");
+				
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+
+			}
+		}
+		return nomeProdotto;
+	}
+
 }
 
 

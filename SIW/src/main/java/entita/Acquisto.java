@@ -9,15 +9,25 @@ public class Acquisto {
 	private int idProdotto;
 	private Date dataAcquisto;
 	private int quantita;
+	private double importo;
 
 	public Acquisto() {
 	}
 
-	public Acquisto(int idCliente, int idProdotto, Date dataAcquisto, int quantita) {
+	public Acquisto(int idCliente, int idProdotto, Date dataAcquisto, int quantita, double importo) {
 		this.idCliente = idCliente;
 		this.idProdotto = idProdotto;
 		this.dataAcquisto = dataAcquisto;
 		this.quantita = quantita;
+		this.importo = importo;
+	}
+
+	public double getImporto() {
+		return importo;
+	}
+
+	public void setImporto(double importo) {
+		this.importo = importo;
 	}
 
 	public int getId() {

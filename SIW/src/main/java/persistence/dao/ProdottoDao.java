@@ -14,6 +14,8 @@ public interface ProdottoDao {
 
 	public int sizeProdotti();
 	
+	public String restituisciNome(int id);
+	
 	public List<Prodotto> dammiProdottiPerPagina(int pagina);
 	
 	public List<Prodotto> filtraPerPrezzo(int min, int max);

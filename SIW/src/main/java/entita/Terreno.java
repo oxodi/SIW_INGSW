@@ -86,10 +86,6 @@ public class Terreno {
 		this.ortaggi = ortaggi;
 	}
 
-	/*
-	 * Setta la dimensione del terreno serra e controlla che quest ultima non sia
-	 * maggiore di quella del terreno
-	 */
 	public void setDimSerra(int dimensioneSerra) {
 			this.dimSerra = dimensioneSerra;
 	}
