@@ -7,10 +7,15 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import entita.ortaggio.Aglio;
+import entita.ortaggio.Anguria;
+import entita.ortaggio.Carota;
 import entita.ortaggio.Cavolfiore;
 import entita.ortaggio.Cavolo;
 import entita.ortaggio.Cetriolo;
 import entita.ortaggio.Cipolla;
+import entita.ortaggio.Finocchio;
+import entita.ortaggio.Fragola;
 import entita.ortaggio.Lattuga;
 import entita.ortaggio.Melanzana;
 import entita.ortaggio.Ortaggio;
@@ -18,8 +23,11 @@ import entita.ortaggio.Patata;
 import entita.ortaggio.Peperoncino;
 import entita.ortaggio.Peperone;
 import entita.ortaggio.Pomodoro;
+import entita.ortaggio.Radicchio;
+import entita.ortaggio.Ravanello;
 import entita.ortaggio.Spinacio;
 import entita.ortaggio.TerrenoPrenotabile;
+import entita.ortaggio.Zucca;
 import entita.ortaggio.Zucchina;
 import persistence.dao.OrtaggioDao;
 
@@ -167,6 +175,30 @@ public class OrtaggioDaoJDBC implements OrtaggioDao {
 			break;
 		case 12:
 			ortaggio = new Zucchina();
+			break;
+		case 13:
+			ortaggio = new Carota();
+			break;
+		case 14:
+			ortaggio = new Anguria();
+			break;
+		case 15:
+			ortaggio = new Fragola();
+			break;
+		case 16:
+			ortaggio = new Finocchio();
+			break;
+		case 17:
+			ortaggio = new Zucca();
+			break;
+		case 18:
+			ortaggio = new Aglio();
+			break;
+		case 19:
+			ortaggio = new Radicchio();
+			break;	
+		case 20:
+			ortaggio = new Ravanello();
 			break;
 		case 99:
 			ortaggio = new TerrenoPrenotabile();
