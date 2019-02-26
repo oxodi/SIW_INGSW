@@ -22,16 +22,23 @@
 				<c:if test="${sessionScope.cliente == null}">
 					<li class="nav-item " role="presentation"><a
 						class="nav-link text-dark" href="#" data-toggle="modal"
-						data-target="#modalDelete"><strong>Prenota un terreno</strong></a></li>
+						data-target="#modalTerreno"><strong>Prenota un terreno</strong></a></li>
 				</c:if>
 				<c:if test="${sessionScope.cliente != null}">
 					<li class="nav-item " role="presentation"><a
 						class="nav-link text-dark" href="PageLoader?id=prenotaTerreno"><strong>Prenota
 								un terreno</strong></a></li>
 				</c:if>
+				<c:if test="${sessionScope.cliente == null}">
+					<li class="nav-item " role="presentation"><a
+						class="nav-link text-dark" href="#" data-toggle="modal"
+						data-target="#modalProdotto"><strong>Ordina un prodotto</strong></a></li>
+				</c:if>
+				<c:if test="${sessionScope.cliente != null}">
 				<li class="nav-item" role="presentation"><a
 					class="nav-link text-dark" href="PageLoader?id=ordinaProdotto"><strong>Ordina un
 							prodotto</strong></a></li>
+				</c:if>
 				<c:if test="${sessionScope.cliente == null}">
 					<li class="nav-item" role="presentation"><a
 						class="nav-link text-dark" href="PageLoader?id=azienda"><strong>Area
@@ -152,19 +159,51 @@
 </nav>
 
 <!-- Modal -->
-<div id="modalDelete" class="modal fade" role="dialog"
+<div id="modalTerreno" class="modal fade" role="dialog"
 	style="z-index: 2500; border-radius: 25px">
 
-	<div class="modal-dialog" style="border: 2px green solid">
+	<div class="modal-dialog" style="border: 2px #ad835a solid; border-radius: 15px">
 
 		<!-- Modal content-->
-		<div class="modal-content">
+		<div class="modal-content" style="background: #d3c3b3; border-radius: 15px" align="center">
 			<div class="modal-header">
 				<h4 class="modal-title">Effettua l'accesso!</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			<div class="modal-body">
 				<p>Per poter prenotare un terreno devi prima accedere al
+					sistema.</p>
+			</div>
+			<div class="modal-footer">
+				<div class="container" align="right">
+					<input type="text" style="display: none" id="tempId" name="tempId">
+					<input type="text" style="display: none" id="delete" name="delete"
+						value="true">
+					<button type="submit" class="btn btn-success"
+						style="border-radius: 15px" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- end modal -->
+
+
+<!-- Modal -->
+<div id="modalProdotto" class="modal fade" role="dialog"
+	style="z-index: 2500; border-radius: 25px">
+
+	<div class="modal-dialog" style="border: 2px #ad835a solid; border-radius: 15px">
+
+		<!-- Modal content-->
+		<div class="modal-content" style="background: #d3c3b3; border-radius: 15px" align="center">
+			<div class="modal-header">
+				<h4 class="modal-title">Effettua l'accesso!</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Per poter ordinare un prodotto devi prima accedere al
 					sistema.</p>
 			</div>
 			<div class="modal-footer">

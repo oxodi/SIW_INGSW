@@ -1,5 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>	
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -77,66 +77,105 @@
 		<div class="container">
 			<!-- Start: Intro -->
 			<div class="intro">
-				<h2 class="text-center">I nostri servizi  ${requestScope.failed}</h2>
-				<p class="text-center">Un nuovo modo per valorizzare il mondo dell'agricoltura.</p>
+				<h2 class="text-center">I nostri servizi ${requestScope.failed}</h2>
+				<p class="text-center">Un nuovo modo per valorizzare il mondo
+					dell'agricoltura.</p>
 			</div>
 			<!-- End: Intro -->
 			<!-- Start: Articles -->
 			<div class="row articles">
-				<div class="col-sm-6 col-md-4 item">
-				
-					<a href="#"><img class="img-fluid" src="assets/img/terrenobg.jpg"></a>
-					<h3 class="name">Prenota un terreno</h3>
-					<p class="description">Registrati come cliente per poter visualizzare le aziende
-					che offrono terreni coltivabili selezionando uno dei servizi proposti. Scegli il tuo terreno
-					e prova una nuova esperienza.</p>
-					<c:if test="${sessionScope.cliente == null}">
+				<c:if test="${sessionScope.cliente == null}">
+					<div class="col-sm-6 col-md-4 item">
+
+						<a href="#" data-toggle="modal"
+							data-target="#modalTerreno"><img class="img-fluid"
+							src="assets/img/terrenobg.jpg"></a>
+						<h3 class="name">Prenota un terreno</h3>
+						<p class="description">Registrati come cliente per poter
+							visualizzare le aziende che offrono terreni coltivabili
+							selezionando uno dei servizi proposti. Scegli il tuo terreno e
+							prova una nuova esperienza.</p>
+
 						<button class="button btn-success" data-toggle="modal"
-									data-target="#modalDelete" type="button" style="outline: none;border-radius: 30px; border-color: transparent; background-color: transparent;">  
-									<i class="fa fa-arrow-circle-right" id="myfa"></i></button>
+							data-target="#modalTerreno" type="button"
+							style="outline: none; border-radius: 30px; border-color: transparent; background-color: transparent;">
+							<i class="fa fa-arrow-circle-right" id="myfa"></i>
+						</button>
+					</div>
+
+					<div class="col-sm-6 col-md-4 item">
+						<a href="#" data-toggle="modal"
+							data-target="#modalProdotto"><img class="img-fluid"
+							src="assets/img/prodotti2.jpg"></a>
+						<h3 class="name">Acquista un prodotto</h3>
+						<p class="description">Accedendo a quest area puoi acquistare
+							tutti i prodotti offerti dalle aziende. Prova la nostra
+							ortofrutticola 2.0!</p>
+
+						<button class="button btn-success" data-toggle="modal"
+							data-target="#modalProdotto" type="button"
+							style="outline: none; border-radius: 30px; border-color: transparent; background-color: transparent;">
+							<i class="fa fa-arrow-circle-right" id="myfa"></i>
+						</button>
+					</div>
 				</c:if>
 				<c:if test="${sessionScope.cliente != null}">
-				
-					<a href="PageLoader?id=prenotaTerreno">
-					<button class="button btn-success" 
-						 type="button" style="outline: none; border-radius: 30px; border-color: transparent; background-color: transparent;" >
-						<i class="fa fa-arrow-circle-right" id="myfa"></i></button></a>
+					<div class="col-sm-6 col-md-4 item">
+
+						<a href="PageLoader?id=prenotaTerreno"><img class="img-fluid"
+							src="assets/img/terrenobg.jpg"></a>
+						<h3 class="name">Prenota un terreno</h3>
+						<p class="description">Registrati come cliente per poter
+							visualizzare le aziende che offrono terreni coltivabili
+							selezionando uno dei servizi proposti. Scegli il tuo terreno e
+							prova una nuova esperienza.</p>
+
+						<a href="PageLoader?id=prenotaTerreno" >
+							<button class="button btn-success" type="button"
+								style="outline: none; border-radius: 30px; border-color: transparent; background-color: transparent;">
+								<i class="fa fa-arrow-circle-right" id="myfa"></i>
+							</button>
+						</a>
+					</div>
+
+					<div class="col-sm-6 col-md-4 item">
+						<a href="PageLoader?id=ordinaProdotto"><img class="img-fluid"
+							src="assets/img/prodotti2.jpg"></a>
+						<h3 class="name">Acquista un prodotto</h3>
+						<p class="description">Accedendo a quest area puoi acquistare
+							tutti i prodotti offerti dalle aziende. Prova la nostra
+							ortofrutticola 2.0!</p>
+
+						<a href="PageLoader?id=ordinaProdotto" style="cursor: pointer;">
+							<button class="button btn-success" type="button"
+								style="outline: none; border-radius: 30px; border-color: transparent; background-color: transparent;">
+								<i class="fa fa-arrow-circle-right" id="myfa"></i>
+							</button>
+						</a>
+					</div>
 				</c:if>
-			
-				</div>
 				<div class="col-sm-6 col-md-4 item">
-					<a href="#"><img class="img-fluid"
-						src="assets/img/prodotti2.jpg"></a>
-					<h3 class="name">Acquista un prodotto</h3>
-					<p class="description">Accedendo a quest area puoi acquistare tutti i prodotti
-					offerti dalle aziende. Prova la nostra ortofrutticola 2.0! 
-					
-					
-					</p>
-					<a href="#">
-					<button class="button btn-success" 
-						 type="button" style="outline: none; border-radius: 30px; border-color: transparent; background-color: transparent;"> 
-						 <i class="fa fa-arrow-circle-right" id="myfa"></i> </button></a>
-				</div>
-				<div class="col-sm-6 col-md-4 item">
-					<a href="#"><img class="img-fluid" src="assets/img/azienda2.jpg"></a>
+					<a href="PageLoader?id=azienda"><img class="img-fluid"
+						src="assets/img/azienda2.jpg"></a>
 					<h3 class="name">Area aziende</h3>
-					<p class="description">Registrati come azienda per entrare nel mondo
-					innovativo dell'agricoltura digitale. Inserisci terreni e prodotti e sperimenta una
-					nuova possibilità di guadagno!</p>
+					<p class="description">Registrati come azienda per entrare nel
+						mondo innovativo dell'agricoltura digitale. Inserisci terreni e
+						prodotti e sperimenta una nuova possibilità di guadagno!</p>
 					<a href="PageLoader?id=azienda">
-					<button class="button btn-success" 
-						 type="button" style="outline: none; border-radius: 30px; border-color: transparent; background-color: transparent;" >
-						 <i class="fa fa-arrow-circle-right" id="myfa"></i></button></a>
+						<button class="button btn-success" type="button"
+							style="outline: none; border-radius: 30px; border-color: transparent; background-color: transparent;">
+							<i class="fa fa-arrow-circle-right" id="myfa"></i>
+						</button>
+					</a>
 				</div>
 			</div>
 			<!-- End: Articles -->
 		</div>
 
 	</div>
-	 
+
 	<!-- End: Article List -->
-<!-- Start: footer -->
+	<!-- Start: footer -->
 	<div id="footer"></div>
 	<!-- End: footer -->
 
@@ -148,4 +187,70 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
 	<script src="assets/js/scriptHome.min.js"></script>
 </body>
+
+<!-- Modal -->
+<div id="modalTerreno" class="modal fade" role="dialog"
+	style="z-index: 2500; border-radius: 25px">
+
+	<div class="modal-dialog" style="border: 2px #ad835a solid; border-radius: 15px">
+
+		<!-- Modal content-->
+		<div class="modal-content" style="background: #d3c3b3; border-radius: 15px" align="center">
+			<div class="modal-header">
+				<h4 class="modal-title">Effettua l'accesso!</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Per poter prenotare un terreno devi prima accedere al
+					sistema.</p>
+			</div>
+			<div class="modal-footer">
+				<div class="container" align="right">
+					<input type="text" style="display: none" id="tempId" name="tempId">
+					<input type="text" style="display: none" id="delete" name="delete"
+						value="true">
+					<button type="submit" class="btn btn-success"
+						style="border-radius: 15px" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- end modal -->
+
+<!-- Modal -->
+<div id="modalProdotto" class="modal fade" role="dialog"
+	style="z-index: 2500; border-radius: 25px">
+
+	<div class="modal-dialog" style="border: 2px #ad835a solid; border-radius: 15px">
+
+		<!-- Modal content-->
+		<div class="modal-content" style="background: #d3c3b3; border-radius: 15px" align="center">
+			<div class="modal-header">
+				<h4 class="modal-title">Effettua l'accesso!</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Per poter ordinare un prodotto devi prima accedere al
+					sistema.</p>
+			</div>
+			<div class="modal-footer">
+				<div class="container" align="right">
+					<input type="text" style="display: none" id="tempId" name="tempId">
+					<input type="text" style="display: none" id="delete" name="delete"
+						value="true">
+					<button type="submit" class="btn btn-success"
+						style="border-radius: 15px" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- end modal -->
+
 </html>
+
+
+

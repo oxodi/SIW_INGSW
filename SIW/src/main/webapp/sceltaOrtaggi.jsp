@@ -438,101 +438,97 @@
 
 
 	<!-- Modal -->
-	<div id="modalError" class="modal fade" role="dialog"
-		style="z-index: 2500; border-radius: 25px">
+<div id="modalError" class="modal fade" role="dialog"
+	style="z-index: 2500; border-radius: 25px">
 
-		<div class="modal-dialog" style="border: 2px green solid">
+	<div class="modal-dialog" style="border: 2px #ad835a solid; border-radius: 15px">
 
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Dimensione massima superata!</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<div class="modal-body">
-					<p>La quantità degli ortaggi selezionati è maggiore della
-						dimensione massima di terreno disponibile.</p>
-				</div>
-				<div class="modal-footer">
-					<div class="container" align="right">
-						<input type="text" style="display: none" id="tempId" name="tempId">
-						<input type="text" style="display: none" id="delete" name="delete"
-							value="true">
-						<button type="submit" class="btn btn-success"
-							style="border-radius: 15px" data-dismiss="modal">OK</button>
-					</div>
+		<!-- Modal content-->
+		<div class="modal-content" style="background: #d3c3b3; border-radius: 15px" align="center">
+			<div class="modal-header">
+				<h4 class="modal-title">Dimensione massima superata!</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>La quantità di terreno selezionata è maggiore di quella attualmente disponibile.</p>
+			</div>
+			<div class="modal-footer">
+				<div class="container" align="right">
+					<input type="text" style="display: none" id="tempId" name="tempId">
+					<input type="text" style="display: none" id="delete" name="delete"
+						value="true">
+					<button type="submit" class="btn btn-success"
+						style="border-radius: 15px" data-dismiss="modal">OK</button>
 				</div>
 			</div>
-
 		</div>
+
 	</div>
-	<!-- end modal -->
+</div>
+<!-- end modal -->
 
 
+<!-- Modal -->
+<div id="modalErrorOrt" class="modal fade" role="dialog"
+	style="z-index: 2500; border-radius: 25px">
 
-	<!-- Modal -->
-	<div id="modalErrorOrt" class="modal fade" role="dialog"
-		style="z-index: 2500; border-radius: 25px">
+	<div class="modal-dialog" style="border: 2px #ad835a solid; border-radius: 15px">
 
-		<div class="modal-dialog" style="border: 2px green solid">
-
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Ortaggio già inserito!</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<div class="modal-body">
-					<p>Un ortaggio non può essere selezionato sia per il terreno
-						che per la serra.</p>
-					<p>Cancella l'ortaggio interessato dalla selezione e fai la tua
-						scelta.</p>
-				</div>
-				<div class="modal-footer">
-					<div class="container" align="right">
-						<input type="text" style="display: none" id="tempId" name="tempId">
-						<input type="text" style="display: none" id="delete" name="delete"
-							value="true">
-						<button type="submit" class="btn btn-success"
-							style="border-radius: 15px" data-dismiss="modal">OK</button>
-					</div>
+		<!-- Modal content-->
+		<div class="modal-content" style="background: #d3c3b3; border-radius: 15px" align="center">
+			<div class="modal-header">
+				<h4 class="modal-title">Ortaggio già inserito!</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Un ortaggio non può essere selezionato sia per il terreno che per la serra</p>
+				<p>Cancella l'ortaggio interessato dalla selezione e fai la tua scelta</p>
+			</div>
+			<div class="modal-footer">
+				<div class="container" align="right">
+					<input type="text" style="display: none" id="tempId" name="tempId">
+					<input type="text" style="display: none" id="delete" name="delete"
+						value="true">
+					<button type="submit" class="btn btn-success"
+						style="border-radius: 15px" data-dismiss="modal">OK</button>
 				</div>
 			</div>
-
 		</div>
+
 	</div>
-	<!-- end modal -->
+</div>
+<!-- end modal -->
 	
 	
 	<!-- Modal -->
-	<div id="modalPagamento" class="modal fade" role="dialog"
-		style="z-index: 2500; border-radius: 25px">
+<div id="modalPagamento" class="modal fade" role="dialog"
+	style="z-index: 2500; border-radius: 25px">
 
-		<div class="modal-dialog" style="border: 2px green solid">
+	<div class="modal-dialog" style="border: 2px #ad835a solid; border-radius: 15px">
 
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Nessun metodo di pagamento selezionato</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<div class="modal-body">
-					<p>Scegli un metodo di pagamento.</p>
-				</div>
-				<div class="modal-footer">
-					<div class="container" align="right">
-						<input type="text" style="display: none" id="tempId" name="tempId">
-						<input type="text" style="display: none" id="delete" name="delete"
-							value="true">
-						<button type="submit" class="btn btn-success"
-							style="border-radius: 15px" data-dismiss="modal">OK</button>
-					</div>
+		<!-- Modal content-->
+		<div class="modal-content" style="background: #d3c3b3; border-radius: 15px" align="center">
+			<div class="modal-header">
+				<h4 class="modal-title">Nessun metodo di pagamento selezionato</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Scegli un metodo di pagamento.</p>
+			</div>
+			<div class="modal-footer">
+				<div class="container" align="right">
+					<input type="text" style="display: none" id="tempId" name="tempId">
+					<input type="text" style="display: none" id="delete" name="delete"
+						value="true">
+					<button type="submit" class="btn btn-success"
+						style="border-radius: 15px" data-dismiss="modal">OK</button>
 				</div>
 			</div>
-
 		</div>
+
 	</div>
-	<!-- end modal -->
+</div>
+<!-- end modal -->
 
 	<!-- End: Article List -->
 	<!-- Start: footer -->
