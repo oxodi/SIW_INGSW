@@ -191,11 +191,16 @@ label img:hover{
 
 .mastercard{
 	content:  url("../img/ImgMastercard.png");
-    
+    border-style: solid;
+    border-radius: 8px;
+    border-color: #552302;
 }
 
 .paypal{
 	content:  url("../img/ImgPaypal.png");
+	border-style: solid;
+    border-radius: 8px;
+    border-color: #552302;
     
 }
 /* check + label */

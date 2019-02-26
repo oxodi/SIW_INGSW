@@ -342,29 +342,6 @@
 
 					</div>
 					<!--container end.//-->
-
-					<!-- 	<br>
-		<br> -->
-
-
-					<!-- <article class="bg-secondary mb-3">
-			<div class="card-body text-center">
-				<h3 class="text-white mt-3">Bootstrap 4 UI KIT</h3>
-				<p class="h5 text-white">
-					Components and templates <br> for Ecommerce, marketplace,
-					booking websites and product landing pages
-				</p>
-				<br>
-				<p>
-					<a class="btn btn-warning" target="_blank"
-						href="http://bootstrap-ecommerce.com/">
-						Bootstrap-ecommerce.com <i class="fa fa-window-restore "></i>
-					</a>
-				</p>
-			</div>
-			<br>
-			<br>
-		</article> -->
 					<div class="row">
 						<div class="col-sm-3" style="margin: 2%; margin-top: 5%">
 							<ul style="list-style-type: none">
