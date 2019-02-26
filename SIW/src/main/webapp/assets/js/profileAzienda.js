@@ -78,7 +78,7 @@ function ordiniEffettuati(){
 	var $table = ('<div class="container-fluid" id="containerOrdini">'
 			+ '<div class="form-row form-group">'
 			+ '<div class="table-responsive" id="table-scroll">'
-			+ '<table class="table table-hover" id="tabListaOrdini">'
+			+ '<table class="table table-hover" id="tabListaOrdini" style="background-color:rgb(0, 102, 0,.4); border-radius:15px">'
 			+ '<thead>' + '<tr align="center">' + '<th>Prodotto</th>'
 			+ '<th>Cliente</th>' + '<th>Data</th>'
 			+ '<th>Dettagli</th>' + '</tr>' + '</thead>'
@@ -98,7 +98,7 @@ function ordiniEffettuati(){
 			$("#tabListaOrdini > tbody").empty();
 			for(var i = 0;i<data.length;i++){
 				var $row = ('<tbody>'
-					+ '<tr id="rigaOrdini" align="center" data-toggle="collapse" data-target="#listaOrdini" aria-expanded="false" aria-controls="listaOrdini">'
+					+ '<tr id="rigaOrdini" style="color:white" align="center" data-toggle="collapse" data-target="#listaOrdini" aria-expanded="false" aria-controls="listaOrdini">'
 					+ '<td>'+data[i].NomeProdotto+'</td>'
 					+ '<td>'+data[i].NomeCliente+'</td>'
 					+ '<td>'+data[i].DataAcquisto+'</td>'
@@ -133,23 +133,23 @@ $(function chartStatistiche(){
 				        datasets: [{
 				        	
 				            label: "Primavera",
-				            backgroundColor: 'rgb(0, 153, 51,.3)',
-				            borderColor: 'rgba(255,99,132,1)',
+				            backgroundColor: 'rgb(0, 153, 0,.3)',
+				            borderColor: 'rgb(0, 153, 0)',
 				            data: [data.primavera],
 				            
 				        },
 				        {
 				        	
 				        	 label: "Estate",
-					            backgroundColor: 'rgb(0, 153, 204,.3)',
-					            borderColor: 'rgb(153, 102, 0)',
+					            backgroundColor: 'rgb(204, 0, 0,.3)',
+					            borderColor: 'rgb(204, 0, 0)',
 					            data: [data.estate],
 				        },
 				        {
 				        	
 				        	label: "Autunno",
-				            backgroundColor: 'rgb(255, 204, 0,.3)',
-				            borderColor: 'rgb(153, 102, 0)',
+				            backgroundColor: 'rgb(255, 153, 0,.3)',
+				            borderColor: 'rgb(255, 153, 0)',
 				            data: [data.autunno],
 				        },
 				        {
@@ -210,13 +210,14 @@ function ortaggiPrenotati(terreno,cliente) {
 					$("#info_row"+terreno+cliente).append($chiudi);
 					
 					var $table = ('<tr align="center">' + '<th>Nome</th>' + '<th>Quantità</th>'
-							+ '<th>Serra</th>' + '</tr>')
+							+ '<th>Serra</th>'+'<td></td>'+ '</tr>')
 					$('#listaOrtaggi'+terreno+cliente).append($table);
 					for (var i = 0; i < data.length; i++) {
 						
-						var $row = ('<tr align="center" >' + '<td>' + data[i].ortaggio
+						var $row = ('<tr align="center" style="color:white">' + '<td>' + data[i].ortaggio
 								+ '</td>' + '<td>' + data[i].quantita + '</td>'
 								+ '<td>' + data[i].serra + '</td>'
+								+ '<td></td>'
 								+ '</tr>')
 							$("#listaOrtaggi"+terreno+cliente).append($row);
 					}
@@ -227,13 +228,13 @@ function ortaggiPrenotati(terreno,cliente) {
 
 }
 function prenotazioniAzienda() {
-
+	
 	$('#prenotazioni').empty();
 	var $table = ('<div class="container-fluid" id="prenotazioniAzienda">'
 			+ '<div class="form-row form-group">'
 			+ '<div class="table-responsive" id="table-scroll">'
-			+ '<table class="table table-hover table-curved" id="tabListaPrenotazioni">'
-			+ '<thead style="background-color:#006600; color:white">' + '<tr align="center">' + '<th>Terreno</th>'
+			+ '<table class="table table-hover table-curved" id="tabListaPrenotazioni" style="background-color:rgb(0, 102, 0,.4); border-radius:15px">'
+			+ '<thead style="color:black">' + '<tr align="center">' + '<th>Terreno</th>'
 			+ '<th>Cliente</th>' + '<th>Data</th>'
 			+ '<th>Dettagli</th>' + '</tr>' + '</thead>'
 			+ '</table>' + '</div>' + '</div>' + '</div>')
@@ -243,6 +244,7 @@ function prenotazioniAzienda() {
 	var $loading = ('<div class="container-fluid" align="center" id="loading">'
 			+ '<div class="loader" role="status" >' + '</div>' + '</div>')
 			$("#prenotazioni").append($loading);
+
 	$
 	.ajax({
 		url : 'DammiPrenotazioneAzienda?edit=true',
@@ -254,7 +256,7 @@ function prenotazioniAzienda() {
 
 		success : function(data) {
 			for (var i = 0; i < data.length; i++) {
-				var $row = ('<tbody style="background-color:rgb(0, 102, 0,.4); color:white">'
+				var $row = ('<tbody style="color:white">'
 						+ '<tr id="rigaPren" align="center" data-toggle="collapse" data-target="#listaOrtaggi'+ data[i].id_terreno+data[i].id_cliente+'"aria-controls="listaOrtaggi">'
 						+ '<td>'+ data[i].terreno+ '</td>'
 						+ '<td>'+ data[i].cliente_nome+' '+ data[i].cliente_cognome+ '</td>'

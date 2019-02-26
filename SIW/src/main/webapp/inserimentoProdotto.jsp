@@ -206,9 +206,9 @@
 	
 	<div id="annullamentoProdotto" class="modal fade" role="dialog"
 		style="z-index: 2500; border-radius: 25px">
-		<div class="modal-dialog" style="border: 2px green solid">
+		<div class="modal-dialog" style="border: 2px #ad835a solid; border-radius: 15px">
 			<!-- Modal content-->
-			<div class="modal-content">
+			<div class="modal-content" style="background: #d3c3b3; border-radius: 15px">
 				<div class="modal-header">
 					<h4 class="modal-title">Conferma Annullamento</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>

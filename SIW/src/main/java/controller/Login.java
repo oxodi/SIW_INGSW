@@ -92,7 +92,11 @@ public class Login extends HttpServlet {
 				RequestDispatcher rs = request.getRequestDispatcher("PageLoader?id=backendAzienda");
 				rs.forward(request, response);
 			} else {
-				out.println("Username o Password errati");
+				//out.println("Username o Password errati");
+				out.println("<div class=\"alert alert-danger\">\r\n" +
+						" <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>"+
+						"  <strong>Accesso Negato!</strong> Username o Password errati. Controllare se i dati inseriti se sono corretti\r\n" + 
+						"</div>");
 				RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
 				rs.include(request, response);
 			}
