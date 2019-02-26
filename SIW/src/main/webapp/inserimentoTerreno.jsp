@@ -19,7 +19,6 @@
 <link rel="stylesheet" href="assets/css/inserimentoTerreno.css">
 <link rel="stylesheet" href="assets/css/backend.css">
 <script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/controlloTerreno.js"></script>
 <!-- Script for load Navigation Bar -->
 <script>
 	$(function() {
