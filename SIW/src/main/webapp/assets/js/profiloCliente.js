@@ -54,9 +54,9 @@ function dammiPrenotazioni(){
 					"<table class='table table-hover' id='listaPrenotazioni'>" +
 					"<thead style='background: #f7d08c'>" +
 					"<tr>" +
-					"<th>Azienda</th>" +
 					"<th>Terreno</th>" +
 					"<th>Locazione</th>" +
+					"<th>Azienda</th>" +
 					"<th>Dettagli</th>" +
 					"</tr>" +
 					"</thead>" +

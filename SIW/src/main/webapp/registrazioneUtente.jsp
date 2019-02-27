@@ -94,7 +94,7 @@
 							di Nascita</label>
 					</div>
 					<div class="col-sm-6 input-column">
-						<input class="form-control" type="text" name="data_di_nascita">
+						<input class="form-control" type="text" placeholder="gg-mm-aaaa" name="data_di_nascita">
 					</div>
 				</div>
 				<div class="form-row form-group">

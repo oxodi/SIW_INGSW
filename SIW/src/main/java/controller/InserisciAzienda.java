@@ -112,7 +112,7 @@ public class InserisciAzienda extends HttpServlet {
 			//doGet(request, response);
 			out.println("<div class=\"alert alert-success\">\r\n" +
 					" <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>"+
-					"  <strong> Grazie per esserti registrato!</strong>Ora puoi effettuare il Login.\r\n" + 
+					"  <strong> Grazie per esserti registrato!</strong> Ora puoi effettuare il Login.\r\n" + 
 					"</div>");
 			
 			RequestDispatcher rs = request.getRequestDispatcher("PageLoader?id=azienda");
