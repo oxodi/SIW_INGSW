@@ -17,7 +17,11 @@ $(document).ready(function(){
 				carrello: Cookies.getJSON('prodotti'+cliente)
 		};
 		
-		 $('#dimensioneCarrello').html("("+prodotti.carrello.length+")");	
+		 if(prodotti.carrello.length > 0)
+			 $('#dimensioneCarrello').html("("+prodotti.carrello.length+")");	
+		 else
+			 $('#dimensioneCarrello').html("");
+	
 	}
 	
 });
@@ -117,8 +121,12 @@ function rimuoviProdotto(row, id){
 	}
 	
 	Cookies.set('prodotti'+cliente, prodotti.carrello, { expires: 7 });
-	 $('#dimensioneCarrello').html("("+prodotti.carrello.length+")");	
-		
+	
+	if(prodotti.carrello.length > 0)
+		 $('#dimensioneCarrello').html("("+prodotti.carrello.length+")");	
+	 else
+		 $('#dimensioneCarrello').html("");
+	
 	calcolaImporti();		
 }
 
