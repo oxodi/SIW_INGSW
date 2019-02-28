@@ -1,3 +1,24 @@
+$(document).ready(function() {
+
+    
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.avatar').attr('src', e.target.result);
+            }
+    
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+
+    $(".file-upload").on('change', function(){
+        readURL(this);
+    });
+});
+
 //Intercetta il click sul Tab Pane
 //$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 //var target = $(e.target).attr("href");
@@ -284,8 +305,8 @@ function annullaAddOrtaggio() {
 //Cancella l'ortaggio selezionato nella tab di modifica terreno
 function cancellaOrtaggio(idTerreno, idOrtaggio) {
 	var $modal = ('<div id="modalCancellaOrtaggio" class="modal fade" role="dialog" style="z-index: 2500; border-radius: 25px">'
-			+ '<div class="modal-dialog" style="border: 2px green solid">'
-			+ '<div class="modal-content">'
+			+ '<div class="modal-dialog" style="border: 2px #ad835a solid; border-radius: 15px">'
+			+ '<div class="modal-content" style="background: #d3c3b3; border-radius: 15px">'
 			+ '<div class="modal-header">'
 			+ '<h4 class="modal-title">Elimina Ortaggio</h4>'
 			+ '<button type="button" class="close" data-dismiss="modal">&times;</button>'
@@ -397,7 +418,7 @@ function funAggiungiOrtaggi() {
 					+ '<form class="custom-form" method="post" id="formAddOrtaggio">'
 					+ '<div class="form-row form-group">'
 					+ '<div class="table-responsive" id="table-scroll">'
-					+ '<table class="table table-hover" id="tabAggiuntaOrtaggi">'
+					+ '<table class="table table-hover" id="tabAggiuntaOrtaggi" style="background-color:rgb(0, 102, 0,.4); border-radius:15px">'
 					+ '<thead>'
 					+ '<tr>'
 					+ '<th></th>'

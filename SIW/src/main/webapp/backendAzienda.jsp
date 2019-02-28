@@ -267,7 +267,7 @@
 					<div class="tab-pane" style="margin-top: 20px;" id="imieiterreni">
 						<div class="container" id="terreni">
 							<div class="table-responsive">
-								<table class="table table-hover">
+								<table class="table table-hover" style="background-color:rgb(0, 102, 0,.4); border-radius:15px">
 									<thead>
 										<tr align="center">
 											<th>Locazione</th>
@@ -434,7 +434,7 @@
 											<h4>Ortaggi Coltivabili</h4>
 										</div>
 										<div class="table-responsive" id="table-scroll" style="margin-top: 20px">
-											<table class="table table-hover" id="formModificaOrtaggi">
+											<table class="table table-hover" id="formModificaOrtaggi" style="background-color:rgb(0, 102, 0,.4); border-radius:15px">
 												<thead>
 													<tr align="center">
 														<th><strong>Nome</strong></th>
@@ -538,7 +538,7 @@
 						id="imieiprodotti">
 						<div class="container-fluid" id="prodotti">
 							<div class="table-responsive">
-								<table class="table table-hover">
+								<table class="table table-hover" style="background-color:rgb(0, 102, 0,.4); border-radius:15px">
 									<thead>
 										<tr align="center">
 											<th>Nome</th>
