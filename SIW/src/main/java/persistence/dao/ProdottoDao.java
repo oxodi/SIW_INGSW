@@ -26,6 +26,8 @@ public interface ProdottoDao {
 	
 	public int numProdotti(int idAzienda);
 	
+	public String restituisciCategoria(int id);
+	
 	public List<Prodotto> cercaPerAzienda(int idAzienda);
 
 	public void aggiorna(Prodotto prodotto);

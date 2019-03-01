@@ -452,6 +452,33 @@ public class ProdottoDaoJDBC implements ProdottoDao {
 		return nomeProdotto;
 	}
 
+	@Override
+	public String restituisciCategoria(int id) {
+		Connection connection = this.dataSource.getConnection();
+		String categoriaProdotto = "";
+		
+		try {
+			String query = "SELECT categoria FROM prodotto WHERE id = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, id);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				categoriaProdotto = result.getString("categoria");
+				
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e2) {
+				throw new PersistenceException(e2.getMessage());
+
+			}
+		}
+		return categoriaProdotto;
+	}
+
 }
 
 

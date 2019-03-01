@@ -61,6 +61,10 @@ public class DammiAcquistiCliente extends HttpServlet {
 			tmp.put("quantita", acquisto.getQuantita());
 			tmp.put("importo", acquisto.getImporto());
 			
+			String categoriaProdotto = prodottodao.restituisciCategoria(acquisto.getIdProdotto());
+			
+			tmp.put("categoria", categoriaProdotto);
+			
 			long progressoOrdine = dataCorrente - acquisto.getDataAcquisto().getTime();
 			long progressoOre = timeUnit.convert(progressoOrdine, TimeUnit.MILLISECONDS);
 			

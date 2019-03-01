@@ -263,3 +263,119 @@ function dammiAcquisti(){
 		}
 	});
 }	
+
+
+function dammiStatistiche(){
+	
+	var latticini = 0;
+	var oli = 0;
+	var verdure = 0;
+	var frutti = 0;
+	var carni = 0;
+	var vini = 0;
+	
+	var $loading = ('<div class="container-fluid" align="center" id="loading">'
+			+ '<div class="loader" role="status" >' + '</div>' + '</div>')
+	$("#statistiche").append($loading);
+	
+	$.ajax({
+		method: "GET",
+		url: "DammiAcquistiCliente",
+		dataType: "json",
+		success: function(data){
+		
+			var ctx = document.getElementById('myChart').getContext('2d');	
+			
+			document.getElementById('myChart').style.backgroundColor ="rgb(247, 236, 217, .6)";
+			
+			for (var i = 0; i < data.length; i++){
+				if(data[i].categoria == "Latticini")
+					latticini++;
+				if(data[i].categoria == "Oli e derivati")
+					oli++;
+				if(data[i].categoria == "Carni e derivati")
+					carni++;
+				if(data[i].categoria == "Vini")
+					vini++;
+				if(data[i].categoria == "Verdure")
+					verdure++;
+				if(data[i].categoria == "Frutti")
+					frutti++;
+			}
+				
+			
+			var chart = new Chart(ctx, {
+			    // The type of chart we want to create
+			    type: 'bar',
+			    
+			    // The data for our dataset
+			    data: {
+			    	
+			        datasets: [{
+			        	
+			            label: "Verdure",
+			            backgroundColor: 'rgb(0, 153, 0,.7)',
+			            borderColor: 'rgb(0, 149, 0)',
+			            data: [verdure],
+			            
+			        },
+			        {
+			        	
+			        	 label: "Frutti",
+				            backgroundColor: 'rgb(204, 0, 0,.7)',
+				            borderColor: 'rgb(200, 0, 0)',
+				            data: [frutti],
+			        },
+			        {
+			        	
+			        	label: "Oli e derivati",
+			            backgroundColor: 'rgb(255, 153, 0,.8)',
+			            borderColor: 'rgb(255, 149, 0)',
+			            data: [oli],
+			        },
+			        {
+			        	
+			        	label: "Carni e derivati",
+			            backgroundColor: 'rgb(104, 38, 3,.7)',
+			            borderColor: 'rgb(104, 34, 3)',
+			            data: [carni],
+			        },
+			        {
+			        	
+			        	label: "Latticini",
+			            backgroundColor: 'rgb(204, 204, 204,.8)',
+			            borderColor: 'rgb(204, 200, 204)',
+			            data: [latticini],
+			        },
+			        {
+			        	
+			        	label: "Vini",
+			            backgroundColor: 'rgb(92, 92, 138)',
+			            borderColor: 'rgb(92, 88, 138)',
+			            data: [vini],
+			        }
+			        ],
+			       
+			    },
+
+			    // Configuration options go here
+			    options: {
+			    	scales:{
+			    		yAxes:[{
+			    			ticks:{
+			    				min: 0,
+			    				stepSize: 1
+			    			}
+			    		}]
+			    	}
+			    }
+			});
+			$("#infoStatistiche").show();
+			$("#loading").remove();
+		},
+		error: function(data){
+			
+		}
+	});
+
+}
