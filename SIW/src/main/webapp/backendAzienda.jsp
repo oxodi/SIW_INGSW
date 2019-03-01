@@ -674,9 +674,9 @@
 					<!-- statistiche -->
 					<div class="tab-pane active" style="margin-top: 20px; margin-bottom: 50px"
 						id="tabStatistiche">
-							<canvas id="myChart"></canvas>
+							<canvas id="myChart" style="background:rgb(247,236,217,.6)"></canvas>
 							<div class="container-fluid" align="center" style="margin: 5px">
-						<p><strong>Il grafico mostra le statistiche del numero di prenotazioni per stagione.</strong></p>
+						<p><strong>Il grafico mostra le statistiche del numero di ortaggi prenotati per stagione.</strong></p>
 						</div>
 					</div>
 					<!-- end statistiche -->
