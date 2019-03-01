@@ -1,7 +1,30 @@
 var prodotti = {
 		carrello: []
 };
+var cliente; 
 
+$(document).ready(function(){
+
+	cliente = document.getElementById("idCliente").value;
+	
+	if(Cookies.getJSON('prodotti'+cliente).length == 0){
+		prodotti = {
+				carrello: []
+		};
+	}
+	else{
+		 prodotti = {
+				carrello: Cookies.getJSON('prodotti'+cliente)
+		};
+		
+		 if(prodotti.carrello.length > 0)
+			 $('#dimensioneCarrello').html("("+prodotti.carrello.length+")");	
+		 else
+			 $('#dimensioneCarrello').html("");
+	
+	}
+	
+});
 
 function aggiungiAlCarrello(id, nome, categoria, quantita, prezzo, azienda){
 	var presente = false;
@@ -26,6 +49,8 @@ function aggiungiAlCarrello(id, nome, categoria, quantita, prezzo, azienda){
 		});
 		$('#alertConferma'+id).show('slow').delay(3500).fadeOut();
 		$('#dimensioneCarrello').html("("+prodotti.carrello.length+")");
+		
+		Cookies.set('prodotti'+cliente, prodotti.carrello, { expires: 7 });
 	}
 	
 	
@@ -45,7 +70,7 @@ function visualizzaCarrello(){
 
 	var body = document.getElementById('body');
 	var somma = 0;
-
+	
 	for(var i = 0; i<prodotti.carrello.length; i++){
 		
 		var $row = $(  "<tr id="+prodotti.carrello[i].id+"> <td>" +
@@ -64,14 +89,6 @@ function visualizzaCarrello(){
 				"</figure>"+
 				"</td>"+
 				"<td> <input class='form-control' id='selezionaQuantita"+prodotti.carrello[i].id+"' type='number' max ='"+prodotti.carrello[i].quantita+"' value='1' onchange='aggiorna(this.id,"+prodotti.carrello[i].id+")'>"+
-//				"<td><select class='form-control' id='selezionaQuantita"+prodotti.carrello[i].id+"' onchange='aggiorna()'>"+
-//				"<option>1</option>"+
-//				"<option>2</option>"+
-//				"<option>3</option>"+
-//				"<option>4</option>"+
-//				"<option>5</option>"+
-//				"<option>6</option>"+
-//				"</select></td>"+
 				"</td>"+
 				"<td>"+
 				"<div class='price-wrap'>"+
@@ -102,7 +119,14 @@ function rimuoviProdotto(row, id){
 			prodotti.carrello.splice(i,1);
 		}
 	}
-
+	
+	Cookies.set('prodotti'+cliente, prodotti.carrello, { expires: 7 });
+	
+	if(prodotti.carrello.length > 0)
+		 $('#dimensioneCarrello').html("("+prodotti.carrello.length+")");	
+	 else
+		 $('#dimensioneCarrello').html("");
+	
 	calcolaImporti();		
 }
 

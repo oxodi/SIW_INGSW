@@ -19,6 +19,7 @@
 
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/ordinaProdotto.js"></script>
+<script src="assets/js/js.cookie.js"></script>
 <!-- Script for load Navigation Bar -->
 <script>
 	$(function() {
@@ -37,7 +38,7 @@
 	<!-- ========================= SECTION CONTENT ========================= -->
 	<section class="section-content bg padding-y">
 		<div class="container">
-
+			<input type="hidden" id="idCliente" value="${sessionScope.cliente.getId()}" />	
 			<div class="row" id="divGenerale">
 				<div id="divScegliProdotti">
 					<div class="row">
@@ -244,7 +245,7 @@
 														<!-- <del class="price-old"> $98</del> -->
 													</div>
 													<!-- info-price-detail // -->
-													<p class="text-success">Spedizione gratuita</p>
+													<p class="text-success">Spedizione 5%</p>
 													<br>
 													<p>
 														<button class="button"
