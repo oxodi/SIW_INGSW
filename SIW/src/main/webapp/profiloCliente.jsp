@@ -67,14 +67,14 @@
 									Cliente</strong></li>
 							<li class="list-group-item text-left style-info"
 								style="border-bottom: green 1px solid;"><span
-								class="pull-left"><strong>Codice Fiscale  </strong></span>
+								class="pull-left"><strong>Codice Fiscale  </strong></span><br>
 								${sessionScope.cliente.getCodiceFiscale() }</li>
 							<li class="list-group-item text-left style-info"
 								style="border-bottom: green 1px solid;"><span
-								class="pull-left"><strong>E-mail  </strong></span>
+								class="pull-left"><strong>E-mail  </strong></span><br>
 								${sessionScope.cliente.getEmail() }</li>
 							<li class="list-group-item text-left style-info"><span
-								class="pull-left"><strong>Data di nascita  </strong></span>
+								class="pull-left"><strong>Data di nascita  </strong></span><br>
 								${dataNascitaCliente}</li>
 						</ul>
 					</div>
@@ -90,16 +90,16 @@
 								style="border-bottom: green 1px solid"><strong>Recapiti</strong></li>
 							<li class="list-group-item text-left style-info"
 								style="border-bottom: green 1px solid;" id="cit"><span
-								class="pull-left"><strong>Città  </strong></span>
+								class="pull-left"><strong>Città  </strong></span><br>
 								${sessionScope.cliente.getCitta()}(${sessionScope.cliente.getProvincia()})
 							</li>
 							<li class="list-group-item text-left style-info"
 								style="border-bottom: green 1px solid;" id="indi"><span
-								class="pull-left"><strong>Indirizzo  </strong></span>
+								class="pull-left"><strong>Indirizzo  </strong></span><br>
 								${sessionScope.cliente.getIndirizzo()}
 								(${sessionScope.cliente.getCap()})</li>
 							<li class="list-group-item text-left style-info" id="tel"><span
-								class="pull-left"><strong>Telefono  </strong></span>
+								class="pull-left"><strong>Telefono  </strong></span><br>
 								${sessionScope.cliente.getTelefono()}</li>
 						</ul>
 					</div>
