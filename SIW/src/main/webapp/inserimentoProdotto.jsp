@@ -93,11 +93,11 @@
 											<select class="input-column" style="padding: 5px;"
 											name="categoria" id="categoria">
 											<option value="Latticini">Latticini</option>
-											<option value="Oli">Oli e derivati</option>
+											<option value="Oli e derivati">Oli e derivati</option>
 											<option value="Verdure">Verdure</option>
 											<option value="Frutti">Frutti</option>
 											<option value="Vini">Vini</option>
-											<option value="Carni">Carni e derivati</option>
+											<option value="Carni e derivati">Carni e derivati</option>
 											<option value="Altro">Altro</option>
 											<!-- <option value="annuale">Annuale</option>  -->
 

@@ -144,6 +144,7 @@ $(function chartStatistiche(){
 			dataType: "json",
 			success: function(data){
 				var ctx = document.getElementById('myChart').getContext('2d');
+				document.getElementById('myChart').style.backgroundColor ="rgb(247, 236, 217, .6)";
 				var chart = new Chart(ctx, {
 				    // The type of chart we want to create
 				    type: 'bar',
